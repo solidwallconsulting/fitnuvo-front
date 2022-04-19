@@ -1,0 +1,245 @@
+<app-header></app-header>
+<div class="container">
+    <div class="row spacing">
+        <div class="col-12">
+ 
+
+              <div class="input-group mb-3">
+                <span class="right-border-top-bar input-group-text bg-white border-right-0" id="basic-addon1"><i class="fa fa-search" aria-hidden="true"></i></span>
+                <input type="text" class="form-control top-input-bar" placeholder="search" aria-label="Username">
+                <span class="input-group-text bg-white"><i class="fa fa-map-marker" aria-hidden="true"></i></span>
+                <input type="text" class="form-control top-input-bar" placeholder="Search by location" aria-label="Server"> 
+                <button class="btn btn-primary input-group-text top-search-button">Search</button>
+              </div>
+
+
+
+        </div>
+    </div>
+
+    <div class="row spacing">
+        <div class="col-sm-4 col-md-2">
+
+
+            <div class="dropdown app-drop-down w-100">
+                <button class="btn btn-secondary dropdown-toggle w-100" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                  Speciality
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                  <li>
+                    <div>
+                        <input type="checkbox" class="check-box-list"> <label for="">Bodybuilding</label>
+                    </div> 
+                  </li> 
+                  <li>
+                    <div>
+                        <input type="checkbox" class="check-box-list"> <label for="">Fitness</label>
+                    </div> 
+                  </li> 
+                  <li>
+                    <div>
+                        <input type="checkbox" class="check-box-list"> <label for="">Yoga</label>
+                    </div> 
+                  </li> 
+                  
+                  
+                </ul>
+              </div>
+        </div>
+
+
+        <div class="col-sm-4 col-md-2">
+
+
+            <div class="dropdown app-drop-down w-100">
+                <button class="btn btn-secondary dropdown-toggle w-100" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                  Price
+                </button>
+                <div class="dropdown-menu pb-0" aria-labelledby="dropdownMenuButton1">
+                    
+                    <div class="p-2">
+                        <label for="customRange3" class="form-label">50$</label>
+                        <input type="range" class="form-range" min="0" max="5" step="0.5" id="customRange3">
+
+                        
+                    </div>
+                    <button class="btn btn-primary w-100">Apply</button>
+                       
+                </div>
+              </div>
+        </div>
+
+
+
+        
+        <div class="col-sm-4 col-md-2">
+
+
+            <div class="dropdown app-drop-down w-100">
+                <button class="btn btn-secondary dropdown-toggle w-100" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                  Schedule
+                </button>
+                <div class="dropdown-menu  " style="width: 500px;" aria-labelledby="dropdownMenuButton1">
+                    
+                    <div class="card-body">
+
+                       
+                            <div class="calendar-top d-flex">
+                                <div> </div><div *ngFor="let d of avalableDATES">{{ d.label }}</div>
+                            
+                            </div> 
+
+                            <div class="calendar-body d-flex">
+
+                                <div class="date-line d-flex ">
+                                    <div class=" time-label " *ngFor="let h of avalableDATES[0].hours"   >
+                                        {{ h.label }}
+                                    </div>
+                                </div>
+
+                                <div *ngFor="let r of avalableDATES"  class="date-line d-flex ">
+                                    
+                                    
+
+
+                                    <div class="hour-to-choose" *ngFor="let h of r.hours"  [ngClass]=" h.checked== true ? 'checked-hour' : '' ">
+                                        <i class="fa fa-check text-white" *ngIf=" h.checked== true "></i>
+                                    </div>
+                                </div>
+                            </div>
+
+                             
+                        
+                    </div>
+
+                    <div class="card-footer justify-content-end">
+                        <button class="btn">Reset</button>
+                        <button class="btn btn-primary">Apply</button>
+                    </div>
+                       
+                </div>
+              </div>
+        </div>
+
+        <div class="col-sm-4 col-md-2"> 
+            <div class="dropdown app-drop-down w-100">
+                <button class="btn btn-secondary dropdown-toggle w-100" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                  Experience
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                  <li>
+                    <div>
+                        <input type="checkbox" class="check-box-list"> <label for="">Bodybuilding</label>
+                    </div> 
+                  </li>  
+                  
+                  
+                </ul>
+              </div>
+        </div>
+
+        <div class="col-sm-4 col-md-2"> 
+            <div class="dropdown app-drop-down w-100">
+                <button class="btn btn-secondary dropdown-toggle w-100" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                  Age
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                  <li>
+                    <div>
+                        <input type="checkbox" class="check-box-list"> <label for="">Bodybuilding</label>
+                    </div> 
+                  </li>  
+                  
+                  
+                </ul>
+              </div>
+        </div>
+        <div class="col-sm-4 col-md-2"> 
+            <div class="dropdown app-drop-down w-100">
+                <button class="btn btn-secondary dropdown-toggle w-100" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                  Gender
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                  <li>
+                    <div>
+                        <input type="checkbox" class="check-box-list"> <label for="">Bodybuilding</label>
+                    </div> 
+                  </li>  
+                  
+                  
+                </ul>
+              </div>
+        </div> 
+    </div>
+
+    <hr>
+
+    <div class="row  justify-content-between">
+        <div class="col-sm-5">
+            <div class="row">
+                <div class="col-sm-6">
+                   <span class="text-primary"> Sort by</span> : cheaper first
+                </div>
+                <div class="col-sm-6">
+                    <i class="fa fa-map-o text-primary" aria-hidden="true"></i>  See result on map
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="row">
+                <div class="col-sm-12">
+                    <p class="text-end text-primary"><strong>Found 10 trainers</strong></p>
+                </div> 
+            </div>
+        </div>
+        
+    </div>
+
+
+    <div class="spacing">
+        <div class="coach-list">
+            <div class="row">
+                <div class="col-md-6 col-sm-12 coach-card mb-3" *ngFor="let trainer of trainers">
+                    <div class="card">
+                        <div class="d-flex">
+                            <div class="coach-image" style="background-image: url(https://img2.goodfon.com/wallpaper/nbig/3/f8/routine-results-training.jpg);"></div>
+                            <div class="w-100">
+                                <div class="card-body">
+                                    <div class="d-flex justify-content-between">
+                                        <p><strong>Fridy Thomson</strong></p>
+                                        <p><strong>30$/h</strong></p>
+                                    </div>
+                                    <p> <i class="fa fa-star text-primary"></i> <strong>5.0 </strong> <span class="text-muted">(18 reviews)</span> </p>
+                                    <p class="text-muted">bodybuilding</p>
+                                    <p class="text-muted">3 years Experience</p>
+                                    <p class="text-muted">130-138 Newington Butts,London (Snap Fitness Element)</p>
+                                    
+                                    <div class="tags d-flex">
+                                        <div class="tag-coach">
+                                            Online
+                                        </div>
+                                        <div class="tag-coach">
+                                            Online
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="spacing ">
+        <p class="text-center"><i class="fa fa-refresh text-primary" aria-hidden="true"></i> Show more trainers</p>
+    </div>
+
+
+</div>
+
+
+
+<app-footer></app-footer>

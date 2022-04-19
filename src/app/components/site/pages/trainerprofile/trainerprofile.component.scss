@@ -1,0 +1,217 @@
+.top-input-bar{
+    border-left: 0;
+}
+
+.text-primary{
+    color: #2955AB;
+}
+.btn-primary{
+    background-color: #3861D3;
+    border-color: #3861D3;
+}
+
+.right-border-top-bar{
+    border-radius: 13px 0px 0px 13px;
+    color: #3861d35e;
+}
+
+
+.top-search-button{
+    border-radius: 10px;
+    left: -4px;
+}
+
+.spacing{
+    margin-top: 37px;
+}
+
+.app-drop-down > button{
+    background-color: #F2F5FA;
+    color: #000000;
+    border-radius: 10px;
+    border: none;
+    outline: none;
+}
+
+.app-drop-down > button:hover{
+    background-color: #F2F5FA;
+    color: #000000;
+    border-radius: 10px;
+    border: none;
+    outline: none !important;
+}
+
+.app-drop-down > button:focus{
+    background-color: #F2F5FA;
+    color: #000000;
+    border-radius: 10px;
+    border: none;
+    outline: none !important;
+}
+
+.app-drop-down .dropdown-menu{
+    inset: 9px auto auto 0px !important;
+    margin: 0px;
+    transform: translate(0px, 38px);
+    background-color: #f2f5fa;
+    border: 0;
+    border-radius: 10px;
+}
+
+.app-drop-down .check-box-list{
+    margin: 17px 16px;
+}
+
+.hour-to-choose{
+    width: 50px;
+    height: 34px; 
+    border-radius: 5px;
+    margin: 0px 14px 18px 14px;
+    background-color: rgba(41, 85, 171, 0.06);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.hour-to-choose.checked-hour{
+    background-color: #3861D3;
+
+}
+
+.date-line {
+    width: auto;
+    border-right: 1px solid rgba(41, 85, 171, 0.07);
+    border-left: 1px solid rgba(41, 85, 171, 0.07);
+    flex-direction: column
+}
+
+.calendar-top > div {
+    width: 80px;
+    border-right: 1px solid rgba(41, 85, 171, 0.07);
+    border-left: 1px solid rgba(41, 85, 171, 0.07);
+    text-align: center;
+    padding-bottom: 30px;
+}
+
+.time-label{
+    font-size: 10px;
+    text-align: center;
+    margin-bottom: 26px;
+    padding-top: 10px;
+    width: 78px;
+}
+
+.coach-image{
+    width: 50%; 
+    background-size: cover;
+    background-position: center;
+    border-radius: 10px;
+}
+
+.tag-coach{
+    padding: 6px 10px;
+    background-color: #F2F5FA;
+    border-radius: 10px;
+    margin-right: 8px;
+}
+
+
+.coach-card > .card{
+    border-radius: 10px;
+}
+
+.top-input-bar-search{ 
+    border-radius: 30px 0px 0px 30px;
+    border-right: 0;
+}
+
+
+.right-border-top-bar-search {
+    border-radius: 0px 30px 30px 0px;
+    color: #3861d35e;
+}
+
+.coach-nav{
+
+}
+
+.coach-nav > .nav-item > .nav-link{
+    color: #00000033;
+    font-weight: 600;
+}
+
+
+.coach-nav > .nav-item > .nav-link.active{
+    border-bottom: 5px solid #4a4a4a;
+}
+
+.back-block > i{
+    color: #00000033;
+    margin-right: 14px;
+}
+.back-block > span{
+    color: #00000033;
+}
+
+
+.coach-image-card{
+    height: 235px;
+    background-color: #F2F2F2;
+    border-radius: 5px;
+}
+
+.coach-name{   
+    font-style: normal;
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 24px;
+    /* identical to box height, or 100% */
+
+    display: flex;
+    align-items: center;
+
+    color: rgba(0, 0, 0, 0.8);
+}
+
+.msg-btn{
+    background: rgba(18, 18, 29, 0.15);
+    border-radius: 8px;
+    color: #00000099;
+    border: 0;
+}
+
+.icon-primary{
+    color: rgba(0, 0, 0, 0.4);
+}
+.text-color-primary{
+    color: rgba(0, 0, 0, 0.4);
+}
+
+.coach-contact{
+    font-size: 14px;
+}
+
+.content{
+    background-color: #F9F9F9;
+    min-height: 100vh;
+}
+
+.desci-p{
+    color: #000000CC;
+}
+
+.accordion-button:not(.collapsed) { 
+    background-color: #ffffff; 
+}
+
+.coach-descri-body{
+    background-color: #fff;
+    border: 1px solid rgba(0,0,0,.125);
+    border: 0;
+}
+
+.custom-icon{
+    margin-right: 15px;
+    font-size: 20px;
+}
