@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AuthentificationService } from 'src/app/services/authentification.service';
 import { HomeComponent } from './home/home.component';
 import { IndexComponent } from './index/index.component';
 import { AboutComponent } from './pages/about/about.component';
@@ -22,7 +23,7 @@ const siteRoutes: Routes = [
           },
           {
             path: 'about',
-            component: AboutComponent,
+            component: AboutComponent, 
           },
           {
             path: 'search',
