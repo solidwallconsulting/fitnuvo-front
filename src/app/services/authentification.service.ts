@@ -1,14 +1,17 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Form } from '@angular/forms';
+import { Trainer } from '../models/trainer';
+import { User } from '../models/user';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthentificationService {
     // Variables
-    authUrl = 'http://localhost:8000/oauth/token';
-    apiUrl = 'http://localhost:8000/api/v1';
+    private BASE_URL: string = environment.Base_Url;
+
   
 
   constructor(private http: HttpClient) { }
@@ -37,7 +40,7 @@ export class AuthentificationService {
       }, options);
  **/
 
-      return this.http.post(this.apiUrl+'/login',{email:email,password:password});
+      return this.http.post(this.BASE_URL+'/api/v1/login',{email:email,password:password});
     }
   
     // User Info
@@ -49,7 +52,7 @@ export class AuthentificationService {
       const headers = new HttpHeaders({
         Authorization: `Bearer ${token}`,
       });
-      return this.http.get(this.apiUrl+'/user', {
+      return this.http.get(this.BASE_URL+'/api/v1/user', {
         headers: headers,
       });
     }
@@ -63,13 +66,23 @@ export class AuthentificationService {
         const headers = new HttpHeaders({
           Authorization: `Bearer ${token}`,
         });
-        return this.http.post(this.apiUrl+'logout', {allDevice:allDevice}, {headers:headers});
+        return this.http.post(this.BASE_URL+'/api/v1logout', {allDevice:allDevice}, {headers:headers});
       }
 
 
       // Register
        register(fr:FormData){
 
-        return this.http.post(this.apiUrl+'/register',fr);
+        return this.http.post(this.BASE_URL+'/api/v1/register',fr);
       }
+
+      public sendRestPasswordLink(email:string) {
+        return this.http.post(this.BASE_URL + '/api/v1/password/sendRestPasswordLink', {email:email});
+  
+      }
+
+      public changePassword(form:FormData) {
+        return this.http.post(this.BASE_URL + '/api/v1/password/reset', form);
+      }
+    
 }

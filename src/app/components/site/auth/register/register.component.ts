@@ -13,8 +13,8 @@ import { MustMatch } from '../_helpers/must-match.validator';
 })
 export class RegisterComponent implements OnInit {
  //Forms
- registerFormC!: FormGroup;
- registerFormT!: FormGroup;
+ registerFormC: FormGroup;
+ registerFormT: FormGroup;
 
  submitted = false;
   constructor( public activeModal: NgbActiveModal,private router:Router, private auth:AuthentificationService,private formBuilder: FormBuilder) { }

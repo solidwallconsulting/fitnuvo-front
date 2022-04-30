@@ -24,6 +24,8 @@ import { RegisterComponent } from './auth/register/register.component';
 import { ResetpasswordComponent } from './auth/resetpassword/resetpassword.component';
 import { HttpClientModule } from '@angular/common/http';
 import { NavbarComponent } from './layouts/navbar/navbar.component';
+import { SnotifyModule, SnotifyService, ToastDefaults } from 'ng-snotify';
+import { ResponseResetPasswordComponent } from './auth/response-reset-password/response-reset-password.component';
 
 
 @NgModule({
@@ -44,6 +46,8 @@ import { NavbarComponent } from './layouts/navbar/navbar.component';
     RegisterComponent,
     ResetpasswordComponent,
     NavbarComponent,
+    ResponseResetPasswordComponent,
+    
   ],
   imports: [
     CommonModule,
@@ -54,10 +58,15 @@ import { NavbarComponent } from './layouts/navbar/navbar.component';
     NgbModule,
     FormsModule,
     HttpClientModule,
-    ReactiveFormsModule,      
+    ReactiveFormsModule,    
+     SnotifyModule
 
     
     
-  ]
+  ], providers: [
+    SnotifyService,
+    {provide: 'SnotifyToastConfig', useValue: ToastDefaults}
+  
+  ],
 })
 export class SiteModule { }

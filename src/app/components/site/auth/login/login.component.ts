@@ -17,6 +17,7 @@ export class LoginComponent implements OnInit {
 
   constructor(public activeModal: NgbActiveModal , private modalService: NgbModal , private router:Router, private auth:AuthentificationService,private formBuilder: FormBuilder) { }
 
+  
   ngOnInit(): void {
     this.loginFormV = this.formBuilder.group({
       email: ["", [Validators.email, Validators.required]],
@@ -62,9 +63,12 @@ export class LoginComponent implements OnInit {
           localStorage.setItem('token', res.token);
           // redirect to dashboard
           this.router.navigate(['/search']);
-        },(err)=>{ 
+        },(err:any)=>{ 
           localStorage.removeItem('token');
-          this.serverErrors = err.error.message;
+      
+            this.serverErrors = err.error.message;
+
+          
           console.log(this.serverErrors);
           console.log(err);
 

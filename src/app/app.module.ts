@@ -7,6 +7,9 @@ import { SiteModule } from './components/site/site.module';
 import { CarouselModule } from 'ngx-owl-carousel-o';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
+import { SnotifyModule, SnotifyService, ToastDefaults } from 'ng-snotify';
+import { AdminModule } from './components/admin/app.module';
+import { InlineSVGModule } from 'ng-inline-svg';
 
 @NgModule({
   declarations: [
@@ -19,10 +22,19 @@ import { ReactiveFormsModule } from '@angular/forms';
     CarouselModule,
     AppRoutingModule,
     HttpClientModule,
-    ReactiveFormsModule,      
+    ReactiveFormsModule,    
+    SnotifyModule,
+    AdminModule,
+    InlineSVGModule.forRoot(),
+
+     
 
   ],
-  providers: [],
+  providers: [
+    {provide: 'SnotifyToastConfig', useValue: ToastDefaults},
+    SnotifyService
+  
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

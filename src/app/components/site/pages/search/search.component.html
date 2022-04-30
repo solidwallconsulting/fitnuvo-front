@@ -26,21 +26,12 @@
                   Speciality
                 </button>
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                  <li>
+                  <li *ngFor="let specc of specialities['data'] "   (click)="onChange(specc.id)">
                     <div>
-                        <input type="checkbox" class="check-box-list"> <label for="">Bodybuilding</label>
+                        <input type="checkbox" class="check-box-list"> <label for="">{{specc.speciality_name}}</label>
                     </div> 
                   </li> 
-                  <li>
-                    <div>
-                        <input type="checkbox" class="check-box-list"> <label for="">Fitness</label>
-                    </div> 
-                  </li> 
-                  <li>
-                    <div>
-                        <input type="checkbox" class="check-box-list"> <label for="">Yoga</label>
-                    </div> 
-                  </li> 
+                 
                   
                   
                 </ul>
@@ -79,7 +70,7 @@
                 <button class="btn btn-secondary dropdown-toggle w-100" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                   Schedule
                 </button>
-                <div class="dropdown-menu  " style="width: 500px;" aria-labelledby="dropdownMenuButton1">
+                <div class="dropdown-menu  " style="width: 700px;" aria-labelledby="dropdownMenuButton1">
                     
                     <div class="card-body">
 
@@ -98,9 +89,6 @@
                                 </div>
 
                                 <div *ngFor="let r of avalableDATES"  class="date-line d-flex ">
-                                    
-                                    
-
 
                                     <div class="hour-to-choose" *ngFor="let h of r.hours"  [ngClass]=" h.checked== true ? 'checked-hour' : '' ">
                                         <i class="fa fa-check text-white" *ngIf=" h.checked== true "></i>
@@ -113,7 +101,8 @@
                     </div>
 
                     <div class="card-footer justify-content-end">
-                        <button class="btn">Reset</button>
+                        <button class="btn btn-primary">Reset</button> 
+                        &nbsp;
                         <button class="btn btn-primary">Apply</button>
                     </div>
                        
@@ -174,6 +163,21 @@
 
     <hr>
 
+    
+    <div *ngIf="!trainers || trainers.length === 0" class="loading">
+        <svg class="pl" viewBox="0 0 128 128" width="128px" height="128px" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <linearGradient id="pl-grad" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="hsl(193,90%,55%)" />
+                    <stop offset="100%" stop-color="hsl(223,90%,55%)" />
+                </linearGradient>
+            </defs>
+            <circle class="pl__ring" r="56" cx="64" cy="64" fill="none" stroke="hsla(0,10%,10%,0.1)" stroke-width="16" stroke-linecap="round" />
+            <path class="pl__worm" d="M92,15.492S78.194,4.967,66.743,16.887c-17.231,17.938-28.26,96.974-28.26,96.974L119.85,59.892l-99-31.588,57.528,89.832L97.8,19.349,13.636,88.51l89.012,16.015S81.908,38.332,66.1,22.337C50.114,6.156,36,15.492,36,15.492a56,56,0,1,0,56,0Z" fill="none" stroke="url(#pl-grad)" stroke-width="16" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="44 1111" stroke-dashoffset="10" />
+        </svg>
+    </div>
+
+    
     <div class="row  justify-content-between">
         <div class="col-sm-5">
             <div class="row">
@@ -185,34 +189,39 @@
                 </div>
             </div>
         </div>
+
         <div class="col-sm-4">
             <div class="row">
                 <div class="col-sm-12">
-                    <p class="text-end text-primary"><strong>Found 10 trainers</strong></p>
+                    <p class="text-end text-primary"><strong>Found {{trainers.meta.total}} trainers</strong></p>
                 </div> 
             </div>
         </div>
         
     </div>
+ 
 
 
-    <div class="spacing">
+
+    <div class="spacing" >
+
+        
         <div class="coach-list">
             <div class="row">
-                <div class="col-md-6 col-sm-12 coach-card mb-3" *ngFor="let trainer of trainers">
+                <div class="col-md-6 col-sm-12 coach-card mb-3" *ngFor="let trainer of trainers['data'] ">
                     <div class="card">
                         <div class="d-flex">
-                            <div class="coach-image" style="background-image: url(https://img2.goodfon.com/wallpaper/nbig/3/f8/routine-results-training.jpg);"></div>
+                            <div class="coach-image" style="background-image: url({{trainer.photo_profil}});"></div>
                             <div class="w-100">
                                 <div class="card-body">
                                     <div class="d-flex justify-content-between">
-                                        <p><strong>Fridy Thomson</strong></p>
-                                        <p><strong>30$/h</strong></p>
+                                        <p><strong>{{trainer.first_name}} {{trainer.last_name}}</strong></p>
+                                        <p><strong>{{trainer.price_trainer}}$/h</strong></p>
                                     </div>
-                                    <p> <i class="fa fa-star text-primary"></i> <strong>5.0 </strong> <span class="text-muted">(18 reviews)</span> </p>
-                                    <p class="text-muted">Speciality : bodybuilding</p>
-                                    <p class="text-muted">Experience : 3 years </p>
-                                    <p class="text-muted">Location : 130-138 Newington Butts,London (Snap Fitness Element)</p>
+                                    <p> <i class="fa fa-star text-primary"></i> <strong>{{trainer.score_trainer}}.0 </strong> <span class="text-muted"><i class="fa fa-comment-dots text-primary"></i> ({{trainer.trainer_reviews.length}} reviews)</span> </p>
+                                    <p class="text-muted" >Speciality : <ng-container *ngFor="let spec of trainer.trainer_specialities" > {{spec.speciality_name}}  </ng-container>  </p>   
+                                    <p class="text-muted">Experience : {{trainer.experience_trainer}} years </p>
+                                    <p class="text-muted">Location : {{trainer.home_adress}} </p>
                                     
                                     <div class="tags d-flex">
                                         <div class="tag-coach">

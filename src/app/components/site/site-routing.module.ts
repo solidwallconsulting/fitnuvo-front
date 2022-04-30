@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AuthentificationService } from 'src/app/services/authentification.service';
+import { ResponseResetPasswordComponent } from './auth/response-reset-password/response-reset-password.component';
 import { HomeComponent } from './home/home.component';
 import { IndexComponent } from './index/index.component';
 import { AboutComponent } from './pages/about/about.component';
@@ -49,6 +49,11 @@ const siteRoutes: Routes = [
           {
             path: 'trainer',
             component: TrainerprofileComponent,
+          },
+          {
+            path: 'responseResetPassword',
+            component: ResponseResetPasswordComponent,
+            data: {breadcrumbs: 'Changepassword'}
           },
          
     ]

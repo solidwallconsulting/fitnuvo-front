@@ -12,12 +12,14 @@
                 <div class="tab-pane fade show active" id="loginclient" role="tabpanel" aria-labelledby="loginclient-tab">
                     <form   [formGroup]="loginFormV" (ngSubmit)="onLogin()"  >
                         <div class="form-row form-group">
-                            <div class="text-danger">{{serverErrors}}</div>
+                            <div class="text-danger mt-3"  *ngIf="serverErrors.length > 0"> <i class="ti-info-alt"></i> {{serverErrors}}</div>
                             <div class="mt-3 mb-3 col-md-12"> <label for="inputName" class="form-label">Email</label> <input type="email"  class="form-control"  formControlName="email"  id="inputEmail4" placeholder="Enter your username"  > 
                               <div *ngIf="submitted && formControl.email.errors" class="text-danger">
-                                <div   class="mt-1"   *ngIf="formControl.email.errors.email"><i class="ti-info-alt"></i> Email must be valid.</div>
+                                <div   class="mt-1"   *ngIf="formControl.email.errors.email"><i class="ti-info-alt"></i> Please enter a valid email.</div>
                                 <div   class="mt-1"   *ngIf="formControl.email.errors.required"><i class="ti-info-alt"></i> Email is required.</div>
                               </div>
+
+                              
                             </div>      
                             <div class="mt-3 mb-3 col-md-12"> 
                                 <label for="inputName" class="form-label">Password</label> <input type="password" class="form-control" formControlName="password" id="inputPassword4" placeholder="Enter your password" > 
@@ -35,7 +37,7 @@
                                  
                                 
                             </div>
-                            <a href="#" class="text-dark text-decoration-underline " (click)="openResetPassForm()" data-toggle="modal" data-target=".resetpassword-form" >Forgot Password?</a>
+                            <a  class="text-dark text-decoration-underline " (click)="openResetPassForm()" data-toggle="modal" data-target=".resetpassword-form" >Forgot Password?</a>
                         </div>
                         <div class="mt-3 mb-3 row"> <button class="btn btn-primary full-width" type="submit" >Login</button> </div>
                     </form>
