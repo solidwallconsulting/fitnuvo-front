@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgbActiveModal , NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { AuthentificationService } from 'src/app/services/authentification.service';
+import { AuthentificationService } from 'src/app/components/site/services/authentification.service';
 import { ResetpasswordComponent } from '../resetpassword/resetpassword.component';
 
 @Component({

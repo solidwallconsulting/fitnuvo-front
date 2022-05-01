@@ -5,6 +5,7 @@ import { WidgetsModule } from '../../_metronic/partials';
 import { SpecialityComponent } from './speciality.component';
 import { Ng2SmartTableModule } from 'ng2-smart-table';
 
+
 @NgModule({
   declarations: [SpecialityComponent],
   imports: [
@@ -17,6 +18,8 @@ import { Ng2SmartTableModule } from 'ng2-smart-table';
     ]),
     WidgetsModule,
     Ng2SmartTableModule,
+    
+
     
   ],
 })

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { SpecialityService } from 'src/app/services/speciality.service';
-import { TrainerService } from 'src/app/services/trainer.service';
+import { SpecialityService } from 'src/app/components/admin/services/speciality.service';
+import { TrainerService } from 'src/app/components/site/services/trainer.service';
 
 @Component({
   selector: 'app-search',

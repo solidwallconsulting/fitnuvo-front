@@ -38,6 +38,8 @@
               "src/assets/site/css/themify-icons.css",
               "src/assets/site/css/flaticon.css",
               "src/assets/site/css/fontawesome-all.min.css",
+              "./node_modules/nebular-icons/scss/nebular-icons.scss",
+              "./node_modules/ngx-toastr/toastr.css" ,
               "src/styles.scss"
 
 

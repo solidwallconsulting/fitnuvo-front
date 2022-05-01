@@ -1,5 +1,5 @@
 // models
-export * from './models/user.model';
+export * from '../../models/user.model';
 // services
-export * from './services/auth.service';
+export * from '../../services/auth.service';
 // validators

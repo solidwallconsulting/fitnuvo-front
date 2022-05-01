@@ -1,12 +1,10 @@
-import { AuthModel } from './auth.model';
-import { AddressModel } from './address.model';
-import { SocialNetworksModel } from './social-networks.model';
+import { Role } from './role.model';
 
-export class UserModel extends AuthModel {
+export class UserModel  {
   id: number;
   email: string;
   password: string;
-  roles: number[] = [];
+  role: Role;
   datebirth:Date;
   adress:string;
   phone:string;
@@ -50,8 +48,7 @@ export class UserModel extends AuthModel {
     this.email = user.email || '';
     this.password = user.password || '';
     this.datebirth = user.datebirth || '';
-    this.pic = user.pic || './assets/media/users/default.jpg';
-    this.roles = user.roles || [];
+    this.pic = user.pic || '';
     this.firstname = user.firstname || '';
     this.lastname = user.lastname || '';
     this.phone = user.phone || '';

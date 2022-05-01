@@ -12,20 +12,20 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        redirectTo: 'login',
+        redirectTo: 'admin/login',
         pathMatch: 'full',
       },
       {
-        path: 'login',
+        path: 'admin/login',
         component: LoginComponent,
         data: { returnUrl: window.location.pathname },
       },
       {
-        path: 'forgot-password',
+        path: 'admin/forgot-password',
         component: ForgotPasswordComponent,
       },
       {
-        path: 'logout',
+        path: 'admin/logout',
         component: LogoutComponent,
       },
       { path: '', redirectTo: 'login', pathMatch: 'full' },

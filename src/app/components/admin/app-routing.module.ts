@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { IndexComponent } from './index/index.component';
-import { AuthGuard } from './modules/auth/services/auth.guard';
+import { Role } from './models/role.model';
+import { AuthGuard } from './services/auth.guard';
 
 export const routes: Routes = [
    {
@@ -21,6 +22,7 @@ export const routes: Routes = [
   {
     path: '',
     canActivate: [AuthGuard],
+    data: { roles: [Role.Admin] },
     loadChildren: () =>
       import('./_metronic/layout/layout.module').then((m) => m.LayoutModule),
   },

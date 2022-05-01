@@ -47,8 +47,9 @@
                   cursor-pointer
                 "
               >
-                Max Smith
+                 {{profile.firstname}} {{profile.secondname}}
               </a>
+            
               <a class="cursor-pointer">
                 <span
                   [inlineSVG]="
@@ -91,7 +92,11 @@
                   "
                   class="svg-icon svg-icon-4 me-1"
                 ></span>
-                Developer
+                <div *ngIf="profile.role_id == 1"> Super.Administrator</div> 
+
+                  <div *ngIf="profile.role_id == 2"> Administrator</div> 
+        
+
               </a>
               <a
                 class="
