@@ -17,6 +17,16 @@ const Routing: Routes = [
       import('./speciality/speciality.module').then((m) => m.SpecialityModule),
   },
   {
+    path: 'features/users/users-list',
+    loadChildren: () =>
+      import('./users/users.module').then((m) => m.UsersModule),
+  },
+  {
+    path: 'features/users/add-admin',
+    loadChildren: () =>
+      import('./add-admin/add-admin.module').then((m) => m.AddAdminModule),
+  },
+  {
     path: 'crafted/pages/profile',
     loadChildren: () =>
       import('../modules/profile/profile.module').then((m) => m.ProfileModule),

@@ -11,7 +11,6 @@ import { AppComponent } from './app.component';
 import { NgxBootstrapConfirmModule } from 'ngx-bootstrap-confirm';
 import { environment } from 'src/environments/environment';
 // #fake-start#
-import { FakeAPIService } from './_fake/fake-api.service';
 import { AdminRoutingModule } from './app-routing.module';
 import { IndexComponent } from './index/index.component';
 import { ToastrModule } from 'ngx-toastr';
@@ -37,12 +36,7 @@ function appInitializer(authService: AuthService) {
     HttpClientModule,
     ClipboardModule,
     // #fake-start#
-    environment.isMockEnabled
-      ? HttpClientInMemoryWebApiModule.forRoot(FakeAPIService, {
-          passThruUnknownUrl: true,
-          dataEncapsulation: false,
-        })
-      : [],
+
     // #fake-end#
     AdminRoutingModule,
     InlineSVGModule.forRoot(),
