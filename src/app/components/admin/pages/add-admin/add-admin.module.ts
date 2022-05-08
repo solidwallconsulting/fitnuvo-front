@@ -21,7 +21,6 @@ import { BrowserModule } from '@angular/platform-browser';
     ]),
     WidgetsModule,
     InlineSVGModule,
-    BrowserModule,
     FormsModule,
     ReactiveFormsModule
     

@@ -165,15 +165,15 @@
                         <div class="slide">
                             <div class="singel-event-list mt-30">
                                 <div class="event-thum">
-                                    <img [src]="slide.image" alt="trainer">
+                                    <img [src]="slide.photo_profil" alt="trainer">
                                 </div>
                                 <div class="event-cont">
-                                     <span>{{slide.name}}</span><span class="number">(28)</span><span class="price">${{slide.price}}/H</span>
-                                     <div><span class="review"><i class="fa fa-star"></i>5.0</span><span class="comment">({{slide.review}} reviews)</span></div>
+                                     <span>{{slide.first_name}} {{slide.last_name}}</span><span class="number">({{slide.age}})</span><span class="price">${{slide.price_trainer}}/H</span>
+                                     <div><span class="review"><i class="fa fa-star"></i>{{slide.score_trainer}}.0</span><span class="comment">({{slide.trainer_reviews.length}} reviews)</span></div>
                                      <div class="info">
-                                        <div><span class="key">Speciality:</span><span class="value">{{slide.speciality}}</span></div>
-                                        <div><span class="key">Experience:</span><span class="value">{{slide.experience}} yers</span></div>
-                                        <div><span class="key">Location:</span><span class="value">{{slide.location}}</span></div>
+                                        <div><span class="key">Speciality:</span><span class="value"> <ng-container *ngFor="let spec of slide.trainer_specialities" > {{spec.speciality_name}}  </ng-container> </span></div>
+                                        <div><span class="key">Experience:</span><span class="value">{{slide.experience_trainer}} years</span></div>
+                                        <div><span class="key">Location:</span><span class="value">{{slide.home_adress}}</span></div>
                                     </div>
                                     <div class="row action text-center">
                                         <a class="col-lg-3">Book now</a>
@@ -193,23 +193,23 @@
             </div>
             <div class="carousel-container">
                 <owl-carousel-o [options]="customOptions">
-                    <ng-container *ngFor="let slide of bests">
+                    <ng-container *ngFor="let slide of news">
                       <ng-template carouselSlide [id]="slide.id">
                         <div class="slide">
                             <div class="singel-event-list mt-30">
                                 <div class="event-thum">
-                                    <img [src]="slide.image" alt="trainer">
+                                    <img [src]="slide.photo_profil" alt="trainer">
                                 </div>
                                 <div class="event-cont">
-                                     <span>{{slide.name}}</span><span class="number">(28)</span><span class="price">${{slide.price}}/H</span>
-                                     <div><span class="review"><i class="fa fa-star"></i>5.0</span><span class="comment">({{slide.review}} reviews)</span></div>
+                                     <span>{{slide.first_name}} {{slide.last_name}}</span><span class="number">({{slide.age}})</span><span class="price">${{slide.price_trainer}}/H</span>
+                                     <div><span class="review"><i class="fa fa-star"></i>5.0</span><span class="comment">({{slide.trainer_reviews.length}} reviews)</span></div>
                                      <div class="info">
-                                        <div><span class="key">Speciality:</span><span class="value">{{slide.speciality}}</span></div>
-                                        <div><span class="key">Experience:</span><span class="value">{{slide.experience}} yers</span></div>
-                                        <div><span class="key">Location:</span><span class="value">{{slide.location}}</span></div>
+                                        <div><span class="key">Speciality:</span><span class="value"><ng-container *ngFor="let spec of slide.trainer_specialities" > {{spec.speciality_name}}  </ng-container></span></div>
+                                        <div><span class="key">Experience:</span><span class="value">{{slide.experience_trainer}} years</span></div>
+                                        <div><span class="key">Location:</span><span class="value">{{slide.home_adress}}</span></div>
                                     </div>
                                     <div class="row action text-center">
-                                      <a class="col-lg-3">Book now</a>
+                                      <a href="" class="col-lg-3">Book now</a>
                                       <a class="col-lg-3">Contact</a>
                                     </div>
                                 </div>

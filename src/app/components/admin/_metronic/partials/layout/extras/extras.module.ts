@@ -10,11 +10,13 @@ import {TranslationModule} from '../../../../modules/i18n';
 import {SearchResultInnerComponent} from "./dropdown-inner/search-result-inner/search-result-inner.component";
 import {NgbTooltipModule} from "@ng-bootstrap/ng-bootstrap";
 import {FormsModule} from "@angular/forms";
+import { ContactNotComponent } from './dropdown-inner/contact-not/contact-not.component';
 
 @NgModule({
   declarations: [
     NotificationsInnerComponent,
     QuickLinksInnerComponent,
+    ContactNotComponent,
     SearchResultInnerComponent,
     UserInnerComponent,
     LayoutScrollTopComponent,
@@ -23,6 +25,7 @@ import {FormsModule} from "@angular/forms";
   exports: [
     NotificationsInnerComponent,
     QuickLinksInnerComponent,
+    ContactNotComponent,
     SearchResultInnerComponent,
     UserInnerComponent,
     LayoutScrollTopComponent,

@@ -12,7 +12,7 @@
     </div>
   </div>
   <div id="kt_account_profile_details" class="collapse show">
-    <form novalidate="" class="form" [formGroup]="formA" (ngSubmit)="submit()">
+    <form novalidate="" class="form" [formGroup]="formA" (ngSubmit)="onsavee()">
       <div class="card-body border-top p-9">
         <div class="form-group  row mb-6">
           <label class="col-lg-4 col-form-label fw-bold fs-6">Avatar</label>
@@ -31,13 +31,13 @@
             </div>
           </div>
         </div>
-        <div class="form-group row mb-6">
+        <div class=" row mb-6">
           <label class="col-lg-4 col-form-label required fw-bold fs-6"
             >Full Name</label
           >
           <div class="col-lg-8">
             <div class="row">
-              <div class="col-lg-6 fv-row">
+              <div class="form-group col-lg-6  fv-row">
                 <input
                   type="text"
                   class="
@@ -45,16 +45,24 @@
                     mb-3 mb-lg-0
                   "
                   placeholder="First name"
-                  formControlName="fName"
+                  formControlName="firstname"
                 />
+                      <div *ngIf="f.firstname.touched && f.firstname.invalid" class="text-danger">
+                        <div *ngIf="f.firstname.errors?.required">*Firstname is required.</div>
+                        <div *ngIf="f.firstname.errors?.pattern">*The Firstname must only contain letters.</div>
+                      </div>
               </div>
-              <div class="col-lg-6 fv-row">
+              <div class="form-group col-lg-6  fv-row">
                 <input
                   type="text"
                   class="form-control form-control-lg form-control-solid"
                   placeholder="Last name"
-                  formControlName="lName"
+                  formControlName="secondname"
                 />
+                <div *ngIf="f.secondname.touched && f.firstname.invalid" class="text-danger">
+                  <div *ngIf="f.secondname.errors?.required">*Lastname is required.</div>
+                  <div *ngIf="f.secondname.errors?.pattern">*The Lastname must only contain letters.</div>
+                </div>
               </div>
             </div>
           </div>
@@ -69,8 +77,12 @@
               type="tel"
               class="form-control form-control-lg form-control-solid"
               placeholder="Phone number"
-              formControlName="contactPhone"
+              formControlName="phone"
             />
+            <div *ngIf="f.phone.touched && f.phone.invalid" class="text-danger">
+              <div *ngIf="f.phone.errors?.required">*Phone is required.</div>
+              <div *ngIf="f.phone.errors?.pattern">*The phone must only contain numbers.</div>
+            </div>
           </div>
         </div>
         <div class="form-group  row mb-6">
@@ -84,6 +96,11 @@
               placeholder="demo@admin.com "
               formControlName="email"
             />
+
+            <div *ngIf="f.email.touched && f.email.invalid" class="text-danger">
+              <div *ngIf="f.email.errors?.required">*Email is required.</div>
+              <div *ngIf="f.email.errors?.email">*The email must be a valid email address.</div>
+          </div>
           </div>
         </div>
         <div class="form-group row mb-6">
@@ -97,6 +114,9 @@
               placeholder="Password"
               formControlName="password"
             />
+            <div *ngIf="f.password.touched && f.password.invalid" class="text-danger">
+              <div *ngIf="f.password.errors?.required">*Password is required.</div>
+             </div>
           </div>
         </div>
         <div class="form-group row mb-6">
@@ -110,6 +130,16 @@
               placeholder="Repeat Password "
               formControlName="repeatpassword"
             />
+            <div *ngIf="f.repeatpassword.touched && f.repeatpassword.invalid" class="text-danger">
+              <div *ngIf="f.repeatpassword.errors?.required">*Confirm password is required.</div>
+              <div *ngIf="f.repeatpassword.errors?.matching">
+                Confirm Password does not match
+              </div>
+            </div>
+
+         
+
+
           </div>
         </div>
         <div class="form-group row mb-6">
@@ -121,8 +151,11 @@
               type="date"
               class="form-control form-control-lg form-control-solid"
               placeholder="Date of birthday  "
-              formControlName="dob"
+              formControlName="datebirth"
             />
+            <div *ngIf="f.datebirth.touched && f.datebirth.invalid" class="text-danger">
+              <div *ngIf="f.datebirth.errors?.required">*DateOfBirthday is required.</div>
+            </div>
           </div>
         </div>
 
@@ -133,7 +166,7 @@
           <div class="col-lg-8 fv-row">
             <select
               class="form-select form-select-solid form-select-lg"
-              formControlName="language"
+              formControlName="gender"
             >
               <option value="">Select a Gender...</option>
             
@@ -144,6 +177,26 @@
             <div class="form-text">
               Please select a gender(Women,Men).
             </div>
+            <div *ngIf="f.gender.touched && f.gender.invalid" class="text-danger">
+              <div *ngIf="f.gender.errors?.required">*Gender is required.</div>
+            </div>
+          </div>
+        </div>
+        <div class="form-group row mb-6">
+          <label class="col-lg-4 col-form-label fw-bold fs-6"
+            ><span class="required">Home Adress</span></label
+          >
+          <div class="col-lg-8 fv-row">
+            <input
+              type="text"
+              class="form-control form-control-lg form-control-solid"
+              placeholder="Home Adrs"
+              formControlName="adress"
+            />
+            <div *ngIf="f.adress.touched && f.adress.invalid" class="text-danger">
+              <div *ngIf="f.adress.errors?.required">*Home Address is required.</div>
+            </div>
+            
           </div>
         </div>
     
@@ -155,7 +208,6 @@
           type="submit"
           class="btn btn-primary"
           [disabled]="isLoading"
-          (click)="saveSettings()"
         >
           <ng-container *ngIf="!isLoading">Save </ng-container>
           <ng-container *ngIf="isLoading">

@@ -20,26 +20,12 @@ export class UsersService {
 
 
   getAll(): Observable<User[]> {
-    return this.httpClient.get<User[]>(`${this.apiUrl}/users`)
-    .pipe(
-      catchError(this.errorHandler)
-    )
+    return this.httpClient.get<User[]>(`${this.apiUrl}/users`);
   }
  
   create(User:any): Observable<User> {
-    return this.httpClient.post<User>(`${this.apiUrl}/admin`, JSON.stringify(User), this.httpOptions)
-    .pipe(
-      catchError(this.errorHandler)
-    )
+    return this.httpClient.post<User>(`${this.apiUrl}/admin`, JSON.stringify(User), this.httpOptions);
   }
-  errorHandler(error:any) {
-    let errorMessage = '';
-    if(error.error instanceof ErrorEvent) {
-      errorMessage = error.error.message;
-    } else {
-      errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
-    }
-    return throwError(errorMessage);
-  }
+
 
 }

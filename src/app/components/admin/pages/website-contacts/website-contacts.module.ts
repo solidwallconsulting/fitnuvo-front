@@ -2,28 +2,25 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { WidgetsModule } from '../../_metronic/partials';
+import { ContactsComponent } from './website-contacts.component';
 import { Ng2SmartTableModule } from 'ng2-smart-table';
-import { UsersComponent } from './users.component';
-import { InlineSVGModule } from 'ng-inline-svg';
 
 
 @NgModule({
-  declarations: [UsersComponent],
+  declarations: [ContactsComponent],
   imports: [
     CommonModule,
     RouterModule.forChild([
       {
         path: '',
-        component: UsersComponent,
+        component: ContactsComponent,
       },
     ]),
     WidgetsModule,
-    InlineSVGModule,
-    Ng2SmartTableModule
-    
+    Ng2SmartTableModule,
     
 
     
   ],
 })
-export class UsersModule {}
+export class ContactsModule {}

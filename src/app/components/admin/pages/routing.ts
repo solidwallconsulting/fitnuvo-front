@@ -17,6 +17,11 @@ const Routing: Routes = [
       import('./speciality/speciality.module').then((m) => m.SpecialityModule),
   },
   {
+    path: 'features/contacts',
+    loadChildren: () =>
+      import('./website-contacts/website-contacts.module').then((m) => m.ContactsModule),
+  },
+  {
     path: 'features/users/users-list',
     loadChildren: () =>
       import('./users/users.module').then((m) => m.UsersModule),

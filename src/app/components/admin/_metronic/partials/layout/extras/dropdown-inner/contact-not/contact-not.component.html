@@ -1,0 +1,62 @@
+<div
+  class="d-flex flex-column flex-center bgi-no-repeat rounded-top px-9 py-10"
+  [style.background-image]="'url(../../../../assets/dashboard/media/misc/pattern-1.jpg)'"
+>
+  <h3 class="text-white fw-bold mb-3">Clients Contacts</h3>
+  <span class="badge bg-primary py-2 px-3">{{contacts.length}} Unreaded Contacts</span>
+</div>
+
+
+
+
+
+
+<div class="row g-0">
+      
+
+                <div  *ngIf="contacts.length==0" class="py-2 text-center border-top">
+                  No Data Found
+                </div>
+                <div class="scroll-y mh-325px my-5 px-8">
+                  <div *ngFor="let alert of contacts" class="d-flex flex-stack py-4">
+                    <div class="d-flex align-items-center">
+                      <div class="symbol symbol-35px me-4">
+                        <span class="symbol-label" [ngClass]="'bg-light-' + 'danger'">
+                       
+                          <i class="fa fa-question-circle svg-icon svg-icon-2 " ></i>
+                        </span>
+                      </div>
+            
+                      <div class="mb-0 me-2">
+                        <a href="#" class="fs-6 text-gray-800 text-hover-primary fw-bolder">
+                          {{ alert.name }}
+                        </a>
+                        <div class="text-gray-400 fs-7">{{(alert.message.length>15)? (alert.message | slice:0:15)+'...':(alert.message)}} </div>
+                      </div>
+                    </div>
+            
+                    <span class="badge badge-light fs-8">{{ alert.time_spent }}  </span>
+                    
+                  </div>
+                </div>
+            
+              
+            
+</div>
+
+<div class="py-2 text-center border-top">
+  <a
+
+  (click)="onclick()"
+  class="btn btn-color-gray-600 btn-active-color-primary"
+  >
+    View All
+    <span
+      [inlineSVG]="'./assets/media/icons/duotune/arrows/arr064.svg'"
+      class="svg-icon svg-icon-5"
+    ></span>
+  </a>
+</div>
+
+
+

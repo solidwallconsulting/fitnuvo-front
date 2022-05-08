@@ -101,6 +101,13 @@ export class AuthService implements OnDestroy {
         });
       }
 
+      
+    getRole() {
+      const user: any = localStorage.getItem('currentUser');
+      const userObj = JSON.parse(user);
+  
+      return userObj.role;
+    }
 
 
 /*

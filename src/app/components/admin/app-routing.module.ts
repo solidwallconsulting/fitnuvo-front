@@ -22,7 +22,7 @@ export const routes: Routes = [
   {
     path: '',
     canActivate: [AuthGuard],
-    data: { roles: [Role.Admin] },
+    data: { roles: [Role.Superadmin,Role.Admin] },
     loadChildren: () =>
       import('./_metronic/layout/layout.module').then((m) => m.LayoutModule),
   },

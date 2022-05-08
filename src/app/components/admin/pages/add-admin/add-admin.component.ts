@@ -1,7 +1,9 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import {  FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { BehaviorSubject, Subscription } from 'rxjs';
+import Swal from 'sweetalert2';
+import Validation from '../../provides/CustomValidators';
 import { UsersService } from '../../services/users.service';
 
 @Component({
@@ -16,7 +18,7 @@ export class AddAdminComponent implements OnInit {
   isLoading: boolean;
   private unsubscribe: Subscription[] = [];
 
-  constructor(private cdr: ChangeDetectorRef,public UsersService:UsersService,private router: Router
+  constructor(private fb: FormBuilder,private cdr: ChangeDetectorRef,public UsersService:UsersService,private router: Router
     ) {
     const loadingSubscr = this.isLoading$
       .asObservable()
@@ -25,36 +27,67 @@ export class AddAdminComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.formA = new FormGroup({
-      fName:  new FormControl('', [ Validators.required, Validators.pattern('^[a-zA-ZÁáÀàÉéÈèÍíÌìÓóÒòÚúÙùÑñüÜ \-\']+') ]),
-      lName:  new FormControl('', [ Validators.required, Validators.pattern('^[a-zA-ZÁáÀàÉéÈèÍíÌìÓóÒòÚúÙùÑñüÜ \-\']+') ]),
+    this.formA = new FormGroup(
+      {
+      firstname:  new FormControl('', [ Validators.required, Validators.pattern('^[a-zA-ZÁáÀàÉéÈèÍíÌìÓóÒòÚúÙùÑñüÜ \-\']+') ]),
+      secondname:  new FormControl('', [ Validators.required, Validators.pattern('^[a-zA-ZÁáÀàÉéÈèÍíÌìÓóÒòÚúÙùÑñüÜ \-\']+') ]),
       email: new FormControl('', [ Validators.required, Validators.email ]),
-      contactPhone: new FormControl('', [ Validators.required, Validators.pattern("^[0-9]*$") ]),
-      password: new FormControl('', [ Validators.required, Validators.pattern("^[0-9]*$") ]),
-      repeatpassword: new FormControl('', [ Validators.required])
+      phone: new FormControl('', [ Validators.required, Validators.pattern("^[0-9]*$") ]),
+      password: new FormControl('', [ Validators.required ]),
+      repeatpassword: new FormControl('', [ Validators.required]),
+      datebirth: new FormControl('', [ Validators.required]),
+      gender: new FormControl('', [ Validators.required]),
+      adress: new FormControl('', [ Validators.required])
+      }, 
 
-    });
-
-
+      {
+        validators: [Validation.match('password', 'repeatpassword')]
+      }     
+    );
   }
+  
 
   get f(){
     return this.formA.controls;
   }
 
-  submit(){
-    console.log(this.formA.value);
-    this.UsersService.create(this.formA.value).subscribe(res => {
-         console.log('Person created successfully!');
-         this.router.navigateByUrl('features/users/users-list');
-    })
-  }
+  onsavee(){
 
-  saveSettings() {
+    if(this.formA.invalid){
+                
+      return;
+      
+      }
     this.isLoading$.next(true);
     setTimeout(() => {
       this.isLoading$.next(false);
       this.cdr.detectChanges();
     }, 1500);
+
+    console.log(this.formA.value);
+
+    return this.UsersService.create(this.formA.value).subscribe((res: any) => {
+      console.log(res);
+
+      this.router.navigate(['/features/users/users-list']);
+      Swal.fire({
+        title: 'Success!',
+        text:   "New Administrator added successfully .",
+        icon: 'success'
+      });
+
+    },(err:any)=>{ 
+      console.log(err);
+    });
+     
   }
+
+  /*saveSettings() {
+    this.isLoading$.next(true);
+    setTimeout(() => {
+      this.isLoading$.next(false);
+      this.cdr.detectChanges();
+    }, 1500);
+
+  }*/
 }

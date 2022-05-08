@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { OwlOptions } from 'ngx-owl-carousel-o';
+import { TrainerService } from '../services/trainer.service';
 
 @Component({
   selector: 'app-home',
@@ -8,63 +9,24 @@ import { OwlOptions } from 'ngx-owl-carousel-o';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  constructor(private service: TrainerService) { }
+  bests:any=[]
+  news:any=[]
+
 
   ngOnInit(): void {
-  }
-  bests = [
-    {
-      id: "1",
-      image:'/assets/site/img/hero/trainer1.png',
-      name:'Frridy',
-      price:'47',
-      review:'18',
-      speciality:"Workout",
-      experience:"3",
-      location:"130-138 Newington Butts, London (SnapFitness Elephant..."
+    this.service.getTop10().subscribe((data:any)=>{
+      console.log(data);
+      this.bests = data['data'];
 
-    },
-    {
-      id: "2",
-      image:'/assets/site/img/hero/trainer2.png',
-      name:'Viktoria Banr',
-      price:'47',
-      review:'18',
-      speciality:"Workout",
-      experience:"3",
-      location:"130-138 Newington Butts, London (SnapFitness Elephant..."
-    },
-    {
-      id: "3",
-      image:'/assets/site/img/hero/trainer3.png',
-      name:'Kathy Tucker',
-      price:'47',
-      review:'18',
-      speciality:"Workout",
-      experience:"3",
-      location:"130-138 Newington Butts, London (SnapFitness Elephant..."
-    },
-    {
-      id: "4",
-      image:'/assets/site/img/hero/trainer4.png',
-      name:'John S.',
-      price:'47',
-      review:'18',
-      speciality:"Workout",
-      experience:"3",
-      location:"130-138 Newington Butts, London (SnapFitness Elephant..."
-    },
-    {
-      id: "5",
-      image:'/assets/site/img/hero/trainer1.png',
-      name:'Joey',
-      price:'47',
-      review:'18',
-      speciality:"Workout",
-      experience:"3",
-      location:"130-138 Newington Butts, London (SnapFitness Elephant..."
-    }
-  ]
+    });
+    this.service.getnews().subscribe((data:any)=>{
+      console.log(data);
+      this.news = data['data'];
+
+    });
+  }
+ 
   customOptions: OwlOptions = {
     loop: true,
     mouseDrag: true,
