@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { LocalDataSource } from 'ng2-smart-table';
 import { UsersService } from '../../services/users.service';
 
 @Component({
@@ -7,9 +8,13 @@ import { UsersService } from '../../services/users.service';
   styleUrls: ['./users.component.scss'],
 })
 export class UsersComponent implements OnInit {
-  users:any=[]
+  users:LocalDataSource;
 
   settings = {
+    pager: {
+      display: true,
+      perPage: 10,
+    },
     actions: {
       add: false,
       edit: false,
@@ -107,17 +112,17 @@ export class UsersComponent implements OnInit {
 
 
   constructor(private service: UsersService) {
+    this.users = new LocalDataSource();
+    this.service.getAll().subscribe((data:any)=>{
+      console.log(data);
+      this.users.load(data['data']);
 
+    });
  
   }
 
   
   ngOnInit(): void {
-    this.service.getAll().subscribe((data:any)=>{
-      console.log(data);
-      this.users = data['data'];
-
-    });
   }
 
 }

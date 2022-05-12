@@ -37,4 +37,8 @@ export class TrainerService {
     );
   }
 
+  getFilteredTrainers(data:any){
+    return this.httpClient.post<Trainer[]>(`${this.BASE_URL}/api/v1/trainers/search`,data
+    );
+  }
 }

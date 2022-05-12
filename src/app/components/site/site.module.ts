@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SiteRoutingModule } from './site-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
+import { NgxSliderModule } from '@angular-slider/ngx-slider';
 import { HomeComponent } from './home/home.component';
 import { IndexComponent } from './index/index.component';
 import { BrowserModule } from '@angular/platform-browser';
@@ -59,7 +59,8 @@ import { ResponseResetPasswordComponent } from './auth/response-reset-password/r
     FormsModule,
     HttpClientModule,
     ReactiveFormsModule,    
-     SnotifyModule
+     SnotifyModule,
+     NgxSliderModule
 
     
     
