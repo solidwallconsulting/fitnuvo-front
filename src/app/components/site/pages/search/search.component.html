@@ -111,26 +111,17 @@
                   Experience
                 </button>
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                  <li>
+                  <li  *ngFor="let name of checkboxData">
                     <div>
-                        <input type="checkbox" class="check-box-list" [id]="1" (click)="FilterByExp($event)"  > <label for="">Up to 3 years experience</label>
+                        <input type="checkbox" class="check-box-list" [id]="name" (change)="FilterByExp($event)"  [disabled]="isCheckedExp && (isCheckedNameExp!=name)" > <label for="">
+                            <ng-container *ngIf="name==1">Up to 3 years experience </ng-container>
+                            <ng-container *ngIf="name==2">From 3 to 6 years experience </ng-container>
+                            <ng-container *ngIf="name==3">From 6 to 10 years experience</ng-container>
+                            <ng-container *ngIf="name==4">10+ years experience</ng-container>                        
+                        </label>
                     </div> 
                   </li>  
-                  <li>
-                    <div>
-                        <input type="checkbox" class="check-box-list" [id]="2" (click)="FilterByExp($event)"> <label for="">From 3 to 6 years experience </label>
-                    </div> 
-                  </li>  
-                  <li>
-                    <div>
-                        <input type="checkbox" class="check-box-list"[id]="3" (click)="FilterByExp($event)"> <label for="">From 6 to 10 years experience </label>
-                    </div> 
-                  </li>  
-                  <li>
-                    <div>
-                        <input type="checkbox" class="check-box-list" [id]="4" (click)="FilterByExp($event)"> <label for="">10+ years experience </label>
-                    </div> 
-                  </li>  
+               
                   
                   
                 </ul>
@@ -143,27 +134,18 @@
                   Age
                 </button>
                 <ul class="dropdown-menu " aria-labelledby="dropdownMenuButton1">
-                  <li style="display:inline-block;">
-                        <input type="checkbox" class="check-box-list" [id]="1" (click)="FilterByAge($event)" name="check"> <label for="check">From 20 to 26 year old</label>
-                  </li>  
+                  
 
-                  <li>
+                  <li *ngFor="let name of checkboxData">
                     <div style="display:inline-block;">
-                        <input type="checkbox" class="check-box-list" name="ccc" [id]="2" (click)="FilterByAge($event)"> <label for="ccc">From 26 to 34 year old </label>
+                        <input type="checkbox" class="check-box-list" [id]="name" (change)="FilterByAge($event)" [disabled]="isCheckedAge && (isCheckedNameAge!=name)"> <label for="ccc">
+                            <ng-container *ngIf="name==1">From 20 to 26 years old</ng-container>
+                            <ng-container *ngIf="name==2">From 26 to 34 years old</ng-container>
+                            <ng-container *ngIf="name==3">From 34 to 40 years old</ng-container>
+                            <ng-container *ngIf="name==4">40+ year old</ng-container> </label>
                     </div> 
                   </li> 
 
-                  <li>
-                    <div>
-                        <input type="checkbox" class="check-box-list" [id]="3" (click)="FilterByAge($event)"> <label for="">From 34 to 40 year old </label>
-                    </div> 
-                  </li> 
-
-                  <li>
-                    <div>
-                        <input type="checkbox" class="check-box-list" [id]="4" (click)="FilterByAge($event)"> <label for="">40+ year old</label>
-                    </div> 
-                  </li> 
                   
                   
                 </ul>
@@ -175,16 +157,16 @@
                   Gender
                 </button>
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1" >
-                  <li>
+                  <li *ngFor="let name of checkboxDataGender">
                     <div>
-                        <input type="checkbox" name="genderGrp" class="check-box-list" value="H"  (click)="FilterByGender($event)"> <label for="">Male</label>
+                        <input type="checkbox" name="genderGrp" class="check-box-list" value="{{name}}"  (change)="FilterByGender($event)" [disabled]="isCheckedGender && (isCheckedNameGender!=name)"> 
+                        <label for="">
+                            <ng-container *ngIf="name=='H'">Male</ng-container>
+                            <ng-container *ngIf="name=='F'">Female</ng-container>
+                        </label>
                     </div> 
                   </li>  
-                  <li>
-                    <div>
-                        <input type="checkbox" name="genderGrp" class="check-box-list" value="F" (click)="FilterByGender($event)"> <label for="">Female</label>
-                    </div> 
-                  </li>  
+                
                   
                   
                 </ul>
@@ -209,41 +191,72 @@
             <div *ngIf="selected_gender.length  >  0  ">         
                 Gender :         
                 <div class="box  d-inline-block mt-1 "> 
-                {{selected_gender}}  <div class="Icon" (click)="removeSelectedGender(selected_gender[0])" >X</div>
+                    <ng-container *ngIf="selected_gender=='H'">Male</ng-container>
+                    <ng-container *ngIf="selected_gender=='F'">Female</ng-container>
+                <div class="Icon" (click)="removeSelectedGender(selected_gender[0])" >X</div>
                  </div> 
             </div>
 
             <div *ngIf="selected_age.length  >  0  ">         
                 Age :         
                 <div class="box  d-inline-block mt-1 "> 
-                {{selected_age}}  <div class="Icon" (click)="removeSelectedAge(selected_age[0])">X</div>
+                    <ng-container *ngIf="selected_age==1">From 20 to 26 years old</ng-container>
+                    <ng-container *ngIf="selected_age==2">From 26 to 34 years old</ng-container>
+                    <ng-container *ngIf="selected_age==3">From 34 to 40 years old</ng-container>
+                    <ng-container *ngIf="selected_age==4">40+ year old</ng-container>
+           <div class="Icon" (click)="removeSelectedAge(selected_age[0])">X</div>
                  </div> 
             </div>
 
             <div *ngIf="selected_experience.length  >  0  ">         
                 Experience :         
                 <div class="box  d-inline-block mt-1 "> 
-                {{selected_experience}}  <div class="Icon" (click)="removeSelectedExp(selected_experience[0])">X</div>
+                    <ng-container *ngIf="selected_experience==1">Up to 3 years </ng-container>
+                    <ng-container *ngIf="selected_experience==2">From 3 to 6 years  </ng-container>
+                    <ng-container *ngIf="selected_experience==3">From 6 to 10 years</ng-container>
+                    <ng-container *ngIf="selected_experience==4">10+ years</ng-container>
+                <div class="Icon" (click)="removeSelectedExp(selected_experience[0])">X</div>
                  </div> 
             </div>
 
             <div *ngIf="selected_prix.length  >  0  ">         
                 Price :         
                 <div class="box  d-inline-block mt-1 " *ngFor="let selectsort of selected_prix"> 
-                {{selected_prix}}  <div class="Icon" (click)="removeSelectedPrix()">X</div>
+                {{selected_prix}}£  <div class="Icon" (click)="removeSelectedPrix()">X</div>
                  </div> 
             </div>
 
             <div *ngIf="selected_sort?.length > 0">         
                 Sort By :         
                 <div class="box  d-inline-block mt-1 " *ngFor="let selectsort of selected_sort" > 
-                {{selected_sort}}  <div class="Icon" (click)="removeSelectedPrix()">X</div>
+                    <ng-container *ngIf="selected_sort==1">Cheaper first </ng-container>
+                    <ng-container *ngIf="selected_sort==2">Expensive first </ng-container>
+                    <ng-container *ngIf="selected_sort==3">Rating </ng-container>
+                    <ng-container *ngIf="selected_sort==4">New</ng-container>
+
+                <div class="Icon" (click)="removeSelectedSort()">X</div>
                  </div> 
             </div>
 
+      
+
+
+            <div *ngIf="selected_schedule.length > 0   ">
+                Schedule :
+                <ng-container *ngFor="let spec of selected_schedule" > 
+                    <div class="box  d-inline-block mt-1 "> 
+                        {{spec}}  <div class="Icon" (click)="removeSelectedSchedule(spec)">X</div>
+
+                    
+                    </div>
+                    &nbsp;
+                </ng-container>
+            </div>  
+
+
    
 
-        <div *ngIf="selected_prix.length >0 || selected_experience.length >0 || selected_age.length >0 || selected_prix.length >0 ||  selected_gender.length > 0 || selected_categories.length>0  " style="display: flex; " class="mt-3" >          
+        <div *ngIf="selected_schedule.length >0 || selected_sort.length >0 || selected_prix.length >0 || selected_experience.length >0 || selected_age.length >0 || selected_prix.length >0 ||  selected_gender.length > 0 || selected_categories.length>0  " style="display: flex; " class="mt-3" >          
             <div class="text-center text-lg-start">
               <button class="boxed-btn " (click)="getFilterData()">Apply Filter</button>
            </div>      &nbsp;
@@ -257,7 +270,7 @@
     display:block;">
 
    
-    <div *ngIf="!trainers || trainers.length === 0" class="loading">
+    <div *ngIf="!trainers || trainers.length === 0" class="loading " style="text-align: center;color: #2955AB;">
         <svg class="pl" viewBox="0 0 128 128" width="128px" height="128px" xmlns="http://www.w3.org/2000/svg">
             <defs>
                 <linearGradient id="pl-grad" x1="0" y1="0" x2="0" y2="1">
@@ -272,14 +285,15 @@
  
 
     <div class="row  justify-content-between">
-        <div class="col-sm-5">
+        <div class="col-sm-5" *ngIf="trainers.length != 0">
             <div class="row">
                 <div class="col-sm-6">
 
                         <div class="dropdown app-drop-down w-100" style="color:#2955AB">
                             Sort by  :
-                            <select style="border-style: none;color: #000000;" (change)="FilterBySort($event)" >
-                                <option>
+                            <select style="border-style: none;color: #000000;" (change)="FilterBySort($event)" >                                    Select any sort
+
+                                <option [selected]="selected_sort?.length == 0" value="0" >
                                     Select any sort
                                 </option>
                                 <option value="1" >
@@ -322,7 +336,7 @@
         
         <div class="coach-list">
             <div class="row">
-                <div class="col-md-6 col-sm-12 coach-card mb-3" *ngFor="let trainer of trainers['data'] ">
+                <div class="col-md-6 col-sm-12 coach-card mb-3" *ngFor="let trainer of trainers['data'] | paginate: { itemsPerPage: 10, currentPage: p } ">
                     <div class="card">
                         <div class="d-flex">
                             <div class="coach-image" style="background-image: url({{trainer.photo_profil}});"></div>
@@ -351,15 +365,14 @@
                         </div>
                     </div>
                 </div>
+                <pagination-controls  class="text-center mt-10" (pageChange)="p = $event"></pagination-controls>
+
             </div>
         </div>
     </div>
 
 
-    <div class="spacing ">
-        <p class="text-center"><i class="fa fa-refresh text-primary" aria-hidden="true"></i> Show more trainers</p>
-    </div>
-
+   
 
 </div>
 

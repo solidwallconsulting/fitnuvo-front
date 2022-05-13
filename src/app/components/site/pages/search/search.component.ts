@@ -12,7 +12,8 @@ import { Prix } from '../../models/prix';
 export class SearchComponent implements OnInit {
 
 
-  
+  p: number = 1;
+
   minValue: number =  20;
   maxValue: number = 100;
   options: Options = {
@@ -29,6 +30,16 @@ export class SearchComponent implements OnInit {
       }
     }
   };
+
+  isCheckedExp:boolean;
+  isCheckedNameExp:number;
+  isCheckedAge:boolean;
+  isCheckedNameAge:number;
+  isCheckedGender:boolean;
+  isCheckedNameGender:string;
+  checkboxData = [1,2,3,4];
+  checkboxDataGender = ['H','F'];
+
 
 
   trainers:any= [];
@@ -47,6 +58,7 @@ export class SearchComponent implements OnInit {
   constructor(public TrainerService:TrainerService, public SpecialityService: SpecialityService) { }
 
   ngOnInit(): void {
+    
     this.TrainerService.getAll().subscribe((data)=>{
       this.trainers = data;
       console.log(this.trainers);
@@ -64,19 +76,19 @@ export class SearchComponent implements OnInit {
     this.selectedRange=e.target.value;
   }
   avalableDATES: any[] = [
-    { label:'Mon', hours: [ { id: 1, label:'9:00-12:00' , checked: false },{ id: 2, label:'12:00-15:00' , checked: false },{ id: 3, label:'15:00-17:00' , checked: false },{ id: 5, label:'17:00-19:00' , checked: false } ] },
+    { label:'Mon', hours: [ { id: 1, label:'09:00-12:00' , checked: false },{ id: 2, label:'12:00-15:00' , checked: false },{ id: 3, label:'15:00-17:00' , checked: false },{ id: 5, label:'17:00-19:00' , checked: false } ] },
 
-    { label:'Tue', hours: [ { id: 6, label:'9:00-12:00' , checked: false },{ id: 7, label:'12:00-15:00' , checked: false }, { id: 8, label:'15:00-17:00' , checked: false },{ id: 9, label:'17:00-19:00' , checked: false }] },
+    { label:'Tue', hours: [ { id: 6, label:'09:00-12:00' , checked: false },{ id: 7, label:'12:00-15:00' , checked: false }, { id: 8, label:'15:00-17:00' , checked: false },{ id: 9, label:'17:00-19:00' , checked: false }] },
   
-    { label:'Wed', hours: [ { id: 10, label:'9:00-12:00' , checked: false },{ id: 11, label:'12:00-15:00' , checked: false }, { id: 12, label:'15:00-17:00' , checked: false },{ id: 13, label:'17:00-19:00' , checked: false }] },
+    { label:'Wed', hours: [ { id: 10, label:'09:00-12:00' , checked: false },{ id: 11, label:'12:00-15:00' , checked: false }, { id: 12, label:'15:00-17:00' , checked: false },{ id: 13, label:'17:00-19:00' , checked: false }] },
 
-    { label:'Thu', hours: [ { id: 14, label:'9:00-12:00' , checked: false },{ id: 15, label:'12:00-15:00' , checked: false }, { id: 16, label:'15:00-17:00' , checked: false },{ id: 17, label:'17:00-19:00' , checked: false } ] },
+    { label:'Thu', hours: [ { id: 14, label:'09:00-12:00' , checked: false },{ id: 15, label:'12:00-15:00' , checked: false }, { id: 16, label:'15:00-17:00' , checked: false },{ id: 17, label:'17:00-19:00' , checked: false } ] },
 
-    { label:'Fri', hours: [ { id: 18, label:'9:00-12:00' , checked: false },{ id: 19, label:'12:00-15:00' , checked: false }, { id: 20, label:'15:00-17:00' , checked: false },{ id: 21, label:'17:00-19:00' , checked: false }] },
+    { label:'Fri', hours: [ { id: 18, label:'09:00-12:00' , checked: false },{ id: 19, label:'12:00-15:00' , checked: false }, { id: 20, label:'15:00-17:00' , checked: false },{ id: 21, label:'17:00-19:00' , checked: false }] },
 
-    { label:'Sat', hours: [ { id: 22, label:'9:00-12:00' , checked: false },{ id: 23, label:'12:00-15:00' , checked: false }, { id: 24, label:'15:00-17:00' , checked: false },{ id: 25, label:'17:00-19:00' , checked: false }] },
+    { label:'Sat', hours: [ { id: 22, label:'09:00-12:00' , checked: false },{ id: 23, label:'12:00-15:00' , checked: false }, { id: 24, label:'15:00-17:00' , checked: false },{ id: 25, label:'17:00-19:00' , checked: false }] },
 
-    { label:'Sun', hours: [ { id: 26, label:'9:00-12:00' , checked: false },{ id: 27, label:'12:00-15:00' , checked: false }, { id: 28, label:'15:00-17:00' , checked: false },{ id: 29, label:'17:00-19:00' , checked: false }] }
+    { label:'Sun', hours: [ { id: 26, label:'09:00-12:00' , checked: false },{ id: 27, label:'12:00-15:00' , checked: false }, { id: 28, label:'15:00-17:00' , checked: false },{ id: 29, label:'17:00-19:00' , checked: false }] }
 
   ];
   
@@ -169,6 +181,9 @@ FilterByCat(event:any) {
    }
 }
 FilterByExp(event:any) {
+    this.isCheckedExp = !this.isCheckedExp;
+    this.isCheckedNameExp = event.target.id;
+  
   if(event.target.checked) {
     this.selected_experience.push(event.target.id)
   }
@@ -185,6 +200,9 @@ FilterByExp(event:any) {
 }
 
 FilterByGender(event:any) {
+  this.isCheckedGender = !this.isCheckedGender;
+  this.isCheckedNameGender = event.target.value;
+
   if(event.target.checked) {
     this.selected_gender.push(event.target.value)
   }
@@ -200,6 +218,8 @@ FilterByGender(event:any) {
    }
 }
 FilterByAge(event:any) {
+  this.isCheckedAge = !this.isCheckedAge;
+  this.isCheckedNameAge = event.target.id;
   if(event.target.checked) {
     this.selected_age.push(event.target.id)
   }
@@ -215,6 +235,7 @@ FilterByAge(event:any) {
    }
 }
 scheduleApply(){
+    this.selected_schedule.splice(0);
 
       for (let i = 0; i < this.avalableDATES.length; i++ ) {
         for (let j = 0; j < this.avalableDATES[i].hours.length; j++ ) {
@@ -229,11 +250,13 @@ scheduleApply(){
 }
 
 FilterBySort(event:any) {
-  
-  if(event.target.value != "") {
-    this.selected_sort.splice(0)
+  if(event.target.value == "0") {
+    this.selected_sort.splice(0);
+  }
+  else if(event.target.value != "") {
+    this.selected_sort.splice(0);
 
-    this.selected_sort.push(event.target.value)
+    this.selected_sort.push(event.target.value);
   }
   
 }
@@ -252,12 +275,23 @@ removeSelectedAge(id:any) {
   this.selected_age.splice(index, 1);
 }
 removeSelectedExp(id:any) {
+
   const index = this.selected_experience.indexOf(id);
   this.selected_experience.splice(index, 1);
 }
 removeSelectedPrix() {
   this.selected_prix.splice(0);
 }
+
+removeSelectedSort() {
+  this.selected_sort.splice(0);
+}
+
+removeSelectedSchedule(id:any) {
+  const index = this.selected_schedule.indexOf(id);
+  this.selected_schedule.splice(index, 1);
+}
+
 
 getPrix(from:any,to:any) {
   if(to == 0 ) {
@@ -278,6 +312,9 @@ reset() {
   this.selected_experience.splice(0);
   this.selected_categories.splice(0);
   this.selected_prix.splice(0);
+  this.selected_schedule.splice(0);
+  this.selected_sort.splice(0);
+  window.location.reload();
 
 
 }

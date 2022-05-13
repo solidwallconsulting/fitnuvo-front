@@ -251,8 +251,10 @@ select:focus{
 
     
 }
-
-
+::ng-deep .ngx-pagination .current {
+  background: #2955AB  !important;
+ 
+}
   /* New modifier comes after .Button */
   .Icon {
     color:#2955AB;

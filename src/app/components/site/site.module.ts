@@ -25,6 +25,7 @@ import { ResetpasswordComponent } from './auth/resetpassword/resetpassword.compo
 import { HttpClientModule } from '@angular/common/http';
 import { NavbarComponent } from './layouts/navbar/navbar.component';
 import { SnotifyModule, SnotifyService, ToastDefaults } from 'ng-snotify';
+import { NgxPaginationModule } from 'ngx-pagination';
 import { ResponseResetPasswordComponent } from './auth/response-reset-password/response-reset-password.component';
 
 
@@ -60,7 +61,8 @@ import { ResponseResetPasswordComponent } from './auth/response-reset-password/r
     HttpClientModule,
     ReactiveFormsModule,    
      SnotifyModule,
-     NgxSliderModule
+     NgxSliderModule,
+     NgxPaginationModule
 
     
     
