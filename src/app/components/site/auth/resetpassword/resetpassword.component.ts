@@ -3,7 +3,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { Router } from '@angular/router';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import {SnotifyService} from 'ng-snotify';
-import { AuthentificationService } from 'src/app/components/site/services/authentification.service';
+import { AuthentificationService } from 'src/app/services/authentification.service';
 
 @Component({
   selector: 'app-resetpassword',
@@ -33,8 +33,6 @@ export class ResetpasswordComponent implements OnInit {
     this.notify.info('wait...', {'timeout': 3330});
     this.auth.sendRestPasswordLink(this.formControl.email.value).subscribe(next => {
       console.log(next);
-      
-
       this.handleResponse();
 
     },(erreur) => {

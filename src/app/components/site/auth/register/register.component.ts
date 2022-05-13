@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { AuthentificationService } from 'src/app/components/site/services/authentification.service';
+import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { AuthentificationService } from 'src/app/services/authentification.service';
 import Swal from 'sweetalert2';
+import { LoginComponent } from '../login/login.component';
 import { MustMatch } from '../_helpers/must-match.validator';
 
 @Component({
@@ -15,9 +16,9 @@ export class RegisterComponent implements OnInit {
  //Forms
  registerFormC: FormGroup;
  registerFormT: FormGroup;
-
+ IsmodelShow= false;
  submitted = false;
-  constructor( public activeModal: NgbActiveModal,private router:Router, private auth:AuthentificationService,private formBuilder: FormBuilder) { }
+  constructor( private modalService: NgbModal, public activeModal: NgbActiveModal,private router:Router, private auth:AuthentificationService,private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
     this.registerFormC = this.formBuilder.group({
@@ -84,14 +85,10 @@ export class RegisterComponent implements OnInit {
       myFormData.append('password', this.formControl.password.value);
       myFormData.append('phone', this.formControl.phone.value);
       myFormData.append('adress', this.formControl.adress.value);
-      myFormData.append('role', 'client');
-
-
+      myFormData.append('role_id', '4');
 
       return this.auth.register(myFormData).subscribe((res: any) => {
           console.log(res);
-
-         
             //sweetalert message popup
             Swal.fire({
               position: 'top-end',
@@ -110,9 +107,6 @@ export class RegisterComponent implements OnInit {
       
 
     }
-
-
-
     // Register for a Trainer
     onRegisterTrainer(){
     
@@ -173,5 +167,13 @@ export class RegisterComponent implements OnInit {
     onresetformT(){
        return this.registerFormT.reset();
     }
+
+    openLoginForm(): void {
+      this.IsmodelShow=true;
+    }
+  
+     openRegisterForm(): void {
+      const modalReff = this.modalService.open(RegisterComponent); 
+     }
 
 }

@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import Swal from 'sweetalert2';
-import { ContactusService } from '../../services/contactus.service';
+import { ContactusService } from '../../../../services/contactus.service';
 
 @Component({
   selector: 'app-contact',

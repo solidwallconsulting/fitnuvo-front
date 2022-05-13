@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { IndexComponent } from './index/index.component';
-import { Role } from './models/role.model';
+import { Role } from '../../models/adminsModel/role.model';
 import { AuthGuard } from './services/auth.guard';
 
 export const routes: Routes = [

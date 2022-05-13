@@ -1,7 +1,7 @@
 import { Component, HostBinding } from '@angular/core';
 import { Router } from '@angular/router';
-import { Contact } from 'src/app/components/site/models/contact';
-import { ContactusService } from 'src/app/components/site/services/contactus.service';
+import { Contact } from 'src/app/models/contact';
+import { ContactusService } from 'src/app/services/contactus.service';
 
 @Component({
   selector: 'app-contact-not',

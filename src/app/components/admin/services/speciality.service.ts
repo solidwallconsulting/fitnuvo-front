@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Speciality } from '../models/speciality';
+import { Speciality } from '../../../models/adminsModel/speciality';
 import { AuthService } from './auth.service';
 
 @Injectable({
@@ -20,26 +20,38 @@ export class SpecialityService {
   }
 
 
-   token:string = this.auth.getToken();
+  /* token:string = this.auth.getToken();
    headers = new HttpHeaders({
     Authorization: `Bearer ${this.token}`,
-  });
+    });*/
   addCategorie(data:any){
+    var token = this.auth.getToken();
+    var headers = new HttpHeaders({
+    Authorization: `Bearer ${token}`,
+    });
     console.log(data);
-    return this.httpClient.post<Speciality>(`${this.apiUrl}/speciality`, data,{headers:this.headers});
+    return this.httpClient.post<Speciality>(`${this.apiUrl}/speciality`, data,{headers:headers});
   }
 
   
   updateCategorie(data:any){
+    var token = this.auth.getToken();
+    var headers = new HttpHeaders({
+    Authorization: `Bearer ${token}`,
+    });
     console.log(data);
-    return this.httpClient.put<Speciality>(`${this.apiUrl}/speciality/`+data.id, data,{headers:this.headers});
+    return this.httpClient.put<Speciality>(`${this.apiUrl}/speciality/`+data.id, data,{headers:headers});
   }
 
   deleteCategorie(id:any){
+    var token = this.auth.getToken();
+    var headers = new HttpHeaders({
+    Authorization: `Bearer ${token}`,
+    });
     console.log(id);
 
    
-    return this.httpClient.delete<Speciality>(`${this.apiUrl}/speciality/`+id,{headers:this.headers});
+    return this.httpClient.delete<Speciality>(`${this.apiUrl}/speciality/`+id,{headers:headers});
   }
 
 

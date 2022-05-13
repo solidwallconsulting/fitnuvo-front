@@ -10,6 +10,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { SnotifyModule, SnotifyService, ToastDefaults } from 'ng-snotify';
 import { AdminModule } from './components/admin/app.module';
 import { InlineSVGModule } from 'ng-inline-svg';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -22,9 +23,10 @@ import { InlineSVGModule } from 'ng-inline-svg';
     CarouselModule,
     AppRoutingModule,
     HttpClientModule,
-    ReactiveFormsModule,    
+    ReactiveFormsModule,  
     SnotifyModule,
     AdminModule,
+    ToastrModule.forRoot(), 
     InlineSVGModule.forRoot(),
 
      
@@ -32,7 +34,8 @@ import { InlineSVGModule } from 'ng-inline-svg';
   ],
   providers: [
     {provide: 'SnotifyToastConfig', useValue: ToastDefaults},
-    SnotifyService
+    SnotifyService,
+    
   
   ],
   bootstrap: [AppComponent]

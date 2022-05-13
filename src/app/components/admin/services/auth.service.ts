@@ -1,7 +1,7 @@
 import { Injectable, OnDestroy } from '@angular/core';
 import { Observable, BehaviorSubject, of, Subscription } from 'rxjs';
 import { finalize, map } from 'rxjs/operators';
-import { UserModel } from '../models/user.model';
+import { UserModel } from '../../../models/adminsModel/user.model';
 import { environment } from 'src/environments/environment';
 import { Router } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';

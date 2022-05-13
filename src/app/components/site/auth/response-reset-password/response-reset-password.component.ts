@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AuthentificationService } from 'src/app/components/site/services/authentification.service';
+import { AuthentificationService } from 'src/app/services/authentification.service';
 
 
 @Component({

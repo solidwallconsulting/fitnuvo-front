@@ -2,7 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgbActiveModal , NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { AuthentificationService } from 'src/app/components/site/services/authentification.service';
+import { Loginresult } from 'src/app/models/loginresult.model';
+import { User } from 'src/app/models/user.model';
+import { AuthentificationService } from 'src/app/services/authentification.service';
+import { NotifyService } from 'src/app/services/notify.service';
 import { ResetpasswordComponent } from '../resetpassword/resetpassword.component';
 
 @Component({
@@ -13,9 +16,10 @@ import { ResetpasswordComponent } from '../resetpassword/resetpassword.component
 export class LoginComponent implements OnInit {
   public loginFormV!: FormGroup;
   public submitted = false;
+  user:User;
   serverErrors = [];
-
-  constructor(public activeModal: NgbActiveModal , private modalService: NgbModal , private router:Router, private auth:AuthentificationService,private formBuilder: FormBuilder) { }
+  result: Loginresult;
+  constructor(public activeModal: NgbActiveModal , private modalService: NgbModal , private router:Router, private auth:AuthentificationService,private formBuilder: FormBuilder, private notifyService: NotifyService) { }
 
   
   ngOnInit(): void {
@@ -46,18 +50,17 @@ export class LoginComponent implements OnInit {
 
   onLogin(){
     
-         const email = this.formControl.email.value;
-         const password = this.formControl.password.value;
+    const email = this.formControl.email.value;
+    const password = this.formControl.password.value;
+    this.submitted = true;
 
-         this.submitted = true;
-
-         if(this.loginFormV.invalid){
+    if(this.loginFormV.invalid){
          
-         return;
+      return;
          
-         }
-        // console.log(email, password);
-        this.auth.login(email,password).subscribe((res:any)=>{
+    }
+     // console.log(email, password);
+          this.auth.login(email,password).subscribe((res:any)=>{
           console.log(res);
           localStorage.removeItem('token');
           localStorage.setItem('token', res.token);
@@ -67,14 +70,61 @@ export class LoginComponent implements OnInit {
           localStorage.removeItem('token');
       
             this.serverErrors = err.error.message;
-
           
-          console.log(this.serverErrors);
-          console.log(err);
-
+            console.log(this.serverErrors);
+            console.log(err);
+        });
+        this.auth.login(email,password).subscribe(res =>{
+          if(res.status === 200){
+            this.result = res.body!;
+            localStorage.setItem('token',JSON.stringify(this.result.token));
+            this.user = new User();
+            /*let role = new Role();
+            user.name=this.result.user.name;
+            role.name= this.result.role.name;*/
+            localStorage.setItem('user', JSON.stringify(this.result.user));
+            localStorage.setItem('ROLE', JSON.stringify(this.result.role));
+            this.auth.setMenu(this.result.menu);
+            
+            this.notifyService.showSuccess("welcome to fitnuvo", "Fitnuvo");
+            this.router.navigate([`/user`]);
+          }
+          },error => {
+            this.notifyService.showError(error.error.message, "Fitnuvo"); 
         });
 
       }
+  loginTrainer(){
+    
+    const email = this.formControl.email.value;
+    const password = this.formControl.password.value;
+
+    this.submitted = true;
+
+    if(this.loginFormV.invalid){
+    
+    return;
+    
+    }
+   // console.log(email, password);
+   this.auth.login(email,password).subscribe((res:any)=>{
+     console.log(res);
+     localStorage.removeItem('token');
+     localStorage.setItem('token', res.token);
+     // redirect to dashboard
+     this.router.navigate(['/search']);
+   },(err:any)=>{ 
+     localStorage.removeItem('token');
+ 
+       this.serverErrors = err.error.message;
+
+     
+     console.log(this.serverErrors);
+     console.log(err);
+
+   });
+
+ }
 
 
       

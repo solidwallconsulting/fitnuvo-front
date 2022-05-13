@@ -23,8 +23,41 @@
                                             <li><a routerLink="/partner">For Partner</a></li>
                                             <li><a routerLink="/contact">Contact Us</a></li>
                                             <!-- Button -->
-                                            <li class="button-header margin-left " ><a class="btn3" (click)="openLoginForm()" >Login</a></li>
-                                            <li class="button-header margin-right"><a class="btnsign" (click)="openRegisterForm()" >Sign Up</a></li>
+                                            <li *ngIf="!isAuth" class="button-header margin-left " ><a class="btn3" (click)="openLoginForm()" >Login</a></li>
+                                            <li *ngIf="!isAuth" class="button-header margin-right"><a class="btnsign" (click)="openRegisterForm()" >Sign Up</a></li>
+                                            <li *ngIf="isAuth">
+                                                
+                                                <div ngbDropdown class="d-inline-block">
+                                                  <a type="button" class="btn-outline btnsign" ngbDropdownToggle><img [src]="photo" width="30px" class="rounded-circle float-right">{{user.firstname}} {{user.secondname}}</a>
+                                                  <div class="dropdown-menu" ngbDropdownMenu>
+                                                    <div class="profile-sidebar">
+                                                        <!-- SIDEBAR USERPIC -->
+				                                        <div class="profile-userpic">
+					                                        <img [src]="photo" class="img-responsive" alt="">
+				                                        </div>
+				                                        <!-- END SIDEBAR USERPIC -->
+				                                        <!-- SIDEBAR USER TITLE -->
+				                                        <div class="profile-usertitle">
+					                                        <div class="profile-usertitle-name">
+						                                        {{user.firstname}} {{user.secondname}}
+                                                                <i class="ti ti-pencil" (click)="goToprofile()"></i>
+					                                        </div>
+					                                        <div class="profile-usertitle-job">
+                                                                {{user.email}}
+					                                        </div>
+				                                        </div>
+				                                        <!-- END SIDEBAR USER TITLE -->
+                                                    </div>
+                                                    <div class="dropdown-divider"></div>
+                                                    <button ngbDropdownItem><i class="ti ti-calendar"></i> Appointments</button>
+                                                    <button ngbDropdownItem><i class="ti ti-heart"></i> Favorites</button>
+                                                    <button ngbDropdownItem><i class="ti ti-comments"></i> Messages</button>
+                                                    <button ngbDropdownItem><i class="ti ti-bell"></i> Notification</button>
+                                                    <button ngbDropdownItem (click)="logout()"><i class="ti ti-power-off" ></i> Logout</button>
+                                                  </div>
+                                                </div>
+                                                
+                                            </li>
                                         </ul>
                                     </nav>
                                 </div>

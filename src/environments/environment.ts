@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  Base_Url: 'http://localhost:8000',
+  Base_Url: 'http://127.0.0.1:8000',
   appPreviewDocsUrl: 'https://preview.keenthemes.com/metronic8/angular/docs',
   appVersion: 'v8.0.35',
   USERDATA_KEY: 'authf649fc9a5f55',

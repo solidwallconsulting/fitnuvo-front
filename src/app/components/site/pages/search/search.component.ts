@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SpecialityService } from 'src/app/components/admin/services/speciality.service';
-import { TrainerService } from 'src/app/components/site/services/trainer.service';
+import { TrainerService } from 'src/app/services/trainer.service';
 
 @Component({
   selector: 'app-search',
@@ -23,7 +23,6 @@ export class SearchComponent implements OnInit {
       this.specialities = data;
       console.log(this.specialities);
     })
-
   }
   avalableDATES: any[] = [
     { label:'Mon', hours: [ { id: 1, label:'9:00 - 12:00' , checked: false },{ id: 2, label:'12:00 - 15:00' , checked: true },{ id: 3, label:'15:00 - 17:00' , checked: true },{ id: 5, label:'17:00 - 19:00' , checked: false } ] },

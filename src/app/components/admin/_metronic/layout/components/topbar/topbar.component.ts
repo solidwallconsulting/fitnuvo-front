@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/components/admin/services/auth.service';
-import { ContactusService } from 'src/app/components/site/services/contactus.service';
+import { ContactusService } from 'src/app/services/contactus.service';
 import { LayoutService } from '../../core/layout.service';
 
 @Component({

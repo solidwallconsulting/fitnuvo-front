@@ -1,0 +1,116 @@
+.card-box {
+    padding: 20px;
+    box-shadow: 0 4px 8px 0 rgb(16 25 40 / 10%);
+    -webkit-border-radius: 5px;
+    border-radius: 8px;
+    -moz-border-radius: 8px;
+    background-clip: padding-box;
+    margin-bottom: 20px;
+    background-color: #ffffff;
+    border: none;
+}
+/* Profile sidebar */
+.profile-sidebar {
+    padding: 20px 0 10px 0;
+    background: #fff;
+  }
+  
+  .profile-userpic img {
+    float: none;
+    margin: 0 auto;
+    width: 50%;
+    height: 50%;
+    -webkit-border-radius: 50% !important;
+    -moz-border-radius: 50% !important;
+    border-radius: 50% !important;
+  }
+  
+  .profile-usertitle {
+    text-align: center;
+    margin-top: 20px;
+  }
+  
+  .profile-usertitle-name {
+    color: #2955AB;
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 7px;
+    text-transform: capitalize;
+  }
+  
+  .profile-usertitle-job {
+    color: #4154f1;
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 15px;
+  }
+  
+  .profile-userbuttons {
+    text-align: center;
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .profile-userbuttons .btn {
+    text-transform: uppercase;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 6px 15px;
+    margin-right: 5px;
+  }
+  
+  .profile-userbuttons .btn:last-child {
+    margin-right: 0px;
+  }
+      
+  .profile-usermenu {
+    margin-top: 30px;
+    text-align: left;
+  }
+  
+  .profile-usermenu ul li {
+    border-bottom: 1px solid #f0f4f7;
+    padding: 12px;
+  }
+  
+  .profile-usermenu ul li:last-child {
+    border-bottom: none;
+  }
+  
+  .profile-usermenu ul li a {
+    color: #93a3b5;
+    font-size: 14px;
+    font-weight: 400;
+  }
+  
+  .profile-usermenu ul li a i {
+    margin-right: 8px;
+    font-size: 14px;
+    margin-left: 5px;
+  }
+  
+  .profile-usermenu ul li:hover {
+    background-color: #f2f5fa;
+    color: #2955AB;
+  }
+  
+  .profile-usermenu ul li.active {
+    border-bottom: none;
+    background-color: #f6f9fb;
+  }
+  
+  .profile-usermenu ul li.active a {
+    background-color: #f2f5fa;
+    color: #2955AB;
+    border-left: 2px solid #2955AB;
+    margin-left: -2px;
+    font-weight: bold;
+  }
+  
+  /* Profile Content */
+  .profile-content {
+    padding: 20px;
+    background: #fff;
+    min-height: 460px;
+}

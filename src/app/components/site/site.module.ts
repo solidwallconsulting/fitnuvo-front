@@ -26,6 +26,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { NavbarComponent } from './layouts/navbar/navbar.component';
 import { SnotifyModule, SnotifyService, ToastDefaults } from 'ng-snotify';
 import { ResponseResetPasswordComponent } from './auth/response-reset-password/response-reset-password.component';
+import { CprofileComponent } from './pages/cprofile/cprofile.component';
+import { ClayoutComponent } from './pages/clayout/clayout.component';
+import { SideprofileComponent } from './pages/sideprofile/sideprofile.component';
 
 
 @NgModule({
@@ -47,6 +50,9 @@ import { ResponseResetPasswordComponent } from './auth/response-reset-password/r
     ResetpasswordComponent,
     NavbarComponent,
     ResponseResetPasswordComponent,
+    CprofileComponent,
+    ClayoutComponent,
+    SideprofileComponent,
     
   ],
   imports: [

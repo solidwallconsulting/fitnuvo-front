@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { OwlOptions } from 'ngx-owl-carousel-o';
-import { TrainerService } from '../services/trainer.service';
+import { TrainerService } from '../../../services/trainer.service';
 
 @Component({
   selector: 'app-home',
