@@ -14,6 +14,7 @@ import { environment } from 'src/environments/environment';
 import { AdminRoutingModule } from './app-routing.module';
 import { IndexComponent } from './index/index.component';
 import { ToastrModule } from 'ngx-toastr';
+import { CommonModule } from '@angular/common';
 // #fake-end#
 
 /*
@@ -44,6 +45,7 @@ function appInitializer(authService: AuthService) {
     NgxBootstrapConfirmModule,
 
     NgbModule,
+    CommonModule,
 
   ],
   providers: [

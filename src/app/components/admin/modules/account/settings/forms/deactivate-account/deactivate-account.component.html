@@ -1,4 +1,4 @@
-<div class="card">
+<div *ngIf="profile.role_id==2" class="card">
   <div
     class="card-header border-0 cursor-pointer"
     role="button"
@@ -31,8 +31,7 @@
                 You Are Deactivating Your Account
               </h4>
               <div class="fs-6 text-gray-600">
-                For extra security, this requires you to confirm your email or
-                phone number when you reset yousignr password.<br /><a
+                For extra security, this requires you to learn more before that.<br /><a
                   class="fw-bolder"
                   href="#"
                   >Learn more</a
@@ -47,11 +46,12 @@
             type="checkbox"
             name="confirm"
             value="false"
+            #checkboxl
           /><label class="form-check-label fw-bold ps-2 fs-6" for="deactivate"
             >I confirm my account deactivation</label
           >
         </div>
-        <div class="fv-plugins-message-container">
+        <div *ngIf="hasError" class="fv-plugins-message-container">
           <div class="fv-help-block">
             Please check the box to deactivate your account
           </div>
@@ -62,7 +62,7 @@
           id="kt_account_deactivate_account_submit"
           type="button"
           class="btn btn-danger fw-bold"
-          (click)="saveSettings()"
+          (click)="saveSettings(checkboxl.checked)"
         >
           Deactivate Account
         </button>

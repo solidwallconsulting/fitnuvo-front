@@ -14,15 +14,13 @@ export class UserModel  {
   lastname: string;
   gender: string;
   // account information
-  language: string;
-  timeZone: string;
-  communication: {
-    email: boolean;
-    sms: boolean;
-    phone: boolean;
-  };
+  //language: string;
+ ////communication: {
+  //  email: boolean;
+   // sms: boolean;
+   //// };
   // email settings
-  emailSettings?: {
+/*  emailSettings?: {
     emailNotification: boolean;
     sendCopyToPersonalEmail: boolean;
     activityRelatesEmail: {
@@ -40,7 +38,7 @@ export class UserModel  {
       newsAboutMetronicOnPartnerProductsAndOtherServices: boolean;
       tipsOnMetronicBusinessProducts: boolean;
     };
-  };
+  };*/
 
   setUser(_user: unknown) {
     const user = _user as UserModel;

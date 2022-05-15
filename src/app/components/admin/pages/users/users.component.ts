@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { LocalDataSource } from 'ng2-smart-table';
 import { UsersService } from '../../services/users.service';
+import { ButtonViewComponent } from './button.component';
 
 @Component({
   selector: 'app-users',
@@ -21,7 +22,7 @@ export class UsersComponent implements OnInit {
       delete: false,
     },
     columns: {
-      user_id: {
+      client_id: {
         title: 'ID',
         editable: false,
         addable: false,
@@ -52,16 +53,19 @@ export class UsersComponent implements OnInit {
       },
       gender: {
         title: 'Gender',
-        type: 'string',
+        type:'html',
+        valuePrepareFunction: (gender:any) => {
+          if(gender=='H') {
+            return 'Male <i class="fa fa-male fa-xl text-primary"> </i>';
+
+          }else {
+            return 'Female <i class="fa fa-female fa-xl text-danger"> </i> ';
+
+          }
+        }  
 
       },
-      role: {
-        title: 'Role ', 
-        type:'html',
-        valuePrepareFunction: (role:any) => {
-          return '<div class="badge badge-light fw-bolder" > '+role.role_name +' </div>' ;
-        },
-      },
+
       email: {
         title: 'Email',
         type: 'string',
@@ -74,35 +78,35 @@ export class UsersComponent implements OnInit {
         title: 'Home Address',
         type: 'string',
       },
+      is_confirmed: {
+        title: 'Account Status',
+        type:'html',
+        valuePrepareFunction: (is_confirmed:any) => {
+          if(is_confirmed==1) {
+            return '<div class="badge badge-light-success fw-bolder">Active</div>';
+
+          }else {
+            return '<div class="badge badge-light-danger fw-bolder">Desactive </div>';
+
+          }
+        }      
+      },
       member_since: {
         title: 'Member since',
         type: 'string',
       },
-      is_confirmed: {
-        title: 'Account Confirmation',
-        type:'html',
-        valuePrepareFunction: (is_confirmed:any) => {
-          if(is_confirmed==1) {
-            return '<div class="badge badge-light-success fw-bolder">Confirmed </div>';
-
-          }else {
-            return '<div class="badge badge-light-danger fw-bolder">Unconfirmed </div>';
-
-          }
-        }      },
-      is_visible: {
-        title: 'Account Visibility',
-        type:'html',
-        valuePrepareFunction: (is_visible:any) => {
-          if(is_visible==1) {
-            return '<div class="badge badge-light-success fw-bolder">Visible </div>';
-
-          }else {
-            return '<div class="badge badge-light-danger fw-bolder">Invisible </div>';
-
-          }
-        }   
+      Buttons: {
+        title: 'Accounts Management',
+        type: 'custom',
+        renderComponent: ButtonViewComponent,
+        onComponentInitFunction(instance:any) {
+          instance.save.subscribe((row:any) => {
+          });
+        }
+      
       },
+
+
      
   
     },
@@ -113,7 +117,7 @@ export class UsersComponent implements OnInit {
 
   constructor(private service: UsersService) {
     this.users = new LocalDataSource();
-    this.service.getAll().subscribe((data:any)=>{
+    this.service.getAllClients().subscribe((data:any)=>{
       console.log(data);
       this.users.load(data['data']);
 
@@ -123,6 +127,11 @@ export class UsersComponent implements OnInit {
 
   
   ngOnInit(): void {
+  }
+
+  accountStatus(id:any) {
+    console.log("amine",id)
+
   }
 
 }

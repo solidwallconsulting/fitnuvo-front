@@ -18,6 +18,8 @@ export class LoginComponent implements OnInit, OnDestroy {
   };
   loginForm: FormGroup;
   hasError: boolean;
+  banned: boolean;
+
   returnUrl: string;
   isLoading$ : Observable<boolean>;
 
@@ -42,7 +44,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.initForm();
     // get return url from route parameters or default to '/'
     this.returnUrl =
-      this.route.snapshot.queryParams['returnUrl'.toString()] || '/dashboard';
+      this.route.snapshot.queryParams['returnUrl'.toString()] || '/admin/dashboard';
   }
 
   // convenience getter for easy access to form fields
@@ -74,6 +76,8 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   submit() {
     this.hasError = false;
+    this.banned = false;
+
     const loginSubscr = this.authService.login(this.f.email.value, this.f.password.value)
     .pipe(first())
     .subscribe(
@@ -81,8 +85,12 @@ export class LoginComponent implements OnInit, OnDestroy {
             this.router.navigate([this.returnUrl]);
         },
         error => {
-          console.log(error);
+          console.log(error.error.message);
+          if(error.error.message=="Your account is banned"){
+            this.banned=true;
+          }else {
             this.hasError = true;
+          }
 
         });
 

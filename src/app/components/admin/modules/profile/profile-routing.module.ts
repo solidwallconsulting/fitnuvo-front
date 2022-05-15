@@ -1,11 +1,12 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { OverviewComponent } from './overview/overview.component';
-import { CampaignsComponent } from './campaigns/campaigns.component';
-import { DocumentsComponent } from './documents/documents.component';
-import { ProjectsComponent } from './projects/projects.component';
+import { ReviewsComponent } from './reviews/reviews.component';
+import { ImagesComponent } from './images/images.component';
+import { SpecialitiesComponent } from './specialities/specialities.component';
 import { ProfileComponent } from './profile.component';
-import { ConnectionsComponent } from './connections/connections.component';
+import { AppointmentsComponent } from './appointments/appointments.component';
+
 
 const routes: Routes = [
   {
@@ -13,27 +14,28 @@ const routes: Routes = [
     component: ProfileComponent,
     children: [
       {
-        path: 'overview',
+        path: 'overview/:id',
         component: OverviewComponent,
+
       },
       {
-        path: 'projects',
-        component: ProjectsComponent,
+        path: 'specialities/:id',
+        component: SpecialitiesComponent,
       },
       {
-        path: 'campaigns',
-        component: CampaignsComponent,
+        path: 'reviews/:id',
+        component: ReviewsComponent,
       },
       {
-        path: 'documents',
-        component: DocumentsComponent,
+        path: 'images/:id',
+        component: ImagesComponent,
       },
       {
-        path: 'connections',
-        component: ConnectionsComponent,
+        path: 'appointments/:id',
+        component: AppointmentsComponent,
       },
-      { path: '', redirectTo: 'overview', pathMatch: 'full' },
-      { path: '**', redirectTo: 'overview', pathMatch: 'full' },
+      { path: '', redirectTo: 'features/users/trainers', pathMatch: 'full' },
+      { path: '**', redirectTo: 'features/users/trainers', pathMatch: 'full' },
     ],
   },
 ];

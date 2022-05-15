@@ -22,9 +22,19 @@ const Routing: Routes = [
       import('./website-contacts/website-contacts.module').then((m) => m.ContactsModule),
   },
   {
-    path: 'features/users/users-list',
+    path: 'features/users/clients',
     loadChildren: () =>
       import('./users/users.module').then((m) => m.UsersModule),
+  },
+  {
+    path: 'features/users/trainers',
+    loadChildren: () =>
+      import('./trainers/trainers.module').then((m) => m.TrainersModule),
+  },
+  {
+    path: 'features/users/admins',
+    loadChildren: () =>
+      import('./admins/administrators.module').then((m) => m.AdministratorsModule),
   },
   {
     path: 'features/users/add-admin',
@@ -32,7 +42,7 @@ const Routing: Routes = [
       import('./add-admin/add-admin.module').then((m) => m.AddAdminModule),
   },
   {
-    path: 'crafted/pages/profile',
+    path: 'crafted/pages/profile/:id',
     loadChildren: () =>
       import('../modules/profile/profile.module').then((m) => m.ProfileModule),
   },

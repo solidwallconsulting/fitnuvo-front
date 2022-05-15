@@ -32,6 +32,14 @@
       </div>
     </div>
   </ng-container>
+
+  <ng-container *ngIf="banned">
+    <div class="mb-lg-15 alert alert-danger">
+      <div class="alert-text font-weight-bold">
+        Your account is banned , please contact us!
+      </div>
+    </div>
+  </ng-container>
   <!-- end::Alert error-->
 
   <!--begin::Form group-->

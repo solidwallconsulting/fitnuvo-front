@@ -1,8 +1,8 @@
 import { LabelType, Options } from '@angular-slider/ngx-slider';
 import { Component, OnInit } from '@angular/core';
-import { SpecialityService } from 'src/app/components/admin/services/speciality.service';
 import { TrainerService } from 'src/app/components/site/services/trainer.service';
 import { Prix } from '../../models/prix';
+import { SpecialityService } from '../../services/speciality.service';
 
 @Component({
   selector: 'app-search',

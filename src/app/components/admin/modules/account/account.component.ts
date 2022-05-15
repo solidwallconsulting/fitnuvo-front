@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Admin } from '../../models/admin.model';
 import { AuthService, UserModel } from '../auth';
 
 @Component({
@@ -6,7 +7,8 @@ import { AuthService, UserModel } from '../auth';
   templateUrl: './account.component.html',
 })
 export class AccountComponent implements OnInit {
-  profile:any;
+  profile: Admin = new Admin();
+
 
   constructor(private auth : AuthService) {}
 
