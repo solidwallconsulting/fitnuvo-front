@@ -29,6 +29,10 @@ import { ResponseResetPasswordComponent } from './auth/response-reset-password/r
 import { CprofileComponent } from './pages/cprofile/cprofile.component';
 import { ClayoutComponent } from './pages/clayout/clayout.component';
 import { SideprofileComponent } from './pages/sideprofile/sideprofile.component';
+import { NgxSliderModule } from '@angular-slider/ngx-slider';
+import { NgxPaginationModule } from 'ngx-pagination';
+
+
 
 
 @NgModule({
@@ -65,7 +69,9 @@ import { SideprofileComponent } from './pages/sideprofile/sideprofile.component'
     FormsModule,
     HttpClientModule,
     ReactiveFormsModule,    
-     SnotifyModule
+     SnotifyModule,
+     NgxSliderModule,
+     NgxPaginationModule
 
     
     

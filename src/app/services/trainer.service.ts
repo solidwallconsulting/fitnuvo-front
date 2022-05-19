@@ -42,4 +42,9 @@ export class TrainerService {
     return this.httpClient.get<Trainer[]>(`${this.BASE_URL}/api/v1/trainers/`+id);
   }
 
+  getFilteredTrainers(data:any){
+    return this.httpClient.post<Trainer[]>(`${this.BASE_URL}/api/v1/trainers/search`,data
+    );
+  }
+
 }
