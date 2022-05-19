@@ -8,7 +8,7 @@
             position-relative
           "
         >
-          <img src="./assets/media/avatars/300-1.jpg" alt="Metronic" />
+          <img src="{{user.photo_profil}}" alt="Trainer" />
           <div
             class="
               position-absolute
@@ -47,12 +47,13 @@
                   cursor-pointer
                 "
               >
-                Max Smith
+              {{user.first_name}} {{user.last_name}}
+
               </a>
               <a class="cursor-pointer">
                 <span
                   [inlineSVG]="
-                    './assets/media/icons/duotune/general/gen026.svg'
+                    '../../../../assets/dashboard/media/icons/duotune/general/gen026.svg'
                   "
                   class="svg-icon svg-icon-1 svg-icon-primary"
                 ></span>
@@ -70,7 +71,7 @@
                 data-bs-toggle="modal"
                 data-bs-target="#kt_modal_upgrade_plan"
               >
-                Upgrade to Pro
+                Verified
               </a>
             </div>
 
@@ -87,11 +88,12 @@
               >
                 <span
                   [inlineSVG]="
-                    './assets/media/icons/duotune/communication/com006.svg'
+                    '../../../../assets/dashboard/media/icons/duotune/communication/com006.svg'
                   "
                   class="svg-icon svg-icon-4 me-1"
                 ></span>
-                Developer
+                <ng-container *ngIf="user.gender=='H'"> Male </ng-container>
+                <ng-container *ngIf="user.gender=='F'"> Female </ng-container>
               </a>
               <a
                 class="
@@ -105,11 +107,13 @@
               >
                 <span
                   [inlineSVG]="
-                    './assets/media/icons/duotune/general/gen018.svg'
+                    '../../../../assets/dashboard/media/icons/duotune/communication/com013.svg'
                   "
                   class="svg-icon svg-icon-4 me-1"
                 ></span>
-                SF, Bay Area
+                DateBirth :{{user.datebirth}}
+
+
               </a>
               <a
                 class="
@@ -122,32 +126,78 @@
               >
                 <span
                   [inlineSVG]="
-                    './assets/media/icons/duotune/communication/com011.svg'
+                    '../../../../assets/dashboard/media/icons/duotune/communication/com011.svg'
                   "
                   class="svg-icon svg-icon-4 me-1"
                 ></span>
-                max@kt.com
+                {{user.email}}
+
               </a>
             </div>
+            <div class="d-flex flex-wrap fw-bold fs-6 mb-4 pe-2">
+              <a
+                class="
+                  d-flex
+                  align-items-center
+                  text-gray-400 text-hover-primary
+                  me-5
+                  mb-2
+                  cursor-pointer
+                "
+              >
+                <span
+                  [inlineSVG]="
+                    '../../../../assets/dashboard/media/icons/duotune/general/gen020.svg'
+                  "
+                  class="svg-icon svg-icon-4 me-1"
+                ></span>
+                {{user.experience_trainer}} years of experience
+                
+              </a>
+              <a
+                class="
+                  d-flex
+                  align-items-center
+                  text-gray-400 text-hover-primary
+                  me-5
+                  mb-2
+                  cursor-pointer
+                "
+              >
+                <span
+                  [inlineSVG]="
+                    '../../../../assets/dashboard/media/icons/duotune/electronics/elc003.svg'
+                  "
+                  class="svg-icon svg-icon-4 me-1"
+                ></span>
+                {{user.mobile_number}}
+
+              </a>
+              <a
+                class="
+                  d-flex
+                  align-items-center
+                  text-gray-400 text-hover-primary
+                  mb-2
+                  cursor-pointer
+                "
+              >
+                <span
+                  [inlineSVG]="
+                  '../../../../assets/dashboard/media/icons/duotune/general/gen018.svg'
+                  "
+                  class="svg-icon svg-icon-4 me-1"
+                ></span>
+                {{user.home_adress}}
+
+              </a>
+            </div>
+            
+           
           </div>
 
           <div class="d-flex my-4">
-            <a
-              class="btn btn-sm btn-light me-2 cursor-pointer"
-              id="kt_user_follow_button"
-            >
-              <span
-                [inlineSVG]="'./assets/media/icons/duotune/arrows/arr012.svg'"
-                class="svg-icon svg-icon-3 d-none"
-              ></span>
-              <span class="indicator-label">Follow</span>
-              <span class="indicator-progress">
-                Please wait...
-                <span
-                  class="spinner-border spinner-border-sm align-middle ms-2"
-                ></span>
-              </span>
-            </a>
+          
             <a
               class="btn btn-sm btn-primary me-3 cursor-pointer"
               data-bs-toggle="modal"
@@ -155,23 +205,12 @@
             >
               Hire Me
             </a>
-            <div class="me-0">
-              <button
-                class="
-                  btn btn-sm btn-icon btn-bg-light btn-active-color-primary
-                "
-                data-kt-menu-trigger="click"
-                data-kt-menu-placement="bottom-end"
-                data-kt-menu-flip="top-end"
-              >
-                <i class="bi bi-three-dots fs-3"></i>
-              </button>
-              <app-dropdown-menu1></app-dropdown-menu1>
-            </div>
+ 
           </div>
         </div>
 
         <div class="d-flex flex-wrap flex-stack">
+          
           <div class="d-flex flex-column flex-grow-1 pe-8">
             <div class="d-flex flex-wrap">
               <div
@@ -188,14 +227,14 @@
                 <div class="d-flex align-items-center">
                   <span
                     [inlineSVG]="
-                      './assets/media/icons/duotune/arrows/arr066.svg'
+                      '../../../../assets/dashboard/media/icons/duotune/general/gen003.svg'
                     "
-                    class="svg-icon svg-icon-3 svg-icon-success me-2"
+                    class="svg-icon svg-icon-3 svg-icon-primary me-2"
                   ></span>
-                  <div class="fs-2 fw-bolder">4500$</div>
+                  <div class="fs-2 fw-bolder">{{user.score_trainer}}</div>
                 </div>
 
-                <div class="fw-bold fs-6 text-gray-400">Earnings</div>
+                <div class="fw-bold fs-6 text-gray-400"> {{user.trainer_reviews.length}} Reviews</div>
               </div>
 
               <div
@@ -212,14 +251,14 @@
                 <div class="d-flex align-items-center">
                   <span
                     [inlineSVG]="
-                      './assets/media/icons/duotune/arrows/arr065.svg'
+                      '../../../../assets/dashboard/media/icons/duotune/abstract/abs029.svg'
                     "
                     class="svg-icon svg-icon-3 svg-icon-danger me-2"
                   ></span>
-                  <div class="fs-2 fw-bolder">75</div>
+                  <div class="fs-2 fw-bolder">{{user.trainer_specialities.length}}</div>
                 </div>
 
-                <div class="fw-bold fs-6 text-gray-400">Projects</div>
+                <div class="fw-bold fs-6 text-gray-400">Specialities</div>
               </div>
 
               <div
@@ -236,41 +275,19 @@
                 <div class="d-flex align-items-center">
                   <span
                     [inlineSVG]="
-                      './assets/media/icons/duotune/arrows/arr066.svg'
+                      '../../../../assets/dashboard/media/icons/duotune/general/gen014.svg'
                     "
                     class="svg-icon svg-icon-3 svg-icon-success me-2"
                   ></span>
-                  <div class="fs-2 fw-bolder">60%</div>
+                  <div class="fs-2 fw-bolder">{{user.trainer_appointments.length}}</div>
                 </div>
 
-                <div class="fw-bold fs-6 text-gray-400">Success Rate</div>
+                <div class="fw-bold fs-6 text-gray-400">Appointments</div>
               </div>
             </div>
           </div>
 
-          <div
-            class="
-              d-flex
-              align-items-center
-              w-200px w-sm-300px
-              flex-column
-              mt-3
-            "
-          >
-            <div class="d-flex justify-content-between w-100 mt-auto mb-2">
-              <span class="fw-bold fs-6 text-gray-400"
-                >Profile Compleation</span
-              >
-              <span class="fw-bolder fs-6">50%</span>
-            </div>
-            <div class="h-5px mx-3 w-100 bg-light mb-3">
-              <div
-                class="bg-success rounded h-5px"
-                role="progressbar"
-                [style.width]="'50%'"
-              ></div>
-            </div>
-          </div>
+         
         </div>
       </div>
     </div>
@@ -288,46 +305,49 @@
         <li class="nav-item">
           <a
             class="nav-link text-active-primary me-6"
-            routerLink="/crafted/pages/profile/overview"
+            routerLink="/admin/crafted/pages/profile//{{user.trainer_id}}/overview/{{user.trainer_id}}"
             routerLinkActive="active"
           >
             Overview
           </a>
         </li>
+   
         <li class="nav-item">
           <a
             class="nav-link text-active-primary me-6"
-            routerLink="/crafted/pages/profile/projects"
+            routerLink="/admin/crafted/pages/profile//{{user.trainer_id}}/images/{{user.trainer_id}}"
             routerLinkActive="active"
           >
-            Projects
+            Images
           </a>
         </li>
         <li class="nav-item">
           <a
             class="nav-link text-active-primary me-6"
-            routerLink="/crafted/pages/profile/campaigns"
+            routerLink="/admin/crafted/pages/profile/{{user.trainer_id}}/appointments/{{user.trainer_id}}"
             routerLinkActive="active"
           >
-            Campaigns
+            Appointments
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a
+            class="nav-link text-active-primary me-6"
+            routerLink="/admin/crafted/pages/profile/{{user.trainer_id}}/reviews/{{user.trainer_id}}"
+            routerLinkActive="active"
+          >
+            Reviews
           </a>
         </li>
         <li class="nav-item">
           <a
             class="nav-link text-active-primary me-6"
-            routerLink="/crafted/pages/profile/documents"
+            
+            routerLink="/admin/crafted/pages/profile/{{user.trainer_id}}/specialities/{{user.trainer_id}}"
             routerLinkActive="active"
           >
-            Documents
-          </a>
-        </li>
-        <li class="nav-item">
-          <a
-            class="nav-link text-active-primary me-6"
-            routerLink="/crafted/pages/profile/connections"
-            routerLinkActive="active"
-          >
-            Connections
+            Specialities
           </a>
         </li>
       </ul>
@@ -335,4 +355,4 @@
   </div>
 </div>
 
-<router-outlet></router-outlet>
+<router-outlet ></router-outlet>

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Form } from '@angular/forms';
-import { Trainer } from '../models/trainer';
+import { Trainer } from '../models/trainer.model';
 import { User } from '../models/user.model';
 import { environment } from 'src/environments/environment';
 import { JwtHelperService } from '@auth0/angular-jwt';

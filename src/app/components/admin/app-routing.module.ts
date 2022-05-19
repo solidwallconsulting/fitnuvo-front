@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { Role } from 'src/app/models/adminsModel/role.model';
 import { IndexComponent } from './index/index.component';
-import { Role } from '../../models/adminsModel/role.model';
 import { AuthGuard } from './services/auth.guard';
 
 export const routes: Routes = [
    {
-  path: '',
+  path: 'admin',
   component: IndexComponent,
   children: [
   {

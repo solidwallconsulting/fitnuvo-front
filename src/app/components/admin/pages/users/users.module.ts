@@ -5,10 +5,14 @@ import { WidgetsModule } from '../../_metronic/partials';
 import { Ng2SmartTableModule } from 'ng2-smart-table';
 import { UsersComponent } from './users.component';
 import { InlineSVGModule } from 'ng-inline-svg';
+import { ButtonViewComponent } from './button.component';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
-  declarations: [UsersComponent],
+  declarations: [UsersComponent,ButtonViewComponent],
+  entryComponents: [ButtonViewComponent],
+
   imports: [
     CommonModule,
     RouterModule.forChild([
@@ -19,7 +23,8 @@ import { InlineSVGModule } from 'ng-inline-svg';
     ]),
     WidgetsModule,
     InlineSVGModule,
-    Ng2SmartTableModule
+    Ng2SmartTableModule,
+    FormsModule
     
     
 

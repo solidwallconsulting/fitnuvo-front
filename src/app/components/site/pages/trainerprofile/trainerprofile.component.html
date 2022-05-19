@@ -7,31 +7,11 @@
                         <div class="bloc-nav">
                             <ul class="nav coach-nav">
                                 <li class="nav-item">
-                                  <a class="nav-link active"  href="#">ALL TRAINERS</a>
+                                  <a class="nav-link active"  href="#">PROFILE</a>
                                 </li>
-                                <li class="nav-item">
-                                  <a class="nav-link" href="#">MY TRAINERS</a>
-                                </li>
-                                <li class="nav-item">
-                                  <a class="nav-link" href="#">FAVORITE</a>
-                                </li> 
-                              </ul>
+                            </ul>
                         </div>
         
-        
-                        <div class="search-bloc">
-                            <form>
-                                
-                                    <div  class="input-group mb-3">
-                                       
-                                        <input  type="text" placeholder="search"   class="form-control top-input-bar-search">
-                                             
-                                        <span  id="basic-addon1" class="right-border-top-bar-search input-group-text bg-white border-right-0"><i  aria-hidden="true" class="fa fa-search"></i></span>
-                                    
-                                    </div>
-                                
-                            </form>
-                        </div>
                     </div>
                 </div>
             </div> 
@@ -42,7 +22,7 @@
     
     <section class="mt-3">
         <div class="container">
-            <div class="back-block">
+            <div class="back-block"     routerLink="/search"            >
                 <i class="fa fa-arrow-left"></i> <span>Back</span>
             </div>
         </div>
@@ -52,18 +32,17 @@
         <div class="container">
              <div class="row">
                  <div class="col-sm-6 col-md-5">
-                     <div class="coach-image-card">
-    
-                     </div>
+                    <img class="coach-image-card"  width="500px"  src="{{trainer.photo_profil}}" >
+
                  </div>
                  <div class="col-sm-6 col-md-7">
                      <div class="coach-info-bloc">
                          <div class="d-flex justify-content-between">
                              <div class="coach-name">
-                                 Frridy (28)
+                                 {{trainer.first_name}} {{trainer.last_name}} (28)
                              </div>
                              <div class="coach-name">
-                                <button class="btn btn-secondary msg-btn"><i class="fa fa-commenting-o" aria-hidden="true"></i> Message</button>
+                                <button class="btn btn-secondary msg-btn"><i class="fa  fa-envelope" aria-hidden="true"></i> Message</button>
                              </div>
                             
                          </div>
@@ -71,14 +50,14 @@
     
                          <div class="d-flex justify-content-between mt-3">
                             <div class="">
-                                <span style="margin-right: 20px;"><i class="fa fa-star icon-primary" aria-hidden="true"></i> 5.0</span>
+                                <span style="margin-right: 20px;"><i class="fa fa-star icon-primary" aria-hidden="true"></i> {{trainer.score_trainer}}.0</span>
                                 
-                                <span><i class="fa fa-commenting-o icon-primary" aria-hidden="true"></i> (18 reviews)</span>
+                                <span><i class="fa fa-commenting-o icon-primary" aria-hidden="true"></i> ({{trainer.trainer_reviews.length}} reviews)</span>
                                 
     
                             </div>
                             <div class="coach-contact">
-                                <span class="text-color-primary">Mobile: </span> +333 555 66 
+                                <span class="text-color-primary">Mobile: </span> {{trainer.mobile_number}}
                             </div>
                            
                         </div>
@@ -106,23 +85,23 @@
                             <table>
                                 <tbody>
                                     <tr>
-                                        <td style="width: 150px;"> <span class="text-color-primary">Mobile: </span></td>
+                                        <td style="width: 150px;"> <span class="text-color-primary">Price: </span></td>
                                         <td>
-                                            <strong>55/h</strong>
+                                            <strong>{{trainer.price_trainer}}/h</strong>
                                         </td>
                                         
                                     </tr>
                                     <tr>
-                                        <td> <span class="text-color-primary">Mobile: </span></td>
+                                        <td> <span class="text-color-primary">Location: </span></td>
                                         <td>
-                                            <strong>55/h</strong>
+                                            <strong>{{trainer.home_adress}}</strong>
                                         </td>
                                         
                                     </tr>
                                     <tr>
-                                        <td> <span class="text-color-primary">Mobile: </span></td>
+                                        <td> <span class="text-color-primary">Experience: </span></td>
                                         <td>
-                                            <strong>55/h</strong>
+                                            <strong>{{trainer.experience_trainer}} years</strong>
                                         </td>
                                         
                                     </tr>
@@ -154,9 +133,8 @@
                       <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
                         <div class="accordion-body ">
                          
-                            <p class="desci-p">I have an intense belief that people ought to sleep well, eat well and move well. I have made it my mission in the 10 years I have been a trainer at Renouf to help my clients achieve these vital goals.</p>
+                            <p class="desci-p">{{trainer.aboutme}}</p>
 
-                            <p class="desci-p">Due to my background in Psychology, I believe in being client focused and putting their needs first.</p>
                         </div>
                       </div>
                     </div>
@@ -166,21 +144,28 @@
                         <div class="row">
                             <div class="col-12">
                                 <div>
-                                    <i class="fa fa-file-text-o text-color-primary custom-icon" aria-hidden="true"></i><strong> Certification: </strong>
+                                    <i class="fa fa-file text-color-primary custom-icon" aria-hidden="true"></i><strong> Certifications: </strong>
                                 </div>
 
-                                <p class="text-muted">
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea natus quasi fugit pariatur voluptas a perspiciatis in quae, eveniet atque odio corporis! Quaerat nulla inventore architecto placeat temporibus eum veritatis.
-                                </p>
+                                <ng-container *ngFor=" let certif of trainer.trainer_certifications">
+                                    <p class="text-muted">
+                                       {{certif.certification_name}}
+                                    </p>
+
+                                </ng-container>
+                         
                             </div>
                             <div class="col-12">
                                 <div>
                                     <i class="fa fa-trophy text-color-primary custom-icon" aria-hidden="true"></i><strong> Achievements: </strong>
                                 </div>
 
-                                <p class="text-muted">
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea natus quasi fugit pariatur voluptas a perspiciatis in quae, eveniet atque odio corporis! Quaerat nulla inventore architecto placeat temporibus eum veritatis.
-                                </p>
+                                <ng-container *ngFor=" let achv of trainer.trainer_achievements">
+                                    <p class="text-muted">
+                                       {{achv.achivement_description}}
+                                    </p>
+
+                                </ng-container>
                             </div>
 
                             
@@ -193,4 +178,68 @@
             </div>
         </div>
     </section>
+
+
+
+    <section class="descreption-section mt-5">
+        <div class="container">
+            <div class="card card-body">
+                <div class="accordion" id="accordionExample">
+
+
+                    <div class="accordion-item  coach-descri-body">
+                      <h2 class="accordion-header" id="headingTwo">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+                          <span class="text-color-primary">Reviews</span>
+                        </button>
+                      </h2>
+                      <div id="collapseTwo" class="accordion-collapse collapse show" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                        <div class="accordion-body ">
+                         
+                            <span style="margin-right: 20px;"><i class="fa fa-star icon-primary" aria-hidden="true"></i> {{trainer.score_trainer}}.0 (444 ratings)</span> 
+
+                        </div>
+
+                        <div style="padding: 1rem 1.25rem;">
+                            <div class="row">
+                                <div *ngFor="let rev of trainer.trainer_reviews ;  let i=index" class="col-12">
+                                    <ng-container *ngIf="i<2"> 
+                                    <div>
+                                        
+                                        <img  src ="{{rev.client.photo_profil}}"  width="40px" class="rounded-circle float-right"  > &nbsp;  
+                                        <strong > 
+                                            {{rev.client.first_name}} {{rev.client.last_name}} 
+                                         </strong>
+                                              <i class="fa fa-star icon-primary" aria-hidden="true"></i> {{rev.stars}}.0   
+                                              <p style="float:right" class="text-muted ">
+                                               {{rev.date_review}}
+                                               </p>
+                                    </div>
+    
+                                        <p class=" ml-50 text-muted">
+                                            {{rev.comment}}
+                                        </p>
+                                    </ng-container>
+                             
+                                </div>
+                                
+                           
+    
+                                
+                            </div>
+                        </div>
+                      </div>
+                    </div>
+
+
+                  
+                    
+                    
+                   
+                  </div>
+            </div>
+        </div>
+    </section>
+
+    <br>
 </main>

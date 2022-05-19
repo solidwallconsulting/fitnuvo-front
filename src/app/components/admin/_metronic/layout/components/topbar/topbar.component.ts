@@ -32,6 +32,7 @@ export class TopbarComponent implements OnInit {
       this.contacts = data['data'];
 
     });
+    
 
 
   }

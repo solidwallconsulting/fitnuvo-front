@@ -7,5 +7,10 @@ export class Admin  {
     datebirth:Date;
     gender:string;
     phone:string;
+    role_id:number;
+    adress:string;
+
+
 
 }
+

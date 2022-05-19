@@ -76,7 +76,7 @@ export class SpecialityComponent implements OnInit {
         console.log("res : ",res);
         event.confirm.resolve(event.newData);
         //this.showToast("danger", "Sucess!", "Your Activity was deleted Successfuly!");
-        this.toastrService.error('Sucess!', 'Sports Activity was deleted !');
+        this.toastrService.error('Ooh!', 'Sports Activity was deleted !');
 
 
       }, (err: HttpErrorResponse) => {

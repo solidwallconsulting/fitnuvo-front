@@ -51,7 +51,7 @@ const siteRoutes: Routes = [
             component: ContactComponent,
           },
           {
-            path: 'trainer',
+            path: 'trainer/:id',
             component: TrainerprofileComponent,
           },
           {

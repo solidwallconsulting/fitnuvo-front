@@ -8,7 +8,7 @@ import { environment } from 'src/environments/environment';
 })
 export class AsideMenuComponent implements OnInit {
   appAngularVersion: string = environment.appVersion;
-  appPreviewChangelogUrl: string = environment.appPreviewChangelogUrl;
+  appPreviewChangelogUrl: string = "/";
 
   constructor() {}
 

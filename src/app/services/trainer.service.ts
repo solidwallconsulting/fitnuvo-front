@@ -3,7 +3,8 @@ import { Injectable } from '@angular/core';
 import { Observable , throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
-import { Trainer } from '../models/trainer';
+import { Trainer } from '../models/trainer.model';
+import { User } from '../models/user.model';
 
 
 @Injectable({
@@ -35,6 +36,10 @@ export class TrainerService {
     const headers = new HttpHeaders({'Content-Type': 'application/json'});
     return this.httpClient.get<Trainer[]>(`${this.BASE_URL}/api/v1/trainers/speciality/${brand}`,{headers: headers}
     );
+  }
+
+  getTrainer(id:any): Observable<Trainer[]> {
+    return this.httpClient.get<Trainer[]>(`${this.BASE_URL}/api/v1/trainers/`+id);
   }
 
 }

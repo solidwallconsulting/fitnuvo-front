@@ -86,7 +86,7 @@ export class LoginComponent implements OnInit {
             localStorage.setItem('ROLE', JSON.stringify(this.result.role));
             this.auth.setMenu(this.result.menu);
             
-            this.notifyService.showSuccess("welcome to fitnuvo", "Fitnuvo");
+            this.notifyService.showSuccess("Welcome to Fitnuvo", "Fitnuvo");
             this.router.navigate([`/user`]);
           }
           },error => {

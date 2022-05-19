@@ -36,6 +36,9 @@ export class ResponseResetPasswordComponent implements OnInit {
       password: ["",  [Validators.required]],
       password_confirmation: ["",  [Validators.required]],
     });
+
+
+    
   }
   get formControl() {
     return this.formRes.controls;

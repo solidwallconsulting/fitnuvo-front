@@ -1,12 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService, UserModel } from '../auth';
+import { Admin } from 'src/app/models/adminsModel/admin.model';
+import { AuthService,  } from '../auth';
 
 @Component({
   selector: 'app-account',
   templateUrl: './account.component.html',
 })
 export class AccountComponent implements OnInit {
-  profile:any;
+  profile: Admin = new Admin();
+
 
   constructor(private auth : AuthService) {}
 

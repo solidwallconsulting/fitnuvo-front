@@ -1,13 +1,13 @@
 <!-- Dashboard -->
 <div class="menu-item me-lg-1">
-  <a class="menu-link py-3" routerLinkActive="active" routerLink="/dashboard"
+  <a class="menu-link py-3" routerLinkActive="active" routerLink="/admin/dashboard"
   ><span class="menu-title" >Dashboard</span
   ></a>
 </div>
 
 <!-- Layout Builder -->
 <div class="menu-item me-lg-1">
-  <a class="menu-link py-3" routerLinkActive="active" routerLink="/builder"
+  <a class="menu-link py-3" routerLinkActive="active" routerLink="/admin/builder"
   ><span class="menu-title">Layout Builder</span></a
   >
 </div>
@@ -22,6 +22,7 @@
     <span class="menu-title">Crafted</span>
     <span class="menu-arrow d-lg-none"></span>
   </span>
+  
   <div
     class="
       menu-sub menu-sub-lg-down-accordion menu-sub-lg-dropdown menu-rounded-0
@@ -31,157 +32,119 @@
     data-kt-menu-dismiss="true"
     data-popper-placement="bottom-start"
   >
-    <div
-      class="menu-item menu-lg-down-accordion me-lg-1"
-      data-kt-menu-trigger="{default:'click', lg: 'hover'}"
-      data-kt-menu-placement="right-start"
+  <div class="menu-item me-lg-1">
+    <a class="menu-link py-3" routerLinkActive="active" routerLink="/admin/features/specialities"
     >
+    <span class="menu-icon">
       <span
-        class="menu-link py-3"
-        [ngClass]="calculateMenuItemCssClass('/crafted/pages')"
-      ><span class="menu-icon"><i class="bi fs-3 bi-archive"></i></span
-      ><span class="menu-title">Pages</span><span class="menu-arrow"></span
+        [inlineSVG]="'../../../../assets/dashboard/media/icons/duotune/art/art002.svg'"
+        class="svg-icon svg-icon-2"
       ></span>
-      <div
-        class="
-          menu-sub
-          menu-sub-lg-down-accordion
-          menu-sub-lg-dropdown
-          menu-rounded-0
-          py-lg-4
-          w-lg-225px
-        "
-        data-kt-menu-dismiss="true"
+    </span>
+    <span class="menu-title">Specialities</span></a
+    >
+  </div>
+  <div class="menu-item me-lg-1">
+    <a class="menu-link py-3" routerLinkActive="active" routerLink="/admin/features/contacts"
+    >
+    <span class="menu-icon">
+   
+      <span class="svg-icon svg-icon-2">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+          <path opacity="0.3" d="M21 19H3C2.4 19 2 18.6 2 18V6C2 5.4 2.4 5 3 5H21C21.6 5 22 5.4 22 6V18C22 18.6 21.6 19 21 19Z" fill="black" />
+          <path d="M21 5H2.99999C2.69999 5 2.49999 5.10005 2.29999 5.30005L11.2 13.3C11.7 13.7 12.4 13.7 12.8 13.3L21.7 5.30005C21.5 5.10005 21.3 5 21 5Z" fill="black" />
+        </svg>
+      </span>
+    </span>
+    <span class="menu-title">Tickets Contacts</span></a
+    >
+  </div>
+  
+  <div
+  class="menu-item menu-lg-down-accordion me-lg-1"
+  data-kt-menu-trigger="{default:'click', lg: 'hover'}"
+  data-kt-menu-placement="right-start"
+>
+  <span
+    class="menu-link py-3"
+    [ngClass]="calculateMenuItemCssClass('/admin/features/users')"
+  ><span class="menu-icon"><i class="bi fs-3 bi-layers"></i></span
+  ><span class="menu-title" data-link="/admin/features/users">Users Management</span
+  ><span class="menu-arrow"></span
+  ></span>
+  <div
+    class="
+      menu-sub
+      menu-sub-lg-down-accordion
+      menu-sub-lg-dropdown
+      menu-rounded-0
+      py-lg-4
+      w-lg-225px
+    "
+    data-kt-menu-dismiss="true"
+  >
+    <div class="menu-item me-lg-1">
+      <a
+        class="menu-link py-3"
+        routerLinkActive="active"
+        routerLink="/admin/features/users/clients"
+      ><span class="menu-bullet"
+      ><span class="bullet bullet-dot"></span></span
+      ><span class="menu-title">Clients</span></a
       >
-        <div
-          class="menu-item menu-lg-down-accordion me-lg-1"
-          data-kt-menu-trigger="{default:'click', lg: 'hover'}"
-          data-kt-menu-placement="right-start"
-        >
-          <span
-            class="menu-link py-3"
-            [ngClass]="calculateMenuItemCssClass('/crafted/pages/profile')"
-          ><span class="menu-bullet"
-          ><span class="bullet bullet-dot"></span></span
-          ><span class="menu-title" data-link="/crafted/pages/profile"
-          >Profile</span
-          ><span class="menu-arrow"></span
-          ></span>
-          <div
-            class="
-              menu-sub
-              menu-sub-lg-down-accordion
-              menu-sub-lg-dropdown
-              menu-rounded-0
-              py-lg-4
-              w-lg-225px
-            "
-            data-kt-menu-dismiss="true"
-          >
-            <div class="menu-item me-lg-1">
-              <a
-                class="menu-link py-3"
-                routerLinkActive="active"
-                routerLink="/crafted/pages/profile/overview"
-              ><span class="menu-bullet"
-              ><span class="bullet bullet-dot"></span></span
-              ><span class="menu-title">Overview</span></a
-              >
-            </div>
-            <div class="menu-item me-lg-1">
-              <a
-                class="menu-link py-3"
-                routerLinkActive="active"
-                routerLink="/crafted/pages/profile/projects"
-              ><span class="menu-bullet"
-              ><span class="bullet bullet-dot"></span></span
-              ><span class="menu-title">Projects</span></a
-              >
-            </div>
-
-            <div class="menu-item me-lg-1">
-              <a
-                class="menu-link py-3"
-                routerLinkActive="active"
-                routerLink="/crafted/pages/profile/campaigns"
-              ><span class="menu-bullet"
-              ><span class="bullet bullet-dot"></span></span
-              ><span class="menu-title">Campaigns</span></a
-              >
-            </div>
-
-            <div class="menu-item me-lg-1">
-              <a
-                class="menu-link py-3"
-                routerLinkActive="active"
-                routerLink="/crafted/pages/profile/documents"
-              ><span class="menu-bullet"
-              ><span class="bullet bullet-dot"></span></span
-              ><span class="menu-title">Documents</span></a
-              >
-            </div>
-
-            <div class="menu-item me-lg-1">
-              <a
-                class="menu-link py-3"
-                routerLinkActive="active"
-                routerLink="/crafted/pages/profile/connections"
-              ><span class="menu-bullet"
-              ><span class="bullet bullet-dot"></span></span
-              ><span class="menu-title">Connections</span></a
-              >
-            </div>
-          </div>
-        </div>
-        <div
-          class="menu-item menu-lg-down-accordion me-lg-1"
-          data-kt-menu-trigger="{default:'click', lg: 'hover'}"
-          data-kt-menu-placement="right-start"
-        >
-          <span
-            class="menu-link py-3"
-            [ngClass]="calculateMenuItemCssClass('/crafted/pages/wizards')"
-          ><span class="menu-bullet"
-          ><span class="bullet bullet-dot"></span></span
-          ><span class="menu-title" data-link="/crafted/pages/wizards"
-          >Wizards</span
-          ><span class="menu-arrow"></span
-          ></span>
-          <div
-            class="
-              menu-sub
-              menu-sub-lg-down-accordion
-              menu-sub-lg-dropdown
-              menu-rounded-0
-              py-lg-4
-              w-lg-225px
-            "
-            data-kt-menu-dismiss="true"
-          >
-            <div class="menu-item me-lg-1">
-              <a
-                class="menu-link py-3"
-                routerLinkActive="active"
-                routerLink="/crafted/pages/wizards/horizontal"
-              ><span class="menu-bullet"
-              ><span class="bullet bullet-dot"></span></span
-              ><span class="menu-title">Horizontal</span></a
-              >
-            </div>
-            <div class="menu-item me-lg-1">
-              <a
-                class="menu-link py-3"
-                routerLinkActive="active"
-                routerLink="/crafted/pages/wizards/vertical"
-              ><span class="menu-bullet"
-              ><span class="bullet bullet-dot"></span></span
-              ><span class="menu-title">Vertical</span></a
-              >
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
+    <div class="menu-item me-lg-1">
+      <a
+        class="menu-link py-3"
+        routerLinkActive="active"
+        routerLink="/admin/features/users/trainers"
+      ><span class="menu-bullet"
+      ><span class="bullet bullet-dot"></span></span
+      ><span class="menu-title">Trainers</span></a
+      >
+    </div>
+    <div class="menu-item me-lg-1">
+      <a
+        class="menu-link py-3"
+        routerLinkActive="active"
+        routerLink="/admin/features/users/admins"
+      ><span class="menu-bullet"
+      ><span class="bullet bullet-dot"></span></span
+      ><span class="menu-title">Administrators</span></a
+      >
+    </div>
+    <div class="menu-item me-lg-1">
+      <a
+        class="menu-link py-3"
+        routerLinkActive="active"
+        routerLink="/admin/features/users/add-admin"
+      ><span class="menu-bullet"
+      ><span class="bullet bullet-dot"></span></span
+      ><span class="menu-title">Add Admin accounts</span></a
+      >
+    </div>
+  
+  </div>
+</div>
+
+
+<div class="menu-item me-lg-1">
+  <a class="menu-link py-3" routerLinkActive="active" routerLink="/admin/features/reports"
+  >
+  <span class="menu-icon">
+ 
+    <span class="svg-icon svg-icon-2">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+        <path opacity="0.3" d="M21 19H3C2.4 19 2 18.6 2 18V6C2 5.4 2.4 5 3 5H21C21.6 5 22 5.4 22 6V18C22 18.6 21.6 19 21 19Z" fill="black" />
+        <path d="M21 5H2.99999C2.69999 5 2.49999 5.10005 2.29999 5.30005L11.2 13.3C11.7 13.7 12.4 13.7 12.8 13.3L21.7 5.30005C21.5 5.10005 21.3 5 21 5Z" fill="black" />
+      </svg>
+    </span>
+  </span>
+  <span class="menu-title">Reviews Reports</span></a
+  >
+</div>
+
+
     <div
       class="menu-item menu-lg-down-accordion me-lg-1"
       data-kt-menu-trigger="{default:'click', lg: 'hover'}"
@@ -191,7 +154,7 @@
         class="menu-link py-3"
         [ngClass]="calculateMenuItemCssClass('/crafted/account')"
       ><span class="menu-icon"><i class="bi fs-3 bi-person"></i></span
-      ><span class="menu-title" data-link="/crafted/account">Accounts</span
+      ><span class="menu-title" data-link="/crafted/account"> My Account</span
       ><span class="menu-arrow"></span
       ></span>
       <div
@@ -209,7 +172,7 @@
           <a
             class="menu-link py-3"
             routerLinkActive="active"
-            routerLink="/crafted/account/overview"
+            routerLink="/admin/crafted/account/overview"
           ><span class="menu-bullet"
           ><span class="bullet bullet-dot"></span></span
           ><span class="menu-title">Overview</span></a
@@ -219,7 +182,7 @@
           <a
             class="menu-link py-3"
             routerLinkActive="active"
-            routerLink="/crafted/account/settings"
+            routerLink="/admin/crafted/account/settings"
           ><span class="menu-bullet"
           ><span class="bullet bullet-dot"></span></span
           ><span class="menu-title">Settings</span></a
@@ -227,354 +190,11 @@
         </div>
       </div>
     </div>
-    <div
-      class="menu-item menu-lg-down-accordion me-lg-1"
-      data-kt-menu-trigger="{default:'click', lg: 'hover'}"
-      data-kt-menu-placement="right-start"
-    >
-      <span
-        class="menu-link py-3"
-        [ngClass]="calculateMenuItemCssClass('/error')"
-      ><span class="menu-icon"><i class="bi fs-3 bi-sticky"></i></span
-      ><span class="menu-title" data-link="/error">Errors</span
-      ><span class="menu-arrow"></span
-      ></span>
-      <div
-        class="
-          menu-sub
-          menu-sub-lg-down-accordion
-          menu-sub-lg-dropdown
-          menu-rounded-0
-          py-lg-4
-          w-lg-225px
-        "
-        data-kt-menu-dismiss="true"
-      >
-        <div class="menu-item me-lg-1">
-          <a
-            class="menu-link py-3"
-            routerLinkActive="active"
-            routerLink="/error/404"
-          ><span class="menu-bullet"
-          ><span class="bullet bullet-dot"></span></span
-          ><span class="menu-title">Error 404</span></a
-          >
-        </div>
-        <div class="menu-item me-lg-1">
-          <a
-            class="menu-link py-3"
-            routerLinkActive="active"
-            routerLink="/error/500"
-          ><span class="menu-bullet"
-          ><span class="bullet bullet-dot"></span></span
-          ><span class="menu-title">Error 500</span></a
-          >
-        </div>
-      </div>
-    </div>
-    <div
-      class="menu-item menu-lg-down-accordion me-lg-1"
-      data-kt-menu-trigger="{default:'click', lg: 'hover'}"
-      data-kt-menu-placement="right-start"
-    >
-      <span
-        class="menu-link py-3"
-        [ngClass]="calculateMenuItemCssClass('/crafted/widgets')"
-      ><span class="menu-icon"><i class="bi fs-3 bi-layers"></i></span
-      ><span class="menu-title" data-link="/crafted/widgets">Widgets</span
-      ><span class="menu-arrow"></span
-      ></span>
-      <div
-        class="
-          menu-sub
-          menu-sub-lg-down-accordion
-          menu-sub-lg-dropdown
-          menu-rounded-0
-          py-lg-4
-          w-lg-225px
-        "
-        data-kt-menu-dismiss="true"
-      >
-        <div class="menu-item me-lg-1">
-          <a
-            class="menu-link py-3"
-            routerLinkActive="active"
-            routerLink="/crafted/widgets/lists"
-          ><span class="menu-bullet"
-          ><span class="bullet bullet-dot"></span></span
-          ><span class="menu-title">Lists</span></a
-          >
-        </div>
-        <div class="menu-item me-lg-1">
-          <a
-            class="menu-link py-3"
-            routerLinkActive="active"
-            routerLink="/crafted/widgets/statistics"
-          ><span class="menu-bullet"
-          ><span class="bullet bullet-dot"></span></span
-          ><span class="menu-title">Statistics</span></a
-          >
-        </div>
-        <div class="menu-item me-lg-1">
-          <a
-            class="menu-link py-3"
-            routerLinkActive="active"
-            routerLink="/crafted/widgets/charts"
-          ><span class="menu-bullet"
-          ><span class="bullet bullet-dot"></span></span
-          ><span class="menu-title">Charts</span></a
-          >
-        </div>
-        <div class="menu-item me-lg-1">
-          <a
-            class="menu-link py-3"
-            routerLinkActive="active"
-            routerLink="/crafted/widgets/mixed"
-          ><span class="menu-bullet"
-          ><span class="bullet bullet-dot"></span></span
-          ><span class="menu-title">Mixed</span></a
-          >
-        </div>
-        <div class="menu-item me-lg-1">
-          <a
-            class="menu-link py-3"
-            routerLinkActive="active"
-            routerLink="/crafted/widgets/tables"
-          ><span class="menu-bullet"
-          ><span class="bullet bullet-dot"></span></span
-          ><span class="menu-title">Tables</span></a
-          >
-        </div>
-        <div class="menu-item me-lg-1">
-          <a
-            class="menu-link py-3"
-            routerLinkActive="active"
-            routerLink="/crafted/widgets/feeds"
-          ><span class="menu-bullet"
-          ><span class="bullet bullet-dot"></span></span
-          ><span class="menu-title">Feeds</span></a
-          >
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-<!-- Apps -->
-<div
-  class="menu-item menu-lg-down-accordion me-lg-1"
-  data-kt-menu-trigger="click"
-  data-kt-menu-placement="bottom-start"
->
-  <span class="menu-link py-3" [ngClass]="calculateMenuItemCssClass('/apps')">
-    <span class="menu-title">Apps</span>
-    <span class="menu-arrow d-lg-none"></span>
-  </span>
-  <div
-    class="
-      menu-sub menu-sub-lg-down-accordion menu-sub-lg-dropdown menu-rounded-0
-      py-lg-4
-      w-lg-225px
-    "
-    data-kt-menu-dismiss="true"
-  >
-    <div
-      class="menu-item menu-lg-down-accordion me-lg-1"
-      data-kt-menu-trigger="{default:'click', lg: 'hover'}"
-      data-kt-menu-placement="right-start"
-    >
-      <span
-        class="menu-link py-3"
-        [ngClass]="calculateMenuItemCssClass('/apps/chat')"
-      ><span class="menu-icon"
-      ><span
-        class="svg-icon svg-icon-2"
-        [inlineSVG]="'./assets/media/icons/duotune/general/gen022.svg'"
-      ></span></span
-      ><span class="menu-title" data-link="/apps/chat">Chat</span
-      ><span class="menu-arrow"></span
-      ></span>
-      <div
-        class="
-          menu-sub
-          menu-sub-lg-down-accordion
-          menu-sub-lg-dropdown
-          menu-rounded-0
-          py-lg-4
-          w-lg-225px
-        "
-        data-kt-menu-dismiss="true"
-      >
-        <div class="menu-item me-lg-1">
-          <a
-            class="menu-link py-3"
-            routerLinkActive="active"
-            routerLink="/apps/chat/private-chat"
-          ><span class="menu-bullet"
-          ><span class="bullet bullet-dot"></span></span
-          ><span class="menu-title">Private Chat</span></a
-          >
-        </div>
-        <div class="menu-item me-lg-1">
-          <a
-            class="menu-link py-3"
-            routerLinkActive="active"
-            routerLink="/apps/chat/group-chat"
-          ><span class="menu-bullet"
-          ><span class="bullet bullet-dot"></span></span
-          ><span class="menu-title">Group Chart</span></a
-          >
-        </div>
-        <div class="menu-item me-lg-1">
-          <a
-            class="menu-link py-3"
-            routerLinkActive="active"
-            routerLink="/apps/chat/drawer-chat"
-          ><span class="menu-bullet"
-          ><span class="bullet bullet-dot"></span></span
-          ><span class="menu-title">Drawer Chart</span></a
-          >
-        </div>
-      </div>
-    </div>
+
+
   </div>
 </div>
 
-<!-- MegaMenu -->
-<div
-  class="menu-item menu-lg-down-accordion me-lg-1"
-  data-kt-menu-trigger="click"
-  data-kt-menu-placement="bottom-start"
->
-  <span class="menu-link py-3">
-    <span class="menu-title">Mega menu</span>
-    <span class="menu-arrow d-lg-none"></span>
-  </span>
-  <div
-    class="
-      menu-sub menu-sub-lg-down-accordion menu-sub-lg-dropdown
-      w-100 w-lg-600px
-      p-5 p-lg-5
-    "
-    data-kt-menu-dismiss="true"
-  >
-    <div class="row" data-kt-menu-dismiss="true">
-      <div class="col-lg-4 border-left-lg-1">
-        <div class="menu-inline menu-column menu-active-bg">
-          <div class="menu-item">
-            <a class="menu-link cursor-pointer"
-            ><span class="menu-bullet"
-            ><span class="bullet bullet-dot"></span></span
-            ><span class="menu-title">Example link</span></a
-            >
-          </div>
-          <div class="menu-item">
-            <a class="menu-link cursor-pointer"
-            ><span class="menu-bullet"
-            ><span class="bullet bullet-dot"></span></span
-            ><span class="menu-title">Example link</span></a
-            >
-          </div>
-          <div class="menu-item">
-            <a class="menu-link cursor-pointer"
-            ><span class="menu-bullet"
-            ><span class="bullet bullet-dot"></span></span
-            ><span class="menu-title">Example link</span></a
-            >
-          </div>
-          <div class="menu-item">
-            <a class="menu-link cursor-pointer"
-            ><span class="menu-bullet"
-            ><span class="bullet bullet-dot"></span></span
-            ><span class="menu-title">Example link</span></a
-            >
-          </div>
-          <div class="menu-item">
-            <a class="menu-link cursor-pointer"
-            ><span class="menu-bullet"
-            ><span class="bullet bullet-dot"></span></span
-            ><span class="menu-title">Example link</span></a
-            >
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-4 border-left-lg-1">
-        <div class="menu-inline menu-column menu-active-bg">
-          <div class="menu-item">
-            <a class="menu-link cursor-pointer"
-            ><span class="menu-bullet"
-            ><span class="bullet bullet-dot"></span></span
-            ><span class="menu-title">Example link</span></a
-            >
-          </div>
-          <div class="menu-item">
-            <a class="menu-link cursor-pointer"
-            ><span class="menu-bullet"
-            ><span class="bullet bullet-dot"></span></span
-            ><span class="menu-title">Example link</span></a
-            >
-          </div>
-          <div class="menu-item">
-            <a class="menu-link cursor-pointer"
-            ><span class="menu-bullet"
-            ><span class="bullet bullet-dot"></span></span
-            ><span class="menu-title">Example link</span></a
-            >
-          </div>
-          <div class="menu-item">
-            <a class="menu-link cursor-pointer"
-            ><span class="menu-bullet"
-            ><span class="bullet bullet-dot"></span></span
-            ><span class="menu-title">Example link</span></a
-            >
-          </div>
-          <div class="menu-item">
-            <a class="menu-link cursor-pointer"
-            ><span class="menu-bullet"
-            ><span class="bullet bullet-dot"></span></span
-            ><span class="menu-title">Example link</span></a
-            >
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-4 border-left-lg-1">
-        <div class="menu-inline menu-column menu-active-bg">
-          <div class="menu-item">
-            <a class="menu-link cursor-pointer"
-            ><span class="menu-bullet"
-            ><span class="bullet bullet-dot"></span></span
-            ><span class="menu-title">Example link</span></a
-            >
-          </div>
-          <div class="menu-item">
-            <a class="menu-link cursor-pointer"
-            ><span class="menu-bullet"
-            ><span class="bullet bullet-dot"></span></span
-            ><span class="menu-title">Example link</span></a
-            >
-          </div>
-          <div class="menu-item">
-            <a class="menu-link cursor-pointer"
-            ><span class="menu-bullet"
-            ><span class="bullet bullet-dot"></span></span
-            ><span class="menu-title">Example link</span></a
-            >
-          </div>
-          <div class="menu-item">
-            <a class="menu-link cursor-pointer"
-            ><span class="menu-bullet"
-            ><span class="bullet bullet-dot"></span></span
-            ><span class="menu-title">Example link</span></a
-            >
-          </div>
-          <div class="menu-item">
-            <a class="menu-link cursor-pointer"
-            ><span class="menu-bullet"
-            ><span class="bullet bullet-dot"></span></span
-            ><span class="menu-title">Example link</span></a
-            >
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+
+
+

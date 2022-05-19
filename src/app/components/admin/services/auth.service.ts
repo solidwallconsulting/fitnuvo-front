@@ -1,10 +1,10 @@
 import { Injectable, OnDestroy } from '@angular/core';
 import { Observable, BehaviorSubject, of, Subscription } from 'rxjs';
 import { finalize, map } from 'rxjs/operators';
-import { UserModel } from '../../../models/adminsModel/user.model';
 import { environment } from 'src/environments/environment';
 import { Router } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { UserModel } from 'src/app/models/adminsModel/user.model';
 
 export type UserType = UserModel | undefined;
 
@@ -19,8 +19,8 @@ export class AuthService implements OnDestroy {
   // public fields
   isLoading$: Observable<boolean>;
 
-   currentUserSubject: BehaviorSubject<UserType>;
-  public currentUser: Observable<UserType>;
+   currentUserSubject: BehaviorSubject<any>;
+  public currentUser: Observable<any>;
   isLoadingSubject: BehaviorSubject<boolean>;
 
 
@@ -33,13 +33,17 @@ export class AuthService implements OnDestroy {
     this.isLoadingSubject = new BehaviorSubject<boolean>(false);
     this.isLoading$ = this.isLoadingSubject.asObservable();
     var authLocalStorageToken :any = localStorage.getItem('currentUser')
-    this.currentUserSubject = new BehaviorSubject<UserType>(JSON.parse(authLocalStorageToken));
+    this.currentUserSubject = new BehaviorSubject<any>(JSON.parse(authLocalStorageToken));
     this.currentUser = this.currentUserSubject.asObservable();
   }
 
       public get currentUserValue(): UserType {
         return this.currentUserSubject.value;
     }
+
+
+
+  
 
   // public methods
   login(email: string, password: string): Observable<UserType> {
@@ -66,10 +70,14 @@ export class AuthService implements OnDestroy {
 
   logout() {
     localStorage.removeItem('currentUser');
-    this.router.navigate(['/auth/admin/login'], {
-      queryParams: {},
-    });
+    this.router.navigateByUrl('/admin/auth/admin/login');
 
+    }
+
+    DesacitveAccountP(id:any){
+      return this.http.post(`${environment.Base_Url}/api/v1/desactiveaccount`, {id:id},{headers:new HttpHeaders({
+        Authorization: `Bearer ${this.getToken()}`,
+      })});
     }
    /*
   logout() {
@@ -108,7 +116,6 @@ export class AuthService implements OnDestroy {
   
       return userObj.role;
     }
-
 
 /*
     this.isLoadingSubject.next(true);

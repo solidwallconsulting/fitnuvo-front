@@ -1,6 +1,5 @@
 import { Component, HostBinding } from '@angular/core';
 import { Router } from '@angular/router';
-import { Contact } from 'src/app/models/contact';
 import { ContactusService } from 'src/app/services/contactus.service';
 
 @Component({

@@ -69,7 +69,7 @@ export class AddAdminComponent implements OnInit {
     return this.UsersService.create(this.formA.value).subscribe((res: any) => {
       console.log(res);
 
-      this.router.navigate(['/features/users/users-list']);
+      this.router.navigate(['/features/users/admins']);
       Swal.fire({
         title: 'Success!',
         text:   "New Administrator added successfully .",
@@ -88,6 +88,5 @@ export class AddAdminComponent implements OnInit {
       this.isLoading$.next(false);
       this.cdr.detectChanges();
     }, 1500);
-
   }*/
 }
