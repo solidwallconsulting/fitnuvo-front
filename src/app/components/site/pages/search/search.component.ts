@@ -1,5 +1,6 @@
 import { LabelType, Options } from '@angular-slider/ngx-slider';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { SpecialityService } from 'src/app/components/admin/services/speciality.service';
 import { TrainerService } from 'src/app/services/trainer.service';
 
@@ -54,7 +55,7 @@ export class SearchComponent implements OnInit {
 
 
 
-  constructor(public TrainerService:TrainerService, public SpecialityService: SpecialityService) { }
+  constructor(public TrainerService:TrainerService, public SpecialityService: SpecialityService,private router: Router) { }
 
   ngOnInit(): void {
     
@@ -327,6 +328,11 @@ searchByCategorie_id(categorie_id:any) {
   });
 }
 */
+
+openProfile(id:any){
+  this.router.navigate(['/trainer/',id]);
+
+}
 
   
 
