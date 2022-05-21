@@ -1,8 +1,8 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
-import { SpecialityService } from '../../services/speciality.service';
 import { NgxBootstrapConfirmService } from 'ngx-bootstrap-confirm';
+import { SpecialityService } from 'src/app/services/speciality.service';
 
 @Component({
   selector: 'app-speciality',

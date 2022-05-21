@@ -96,33 +96,33 @@ export class LoginComponent implements OnInit {
       }
   loginTrainer(){
     
-    const email = this.formControl.email.value;
-    const password = this.formControl.password.value;
+        const email = this.formControl.email.value;
+        const password = this.formControl.password.value;
 
-    this.submitted = true;
+        this.submitted = true;
 
-    if(this.loginFormV.invalid){
+        if(this.loginFormV.invalid){
+        
+        return;
+        
+        }
+      // console.log(email, password);
+      this.auth.login(email,password).subscribe((res:any)=>{
+        console.log(res);
+        localStorage.removeItem('token');
+        localStorage.setItem('token', res.token);
+        // redirect to dashboard
+        this.router.navigate(['/search']);
+      },(err:any)=>{ 
+        localStorage.removeItem('token');
     
-    return;
-    
-    }
-   // console.log(email, password);
-   this.auth.login(email,password).subscribe((res:any)=>{
-     console.log(res);
-     localStorage.removeItem('token');
-     localStorage.setItem('token', res.token);
-     // redirect to dashboard
-     this.router.navigate(['/search']);
-   },(err:any)=>{ 
-     localStorage.removeItem('token');
- 
-       this.serverErrors = err.error.message;
+          this.serverErrors = err.error.message;
 
-     
-     console.log(this.serverErrors);
-     console.log(err);
+        
+        console.log(this.serverErrors);
+        console.log(err);
 
-   });
+      });
 
  }
 

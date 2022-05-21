@@ -1,7 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
-import { SpecialityService } from '../../services/speciality.service';
 import { NgxBootstrapConfirmService } from 'ngx-bootstrap-confirm';
 import { ReviewsService } from '../../services/reviews.service';
 import { Router } from '@angular/router';

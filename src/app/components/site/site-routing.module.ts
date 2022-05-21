@@ -7,13 +7,14 @@ import { HomeComponent } from './home/home.component';
 import { IndexComponent } from './index/index.component';
 import { AboutComponent } from './pages/about/about.component';
 import { BlogComponent } from './pages/blog/blog.component';
-import { ClayoutComponent } from './pages/clayout/clayout.component';
+import { ClayoutComponent } from './pages/Client/clayout/clayout.component';
 import { ContactComponent } from './pages/contact/contact.component';
-import { CprofileComponent } from './pages/cprofile/cprofile.component';
+import { CprofileComponent } from './pages/Client/cprofile/cprofile.component';
 import { DetailblogComponent } from './pages/detailblog/detailblog.component';
 import { PartnerComponent } from './pages/partner/partner.component';
 import { SearchComponent } from './pages/search/search.component';
 import { TrainerprofileComponent } from './pages/trainerprofile/trainerprofile.component';
+import { AppointmentsComponent } from './pages/Client/cappointments/appointments.component';
 
 const siteRoutes: Routes = [
   {
@@ -59,11 +60,7 @@ const siteRoutes: Routes = [
             component: ResponseResetPasswordComponent,
             data: {breadcrumbs: 'Changepassword'}
           },
-          {
-            path: 'user',
-            component: ResponseResetPasswordComponent,
-            data: {breadcrumbs: 'Changepassword'}
-          },
+
           {
             path: 'user',
             component: ClayoutComponent,
@@ -80,9 +77,16 @@ const siteRoutes: Routes = [
                 path: 'profile',
                 component: CprofileComponent
               },
+              {
+                path: 'appointments',
+                component: AppointmentsComponent
+              },
               
             ]
           },
+
+          
+    
          
     ]
   }

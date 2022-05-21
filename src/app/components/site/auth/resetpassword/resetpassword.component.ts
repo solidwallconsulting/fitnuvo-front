@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import {SnotifyService} from 'ng-snotify';
 import { AuthentificationService } from 'src/app/services/authentification.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-resetpassword',
@@ -30,23 +31,23 @@ export class ResetpasswordComponent implements OnInit {
 
 
   ResetPass() {
-    this.notify.info('wait...', {'timeout': 3330});
-    this.auth.sendRestPasswordLink(this.formControl.email.value).subscribe(next => {
-      console.log(next);
-      this.handleResponse();
+    this.auth.sendRestPasswordLink(this.formControl.email.value).subscribe(res => {
+      console.log(res);
+      Swal.fire({
+        title: 'Success!',
+        text:   "Check your inbox, we have sent a link to reset email.",
+        icon: 'success'
+      });
 
     },(erreur) => {
       console.log(erreur);
-      this.handleErreur(erreur);
 
 
     });
   }
 
   private handleResponse() {
-   
-    this.notify.clear();
-    this.notify.success('Check your email !', 'Send');
+  
     this.router.navigateByUrl('/');
   }
 

@@ -23,6 +23,6 @@ export class User {
     is_visible: number;
     token?: string;
     password_confirmation?: string;
-    role?: string;
+    role_id?: number;
    
 }

@@ -67,9 +67,13 @@ export class UsersService {
   }
 
 
-  public getTrainerByid(id: number): Observable<Trainer> {
+   getTrainerByid(id: number): Observable<Trainer> {
     return this.httpClient.get<Trainer>(`${this.apiUrl}/trainers/`+id);
   }
 
+
+  getTop5() {
+    return this.httpClient.get(`${this.apiUrl}/top-trainers-5`);
+  }
   
 }

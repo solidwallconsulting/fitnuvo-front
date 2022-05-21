@@ -6,7 +6,7 @@ import { Review } from "./review.model";
 import { Speciality } from "./speciality";
 
 export class Trainer {
-    id: string;
+    trainer_id: string;
     first_name: string;
     last_name: string;
     email: string;

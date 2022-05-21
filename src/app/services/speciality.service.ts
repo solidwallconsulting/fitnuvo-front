@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Speciality } from 'src/app/models/adminsModel/speciality';
-import { AuthService } from './auth.service';
+import { AuthService } from '../components/admin/services/auth.service';
 
 @Injectable({
   providedIn: 'root'
@@ -13,17 +13,23 @@ export class SpecialityService {
 
   constructor(private httpClient: HttpClient,private auth : AuthService) { }
 
+/** 
+  
+  token:string = this.auth.getToken();
+  headers = new HttpHeaders({
+   Authorization: `Bearer ${this.token}`,
+   });
+
+    */
+    headers = new HttpHeaders({'Content-Type': 'application/json'});
+
   getAll(): Observable<Speciality[] | null > {
-    const headers = new HttpHeaders({'Content-Type': 'application/json'});
-    return this.httpClient.get<Speciality[]>(`${this.apiUrl}/specialities`,{headers: headers}
-    );
+    return this.httpClient.get<Speciality[]>(`${this.apiUrl}/specialities`);
   }
 
 
-   token:string = this.auth.getToken();
-   headers = new HttpHeaders({
-    Authorization: `Bearer ${this.token}`,
-    });
+
+
   addCategorie(data:any){
     console.log(data);
     return this.httpClient.post<Speciality>(`${this.apiUrl}/speciality`, data,{headers:this.headers});

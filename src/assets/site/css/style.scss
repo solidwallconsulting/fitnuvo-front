@@ -357,6 +357,25 @@ border-radius: 25px;
     font-weight: 600;
     font-size: 16px;
 }
+.searchavanc .dropdown .dropdown-toggle {
+  color: #000000 !important;
+  font-family: 'Barlow';
+font-style: normal;
+font-weight: 400;
+font-size: 16px;
+line-height: 19px;
+}
+.dropdown .btn::after {
+  color: rgba(41, 85, 171, 1) !important;
+  
+}
+
+/*
+@media only screen and (min-width: 1200px) and (max-width: 1600px){.searchavanc .dropdown .button {min-width:20px}}
+@media only screen and (min-width: 768px) and (max-width: 991px){.searchavanc .dropdown .button {min-width:20px}}
+@media only screen and (min-width: 576px) and (max-width: 767px){.searchavanc .dropdown .button{min-width:5px}}
+*/
+
 .form-icon button:hover{
     background:#3D75E2;
 }

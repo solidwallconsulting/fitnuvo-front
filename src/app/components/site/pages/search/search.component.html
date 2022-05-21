@@ -5,20 +5,20 @@
               <div class="input-group mb-3">
                 <span class="right-border-top-bar input-group-text bg-white border-right-0" id="basic-addon1"><i class="fa fa-search" aria-hidden="true"></i></span>
                 <input type="text" class="form-control top-input-bar" placeholder="search" aria-label="Username">
-                <span class="input-group-text bg-white"><i class="fa fa-map-pin" aria-hidden="true"></i></span>
-                <input type="text" class="form-control top-input-bar" placeholder="Search by location" aria-label="Server"> 
-                <button class="btn btn-primary input-group-text top-search-button">Search</button>
+                <span class="right-border-top-bar input-group-text bg-white border-right-0"><i class="fa fa-map-pin" aria-hidden="true"></i></span>
+                <input type="text" class="form-control top-input-bar right-bar" placeholder="Search by location" aria-label="Server"> 
+                <button class="btn btn-primary input-group-text top-search-button " >Search</button>
               </div>
 
         </div>
     </div>
 
-    <div class="row spacing">
+    <div class="row spacing searchavanc vertical-align">
         <div class="col-sm-4 col-md-2">
 
 
-            <div class="dropdown app-drop-down w-100" style="color:#000000">
-                <button class="btn btn-secondary dropdown-toggle w-100" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" >
+            <div class="dropdown app-drop-down w-100" >
+                <button  class="btn btn-secondary dropdown-toggle w-100" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" >
                  Speciality  
                 </button>
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
@@ -85,7 +85,7 @@
 
                                 <div *ngFor="let r of avalableDATES"  class="date-line d-flex ">
 
-                                    <div  class="hour-to-choose" *ngFor="let h of r.hours"  [ngClass]=" h.checked== true ? 'checked-hour' : '' "  (click)="changebox(h.id)">
+                                    <div  class="hour-to-choose" *ngFor="let h of r.hours"  [ngClass]=" h.checked== true ? 'checked-hour' : '' "  (click)="changebox(h.id,$event)">
                                         <i class="fa fa-check text-white" *ngIf=" h.checked== true "></i>
                                     </div>
                                 </div>
@@ -96,7 +96,7 @@
                     </div>
 
                     <div class="card-footer justify-content-end">
-                        <button class="btn btn-primary">Reset</button> 
+                        <button class="btn btn-primary" (click)="ResetSchedule($event)">Reset</button> 
                         &nbsp;
                         <button class="btn btn-primary" (click)="scheduleApply()" >Apply</button>
                     </div>

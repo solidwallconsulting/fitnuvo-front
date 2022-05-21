@@ -1,7 +1,7 @@
 import { LabelType, Options } from '@angular-slider/ngx-slider';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { SpecialityService } from 'src/app/components/admin/services/speciality.service';
+import { SpecialityService } from 'src/app/services/speciality.service';
 import { TrainerService } from 'src/app/services/trainer.service';
 
 @Component({
@@ -99,7 +99,8 @@ export class SearchComponent implements OnInit {
     });
 }
 
-changebox(id:any){
+changebox(id:any,event:any){
+  event.stopPropagation();
   for (let i = 0; i < this.avalableDATES.length; i++ ) {
     for (let j = 0; j < this.avalableDATES[i].hours.length; j++ ) {
 
@@ -332,6 +333,10 @@ searchByCategorie_id(categorie_id:any) {
 openProfile(id:any){
   this.router.navigate(['/trainer/',id]);
 
+}
+
+ResetSchedule(event:any) {
+  this.selected_schedule.splice(0);
 }
 
   

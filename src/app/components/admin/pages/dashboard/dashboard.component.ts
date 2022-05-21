@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { TrainerService } from 'src/app/services/trainer.service';
+import { UsersService } from '../../services/users.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -6,7 +8,20 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./dashboard.component.scss'],
 })
 export class DashboardComponent implements OnInit {
-  constructor() {}
+  trainers:any=[]
+  constructor(private serviceT : TrainerService,private userS : UsersService) {
 
-  ngOnInit(): void {}
+
+  }
+
+
+
+  ngOnInit() {
+    this.userS.getTop5().subscribe((data:any)=>{
+      console.log("chy",data);
+      this.trainers = data['data'];
+
+    })
+  }
+
 }

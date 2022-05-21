@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { Trainer } from 'src/app/models/trainer.model';
 
 @Component({
   selector: 'app-lists-widget8',
@@ -6,5 +7,7 @@ import { Component, Input } from '@angular/core';
 })
 export class ListsWidget8Component {
   @Input() cssClass = '';
+  @Input() trainers:Trainer [];
+
   constructor() {}
 }

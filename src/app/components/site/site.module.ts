@@ -26,11 +26,12 @@ import { HttpClientModule } from '@angular/common/http';
 import { NavbarComponent } from './layouts/navbar/navbar.component';
 import { SnotifyModule, SnotifyService, ToastDefaults } from 'ng-snotify';
 import { ResponseResetPasswordComponent } from './auth/response-reset-password/response-reset-password.component';
-import { CprofileComponent } from './pages/cprofile/cprofile.component';
-import { ClayoutComponent } from './pages/clayout/clayout.component';
-import { SideprofileComponent } from './pages/sideprofile/sideprofile.component';
+import { CprofileComponent } from './pages/Client/cprofile/cprofile.component';
+import { ClayoutComponent } from './pages/Client/clayout/clayout.component';
+import { SideprofileComponent } from './pages/Client/sideprofile/sideprofile.component';
 import { NgxSliderModule } from '@angular-slider/ngx-slider';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { AppointmentsComponent } from './pages/Client/cappointments/appointments.component';
 
 
 
@@ -57,6 +58,8 @@ import { NgxPaginationModule } from 'ngx-pagination';
     CprofileComponent,
     ClayoutComponent,
     SideprofileComponent,
+    AppointmentsComponent
+
     
   ],
   imports: [

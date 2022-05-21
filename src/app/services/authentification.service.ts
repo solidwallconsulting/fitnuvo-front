@@ -10,6 +10,7 @@ import { Observable } from 'rxjs';
 import { Permission } from '../models/permission';
 import { ToastrService } from 'ngx-toastr';
 import { Role } from '../models/adminsModel/role.model';
+import { ResetPassword } from '../models/resetpassword.model';
 
 const jwtHelper = new JwtHelperService();
 
@@ -118,16 +119,28 @@ export class AuthentificationService {
         return this.http.post(this.BASE_URL+'/api/v1/register',fr);
       }
 
-      public sendRestPasswordLink(email:string) {
+      public sendRestPasswordLink(email:any) {
+        const headers = new HttpHeaders({'Content-Type': 'application/json'});
         return this.http.post(this.BASE_URL + '/api/v1/password/sendRestPasswordLink', {email:email});
   
       }
 
-      public changePassword(form:FormData) {
-        return this.http.post(this.BASE_URL + '/api/v1/password/reset', form);
+      public changePassword(form:ResetPassword) {
+        const headers = new HttpHeaders({'Content-Type': 'application/json'});
+        return this.http.post(this.BASE_URL + '/api/v1/password/reset', form , {headers:headers});
       }
      // Is Loggedin
      isLoggedIn(){
       return !localStorage.getItem('token') ;
     }
+
+
+    
+  activeAccount(id:any) {
+    return this.http.post<User>(`${this.BASE_URL}/api/v1/activeaccount`, {id:id});
+  }
+
+  DesacitveAccount(id:any){
+    return this.http.post<User>(`${this.BASE_URL}/api/v1/desactiveaccount`, {id:id});
+  }
 }
