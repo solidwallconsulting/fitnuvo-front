@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Speciality } from 'src/app/models/adminsModel/speciality';
 import { AuthService } from '../components/admin/services/auth.service';
+import { AuthentificationService } from './authentification.service';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,7 @@ export class SpecialityService {
 
   apiUrl = 'http://localhost:8000/api/v1';
 
-  constructor(private httpClient: HttpClient,private auth : AuthService) { }
+  constructor(private httpClient: HttpClient,private auth : AuthentificationService) { }
 
 /** 
   
@@ -21,6 +22,12 @@ export class SpecialityService {
    });
 
     */
+
+   token:string = this.auth.getToken();
+   headerss = new HttpHeaders({
+    Authorization: `Bearer ${this.token}`,
+    });
+
     headers = new HttpHeaders({'Content-Type': 'application/json'});
 
   getAll(): Observable<Speciality[] | null > {
@@ -43,9 +50,13 @@ export class SpecialityService {
 
   deleteCategorie(id:any){
     console.log(id);
-
-   
     return this.httpClient.delete<Speciality>(`${this.apiUrl}/speciality/`+id,{headers:this.headers});
+  }
+
+
+  getSpeOfTrainer(id:any){
+ 
+    return this.httpClient.get(`${this.apiUrl}/trainers/`+id+`/specialities`, {headers:this.headerss});
   }
 
 

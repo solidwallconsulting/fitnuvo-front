@@ -1,8 +1,11 @@
 import { LabelType, Options } from '@angular-slider/ngx-slider';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthentificationService } from 'src/app/services/authentification.service';
+import { NotifyService } from 'src/app/services/notify.service';
 import { SpecialityService } from 'src/app/services/speciality.service';
 import { TrainerService } from 'src/app/services/trainer.service';
+import { WishlistService } from 'src/app/services/wishlist.service';
 
 @Component({
   selector: 'app-search',
@@ -51,11 +54,13 @@ export class SearchComponent implements OnInit {
   selected_prix:any=[]
   selected_schedule:any=[]
   selected_sort:any=[]
+  isAuth:boolean =false;
+  Role:any;
 
 
 
 
-  constructor(public TrainerService:TrainerService, public SpecialityService: SpecialityService,private router: Router) { }
+  constructor(public TrainerService:TrainerService, private authService: AuthentificationService, public SpecialityService: SpecialityService,private router: Router) { }
 
   ngOnInit(): void {
     
@@ -67,6 +72,9 @@ export class SearchComponent implements OnInit {
       this.specialities = data;
       console.log(this.specialities);
     })
+
+    this.isAuth= this.authService.isAuthenticated();
+    this.Role=this.authService.getRole();
 
 
 
@@ -338,6 +346,8 @@ openProfile(id:any){
 ResetSchedule(event:any) {
   this.selected_schedule.splice(0);
 }
+
+
 
   
 

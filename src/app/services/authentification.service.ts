@@ -40,6 +40,16 @@ export class AuthentificationService {
       this.userr = JSON.parse(localStorage.getItem('user')!);
       return this.userr;
     } 
+
+    public getVisible() {
+     return JSON.parse(localStorage.getItem('visible')!);
+     
+    } 
+
+    getToken(){
+      return JSON.parse(localStorage.getItem('token')!);
+
+    }
     public setMenu(menu: Permission[]) {
      this.menu=menu;
      
@@ -96,7 +106,7 @@ export class AuthentificationService {
       const headers = new HttpHeaders({
         Authorization: `Bearer ${token}`,
       });
-      return this.http.get(this.BASE_URL+'/api/v1/user', {
+      return this.http.get(this.BASE_URL+'/api/v1/user/me', {
         headers: headers,
       });
     }

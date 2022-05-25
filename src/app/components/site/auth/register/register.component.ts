@@ -2,7 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { Loginresult } from 'src/app/models/loginresult.model';
+import { User } from 'src/app/models/user.model';
 import { AuthentificationService } from 'src/app/services/authentification.service';
+import { NotifyService } from 'src/app/services/notify.service';
 import Swal from 'sweetalert2';
 import { LoginComponent } from '../login/login.component';
 import { MustMatch } from '../_helpers/must-match.validator';
@@ -18,7 +21,10 @@ export class RegisterComponent implements OnInit {
  registerFormT: FormGroup;
  IsmodelShow= false;
  submitted = false;
-  constructor( private modalService: NgbModal, public activeModal: NgbActiveModal,private router:Router, private auth:AuthentificationService,private formBuilder: FormBuilder) { }
+ result : Loginresult;
+ user:User;
+
+  constructor( private modalService: NgbModal, public activeModal: NgbActiveModal,private router:Router, private auth:AuthentificationService,private formBuilder: FormBuilder,private notifyService: NotifyService) { }
 
   ngOnInit(): void {
     this.registerFormC = this.formBuilder.group({
@@ -141,13 +147,31 @@ export class RegisterComponent implements OnInit {
             return this.auth.register(myFormDataT).subscribe((res: any) => {
                 console.log(res);
                     //sweetalert message popup
-                      Swal.fire({
-                        position: 'top-end',
-                        icon: 'success',
-                        title: 'you has been registered successfully',
-                        showConfirmButton: false,
-                        timer: 5000
-                      })
+                      this.modalService.dismissAll();
+                      
+
+                      this.auth.login(this.formControlT.email.value,this.formControlT.password.value).subscribe(res =>{
+                        if(res.status === 200){
+                          console.log("body",res.body)
+                          this.result = res.body!;
+                          localStorage.setItem('token',JSON.stringify(this.result.token));
+                          this.user = new User();
+                          /*let role = new Role();
+                          user.name=this.result.user.name;
+                          role.name= this.result.role.name;*/
+                          localStorage.setItem('user', JSON.stringify(this.result.user));
+                          localStorage.setItem('ROLE', JSON.stringify(this.result.role));
+                          localStorage.setItem('visible', JSON.stringify(this.result.user.is_visible));
+
+                          this.auth.setMenu(this.result.menu);
+                          
+                          this.notifyService.showSuccess("Welcome to Fitnuvo", "Fitnuvo");
+                          this.router.navigate([`/trainerme`]);
+                        }
+                        },error => {
+                          this.notifyService.showError(error.error.message, "Fitnuvo"); 
+                      });
+
                 
             },(err)=>{ 
               console.log(err);

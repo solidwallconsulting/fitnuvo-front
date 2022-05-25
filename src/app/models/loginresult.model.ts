@@ -6,5 +6,6 @@ export class Loginresult {
     token: string;
     user: User;
     role: Role;
+    is_visible?: number;
     menu: Permission[];
 }

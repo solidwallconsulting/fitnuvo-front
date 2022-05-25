@@ -1,0 +1,17 @@
+<app-header></app-header>
+<main>
+    <!--tap-->
+    <section class="pt-100" style="background: #f2f2f7;"> 
+        <div class="container">
+            
+            <div class="alert alert-danger mt-3" *ngIf="visible==1"> Your account is not activated yet !</div>
+            <router-outlet></router-outlet>
+            
+        </div>
+        
+    </section> 
+    <!--tap-->
+    
+</main>
+    
+<app-footer></app-footer>

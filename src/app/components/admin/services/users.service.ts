@@ -16,9 +16,9 @@ export class UsersService {
 
   constructor(private httpClient: HttpClient ,private auth : AuthService) { }
   token:string = this.auth.getToken();
-  headers = new HttpHeaders({
-   Authorization: `Bearer ${this.token}`,
- });
+    headers = new HttpHeaders({
+    Authorization: `Bearer ${this.token}`,
+  });
 
  httpOptions = {
   headers: new HttpHeaders({

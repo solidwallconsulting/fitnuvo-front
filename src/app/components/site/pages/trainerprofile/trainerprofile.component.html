@@ -39,9 +39,12 @@
                      <div class="coach-info-bloc">
                          <div class="d-flex justify-content-between">
                              <div class="coach-name">
-                                 {{trainer.first_name}} {{trainer.last_name}} (28)
+                                 {{trainer.first_name}} {{trainer.last_name}} (28) &nbsp;
+                                   <i *ngIf="isAuth && Role=='client'" (click)="addtoList(trainer.trainer_id)"  style="     text-shadow: 0 0 6px red; "  class="fa fa-heart text-light "> </i> 
+                                   <i *ngIf="isAuth && Role=='client'"  (click)="removefromList(trainer.trainer_id)"  style="     text-shadow: 0 0 6px red; "  class="fa fa-heart text-danger "> </i> 
                              </div>
                              <div class="coach-name">
+                                 
                                 <button class="btn btn-secondary msg-btn mt-2"><i class="fa  fa-envelope" aria-hidden="true"></i> Message</button>
                              </div>
                             
@@ -116,6 +119,36 @@
         </div>
     </section>
 
+
+    
+    <section class="descreption-section mt-5">
+        <div class="container">
+            <div class="card card-body">
+                
+
+                <div class="accordion" id="accordionExample">
+
+
+                    <div class="accordion-item  coach-descri-body">
+                      <h2 class="accordion-header" id="headingOne">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSchedule" aria-expanded="true" aria-controls="collapseSchedule">
+                          <span class="text-color-primary">Schedule</span>
+                        </button>
+                      </h2>
+                      <div id="collapseSchedule" class="accordion-collapse collapse show" aria-labelledby="headingSchedule" data-bs-parent="#accordionExample">
+                        <div class="accordion-body ">
+                         
+                            <full-calendar [options]="calendarOptions"></full-calendar>
+
+                        </div>
+                      </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </section>
 
 
     <section class="descreption-section mt-5">

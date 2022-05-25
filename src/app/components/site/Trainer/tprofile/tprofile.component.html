@@ -1,0 +1,216 @@
+
+        <div class="row spacing">
+            <div class="col-lg-3 col-md-4">
+                <app-sidetprofile></app-sidetprofile>
+            </div>
+            <div class="col-md-8 col-lg-9 card-box">
+                <div class="navigation d-flex justify-content-between">
+                    <div class="bloc-nav">
+                        <ul class="nav coach-nav" id="myTab" role="tablist">
+                            <li class="nav-item">
+                              <a class="nav-link active" id="ginfo-tab" data-bs-toggle="tab" data-bs-target="#ginfo" role="tab" aria-controls="userinfo" aria-selected="true" >General information</a>
+                            </li>
+                            <li class="nav-item">
+                              <a class="nav-link" id="gimage-tab" data-bs-toggle="tab" data-bs-target="#gimage" role="tab" aria-controls="userimage" aria-selected="false" >Image</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="gdesc-tab" data-bs-toggle="tab" data-bs-target="#gdesc" role="tab" aria-controls="userpassword" aria-selected="false">Description</a>
+                              </li>
+                            <li class="nav-item">
+                              <a class="nav-link" id="gpwd-tab" data-bs-toggle="tab" data-bs-target="#gpwd" role="tab" aria-controls="userpassword" aria-selected="false">Password</a>
+                            </li> 
+                          </ul>
+                    </div>
+                </div>
+                <div class="tab-content" id="myTabContent">
+                    <!-- info form-->
+                    <div class="tab-pane fade show active" id="ginfo" role="tabpanel" aria-labelledby="ginfo-tab">
+                       <form [formGroup]="profileCform" (ngSubmit)="EditprofileClient()" >
+                            <div class="row">
+                               <div class="form-group mt-3 mb-3 col-md-6"> 
+                                   <label for="inputName" class="form-label">First Name</label> 
+                                   <input type="text"  class="form-control" formControlName="firstname" id="inputfn"  [(ngModel)]="user.firstname" > 
+                          
+                               </div>
+                                <div class="form-group mt-3 mb-3 col-md-6"> 
+                                    <label for="inputName" class="form-label">Last Name</label> 
+                                    <input type="text"   class="form-control" formControlName="secondname"  id="inputln" [(ngModel)]="user.secondname"> 
+                       
+                                </div>
+                            </div>
+                            <!---->
+                            <div class="row">
+                                <div class="form-group mt-3 mb-3 col-md-6"> 
+                                    <label for="inputName" class="form-label">Email</label> 
+                                    <input type="email" formControlName="email"  name="email" class="form-control" id="inputemail" [(ngModel)]="user.email"> 
+                             
+                                </div>
+                                <div class="form-group mt-3 mb-3 col-md-6"> 
+                                    <label for="inputName" class="form-label">Date of birth</label> 
+                                    <input  formControlName="datebirth"  class="form-control"  id="inputdate" type="date" [(ngModel)]="user.datebirth">
+                                
+                                </div>
+                            </div>
+
+
+                            <div class="row">
+                                <div class="form-group mt-3 mb-3 col-md-6"> 
+                                    <label for="inputName" class="form-label">Price per Hour</label> 
+                                    <input type="text" formControlName="price"  name="email" class="form-control" id="inputemail" [(ngModel)]="user.price"> 
+                             
+                                </div>
+                                <div class="form-group mt-3 mb-3 col-md-6"> 
+                                    <label for="inputName" class="form-label">Experience</label> 
+                                    <input  formControlName="experience"  class="form-control"  id="inputdate" type="text" [(ngModel)]="user.experience">
+                                
+                                </div>
+                            </div>
+                            <!---->
+                            <div class="row">    
+                                <div class="form-group mt-3 mb-3 col-md-6"> 
+                                   <label for="inputName" class="form-label">Mobile Number</label> 
+                                   <input type="phone" formControlName="phone"  class="form-control" id="inputphone" [(ngModel)]="user.phone"> 
+                                  
+                               </div>
+                                <div class="form-group mt-3 mb-3 col-md-6"> <label for="inputName" class="form-label">Gender</label> 
+                                    <select formControlName="gender" class="form-control"  [(ngModel)]="user.gender">
+                                        <option value="H"> Man </option>
+                                        <option value="F">Women </option>
+                                    </select>
+                               
+                                </div>
+                            </div> 
+
+
+                            <div class="row">    
+
+                                <div class="form-group mt-3 mb-3 col-md-6"> <label for="inputName" class="form-label">Activities</label> 
+                                    
+                                  
+                               
+                                </div>
+
+                                <div class="form-group mt-3 mb-3 col-md-6"> 
+                                  
+                                </div>
+                            </div> 
+                             
+                            <div class="mt-3 mb-3 col-md-12"> 
+                                <label for="inputName" class="form-label">Adresse</label> 
+                                <input formControlName="adress"   class="form-control" [(ngModel)]="user.adress">
+                               <!-- <div *ngIf="formControl.adress.touched && formControl.adress.errors" class="text-danger">
+                                    <div  class="mt-1" *ngIf="formControl.adress.errors.required"><i class="ti-info-alt"></i> Home adress is required.</div>
+                                </div>-->  
+                            </div> 
+                             <!--submit btn-->
+                            <div class="mt-3 mb-3 row"> 
+                                <button class="btn btn-primary" type="submit" style="background: linear-gradient(135deg,#3a8ffe 0%,#9658fe 100%);">Save</button> 
+                            </div>
+                
+                       </form>
+                    </div>
+                    <!-- image form -->
+                    <div class="tab-pane fade" id="gimage" role="tabpanel" aria-labelledby="gimage-tab">
+                        <form [formGroup]="FormImage" (ngSubmit)="EditImage()" >
+                            <div class="row">
+                                <div class="mb-3 mt-3 text-center">
+                                    <img src="{{url}}/storage/images/trainer/{{user.photo_profil}}"  width="400px" height="300px">
+
+                                </div>
+
+
+                                <div class="col-sm"></div>
+                                <div class="col-sm">
+
+                                    <input type="file" formControlName="image"  class="form-control fileform"    (change)="uploadImage($event)" >
+      
+
+
+                                </div>
+                                <div class="col-sm"></div>
+
+                  
+
+
+                             <div class="mb-3 text-center" > 
+                                <button type="submit" class="btn btn-danger btn-lg btn-block text-center mt-3"  style="width: 300px;" >Upload Image</button>
+
+                                </div>
+
+
+                            </div>
+                        </form>
+                    </div>
+
+                     <!-- Description form -->
+                     <div class="tab-pane fade" id="gdesc" role="tabpanel" aria-labelledby="gdesc-tab">
+                        <form [formGroup]="FormDesc" (ngSubmit)="EditPassword()" >
+                           <div class="row">
+                         
+                            <div class=" mb-3 col-md-12"> 
+                                <label for="inputName" class="form-label">About me</label> 
+                                <textArea id="inputlocation" class="form-control" formControllerName="description" > </textArea>
+                               <!-- <div *ngIf="formControl.adress.touched && formControl.adress.errors" class="text-danger">
+                                    <div  class="mt-1" *ngIf="formControl.adress.errors.required"><i class="ti-info-alt"></i> Home adress is required.</div>
+                                </div>-->  
+                            </div> 
+                            <div class="mb-3 col-md-6"> <label for="inputName" class="form-label">Certificate name 1 </label> 
+                                <input type="password" formControlName="password"  class="form-control" id="inputpassword" placeholder="Enter your password" >
+                                
+                             </div>
+                             <div class="mb-3 col-md-6"> <label for="inputName" class="form-label">Certificate Upload 1 </label> 
+                                <input type="file" formControlName="password"  class="form-control" id="inputpassword" placeholder="Enter your password" >
+                                
+                             </div>
+                             <div class="mb-3 col-md-6"> <label for="inputName" class="form-label">Certificate name 2 </label> 
+                                <input type="password" formControlName="password"  class="form-control" id="inputpassword" placeholder="Enter your password" >
+                                
+                             </div>
+                             <div class="mb-3 col-md-6"> <label for="inputName" class="form-label">Certificate Upload 2 </label> 
+                                <input type="file" formControlName="password"  class="form-control" id="inputpassword" placeholder="Enter your password" >
+                                
+                             </div>
+
+                             <div class="mb-3 col-md-6"> <label for="inputName" class="form-label">Certificate name 3 </label> 
+                                <input type="password" formControlName="password"  class="form-control" id="inputpassword" placeholder="Enter your password" >
+                                
+                             </div>
+                             <div class="mb-3 col-md-6"> <label for="inputName" class="form-label">Certificate Upload 3 </label> 
+                                <input type="file" formControlName="password"  class="form-control" id="inputpassword" placeholder="Enter your password" >
+                                
+                             </div>
+                            
+                          </div>
+                          <div class="mt-3 mb-3 row"> <button class="btn btn-primary full-width" type="submit" style="background: linear-gradient(135deg,#3a8ffe 0%,#9658fe 100%);">Save</button> </div>
+                        </form>
+                    </div>
+
+                    <!-- password form -->
+                    <div class="tab-pane fade" id="gpwd" role="tabpanel" aria-labelledby="gpwd-tab">
+                        <form [formGroup]="FormEditPass" (ngSubmit)="EditPassword()" >
+                           <div class="row">
+                            <div class="mb-3 col-md-12"> <label for="inputName" class="form-label">Old Password</label>
+                                 <input type="password" formControlName="oldpassword"  class="form-control" id="inputpassword" placeholder="Enter your password" >
+                              
+                            </div>
+                            <div class="mb-3 col-md-12"> <label for="inputName" class="form-label">New Password</label> 
+                                <input type="password" formControlName="password"  class="form-control" id="inputpassword" placeholder="Enter your password" >
+                                
+                             </div>
+                            <div class="mb-3 col-md-12"> <label for="inputName" class="form-label">Repeat Password</label>
+                                 <input type="password" formControlName="repeatpassword"  class="form-control" id="inputrpassword" placeholder="Repeat your password" required=""> 
+                            
+                            </div>
+                          </div>
+                          <div class="mt-3 mb-3 row"> <button class="btn btn-primary full-width" type="submit" style="background: linear-gradient(135deg,#3a8ffe 0%,#9658fe 100%);">Save</button> </div>
+                        </form>
+                    </div>
+
+
+
+                </div>
+            </div>
+        </div> 
+  
+
+

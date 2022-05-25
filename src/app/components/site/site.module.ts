@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SiteRoutingModule } from './site-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 
 import { HomeComponent } from './home/home.component';
 import { IndexComponent } from './index/index.component';
@@ -34,7 +35,23 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { AppointmentsComponent } from './pages/Client/cappointments/appointments.component';
 
 
+import { FullCalendarModule } from '@fullcalendar/angular'; 
+import interactionPlugin from '@fullcalendar/interaction';
+import dayGridPlugin from '@fullcalendar/daygrid';
+import timeGridPlugin from '@fullcalendar/timegrid';
+import { WishlistComponent } from './pages/Client/cwishlist/wishlist.component';
+import { SideTprofileComponent } from './Trainer/sideprofile/sidetprofile.component';
+import { TprofileComponent } from './Trainer/tprofile/tprofile.component';
+import { TlayoutComponent } from './Trainer/tlayout/tlayout.component';
+import { AppointmentsTComponent } from './Trainer/tappointments/appointments.component';
+import { AddAppointmentComponent } from './Trainer/tappointments/modal-add-appointment/add-appointment.component';
 
+
+FullCalendarModule.registerPlugins([ 
+  interactionPlugin,
+  dayGridPlugin,
+  timeGridPlugin,
+]); 
 
 @NgModule({
   declarations: [
@@ -58,7 +75,14 @@ import { AppointmentsComponent } from './pages/Client/cappointments/appointments
     CprofileComponent,
     ClayoutComponent,
     SideprofileComponent,
-    AppointmentsComponent
+    AppointmentsComponent,
+    WishlistComponent,
+    SideTprofileComponent,
+    TlayoutComponent,
+    AppointmentsTComponent,
+    TprofileComponent,
+    AddAppointmentComponent
+
 
     
   ],
@@ -74,7 +98,11 @@ import { AppointmentsComponent } from './pages/Client/cappointments/appointments
     ReactiveFormsModule,    
      SnotifyModule,
      NgxSliderModule,
-     NgxPaginationModule
+     NgxPaginationModule,
+     FullCalendarModule,
+     NgMultiSelectDropDownModule.forRoot(),
+     
+
 
     
     

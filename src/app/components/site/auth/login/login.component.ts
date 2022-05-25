@@ -106,23 +106,30 @@ export class LoginComponent implements OnInit {
         return;
         
         }
-      // console.log(email, password);
-      this.auth.login(email,password).subscribe((res:any)=>{
-        console.log(res);
-        localStorage.removeItem('token');
-        localStorage.setItem('token', res.token);
-        // redirect to dashboard
-        this.router.navigate(['/search']);
-      },(err:any)=>{ 
-        localStorage.removeItem('token');
-    
-          this.serverErrors = err.error.message;
 
-        
-        console.log(this.serverErrors);
-        console.log(err);
+        this.auth.login(email,password).subscribe(res =>{
+          if(res.status === 200){
+            this.result = res.body!;
+            localStorage.setItem('token',JSON.stringify(this.result.token));
+            this.user = new User();
+            /*let role = new Role();
+            user.name=this.result.user.name;
+            role.name= this.result.role.name;*/
+            localStorage.setItem('user', JSON.stringify(this.result.user));
+            localStorage.setItem('ROLE', JSON.stringify(this.result.role));
+            localStorage.setItem('visible', JSON.stringify(this.result.user.is_visible));
 
-      });
+            this.auth.setMenu(this.result.menu);
+            
+            this.notifyService.showSuccess("Welcome to Fitnuvo", "Fitnuvo");
+            this.router.navigate([`/trainerme`]);
+          }
+          },error => {
+            this.notifyService.showError(error.error.message, "Fitnuvo"); 
+        });
+
+
+
 
  }
 

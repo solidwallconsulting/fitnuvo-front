@@ -11,6 +11,7 @@ import { SnotifyModule, SnotifyService, ToastDefaults } from 'ng-snotify';
 import { AdminModule } from './components/admin/app.module';
 import { InlineSVGModule } from 'ng-inline-svg';
 import { ToastrModule } from 'ngx-toastr';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,7 @@ import { ToastrModule } from 'ngx-toastr';
     SnotifyModule,
     AdminModule,
     ToastrModule.forRoot(), 
-    InlineSVGModule.forRoot(),
+    InlineSVGModule.forRoot(), NgbModule,
 
      
 

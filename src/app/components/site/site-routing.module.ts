@@ -15,6 +15,10 @@ import { PartnerComponent } from './pages/partner/partner.component';
 import { SearchComponent } from './pages/search/search.component';
 import { TrainerprofileComponent } from './pages/trainerprofile/trainerprofile.component';
 import { AppointmentsComponent } from './pages/Client/cappointments/appointments.component';
+import { WishlistComponent } from './pages/Client/cwishlist/wishlist.component';
+import { TprofileComponent } from './Trainer/tprofile/tprofile.component';
+import { AppointmentsTComponent } from './Trainer/tappointments/appointments.component';
+import { TlayoutComponent } from './Trainer/tlayout/tlayout.component';
 
 const siteRoutes: Routes = [
   {
@@ -81,9 +85,42 @@ const siteRoutes: Routes = [
                 path: 'appointments',
                 component: AppointmentsComponent
               },
+              {
+                path: 'wishlist',
+                component: WishlistComponent
+              },
               
             ]
           },
+
+          {
+            path: 'trainerme',
+            component: TlayoutComponent,
+            canActivate: [ AuthGuard ],
+            data: {
+              role: Role.Trainer
+            },
+            children: [
+              { path: '', 
+                redirectTo: 'profile', 
+                pathMatch: 'full' 
+              },
+              {
+                path: 'profile',
+                component: TprofileComponent
+              },
+              {
+                path: 'appointments',
+                component: AppointmentsTComponent
+              },
+              
+              
+            ]
+          },
+       
+
+
+          
 
           
     

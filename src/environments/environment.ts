@@ -17,6 +17,7 @@ export const environment = {
   appPreviewAngularUrl: 'https://preview.keenthemes.com/metronic8/angular/demo1',
   appPreviewChangelogUrl: 'https://preview.keenthemes.com/metronic8/angular/docs/changelog',
 
+  urlServeur:'http://127.0.0.1:8000',
   appDemos: {
     'demo1': {
       'title': 'Demo 1',

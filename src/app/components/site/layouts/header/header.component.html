@@ -25,7 +25,7 @@
                                             <!-- Button -->
                                             <li *ngIf="!isAuth" class="button-header margin-left " ><a class="btn3" (click)="openLoginForm()" >Login</a></li>
                                             <li *ngIf="!isAuth" class="button-header margin-right"><a class="btnsign" (click)="openRegisterForm()" >Sign Up</a></li>
-                                            <li *ngIf="isAuth">
+                                            <li *ngIf="isAuth && Role=='client'">
                                                 
                                                 <div ngbDropdown class="d-inline-block">
                                                   <a type="button" class="btn-outline btnsign" ngbDropdownToggle><img [src]="photo" width="30px" class="rounded-circle float-right">{{user.firstname}} {{user.secondname}}</a>
@@ -51,6 +51,39 @@
                                                     <div class="dropdown-divider"></div>
                                                     <button ngbDropdownItem><i class="ti ti-calendar"></i> Appointments</button>
                                                     <button ngbDropdownItem><i class="ti ti-heart"></i> Favorites</button>
+                                                    <button ngbDropdownItem><i class="ti ti-comments"></i> Messages</button>
+                                                    <button ngbDropdownItem><i class="ti ti-bell"></i> Notification</button>
+                                                    <button ngbDropdownItem (click)="logout()"><i class="ti ti-power-off" ></i> Logout</button>
+                                                  </div>
+                                                </div>
+                                                
+                                            </li>
+
+                                            <li *ngIf="isAuth && Role=='trainer'">
+                                                
+                                                <div ngbDropdown class="d-inline-block">
+                                                  <a type="button" class="btn-outline btnsign" ngbDropdownToggle><img style="width: 30px;height:30px" src="{{url}}/storage/images/trainer/{{user.photo_profil}}"  class="rounded-circle float-right"> {{user.firstname}} {{user.secondname}}</a>
+                                                  <div class="dropdown-menu" ngbDropdownMenu>
+                                                    <div class="profile-sidebar">
+                                                        <!-- SIDEBAR USERPIC -->
+				                                        <div class="profile-userpic">
+					                                        <img  style="height: 84px;width: 84px;" src="{{url}}/storage/images/trainer/{{user.photo_profil}}" class="img-responsive" alt="">
+				                                        </div>
+				                                        <!-- END SIDEBAR USERPIC -->
+				                                        <!-- SIDEBAR USER TITLE -->
+				                                        <div class="profile-usertitle">
+					                                        <div class="profile-usertitle-name">
+						                                        {{user.firstname}} {{user.secondname}}
+                                                                <i class="ti ti-pencil" (click)="goToprofileTrainer()"></i>
+					                                        </div>
+					                                        <div class="profile-usertitle-job">
+                                                                {{user.email}}
+					                                        </div>
+				                                        </div>
+				                                        <!-- END SIDEBAR USER TITLE -->
+                                                    </div>
+                                                    <div class="dropdown-divider"></div>
+                                                    <button ngbDropdownItem [routerLink]="'trainerme/appointments'"><i class="ti ti-calendar"></i> Appointments</button>
                                                     <button ngbDropdownItem><i class="ti ti-comments"></i> Messages</button>
                                                     <button ngbDropdownItem><i class="ti ti-bell"></i> Notification</button>
                                                     <button ngbDropdownItem (click)="logout()"><i class="ti ti-power-off" ></i> Logout</button>

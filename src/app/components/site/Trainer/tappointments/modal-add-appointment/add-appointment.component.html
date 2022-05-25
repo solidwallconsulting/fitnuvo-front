@@ -1,0 +1,71 @@
+<div class="booking-form">
+	<form class="form" [formGroup]="formA" (ngSubmit)="onsavee()">
+	
+		<div class="row">
+			<div class="col-sm-6">
+				<div class="form-group">
+					<span class="form-label">Date</span>
+					<input class="form-control" type="date" min="{{datetmrw}}"  formControlName="date_app">
+
+					<div *ngIf="f.date_app.touched && f.date_app.invalid" class="text-danger">
+                        <div *ngIf="f.date_app.errors?.required">*Date is required.</div>
+                    </div>
+				</div>
+			</div>
+			<div class="col-sm-6">
+				<div class="form-group">
+					<span class="form-label">Time</span>
+					<select class="form-control" formControlName="time_start">
+						   <option value="1">09:00-10:00</option>
+						   <option value="2">10:00-11:00</option>
+						   <option value="3">11:00-12:00</option>
+						   <option value="4">12:00-13:00</option>
+						   <option value="5">13:00-14:00</option>
+						   <option value="6">14:00-15:00</option>
+						   <option value="7">15:00-16:00</option>
+						   <option value="8">16:00-17:00</option>
+						   <option value="9">17:00-18:00</option>
+						   <option value="10">18:00-19:00</option>
+
+
+				    </select>
+					<div *ngIf="availableDate" class="text-danger">
+                        <div >*There is no availability on this time . Please choose another one!.</div>
+                    </div>
+					<div *ngIf="f.time_start.touched && f.time_start.invalid" class="text-danger">
+                        <div *ngIf="f.time_start.errors?.required">*Time is required.</div>
+                    </div>
+
+					<span class="select-arrow"></span>
+
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-4">
+				<div class="form-group">
+					<span class="form-label">Activity</span>
+					<select class="form-control" formControlName="activity">
+						<option value=""></option>
+						 <ng-container *ngFor="let spec of specialities">
+							<option value="{{spec.speciality_name}}">{{spec.speciality_name}}</option>
+						 </ng-container>
+
+					</select>
+
+					<div *ngIf="f.activity.touched && f.activity.invalid" class="text-danger">
+						<div *ngIf="f.activity.errors?.required">*activity is required.</div>
+					  </div>
+
+					 
+					<span class="select-arrow"></span>
+				</div>
+			</div>
+
+			
+		</div>
+		<div class="form-btn">
+			<button class="submit-btn" type="submit" >Add appointment</button>
+		</div>
+	</form>
+</div>

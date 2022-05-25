@@ -6,6 +6,7 @@ import { LoginComponent } from '../../auth/login/login.component';
 import { RegisterComponent } from '../../auth/register/register.component';
 import { AuthentificationService } from 'src/app/services/authentification.service';
 import { User } from 'src/app/models/user.model';
+import { environment } from 'src/environments/environment';
 
 
 @Component({
@@ -17,11 +18,15 @@ export class HeaderComponent implements OnInit {
   closeResult = '';
   isAuth:boolean =false;
   user:User;
+  Role:any;
+  url:string=environment.urlServeur;
+
   photo="/assets/site/img/icon/Ellipse3.png";
   constructor(private router:Router,private modalService: NgbModal, private authService: AuthentificationService) { }
 
   ngOnInit(): void {
    this.isAuth= this.authService.isAuthenticated();
+   this.Role=this.authService.getRole();
    if(this.isAuth)
    {
      this.user = this.authService.getUser()!;
@@ -32,6 +37,9 @@ export class HeaderComponent implements OnInit {
   }
   goToprofile(): void {
     this.router.navigate(['/user/profile']);
+  }
+  goToprofileTrainer(): void {
+    this.router.navigate(['/trainerme/profile']);
   }
   openLoginForm(): void {
     const modalRef = this.modalService.open(LoginComponent); 

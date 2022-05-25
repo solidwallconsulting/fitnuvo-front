@@ -19,114 +19,108 @@
                           </ul>
                     </div>
                 </div>
-                <div class="tab-content" id="myTabContent">
+                <div class="tab-content mt-15" id="myTabContent">
                     <!-- info form-->
                     <div class="tab-pane fade show active" id="ginfo" role="tabpanel" aria-labelledby="ginfo-tab">
-                       <form [formGroup]="profileCform" (ngSubmit)="EditprofileClient()" >
-                            <div class="row">
-                               <div class="form-group mt-3 mb-3 col-md-6"> 
-                                   <label for="inputName" class="form-label">First Name</label> 
-                                   <input type="text"  class="form-control" formControlName="firstname" id="inputfn"  [(ngModel)]="user.firstname" > 
-                          
-                               </div>
-                                <div class="form-group mt-3 mb-3 col-md-6"> 
-                                    <label for="inputName" class="form-label">Last Name</label> 
-                                    <input type="text"   class="form-control" formControlName="secondname"  id="inputln" [(ngModel)]="user.secondname"> 
-                       
-                                </div>
-                            </div>
-                            <!---->
-                            <div class="row">
-                                <div class="form-group mt-3 mb-3 col-md-6"> 
-                                    <label for="inputName" class="form-label">Email</label> 
-                                    <input type="email" formControlName="email"  name="email" class="form-control" id="inputemail" [(ngModel)]="user.email"> 
-                             
-                                </div>
-                                <div class="form-group mt-3 mb-3 col-md-6"> 
-                                    <label for="inputName" class="form-label">Date of birth</label> 
-                                    <input  formControlName="datebirth"  class="form-control"  id="inputdate" type="date" [(ngModel)]="user.datebirth">
-                                
-                                </div>
-                            </div>
-                            <!---->
-                            <div class="row">    
-                                <div class="form-group mt-3 mb-3 col-md-6"> 
-                                   <label for="inputName" class="form-label">Mobile Number</label> 
-                                   <input type="phone" formControlName="phone"  class="form-control" id="inputphone" [(ngModel)]="user.phone"> 
-                                  
-                               </div>
-                                <div class="form-group mt-3 mb-3 col-md-6"> <label for="inputName" class="form-label">Gender</label> 
-                                    <select formControlName="gender" class="form-control"  [(ngModel)]="user.gender">
-                                        <option value="H"> Man </option>
-                                        <option value="F">Women </option>
-                                    </select>
-                               
-                                </div>
-                            </div> 
-                             
-                            <div class="mt-3 mb-3 col-md-12"> 
-                                <label for="inputName" class="form-label">Adresse</label> 
-                                <input formControlName="adress"   class="form-control" [(ngModel)]="user.adress">
-                               <!-- <div *ngIf="formControl.adress.touched && formControl.adress.errors" class="text-danger">
-                                    <div  class="mt-1" *ngIf="formControl.adress.errors.required"><i class="ti-info-alt"></i> Home adress is required.</div>
-                                </div>-->  
-                            </div> 
-                             <!--submit btn-->
-                            <div class="mt-3 mb-3 row"> 
-                                <button class="btn btn-primary" type="submit" style="background: linear-gradient(135deg,#3a8ffe 0%,#9658fe 100%);">Save</button> 
-                            </div>
-                
-                       </form>
+                        <full-calendar [options]="calendarOptions"></full-calendar>
+
                     </div>
                     <!-- image form -->
-                    <div class="tab-pane fade" id="gimage" role="tabpanel" aria-labelledby="gimage-tab">
-                        <form [formGroup]="FormImage" (ngSubmit)="EditImage()" >
-                           <div class="row justify-content-center">
-                            <div class="containerimg">
-                                <div class="wrapper">
-                                   <div class="image">
-                                      <img src="https://www.gevaudan-authentique.com/wp-content/uploads/2018/06/no-image.jpg" alt="">
-                                   </div>
-                                   <div class="content">
-                                      <div class="icon">
-                                         <i class="fas fa-cloud-upload-alt"></i>
-                                      </div>
-                                      <div class="text">
-                                         No file chosen, yet!
-                                      </div>
-                                   </div>
-                                   <div id="cancel-btn">
-                                      <i class="fas fa-times"></i>
-                                   </div>
-                                   <div class="file-name">
-                                      File name here
-                                   </div>
-                                </div>
-                                <button id="custom-btn">Choose a file</button>
-                                <input id="default-btn" type="file" hidden>
-                             </div>
-                          </div>
-                        </form>
+                    <div class="tab-pane fade mt-2" id="gimage" role="tabpanel" aria-labelledby="gimage-tab">
+                             
+                            <div class="container-fluid">
+                               
+
+                                 <div class="row" *ngFor="let app of appointments" >
+                                    <div class="col-12 mt-3">
+                                        <div class="card">
+                                            <div class="card-horizontal">
+                                                <div class="img-square-wrapper">
+                                                    <img class="" width="300px" height="200px" src="{{app.appointment_trainer.photo_profil}}" alt="Card image cap">
+                                                </div>
+                                                <div class="card-body"  >
+                                                    <div style="float:right;"> 
+                                                        <button type="button" class="btn2 btn-outline-primary btn-sm">Edit</button> &nbsp;
+                                                        <button type="button"  class="btn2 btn-outline-primary btn-sm">Cancel</button>
+                                                    </div>
+
+                                                    <div  style="float:left;">  
+                                                    <p class="card-text"  >Trainer: <strong>{{app.appointment_trainer.first_name}} {{app.appointment_trainer.last_name}}</strong> </p>
+                                                    <p class="card-text"  >Mobile: <strong>{{app.appointment_trainer.mobile_number}}</strong> </p>
+                                                     <p class="card-text"  >Date and time:: <strong>{{app.appointment_date}} At {{app.appointment_start}}-{{app.appointment_end}}</strong> </p>
+                                                    <p class="card-text"  >Activity:<strong>{{app.appointment_activity}}</strong> </p>
+                                                    </div>
+                                                 </div>
+                                            </div>
+                                            <div class="card-footer">
+                                                <small class="text-muted">Previous workouts:</small> <strong>no workouts to show</strong>
+                                            </div>
+                                        </div>
+                                    </div>
+                                 </div>
+                            </div>
                     </div>
                     <!-- password form -->
                     <div class="tab-pane fade" id="gpwd" role="tabpanel" aria-labelledby="gpwd-tab">
-                        <form [formGroup]="FormEditPass" (ngSubmit)="EditPassword()" >
-                           <div class="row">
-                            <div class="mb-3 col-md-12"> <label for="inputName" class="form-label">Old Password</label>
-                                 <input type="password" formControlName="oldpassword"  class="form-control" id="inputpassword" placeholder="Enter your password" >
-                              
+                        <div class="container-fluid">
+                               
+
+                            <div class="row" *ngFor="let app of appointments" >
+                               <div class="col-12 mt-3">
+                                   <div class="card">
+                                       <div class="card-horizontal">
+                                           <div class="img-square-wrapper">
+                                               <img class="" width="300px" height="220px" src="{{app.appointment_trainer.photo_profil}}" alt="Card image cap">
+                                           </div>
+                                           <div class="card-body"  >
+                                               <div style="float:right;"> 
+                                                  
+                                                 <ng-container *ngFor="let rev of myreviews">
+                                                     <ng-container *ngIf="rev.trainer.trainer_id===app.appointment_trainer.trainer_id">
+                                                        <ngb-rating [max]="5"  [(rate)]="rev.stars"></ngb-rating>
+                                                     </ng-container>
+                                                     
+
+                                                 
+
+                                                      
+                                  
+
+                                                 </ng-container>
+
+                                         
+                                                    
+
+                                                    <ng-container *ngIf="checkavailablity(app.appointment_trainer.trainer_id)==0">
+                                                        <ngb-rating [max]="5"  [(rate)]="currentRate"></ngb-rating>
+                                                    </ng-container>
+
+                                                     
+                                 
+
+
+
+
+                                                
+                                                
+
+                                               </div>
+
+                                               <div  style="float:left;">  
+                                               <p class="card-text"  >Trainer: <strong>{{app.appointment_trainer.first_name}} {{app.appointment_trainer.last_name}}</strong> </p>
+                                               <p class="card-text"  >Mobile: <strong>{{app.appointment_trainer.mobile_number}}</strong> </p>
+                                                <p class="card-text"  >Date and time:: <strong>{{app.appointment_date}} At {{app.appointment_start}}-{{app.appointment_end}}</strong> </p>
+                                               <p class="card-text"  >Activity:<strong>{{app.appointment_activity}}</strong> </p>
+                                               </div>
+                                            </div>
+                                       </div>
+                                       <div class="card-footer">
+                                           <small class="text-muted">Previous workouts:</small> <strong>no workouts to show</strong>
+                                       </div>
+                                   </div>
+                               </div>
                             </div>
-                            <div class="mb-3 col-md-12"> <label for="inputName" class="form-label">New Password</label> 
-                                <input type="password" formControlName="password"  class="form-control" id="inputpassword" placeholder="Enter your password" >
-                                
-                             </div>
-                            <div class="mb-3 col-md-12"> <label for="inputName" class="form-label">Repeat Password</label>
-                                 <input type="password" formControlName="repeatpassword"  class="form-control" id="inputrpassword" placeholder="Repeat your password" required=""> 
-                            
-                            </div>
-                          </div>
-                          <div class="mt-3 mb-3 row"> <button class="btn btn-primary full-width" type="submit" style="background: linear-gradient(135deg,#3a8ffe 0%,#9658fe 100%);">Save</button> </div>
-                        </form>
+                       </div>
                     </div>
                 </div>
             </div>

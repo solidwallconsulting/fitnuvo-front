@@ -1,3 +1,9 @@
+::ng-deep body .fc .fc-daygrid-day-number , ::ng-deep body .fc .fc-col-header-cell-cushion {
+    color:black;
+}
+::ng-deep body .fc-direction-ltr .fc-daygrid-event.fc-event-end{
+    background-color: #0d6efd;
+}
 .top-input-bar{
     border-left: 0;
 }
@@ -18,6 +24,11 @@
 .btn-primary{
     background-color: #3861D3;
     border-color: #3861D3;
+}
+
+ngb-rating {
+    color: yellow;
+    font-size: 30px;
 }
 
 .right-border-top-bar{
@@ -172,6 +183,11 @@
     border-radius: 5px;
 }
 
+
+.coach-image-card2{
+    height: 235px;
+    background-color: #F2F2F2;
+}
 .coach-name{   
     font-style: normal;
     font-weight: 600;
@@ -183,6 +199,11 @@
     align-items: center;
 
     color: rgba(0, 0, 0, 0.8);
+}
+
+.card-horizontal {
+    display: flex;
+    flex: 1 1 auto;
 }
 
 .msg-btn{
