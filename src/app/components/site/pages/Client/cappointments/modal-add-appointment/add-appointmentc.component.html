@@ -1,0 +1,51 @@
+<div class="booking-form">
+	<form class="form" (ngSubmit)="addApp()">
+	
+		<div class="row">
+			<div class="col-sm-6">
+				<div class="form-group">
+					<span class="form-label">Date</span>
+					<input class="form-control" type="date"  readonly name="date" [(ngModel)]="appointment.appointment_date">
+
+				</div>
+			</div>
+			<div class="col-sm-6">
+				<div class="form-group">
+					<span class="form-label">Start Time</span>
+					<input class="form-control" type="datetime"  readonly name="start"  [(ngModel)]="appointment.appointment_start">
+
+
+					<span class="select-arrow"></span>
+
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-6">
+				<div class="form-group">
+					<span class="form-label">Activity</span>
+				
+					<input class="form-control" type="text"  readonly name="act"  [(ngModel)]="appointment.appointment_activity">
+
+					 
+					<span class="select-arrow"></span>
+				</div>
+			</div>
+			<div class="col-sm-6">
+				<div class="form-group">
+					<span class="form-label">End Time</span>
+				
+					<input class="form-control" type="datetime"  readonly  name="end" [(ngModel)]="appointment.appointment_end">
+
+					 
+					<span class="select-arrow"></span>
+				</div>
+			</div>
+
+			
+		</div>
+		<div class="form-btn">
+			<button class="submit-btn" type="submit" >Send request for an appointment</button>
+		</div>
+	</form>
+</div>

@@ -1,0 +1,54 @@
+<div class="booking-form">
+	<div class="col-sm-6">
+		<div class="form-group">
+			<span class="form-label">Trainer</span>
+			<input class="form-control" type="text" readonly  [(ngModel)]="appointment.appointment_client.first_name">
+
+		
+		</div>
+	</div>
+	<div class="col-sm-12">
+		<div class="form-group">
+			<span class="form-label">Your instantly appointment</span>
+			<input class="form-control" type="text" readonly  value="{{appointment.appointment_date}} At {{appointment.appointment_start}}-{{appointment.appointment_end}} {{appointment.appointment_activity}}">
+
+		
+		</div>
+	</div>
+	<form class="form" [formGroup]="formA" (ngSubmit)="editApp()">
+
+		<div class="row">
+			
+
+			<div class="col-sm-12">
+				<div class="form-group">
+					<span class="form-label">EDIT TO : </span>
+					
+					<select class="form-control" formControlName="time_start" >
+						<option value="">--Select--</option>
+
+
+						    <ng-container *ngFor=" let availability of Availableappointments">
+								<option value="{{availability.appointment_id}}">Date : {{availability.appointment_date}} at {{availability.appointment_start}}-{{availability.appointment_end}} {{availability.appointment_activity}}</option>
+
+							</ng-container>
+					
+
+
+				    </select>
+					
+					<div *ngIf="f.time_start.touched && f.time_start.invalid" class="text-danger">
+                        <div *ngIf="f.time_start.errors?.required">*Appointment is required.</div>
+                    </div>
+
+					<span class="select-arrow"></span>
+
+				</div>
+			</div>
+		</div>
+		
+		<div class="form-btn">
+			<button class="submit-btn" type="submit" >Edit appointment</button>
+		</div>
+	</form>
+</div>

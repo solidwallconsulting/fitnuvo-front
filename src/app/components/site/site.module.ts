@@ -45,6 +45,11 @@ import { TprofileComponent } from './Trainer/tprofile/tprofile.component';
 import { TlayoutComponent } from './Trainer/tlayout/tlayout.component';
 import { AppointmentsTComponent } from './Trainer/tappointments/appointments.component';
 import { AddAppointmentComponent } from './Trainer/tappointments/modal-add-appointment/add-appointment.component';
+import { AddAppointmentCComponent } from './pages/Client/cappointments/modal-add-appointment/add-appointmentc.component';
+import { EditAppointmentCComponent } from './pages/Client/cappointments/modal-edit-appointment/edit-appointmentc.component';
+import { MessagesComponent } from './pages/Client/messages/messages.component';
+import { ConversationComponent } from './pages/Client/messages/conversation/conversation.component';
+import { EditAppointmentComponent } from './Trainer/tappointments/modal-edit-appointment/edit-appointment.component';
 
 
 FullCalendarModule.registerPlugins([ 
@@ -81,7 +86,12 @@ FullCalendarModule.registerPlugins([
     TlayoutComponent,
     AppointmentsTComponent,
     TprofileComponent,
-    AddAppointmentComponent
+    AddAppointmentComponent,
+    AddAppointmentCComponent,
+    EditAppointmentCComponent,
+    MessagesComponent,
+    ConversationComponent,
+    EditAppointmentComponent
 
 
     

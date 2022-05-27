@@ -19,6 +19,8 @@ import { WishlistComponent } from './pages/Client/cwishlist/wishlist.component';
 import { TprofileComponent } from './Trainer/tprofile/tprofile.component';
 import { AppointmentsTComponent } from './Trainer/tappointments/appointments.component';
 import { TlayoutComponent } from './Trainer/tlayout/tlayout.component';
+import { MessagesComponent } from './pages/Client/messages/messages.component';
+import { ConversationComponent } from './pages/Client/messages/conversation/conversation.component';
 
 const siteRoutes: Routes = [
   {
@@ -89,6 +91,16 @@ const siteRoutes: Routes = [
                 path: 'wishlist',
                 component: WishlistComponent
               },
+              {
+                path: 'chats',
+                component: ConversationComponent
+              },
+
+              {
+                path: 'chats/:id',
+                component: MessagesComponent
+              },
+              
               
             ]
           },

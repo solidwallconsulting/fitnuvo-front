@@ -29,9 +29,10 @@
                     <div class="tab-pane fade mt-2" id="gimage" role="tabpanel" aria-labelledby="gimage-tab">
                              
                             <div class="container-fluid">
-                               
+                                <h4 >UPCOMING({{upcomingApp?.length}})</h4>
 
-                                 <div class="row" *ngFor="let app of appointments" >
+
+                                 <div class="row" *ngFor="let app of upcomingApp" >
                                     <div class="col-12 mt-3">
                                         <div class="card">
                                             <div class="card-horizontal">
@@ -40,8 +41,8 @@
                                                 </div>
                                                 <div class="card-body"  >
                                                     <div style="float:right;"> 
-                                                        <button type="button" class="btn2 btn-outline-primary btn-sm">Edit</button> &nbsp;
-                                                        <button type="button"  class="btn2 btn-outline-primary btn-sm">Cancel</button>
+                                                        <button type="button" class="btn2 btn-outline-primary btn-sm" (click)="openEditForm(app.appointment_id,app.appointment_trainer.trainer_id)" >Edit</button> &nbsp;
+                                                        <button type="button"  class="btn2 btn-outline-primary btn-sm" (click)="cancelapp(app.appointment_id)" >Cancel</button>
                                                     </div>
 
                                                     <div  style="float:left;">  
@@ -64,8 +65,9 @@
                     <div class="tab-pane fade" id="gpwd" role="tabpanel" aria-labelledby="gpwd-tab">
                         <div class="container-fluid">
                                
+                            <h4>COMPLETED({{completedapp?.length}})</h4>
 
-                            <div class="row" *ngFor="let app of appointments" >
+                            <div class="row" *ngFor="let app of completedapp" >
                                <div class="col-12 mt-3">
                                    <div class="card">
                                        <div class="card-horizontal">

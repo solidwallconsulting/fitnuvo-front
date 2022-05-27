@@ -1,0 +1,70 @@
+
+        <div class="row spacing">
+          <div class="col-lg-3 col-md-4">
+              <app-sideprofile></app-sideprofile>
+          </div>
+          <div class="col-md-8 col-lg-9 card-box">
+          
+                  <!-- info form-->
+                  <div class="tab-pane fade show active" id="ginfo" role="tabpanel" aria-labelledby="ginfo-tab">
+                       <i [routerLink]="['/user/chats']" class="fa fa-chevron-left fa-xl"> </i> All messages
+
+                      <div class="container">
+
+
+                        <div class="messaging">
+                          <div class="inbox_msg">
+                    
+                            <div class="mesgs">
+                              <div class="msg_history">
+
+
+                                 <ng-container *ngFor="let msg of privatemsgs" >
+
+                                        <div *ngIf="msg.sender!='you'" class="incoming_msg">
+                                          <div class="incoming_msg_img"> <img src="{{msg.photo_profil}}" class="rounded-circle" alt="sunil" width="50px" height="50px"> </div>
+                                          <div class="received_msg">
+                                            <div class="received_withd_msg">
+                                              <p>{{msg.message}}</p>
+                                              <span class="time_date"> {{msg.sent_at}}</span>
+                                            </div>
+                                          </div>
+                                        </div>
+
+                                        <div *ngIf="msg.sender=='you'" class="outgoing_msg">
+                                          <div class="sent_msg">
+                                            <p>{{msg.message}}</p>
+                                            <span class="time_date"> {{msg.sent_at}}</span> 
+                                          </div>
+                                        </div>
+
+                                 </ng-container>
+
+                                
+                        
+                               
+
+                                
+                    
+                              
+                              </div>
+                              <form class="msger-inputarea" (ngSubmit)="onSubmit(msgForm)" #msgForm="ngForm">
+                                <input type="text" class="msger-input" name="msg" ngModel required #msg="ngModel" placeholder="Enter your message...">
+                                <button type="submit" class="msger-send-btn">Send</button>
+                              </form>
+                           </div>
+
+                           
+                        </div>
+                                 
+                           
+                                
+                            
+                       
+                  </div>
+                
+          </div>
+      </div> 
+
+
+

@@ -19,7 +19,6 @@
                           </ul>
                     </div>
                 </div>
-                 <a (click)="addappoint()"> html</a>
                 <div class="tab-content mt-15" id="myTabContent">
                     <!-- info form-->
                     <div class="tab-pane fade show active" id="ginfo" role="tabpanel" aria-labelledby="ginfo-tab">
@@ -27,11 +26,45 @@
                         ></full-calendar>
 
                     </div>
-                    <!-- image form -->
-                    <div class="tab-pane fade mt-2" id="gimage" role="tabpanel" aria-labelledby="gimage-tab">
-                             
-                            
-                    </div>
+                                        <!-- upcoming form-->
+
+                            <div class="tab-pane fade mt-2" id="gimage" role="tabpanel" aria-labelledby="gimage-tab">
+                                    
+                              <div class="container-fluid">
+                                  <h4 >UPCOMING({{upcomingApp?.length}})</h4>
+
+
+                                  <div class="row" *ngFor="let app of upcomingApp" >
+                                      <div class="col-12 mt-3">
+                                          <div class="card">
+                                              <div class="card-horizontal">
+                                                  <div class="img-square-wrapper">
+                                                      <img class="" width="300px" height="250px" src="{{app.appointment_client.photo_profil}}" alt="Card image cap">
+                                                  </div>
+                                                  <div class="card-body"  >
+                                                      <div style="float:right;"> 
+                                                          <button type="button" class="btn2 btn-outline-primary btn-sm" (click)="openEditForm(app.appointment_id)" >Edit</button> &nbsp;
+                                                          <button type="button"  class="btn2 btn-outline-primary btn-sm"  >Cancel</button>
+                                                      </div>
+
+                                                      <div  style="float:left;">  
+                                                      <p class="card-text"  >Client: <strong>{{app.appointment_client.first_name}} {{app.appointment_client.last_name}}</strong> </p>
+                                                      <p class="card-text"  >Mobile: <strong>{{app.appointment_client.mobile_number}}</strong> </p>
+                                                      <p class="card-text"  >Date and time:: <strong>{{app.appointment_date}} At {{app.appointment_start}}-{{app.appointment_end}}</strong> </p>
+                                                      <p class="card-text"  >Activity:<strong>{{app.appointment_activity}}</strong> </p>
+                                                      <p class="card-text"  >Status: <strong>{{app.appointment_payement_status}}</strong> </p>
+
+                                                      </div>
+                                                  </div>
+                                              </div>
+                                              <div class="card-footer">
+                                                  <small class="text-muted">Previous workouts:</small> <strong>no workouts to show</strong>
+                                              </div>
+                                          </div>
+                                      </div>
+                                  </div>
+                              </div>
+                      </div>
                     <!-- password form -->
                     <div class="tab-pane fade" id="gpwd" role="tabpanel" aria-labelledby="gpwd-tab">
                         

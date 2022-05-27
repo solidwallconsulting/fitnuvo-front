@@ -1,0 +1,89 @@
+
+        <div class="row spacing">
+          <div class="col-lg-3 col-md-4">
+              <app-sideprofile></app-sideprofile>
+          </div>
+          <div class="col-md-8 col-lg-9 card-box">
+          
+                  <!-- info form-->
+                  <div class="tab-pane fade show active" id="ginfo" role="tabpanel" aria-labelledby="ginfo-tab">
+                       <i class="fa fa-chevron-left fa-xl"> </i>
+
+                      <div class="container">
+
+
+                        <div class="messaging">
+                          <div class="inbox_msg">
+                    
+                            <div class="mesgs">
+                              <div class="msg_history">
+                          
+                        
+                              
+                                <ng-container *ngFor="let msg of mymessages  ">  
+                                  <div class="incoming_msg border border-dark" style="padding: 23px;"  *ngIf="msg.last_message.sender_id===user.id" [routerLink]="['/user/chats/',msg.sender_id]">
+                                    
+                                    <i class="fa fa-envelope icon-badge-icon  " style="float:right">
+                                      <div class="icon-badge">1</div>
+
+                                    </i>
+                                    
+                                    <div class="incoming_msg_img ">
+                                       <img src="{{msg.photo_profil}}" class="rounded-circle" width="80px" height="40px" alt="sunil">
+                                    </div>
+
+
+                                          <div class="received_msg" >
+                                            <div class="received_withd_msg">
+                                              <div > {{msg.firstname}} {{msg.secondname}}</div>
+                                              <p>{{msg.last_message.message | slice:0:50}}...</p>
+                                              <span class="time_date">  {{msg.last_message.sent_at  }}</span>
+                                            </div>
+                                          </div>
+
+                                  </div>
+
+                                  <div class="incoming_msg border border-dark" style="padding: 23px;"  *ngIf="msg.last_message.sender_id!=user.id" [routerLink]="['/user/chats/',msg.sender_id]">
+          
+                                    <div class="incoming_msg_img " style="float:left"> 
+                                      <img src="{{msg.photo_profil}}" class="rounded-circle" width="80px" height="40px" alt="sunil">
+             
+                                      
+                                    </div>
+
+
+                                          <div class="received_msg" >
+                                            <div class="received_withd_msg">
+                                              <div> {{msg.firstname}} {{msg.secondname}} </div>
+                                              
+                                              <p>{{msg.last_message.message}}</p> 
+                                              <span class="time_date">  {{msg.last_message.sent_at  }}</span>
+
+                                            </div>
+
+                                            
+                                          </div>
+
+                                         
+
+                                  </div>
+
+                            </ng-container>
+
+                              </div>
+                    
+                            </div>
+                          </div>
+                        </div>
+                                 
+                           
+                                
+                            
+                       
+                  </div>
+                
+          </div>
+      </div> 
+
+
+
