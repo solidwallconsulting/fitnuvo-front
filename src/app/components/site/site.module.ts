@@ -50,6 +50,9 @@ import { EditAppointmentCComponent } from './pages/Client/cappointments/modal-ed
 import { MessagesComponent } from './pages/Client/messages/messages.component';
 import { ConversationComponent } from './pages/Client/messages/conversation/conversation.component';
 import { EditAppointmentComponent } from './Trainer/tappointments/modal-edit-appointment/edit-appointment.component';
+import { Ng2SmartTableModule } from 'ng2-smart-table';
+import { MessagesTComponent } from './Trainer/messages/messages.component';
+import { ConverComponent } from './Trainer/messages/conversation/conversation.component';
 
 
 FullCalendarModule.registerPlugins([ 
@@ -91,7 +94,9 @@ FullCalendarModule.registerPlugins([
     EditAppointmentCComponent,
     MessagesComponent,
     ConversationComponent,
-    EditAppointmentComponent
+    EditAppointmentComponent,
+    MessagesTComponent,
+    ConverComponent
 
 
     
@@ -110,6 +115,7 @@ FullCalendarModule.registerPlugins([
      NgxSliderModule,
      NgxPaginationModule,
      FullCalendarModule,
+     Ng2SmartTableModule,
      NgMultiSelectDropDownModule.forRoot(),
      
 

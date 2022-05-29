@@ -7,6 +7,7 @@ import { User } from 'src/app/models/user.model';
 import { AppointmentsService } from 'src/app/services/appointments.service';
 import { AuthentificationService } from 'src/app/services/authentification.service';
 import { SpecialityService } from 'src/app/services/speciality.service';
+import { TrainerService } from 'src/app/services/trainer.service';
 import { environment } from 'src/environments/environment';
 import Swal from 'sweetalert2';
 
@@ -24,7 +25,7 @@ export class AddAppointmentComponent implements OnInit {
   availableDate:boolean;
   datetmrw:string
   photo:string="/assets/site/img/icon/Ellipse3.png";
-  constructor(public activeModal: NgbActiveModal,private authService: AuthentificationService,private router : Router, private Appservice: AppointmentsService,private specService: SpecialityService) { }
+  constructor(public activeModal: NgbActiveModal,private authService: AuthentificationService,private trainerS:  TrainerService,private router : Router, private Appservice: AppointmentsService,private specService: SpecialityService) { }
 
 
 
@@ -43,7 +44,7 @@ export class AddAppointmentComponent implements OnInit {
 
 
     this.user=this.authService.getUser();
-    this.specService.getSpeOfTrainer(this.user.id).subscribe((res: any) => {
+    this.trainerS.myspecialities().subscribe((res: any) => {
       console.log(res);
       this.specialities=res['data'];
     },(err:any)=>{ 

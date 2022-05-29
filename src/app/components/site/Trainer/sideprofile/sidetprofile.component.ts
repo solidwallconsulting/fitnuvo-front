@@ -11,14 +11,16 @@ import { environment } from 'src/environments/environment';
 export class SideTprofileComponent implements OnInit {
   url:string=environment.urlServeur;
 
-  user:User;
+  user:User= new User();
   photo:string="/assets/site/img/icon/Ellipse3.png";
   constructor(private authService: AuthentificationService) { }
 
 
 
   ngOnInit(): void {
-    this.user = this.authService.getUser()!;
+
+      this.user=this.authService.getUser()!;
+     
      if(this.user.photo_profil){
         this.photo=this.user.photo_profil;
      }

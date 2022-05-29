@@ -53,11 +53,13 @@ export class SpecialityService {
     return this.httpClient.delete<Speciality>(`${this.apiUrl}/speciality/`+id,{headers:this.headers});
   }
 
+  /**  
 
   getSpeOfTrainer(id:any){
  
     return this.httpClient.get(`${this.apiUrl}/trainers/`+id+`/specialities`, {headers:this.headerss});
   }
 
+  */
 
 }

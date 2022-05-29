@@ -11,6 +11,7 @@ import { AppointmentsService } from 'src/app/services/appointments.service';
 import { AddAppointmentComponent } from '../../Trainer/tappointments/modal-add-appointment/add-appointment.component';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AddAppointmentCComponent } from '../Client/cappointments/modal-add-appointment/add-appointmentc.component';
+import { environment } from 'src/environments/environment';
 
 
 @Component({
@@ -25,6 +26,7 @@ export class TrainerprofileComponent implements OnInit {
   added:boolean;
   isAuth:boolean =false;
   Role:any;
+  url:string=environment.urlServeur;
 
   calendarOptions: CalendarOptions = {
     headerToolbar: {

@@ -74,6 +74,11 @@ export class AppointmentsService {
 
   }
 
+  
+  completedappOfTrainer(){
+    return this.httpClient.get(`${this.BASE_URL}/api/v1/trainer/completedapp`,{headers:this.headers});
+
+  }
   getTrainerApp(){
     return this.httpClient.get(`${this.BASE_URL}/api/v1/trainer/appointments`,{headers:this.headers});
   }

@@ -21,6 +21,8 @@ import { AppointmentsTComponent } from './Trainer/tappointments/appointments.com
 import { TlayoutComponent } from './Trainer/tlayout/tlayout.component';
 import { MessagesComponent } from './pages/Client/messages/messages.component';
 import { ConversationComponent } from './pages/Client/messages/conversation/conversation.component';
+import { ConverComponent } from './Trainer/messages/conversation/conversation.component';
+import { MessagesTComponent } from './Trainer/messages/messages.component';
 
 const siteRoutes: Routes = [
   {
@@ -124,6 +126,16 @@ const siteRoutes: Routes = [
               {
                 path: 'appointments',
                 component: AppointmentsTComponent
+              },
+
+              {
+                path: 'chats',
+                component: ConverComponent
+              },
+
+              {
+                path: 'chats/:id',
+                component: MessagesTComponent
               },
               
               

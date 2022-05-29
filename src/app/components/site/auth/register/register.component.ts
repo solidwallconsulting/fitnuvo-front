@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import Validation from 'src/app/components/admin/provides/CustomValidators';
 import { Loginresult } from 'src/app/models/loginresult.model';
 import { User } from 'src/app/models/user.model';
 import { AuthentificationService } from 'src/app/services/authentification.service';
@@ -28,8 +29,8 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit(): void {
     this.registerFormC = this.formBuilder.group({
-      firstname: ["", [ Validators.required]],
-      secondname: ["", [ Validators.required]],
+      firstname: ["", [ Validators.required,Validators.pattern('^[a-zA-ZÁáÀàÉéÈèÍíÌìÓóÒòÚúÙùÑñüÜ \-\']+')]],
+      secondname: ["", [ Validators.required,Validators.pattern('^[a-zA-ZÁáÀàÉéÈèÍíÌìÓóÒòÚúÙùÑñüÜ \-\']+')]],
       email: ["",  [Validators.email,Validators.required]],
       gender: ["", [ Validators.required]],
       datebirth: ["", [ Validators.required]],
@@ -39,22 +40,27 @@ export class RegisterComponent implements OnInit {
       adress: ["", [Validators.required]],
     },
     {
-      validator: MustMatch('password', 'repeatpassword')
-    }
+      validators: [Validation.match('password', 'repeatpassword')]
+    }   
     ),
     this.registerFormT = this.formBuilder.group({
-      firstname: ["", [ Validators.required]],
-      secondname: ["", [ Validators.required]],
+      firstname: ["", [ Validators.required,Validators.pattern('^[a-zA-ZÁáÀàÉéÈèÍíÌìÓóÒòÚúÙùÑñüÜ \-\']+')]],
+      secondname: ["", [ Validators.required,Validators.pattern('^[a-zA-ZÁáÀàÉéÈèÍíÌìÓóÒòÚúÙùÑñüÜ \-\']+')]],
       email: ["",  [Validators.email,Validators.required]],
       gender: ["", [ Validators.required]],
       datebirth: ["", [ Validators.required]],
       password: ["", [Validators.required]],
       repeatpassword: ["", [Validators.required]],
-      phone: ["", [Validators.required]],
+      phone: ["", [Validators.required,Validators.pattern("[0-9 ]{12}")]],
       adress: ["", [Validators.required]],
       experience: ["", [Validators.required]],
       price: ["", [Validators.required]],
-    });
+    },
+    {
+      validators: [Validation.match('password', 'repeatpassword')]
+    }  
+    
+    );
   }
 
   get formControl() {
@@ -193,11 +199,14 @@ export class RegisterComponent implements OnInit {
     }
 
     openLoginForm(): void {
-      this.IsmodelShow=true;
+      this.modalService.dismissAll(RegisterComponent);
+      const modalReff = this.modalService.open(LoginComponent); 
     }
   
      openRegisterForm(): void {
       const modalReff = this.modalService.open(RegisterComponent); 
      }
+
+
 
 }

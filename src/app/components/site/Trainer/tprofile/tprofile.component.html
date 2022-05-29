@@ -25,29 +25,42 @@
                 <div class="tab-content" id="myTabContent">
                     <!-- info form-->
                     <div class="tab-pane fade show active" id="ginfo" role="tabpanel" aria-labelledby="ginfo-tab">
-                       <form [formGroup]="profileCform" (ngSubmit)="EditprofileClient()" >
+                      
+                        <form [formGroup]="profileCform" (ngSubmit)="EditprofileClient()" >
                             <div class="row">
                                <div class="form-group mt-3 mb-3 col-md-6"> 
                                    <label for="inputName" class="form-label">First Name</label> 
                                    <input type="text"  class="form-control" formControlName="firstname" id="inputfn"  [(ngModel)]="user.firstname" > 
                           
+                                   <div *ngIf="f.firstname.touched && f.firstname.invalid" class="text-danger">
+                                    <div *ngIf="f.firstname.errors?.required">*Firstname is required.</div>
+                                    <div *ngIf="f.firstname.errors?.pattern">*The Firstname must only contain letters.</div>
+                                  </div>
                                </div>
                                 <div class="form-group mt-3 mb-3 col-md-6"> 
                                     <label for="inputName" class="form-label">Last Name</label> 
-                                    <input type="text"   class="form-control" formControlName="secondname"  id="inputln" [(ngModel)]="user.secondname"> 
+                                    <input type="text"   class="form-control" formControlName="secondname"   [(ngModel)]="user.secondname"> 
                        
+                                    <div *ngIf="f.secondname.touched && f.secondname.invalid" class="text-danger">
+                                        <div *ngIf="f.secondname.errors?.required">*Lastname is required.</div>
+                                        <div *ngIf="f.secondname.errors?.pattern">*The Lastname must only contain letters.</div>
+                                      </div>
                                 </div>
                             </div>
                             <!---->
                             <div class="row">
                                 <div class="form-group mt-3 mb-3 col-md-6"> 
                                     <label for="inputName" class="form-label">Email</label> 
-                                    <input type="email" formControlName="email"  name="email" class="form-control" id="inputemail" [(ngModel)]="user.email"> 
+                                    <input type="email" formControlName="email"   class="form-control"  [(ngModel)]="user.email"> 
                              
+                                    <div *ngIf="f.email.touched && f.email.invalid" class="text-danger">
+                                        <div *ngIf="f.email.errors?.required">*Email is required.</div>
+                                        <div *ngIf="f.email.errors?.email">*The email must be a valid email address.</div>
+                                     </div>
                                 </div>
                                 <div class="form-group mt-3 mb-3 col-md-6"> 
                                     <label for="inputName" class="form-label">Date of birth</label> 
-                                    <input  formControlName="datebirth"  class="form-control"  id="inputdate" type="date" [(ngModel)]="user.datebirth">
+                                    <input  formControlName="datebirth"  class="form-control"   type="date" max="2000-01-01" [(ngModel)]="user.datebirth">
                                 
                                 </div>
                             </div>
@@ -56,13 +69,32 @@
                             <div class="row">
                                 <div class="form-group mt-3 mb-3 col-md-6"> 
                                     <label for="inputName" class="form-label">Price per Hour</label> 
-                                    <input type="text" formControlName="price"  name="email" class="form-control" id="inputemail" [(ngModel)]="user.price"> 
+                                    <input type="text" formControlName="price"  name="price" class="form-control"  [(ngModel)]="user.price"> 
                              
+                                    <div *ngIf="f.price.touched && f.price.invalid" class="text-danger">
+                                        <div *ngIf="f.price.errors?.required">*Price is required.</div>
+                                        <div *ngIf="f.price.errors?.min">*The Price must between 20£ and 200£.</div>
+                                        <div *ngIf="f.price.errors?.max">*The Price must between 20£ and 200£.</div>
+                                        <div *ngIf="f.price.errors?.pattern">*The Price must have type number.</div>
+
+                                    </div>
                                 </div>
                                 <div class="form-group mt-3 mb-3 col-md-6"> 
                                     <label for="inputName" class="form-label">Experience</label> 
-                                    <input  formControlName="experience"  class="form-control"  id="inputdate" type="text" [(ngModel)]="user.experience">
                                 
+                                    <select formControlName="experience" class="form-control"  [(ngModel)]="user.experience">
+                                        <option value="1"> 1 year </option>
+                                        <option value="2">2 years </option>
+                                        <option value="3">+3 years </option>
+
+                                    </select>
+                               
+
+                                    <div *ngIf="f.experience.touched && f.experience.invalid" class="text-danger">
+                                        <div *ngIf="f.experience.errors?.required">*Experience is required.</div>
+                                       
+
+                                    </div>
                                 </div>
                             </div>
                             <!---->
@@ -82,18 +114,6 @@
                             </div> 
 
 
-                            <div class="row">    
-
-                                <div class="form-group mt-3 mb-3 col-md-6"> <label for="inputName" class="form-label">Activities</label> 
-                                    
-                                  
-                               
-                                </div>
-
-                                <div class="form-group mt-3 mb-3 col-md-6"> 
-                                  
-                                </div>
-                            </div> 
                              
                             <div class="mt-3 mb-3 col-md-12"> 
                                 <label for="inputName" class="form-label">Adresse</label> 
@@ -122,7 +142,7 @@
                                 <div class="col-sm"></div>
                                 <div class="col-sm">
 
-                                    <input type="file" formControlName="image"  class="form-control fileform"    (change)="uploadImage($event)" >
+                                    <input type="file" formControlName="image"  class="form-control fileform"   (change)="uploadImage($event)" >
       
 
 
@@ -144,44 +164,111 @@
 
                      <!-- Description form -->
                      <div class="tab-pane fade" id="gdesc" role="tabpanel" aria-labelledby="gdesc-tab">
-                        <form [formGroup]="FormDesc" (ngSubmit)="EditPassword()" >
+
+
+                       <div class="accordion" id="accordionExample">
+
+
+                        <div class="accordion-item  coach-descri-body">
+                          <h2 class="accordion-header" id="headingCertif">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseCertif" aria-expanded="true" aria-controls="collapseCertif">
+                              <span class="text-color-primary">My Certifications</span>
+                            </button>
+                          </h2>
+                          <div id="collapseCertif" class="accordion-collapse collapse " aria-labelledby="headingCertif" data-bs-parent="#accordionExample">
+                            <div class="accordion-body ">
+                             
+                                <ng2-smart-table [settings]="settings" [source]="certifications"  (deleteConfirm)="onActionCertif($event)"  class="card card-xxl-stretch mb-xl-8 mt-6" style="margin-top: 15px;"
+                                    >
+                                </ng2-smart-table>
+    
+                            </div>
+                          </div>
+                        </div>
+          
+                      </div>
+                       
+
+                       <div class="accordion" id="accordionExample">
+
+
+                        <div class="accordion-item  coach-descri-body">
+                          <h2 class="accordion-header" id="headingOne">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSchedule" aria-expanded="true" aria-controls="collapseSchedule">
+                              <span class="text-color-primary">My Achievements</span>
+                            </button>
+                          </h2>
+                          <div id="collapseSchedule" class="accordion-collapse collapse " aria-labelledby="headingSchedule" data-bs-parent="#accordionExample">
+                            <div class="accordion-body ">
+                             
+                                <ng2-smart-table [settings]="settings2" [source]="achivements"  (deleteConfirm)="onActiond($event)"  class="card card-xxl-stretch mb-xl-8 mt-6" style="margin-top: 9px;"
+                                >
+                               </ng2-smart-table>
+    
+                            </div>
+                          </div>
+                        </div>
+          
+                      </div>
+                       
+                        <form [formGroup]="FormDesc" (ngSubmit)="Editdesc()" class="mt-2" >
                            <div class="row">
                          
-                            <div class=" mb-3 col-md-12"> 
+                            <div class="form-group mb-3 col-md-12"> 
                                 <label for="inputName" class="form-label">About me</label> 
-                                <textArea id="inputlocation" class="form-control" formControllerName="description" > </textArea>
+                                <input  class="form-control" formControlName="description" [(ngModel)]="user.description">
                                <!-- <div *ngIf="formControl.adress.touched && formControl.adress.errors" class="text-danger">
                                     <div  class="mt-1" *ngIf="formControl.adress.errors.required"><i class="ti-info-alt"></i> Home adress is required.</div>
                                 </div>-->  
-                            </div> 
-                            <div class="mb-3 col-md-6"> <label for="inputName" class="form-label">Certificate name 1 </label> 
-                                <input type="password" formControlName="password"  class="form-control" id="inputpassword" placeholder="Enter your password" >
-                                
-                             </div>
-                             <div class="mb-3 col-md-6"> <label for="inputName" class="form-label">Certificate Upload 1 </label> 
-                                <input type="file" formControlName="password"  class="form-control" id="inputpassword" placeholder="Enter your password" >
-                                
-                             </div>
-                             <div class="mb-3 col-md-6"> <label for="inputName" class="form-label">Certificate name 2 </label> 
-                                <input type="password" formControlName="password"  class="form-control" id="inputpassword" placeholder="Enter your password" >
-                                
-                             </div>
-                             <div class="mb-3 col-md-6"> <label for="inputName" class="form-label">Certificate Upload 2 </label> 
-                                <input type="file" formControlName="password"  class="form-control" id="inputpassword" placeholder="Enter your password" >
-                                
-                             </div>
 
-                             <div class="mb-3 col-md-6"> <label for="inputName" class="form-label">Certificate name 3 </label> 
-                                <input type="password" formControlName="password"  class="form-control" id="inputpassword" placeholder="Enter your password" >
-                                
+                                <div *ngIf="fdesc.description.touched && fdesc.description.invalid" class="text-danger">
+                                    <div *ngIf="fdesc.description.errors?.required">*Description is required.</div>
+                                </div>
+                            </div> 
+                            <div class="form-group mb-3 col-md-6"> <label for="inputName" class="form-label">Certificatation Description</label> 
+                                <input type="text"  class="form-control"  formControlName="certifname1"  >
+                                <div *ngIf="fdesc.certifname1.touched && fdesc.certifname1.invalid" class="text-danger">
+                                    <div *ngIf="fdesc.certifname1.errors?.required">*Certification name is required.</div>
+                                </div>
                              </div>
-                             <div class="mb-3 col-md-6"> <label for="inputName" class="form-label">Certificate Upload 3 </label> 
-                                <input type="file" formControlName="password"  class="form-control" id="inputpassword" placeholder="Enter your password" >
+                             <div class="form-group mb-3 col-md-6"> <label for="inputName" class="form-label">Certificatation Upload </label> 
+                                <input type="file" formControlName="certifup1"  class="form-control" (change)="uploadcertif($event)" >
                                 
+                                <div *ngIf="fdesc.certifup1.touched && fdesc.certifup1.invalid" class="text-danger">
+                                    <div *ngIf="fdesc.certifup1.errors?.required">*You should add atleast one certification.</div>
+                                </div>
                              </div>
+                        
+
+
+
+                             <div class="form-group mt-3 mb-3 col-md-6"> <label for="inputName" class="form-label">Activities</label> 
+                                <select formControlName="speciality" class="form-control"  >
+                                    <option value="">--select--</option>
+                                    <ng-container *ngFor="let spec of myspecialities">
+                                        <option value="{{spec.speciality_id}}"> {{spec.speciality_name}} </option>
+
+                                    </ng-container>
+                                    
+                                </select>
+                           
+                            </div>
+
+
+                             <div class="form-group mb-3 col-md-12"> 
+                                <label for="inputName" class="form-label">Achievements</label> 
+                                <input id="inputlocation" class="form-control" formControlName ="achv" >
+                               <!-- <div *ngIf="formControl.adress.touched && formControl.adress.errors" class="text-danger">
+                                    <div  class="mt-1" *ngIf="formControl.adress.errors.required"><i class="ti-info-alt"></i> Home adress is required.</div>
+                                </div>-->  
+
+                                <div *ngIf="fdesc.achv.touched && fdesc.achv.invalid" class="text-danger">
+                                    <div *ngIf="fdesc.achv.errors?.required">*Achievements is required.</div>
+                                </div>
+                            </div> 
                             
                           </div>
-                          <div class="mt-3 mb-3 row"> <button class="btn btn-primary full-width" type="submit" style="background: linear-gradient(135deg,#3a8ffe 0%,#9658fe 100%);">Save</button> </div>
+                          <div class="mt-3 mb-3 row"> <button class="btn btn-primary full-width" type="submit" style="background: linear-gradient(135deg,#3a8ffe 0%,#9658fe 100%);">Update</button> </div>
                         </form>
                     </div>
 
@@ -189,17 +276,36 @@
                     <div class="tab-pane fade" id="gpwd" role="tabpanel" aria-labelledby="gpwd-tab">
                         <form [formGroup]="FormEditPass" (ngSubmit)="EditPassword()" >
                            <div class="row">
-                            <div class="mb-3 col-md-12"> <label for="inputName" class="form-label">Old Password</label>
-                                 <input type="password" formControlName="oldpassword"  class="form-control" id="inputpassword" placeholder="Enter your password" >
+                            <div class="form-group mb-3 col-md-12"> <label for="inputName" class="form-label">Old Password</label>
+                                 <input type="password" formControlName="oldpwd"  class="form-control"  placeholder="Enter your password" >
                               
-                            </div>
-                            <div class="mb-3 col-md-12"> <label for="inputName" class="form-label">New Password</label> 
-                                <input type="password" formControlName="password"  class="form-control" id="inputpassword" placeholder="Enter your password" >
+                                 <div *ngIf="fpass.oldpwd.touched && fpass.oldpwd.invalid" class="text-danger">
+                                    <div *ngIf="fpass.oldpwd.errors?.required">*Current Password is required.</div>
+                                </div>
                                 
+                            </div>
+                            <div class="form-group mb-3 col-md-12"> <label for="inputName" class="form-label">New Password</label> 
+                                <input type="password" formControlName="newpwd"  class="form-control"  placeholder="Enter your password" >
+                                
+                                <div *ngIf="fpass.newpwd.touched && fpass.newpwd.invalid" class="text-danger">
+                                    <div *ngIf="fpass.newpwd.errors?.required">*New Password is required.</div>
+                                   
+
+                                </div>
                              </div>
-                            <div class="mb-3 col-md-12"> <label for="inputName" class="form-label">Repeat Password</label>
-                                 <input type="password" formControlName="repeatpassword"  class="form-control" id="inputrpassword" placeholder="Repeat your password" required=""> 
+                            <div class="form-group mb-3 col-md-12"> <label for="inputName" class="form-label">Repeat Password</label>
+                                 <input type="password"  class="form-control" formControlName="repeatpassword"   placeholder="Repeat your password" required=""> 
                             
+                                 <div *ngIf="fpass.repeatpassword.touched && fpass.repeatpassword.invalid" class="text-danger">
+                                    <div *ngIf="fpass.repeatpassword.errors?.required">*Confirm Password is required.</div>
+                                    <div *ngIf="fpass.repeatpassword.errors?.match">*New ssPassword is required.</div>
+
+
+                                </div>
+
+
+
+
                             </div>
                           </div>
                           <div class="mt-3 mb-3 row"> <button class="btn btn-primary full-width" type="submit" style="background: linear-gradient(135deg,#3a8ffe 0%,#9658fe 100%);">Save</button> </div>

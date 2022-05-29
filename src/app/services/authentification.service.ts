@@ -66,6 +66,14 @@ export class AuthentificationService {
     public login(email:string,password:string):Observable<HttpResponse<Loginresult>>{
       return this.http.post<Loginresult>(`${environment.Base_Url}/api/v1/login`,{email:email,password:password},{observe:'response'});
     }
+
+    public logintr(email:string,password:string):Observable<HttpResponse<Loginresult>>{
+      return this.http.post<Loginresult>(`${environment.Base_Url}/api/v1/logintr`,{email:email,password:password},{observe:'response'});
+    }
+
+    public logincl(email:string,password:string):Observable<HttpResponse<Loginresult>>{
+      return this.http.post<Loginresult>(`${environment.Base_Url}/api/v1/logincl`,{email:email,password:password},{observe:'response'});
+    }
     
       public isAuthenticated(): boolean {
         const token = localStorage.getItem('token');
@@ -99,16 +107,15 @@ export class AuthentificationService {
   
     // User Info
     user() {
-      const user: any = localStorage.getItem('user');
-      const userObj = JSON.parse(user);
+      const token: any = localStorage.getItem('token');
   
-      const token = userObj.token;
       const headers = new HttpHeaders({
-        Authorization: `Bearer ${token}`,
+        Authorization: `Bearer ${JSON.parse(token)}`,
       });
       return this.http.get(this.BASE_URL+'/api/v1/user/me', {
         headers: headers,
       });
+
     }
 
      // Logout

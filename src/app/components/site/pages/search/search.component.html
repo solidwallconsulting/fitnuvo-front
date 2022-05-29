@@ -337,9 +337,9 @@
         <div class="coach-list">
             <div class="row">
                 <div class="col-md-6 col-sm-12 coach-card mb-3" *ngFor="let trainer of trainers['data'] | paginate: { itemsPerPage: 10, currentPage: p } ">
-                    <div class="card" (click)="openProfile(trainer.trainer_id)">
+                    <div  class="card" (click)="openProfile(trainer.trainer_id)">
                         <div class="d-flex">
-                            <div class="coach-image" style="background-image: url({{trainer.photo_profil}});"></div>
+                            <div class="coach-image" style="background-image: url({{url}}/storage/images/trainer/{{trainer.photo_profil}});"></div>
                             <div class="w-100">
                                 <div class="card-body">
                                     <div class="d-flex justify-content-between">

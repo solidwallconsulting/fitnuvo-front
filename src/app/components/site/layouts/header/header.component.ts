@@ -17,7 +17,7 @@ import { environment } from 'src/environments/environment';
 export class HeaderComponent implements OnInit {
   closeResult = '';
   isAuth:boolean =false;
-  user:User;
+  user:User=new User();
   Role:any;
   url:string=environment.urlServeur;
 
@@ -29,7 +29,14 @@ export class HeaderComponent implements OnInit {
    this.Role=this.authService.getRole();
    if(this.isAuth)
    {
-     this.user = this.authService.getUser()!;
+     /*
+    this.authService.user().subscribe((data:any)=>{
+      console.log("dataaa",data['user']);
+      this.user=data['user'];
+      console.log("dddd",this.user);
+
+    });*/
+    this.user=this.authService.getUser()!;
      if(this.user.photo_profil){
         this.photo=this.user.photo_profil;
      }

@@ -32,7 +32,7 @@
         <div class="container">
              <div class="row">
                  <div class="col-sm-6 col-md-5">
-                    <img class="coach-image-card"  width="500px"  src="{{trainer.photo_profil}}" >
+                    <img class="coach-image-card"  width="500px"  src="{{url}}/storage/images/trainer/{{trainer.photo_profil}}" >
 
                  </div>
                  <div class="col-sm-6 col-md-7">
@@ -121,7 +121,7 @@
 
 
     
-    <section class="descreption-section mt-5">
+    <section class="descreption-section mt-5" *ngIf="isAuth && Role=='client'" >
         <div class="container">
             <div class="card card-body">
                 
@@ -239,7 +239,7 @@
                                     <ng-container *ngIf="i<2"> 
                                     <div>
                                         
-                                        <img  src ="{{rev.client.photo_profil}}"  width="40px" class="rounded-circle float-right"  > &nbsp;  
+                                        <img  src ="{{url}}/storage/images/trainer/{{rev.client.photo_profil}}"  width="40px" class="rounded-circle float-right"  > &nbsp;  
                                         <strong > 
                                             {{rev.client.first_name}} {{rev.client.last_name}} 
                                          </strong>

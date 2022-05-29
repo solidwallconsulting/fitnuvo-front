@@ -6,6 +6,7 @@ import { Loginresult } from 'src/app/models/loginresult.model';
 import { User } from 'src/app/models/user.model';
 import { AuthentificationService } from 'src/app/services/authentification.service';
 import { NotifyService } from 'src/app/services/notify.service';
+import { RegisterComponent } from '../register/register.component';
 import { ResetpasswordComponent } from '../resetpassword/resetpassword.component';
 
 @Component({
@@ -15,7 +16,10 @@ import { ResetpasswordComponent } from '../resetpassword/resetpassword.component
 })
 export class LoginComponent implements OnInit {
   public loginFormV!: FormGroup;
+  loginFormT:FormGroup;
   public submitted = false;
+  public submitted2 = false;
+
   user:User;
   serverErrors = [];
   result: Loginresult;
@@ -34,6 +38,17 @@ export class LoginComponent implements OnInit {
       ]
     });
 
+
+    this.loginFormT = this.formBuilder.group({
+      emailt: ["", [Validators.email, Validators.required]],
+      passwordt: [
+        "",
+        [
+          Validators.required,
+          Validators.minLength(8),         
+        ]
+      ]
+    });
     this.serverErrors=[];
  
   }
@@ -46,6 +61,9 @@ export class LoginComponent implements OnInit {
    
    get formControl() {
     return this.loginFormV.controls;
+  }
+  get f() {
+    return this.loginFormT.controls;
   }
 
   onLogin(){
@@ -60,7 +78,7 @@ export class LoginComponent implements OnInit {
          
     }
      // console.log(email, password);
-          this.auth.login(email,password).subscribe((res:any)=>{
+         /* this.auth.logincl(email,password).subscribe((res:any)=>{
           console.log(res);
           localStorage.removeItem('token');
           localStorage.setItem('token', res.token);
@@ -73,8 +91,8 @@ export class LoginComponent implements OnInit {
           
             console.log(this.serverErrors);
             console.log(err);
-        });
-        this.auth.login(email,password).subscribe(res =>{
+        });*/
+        this.auth.logincl(email,password).subscribe(res =>{
           if(res.status === 200){
             this.result = res.body!;
             localStorage.setItem('token',JSON.stringify(this.result.token));
@@ -85,29 +103,30 @@ export class LoginComponent implements OnInit {
             localStorage.setItem('user', JSON.stringify(this.result.user));
             localStorage.setItem('ROLE', JSON.stringify(this.result.role));
             this.auth.setMenu(this.result.menu);
-            
+            this.modalService.dismissAll(LoginComponent)
+
             this.notifyService.showSuccess("Welcome to Fitnuvo", "Fitnuvo");
             this.router.navigate([`/user`]);
           }
-          },error => {
+          },(error:any) => {
             this.notifyService.showError(error.error.message, "Fitnuvo"); 
         });
 
       }
   loginTrainer(){
     
-        const email = this.formControl.email.value;
-        const password = this.formControl.password.value;
+        const email = this.f.emailt.value;
+        const password = this.f.passwordt.value;
 
-        this.submitted = true;
+        this.submitted2 = true;
 
-        if(this.loginFormV.invalid){
+        if(this.loginFormT.invalid){
         
         return;
         
         }
 
-        this.auth.login(email,password).subscribe(res =>{
+        this.auth.logintr(email,password).subscribe(res =>{
           if(res.status === 200){
             this.result = res.body!;
             localStorage.setItem('token',JSON.stringify(this.result.token));
@@ -120,6 +139,8 @@ export class LoginComponent implements OnInit {
             localStorage.setItem('visible', JSON.stringify(this.result.user.is_visible));
 
             this.auth.setMenu(this.result.menu);
+            this.modalService.dismissAll(LoginComponent)
+
             
             this.notifyService.showSuccess("Welcome to Fitnuvo", "Fitnuvo");
             this.router.navigate([`/trainerme`]);
@@ -133,6 +154,11 @@ export class LoginComponent implements OnInit {
 
  }
 
+
+ openRegisterForm(): void {
+   this.modalService.dismissAll(LoginComponent)
+  const modalReff = this.modalService.open(RegisterComponent); 
+ }
 
       
    

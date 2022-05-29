@@ -1,11 +1,13 @@
 import { LabelType, Options } from '@angular-slider/ngx-slider';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { User } from 'src/app/models/user.model';
 import { AuthentificationService } from 'src/app/services/authentification.service';
 import { NotifyService } from 'src/app/services/notify.service';
 import { SpecialityService } from 'src/app/services/speciality.service';
 import { TrainerService } from 'src/app/services/trainer.service';
 import { WishlistService } from 'src/app/services/wishlist.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-search',
@@ -56,6 +58,8 @@ export class SearchComponent implements OnInit {
   selected_sort:any=[]
   isAuth:boolean =false;
   Role:any;
+  url:string=environment.urlServeur;
+  user:User;
 
 
 
@@ -64,10 +68,7 @@ export class SearchComponent implements OnInit {
 
   ngOnInit(): void {
     
-    this.TrainerService.getAll().subscribe((data)=>{
-      this.trainers = data;
-      console.log(this.trainers);
-    })
+
     this.SpecialityService.getAll().subscribe((data)=>{
       this.specialities = data;
       console.log(this.specialities);
@@ -75,7 +76,28 @@ export class SearchComponent implements OnInit {
 
     this.isAuth= this.authService.isAuthenticated();
     this.Role=this.authService.getRole();
+    this.user=this.authService.getUser();
 
+    if (this.authService.isAuthenticated() && this.authService.getRole()==='trainer'){
+
+
+      console.log('step1')
+      this.TrainerService.getAllByAuth().subscribe((data)=>{
+        this.trainers = data;
+        console.log(this.trainers);
+      })
+    }else{
+      console.log('step2')
+
+
+      this.TrainerService.getAll().subscribe((data)=>{
+        this.trainers = data;
+        console.log(this.trainers);
+      })
+
+
+      
+    }
 
 
   }

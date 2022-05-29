@@ -13,16 +13,21 @@
                     <form [formGroup]="registerFormC" (ngSubmit)="onRegisterClient()" >
                         <div class="form-row form-group">
                             <div class="mt-3 mb-3 col-md-12 "> <label for="inputName" class="form-label">First Name</label> <input type="text"  class="form-control" formControlName="firstname" id="inputfn" placeholder="Enter your firstname" > 
-                                <div *ngIf="formControl.firstname.touched && formControl.firstname.errors" class="text-danger">
-                                    <div  class="mt-1"   *ngIf="formControl.firstname.errors.required"><i class="ti-info-alt"></i> First Name is required.</div>
+                        
 
-                                </div>
+                                <div *ngIf="formControl.firstname.touched && formControl.firstname.invalid" class="text-danger">
+                                    <div *ngIf="formControl.firstname.errors?.required"><i class="ti-info-alt"></i> Firstname is required.</div>
+                                    <div *ngIf="formControl.firstname.errors?.pattern"><i class="ti-info-alt"></i> The Firstname must only contain letters.</div>
+                                  </div>
                             </div>
                             <div class="mt-3 mb-3 col-md-12"> <label for="inputName" class="form-label">Last Name</label> <input type="text"   class="form-control" formControlName="secondname"  id="inputln" placeholder="Enter your secondname" > 
                                 <div *ngIf="formControl.secondname.touched && formControl.secondname.errors" class="text-danger">
                                     <div  class="mt-1"   *ngIf="formControl.secondname.errors.required"><i class="ti-info-alt"></i> Last Name is required.</div>
+                                    <div *ngIf="formControl.secondname.errors?.pattern"><i class="ti-info-alt"></i> The Lastname must only contain letters.</div>
 
                                 </div>
+
+                                
                             </div>
                             
                             <div class="mt-3 mb-3 col-md-12"> <label for="inputName" class="form-label">Email</label> <input type="email"formControlName="email"   class="form-control" id="inputemail" placeholder="toto@exemple.com" > 
@@ -32,7 +37,7 @@
 
                                 </div>
                             </div>
-                            <div class="mt-3 mb-3 col-md-12"> <label for="inputName" class="form-label">Date-birth</label> <input  formControlName="datebirth"  class="form-control"  id="inputdate" name="date" placeholder="MM/DD/YYY" type="date">
+                            <div class="mt-3 mb-3 col-md-12"> <label for="inputName" class="form-label">Date-birth</label> <input  formControlName="datebirth"  class="form-control"  id="inputdate" name="date" placeholder="MM/DD/YYY" type="date" max="2000-01-01">
                                 <div *ngIf="formControl.datebirth.touched && formControl.datebirth.errors" class="text-danger">
                                     <div  class="mt-1"   *ngIf="formControl.datebirth.errors.required"><i class="ti-info-alt"></i> Date of Birthday is required.</div>
 
@@ -46,7 +51,9 @@
                                 </div>
                             </div>
                             <div class="mt-3 mb-3 col-md-12"> <label for="inputName" class="form-label">Gender</label> 
-                                <select formControlName="gender" class="form-control" placeholder="Man" >
+                                <select formControlName="gender" class="form-control"  >
+                                    <option value="" >---Select---</option>
+
                                     <option value="H"  selected>Man </option>
                                     <option value="F" >Women </option>
                                 </select>
@@ -86,7 +93,7 @@
                             <div class="mb-3 col-md-12 form-check">
                                
                                     <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                                    <label class="form-check-label" for="exampleCheck1"> I agree to the privacy policy, website terms and booking terms</label>
+                                    <a class="form-check-label" for="exampleCheck1" style="color: black;text-decoration: underline;"> I agree to the privacy policy, website terms and booking terms</a>
                                  
                                 
                             </div>
@@ -94,7 +101,7 @@
                         <div class="mt-3 mb-3 row"> <button class="btn btn-primary full-width" type="submit">Sign Up</button> </div>
                     </form>
                 
-                    <div class="row"> <a class="mt-4 text-dark text-center "> Already have a booker account? <strong> Sign In </strong> now </a> </div>
+                    <div class="row"> <a class="mt-4 text-dark text-center "> Already have a booker account? <strong (click)="openLoginForm()"> Sign In </strong> now </a> </div>
 
                 </div>
                 <div class="tab-pane fade" id="registertrainer" role="tabpanel" aria-labelledby="registertrainer-tab">
@@ -105,16 +112,20 @@
                             <div class="form-row form-group">
                                 <div class="mt-3 mb-3 col-md-12"> <label for="inputName" class="form-label">First Name</label> <input type="text" class="form-control"  formControlName="firstname" id="inputf" placeholder="Enter your firstname" required="">
                                  
-                                    <div *ngIf="formControlT.firstname.touched && formControlT.firstname.errors" class="text-danger">
-                                        <div  class="mt-1"   *ngIf="formControlT.firstname.errors.required"><i class="ti-info-alt"></i> First Name is required.</div>
-    
-                                    </div>
+                         
+
+                                    <div *ngIf="formControlT.firstname.touched && formControlT.firstname.invalid" class="text-danger">
+                                        <div *ngIf="formControlT.firstname.errors?.required"> <i class="ti-info-alt"></i> Firstname is required.</div>
+                                        <div *ngIf="formControlT.firstname.errors?.pattern"><i class="ti-info-alt"></i> The Firstname must only contain letters.</div>
+                                      </div>
                                 </div>
                                 <div class="mt-3 mb-3 col-md-12"> <label for="inputName" class="form-label">Last Name</label> <input type="text" class="form-control" formControlName="secondname" id="inputs" placeholder="Enter your secondname" required=""> 
-                                    <div *ngIf="formControlT.secondname.touched && formControlT.secondname.errors" class="text-danger">
-                                        <div  class="mt-1"   *ngIf="formControlT.secondname.errors.required"><i class="ti-info-alt"></i> Last Name is required.</div>
-    
-                                    </div>
+                                   
+
+                                    <div *ngIf="formControlT.secondname.touched && formControlT.secondname.invalid" class="text-danger">
+                                        <div *ngIf="formControlT.secondname.errors?.required"><i class="ti-info-alt"></i> Lastname is required.</div>
+                                        <div *ngIf="formControlT.secondname.errors?.pattern"><i class="ti-info-alt"></i> The Lastname must only contain letters.</div>
+                                      </div>
                                 </div>
                                 <div class="mt-3 mb-3 col-md-12"> <label for="inputName" class="form-label">Email</label> <input type="email" class="form-control" formControlName="email"  id="inpute" placeholder="toto@exemple.com" required=""> 
                                      <div *ngIf="formControlT.email.touched && formControlT.email.errors" class="text-danger">
@@ -124,7 +135,7 @@
                                 </div>
                                 
                                 </div>
-                                <div class="mt-3 mb-3 col-md-12"> <label for="inputName" class="form-label">Date-birth</label> <input  class="form-control"  formControlName="datebirth" id="inputda" name="date" placeholder="MM/DD/YYY" type="date" required=""> 
+                                <div class="mt-3 mb-3 col-md-12"> <label for="inputName" class="form-label">Date-birth</label> <input  class="form-control"   formControlName="datebirth" id="inputda" name="date" placeholder="MM/DD/YYY" type="date"  max="2000-01-01"> 
                                     <div *ngIf="formControlT.datebirth.touched && formControlT.datebirth.errors" class="text-danger">
                                         <div  class="mt-1"   *ngIf="formControlT.datebirth.errors.required"><i class="ti-info-alt"></i> Date of Birthday is required.</div>
     
@@ -140,7 +151,9 @@
                                 </div>
                                 <div class="mt-3 mb-3 col-md-12"> <label for="inputName" class="form-label">Gender</label> 
                                     <select class="form-control" placeholder="Man" formControlName="gender">
-                                        <option value="H"  selected>Man </option>
+                                        <option value="" >---Select---</option>
+
+                                        <option value="H"  >Man </option>
                                         <option value="F" >Women </option>
                                     </select>
                                     <div *ngIf="formControlT.gender.touched && formControlT.gender.errors" class="text-danger">
@@ -167,20 +180,24 @@
                                 </div>
                                 <div class="mt-3 mb-3 col-md-12"> <label for="inputName" class="form-label">Experience</label> 
                                     <select class="form-control" placeholder="Man" formControlName="experience">
-                                        <option value=""  selected>---Years of experience---</option>
+                                        <option value="">---Years of experience---</option>
                                         <option value="1"  >1 year  </option>
                                         <option value="2" >2 years </option>
-                                        <option value="3" >3 years </option>
-                                        <option value="4" >+3 years </option>
+                                        <option value="3" >+3 years </option>
 
                                     </select>
+
+                                    <div *ngIf="formControlT.experience.touched && formControlT.experience.errors" class="text-danger">
+                                        <div  class="mt-1"   *ngIf="formControlT.experience.errors.required"><i class="ti-info-alt"></i> Experience is required.</div>
+    
+                                    </div>
                                 </div>
                                 <div class="mt-3 mb-3 col-md-12"> <label for="inputName" class="form-label">Hourly Price</label> <input type="text"  class="form-control" formControlName="price" id="inputEmail4" placeholder="$" > </div>
 
                                 <div class="mb-3 col-md-12 form-check">
                                    
                                         <input type="checkbox" class="form-check-input" id="exampleCheck2">
-                                        <label class="form-check-label" for="exampleCheck1"> I agree to the privacy policy, website terms and booking terms</label>
+                                        <a class="form-check-label" for="exampleCheck1" style="color: black;text-decoration: underline;"> I agree to the privacy policy, website terms and booking terms</a>
                                      
                                     
                                 </div>
@@ -188,7 +205,7 @@
                             <div class="mt-3 mb-3 row"> <button class="btn btn-primary full-width" type="submit">Sign Up</button> </div>
                         </form>
                     
-                        <div class="row"> <a href="#" class="mt-4 text-dark text-center "> Already have a trainer account? <strong> Sign In </strong> now </a> </div>
+                        <div class="row"> <a href="#" class="mt-4 text-dark text-center "> Already have a trainer account? <strong (click)="openLoginForm()"> Sign In </strong> now </a> </div>
     
 
                 </div>

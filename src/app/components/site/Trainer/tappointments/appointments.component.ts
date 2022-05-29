@@ -17,6 +17,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AddAppointmentComponent } from './modal-add-appointment/add-appointment.component';
 import { LoginComponent } from '../../auth/login/login.component';
 import { EditAppointmentComponent } from './modal-edit-appointment/edit-appointment.component';
+import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-appointments',
   templateUrl: './appointments.component.html',
@@ -48,6 +49,10 @@ export class AppointmentsTComponent implements OnInit {
     photo="/assets/site/img/icon/Ellipse3.png";
     upcomingApp:any;
 
+    completedapp:any;
+    url:string=environment.urlServeur;
+
+
  
   constructor(private router:Router, private modalService: NgbModal,private auth:AuthentificationService,private formBuilder: FormBuilder,private appservice: AppointmentsService,private reviewservices : ReviewsService) { }
 
@@ -70,6 +75,15 @@ export class AppointmentsTComponent implements OnInit {
 
      this.appservice.upcomingappOfTrainer().subscribe((data:any) => {
       this.upcomingApp = data['data'];
+      console.log("chahrass",data)
+    },(err: any) => {
+      console.log("errapsp",err)
+    })
+
+
+
+    this.appservice.completedappOfTrainer().subscribe((data:any) => {
+      this.completedapp = data['data'];
       console.log("chahrass",data)
     },(err: any) => {
       console.log("errapsp",err)
