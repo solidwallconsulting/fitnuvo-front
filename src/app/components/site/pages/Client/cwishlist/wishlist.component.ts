@@ -18,6 +18,7 @@ import { MustMatch } from '../../../auth/_helpers/must-match.validator';
 export class WishlistComponent implements OnInit {
 
   //Forms
+  p: number = 1;
 
  IsmodelShow= false;
  submitted = false;
@@ -51,6 +52,8 @@ export class WishlistComponent implements OnInit {
         //sweetalert message popup
         this.notifyService.showSuccess("Trainer removed from your wishlist successfully!", "Wishlist");
   
+
+        this.ngOnInit();
         //this.registerFormC.reset();
   
       

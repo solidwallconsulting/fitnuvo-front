@@ -1,7 +1,7 @@
 export class Client {
     client_id: number;
     email: string;
-    first_name: string;
+    first_name?: string;
     last_name: string;
     is_confirmed?: number;
     member_since?: String;

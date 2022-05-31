@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { UsersService } from 'src/app/components/admin/services/users.service';
 import { getCSSVariableValue } from '../../../../../kt/_utils';
 @Component({
   selector: 'app-mixed-widget11',
@@ -7,12 +8,18 @@ import { getCSSVariableValue } from '../../../../../kt/_utils';
 export class MixedWidget11Component implements OnInit {
   @Input() chartColor: string = '';
   @Input() chartHeight: string;
+  @Input() transactions: any[];
+  @Input() data: any;
+
+
   chartOptions: any = {};
 
-  constructor() {}
+  constructor(private userS: UsersService) {}
 
   ngOnInit(): void {
     this.chartOptions = getChartOptions(this.chartHeight, this.chartColor);
+
+    
   }
 }
 
@@ -26,11 +33,11 @@ function getChartOptions(chartHeight: string, chartColor: string) {
     series: [
       {
         name: 'Net Profit',
-        data: [50, 60, 70, 80, 60, 50, 70, 60],
+        data: [50, 60, 70, 80, 60, 50, 70, 60 ,70, 60, 70, 60],
       },
       {
         name: 'Revenue',
-        data: [50, 60, 70, 80, 60, 50, 70, 60],
+        data: [50, 60, 70, 80, 60, 50, 70, 60,70, 60, 70, 60],
       },
     ],
     chart: {
@@ -60,7 +67,7 @@ function getChartOptions(chartHeight: string, chartColor: string) {
       colors: ['transparent'],
     },
     xaxis: {
-      categories: ['Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep'],
+      categories: ['Jan','Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep' ,'Oct','Nov','Dec'],
       axisBorder: {
         show: false,
       },

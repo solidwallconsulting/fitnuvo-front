@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from 'src/app/models/user.model';
 import { AuthentificationService } from 'src/app/services/authentification.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-sideprofile',
@@ -11,6 +12,8 @@ export class SideprofileComponent implements OnInit {
 
   user:User;
   photo:string="/assets/site/img/icon/Ellipse3.png";
+  url:string=environment.urlServeur;
+
   constructor(private authService: AuthentificationService) { }
 
 

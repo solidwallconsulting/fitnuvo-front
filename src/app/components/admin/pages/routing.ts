@@ -42,6 +42,12 @@ const Routing: Routes = [
       import('./add-admin/add-admin.module').then((m) => m.AddAdminModule),
   },
   {
+    path: 'features/appointments',
+    loadChildren: () =>
+      import('./appointments/appointments.module').then((m) => m.AppointmentsModule),
+  },
+  
+  {
     path: 'features/reports',
     loadChildren: () =>
       import('./reports/reports.module').then((m) => m.ReportsModule),
@@ -77,7 +83,7 @@ const Routing: Routes = [
   },
   {
     path: '',
-    redirectTo: '/dashboard',
+    redirectTo: '/admin/dashboard',
     pathMatch: 'full',
   },
   {

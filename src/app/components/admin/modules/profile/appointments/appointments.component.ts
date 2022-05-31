@@ -18,7 +18,7 @@ export class AppointmentsComponent {
 
       this.service.getTrainer(this.id).subscribe((res:any) => {
         console.log(res);
-        this.appointments = res['data'].trainer_appointments;
+        this.appointments = res['data'].trainer_appointments!;
       }, (err) => {
         console.log(err);
       });

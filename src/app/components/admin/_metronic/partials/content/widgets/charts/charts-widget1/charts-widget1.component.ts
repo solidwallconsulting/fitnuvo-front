@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { getCSSVariableValue } from '../../../../../kt/_utils';
 
 @Component({
@@ -6,29 +6,46 @@ import { getCSSVariableValue } from '../../../../../kt/_utils';
   templateUrl: './charts-widget1.component.html',
 })
 export class ChartsWidget1Component implements OnInit {
+  @Input() data: any;
+
+  datae:any[];
   chartOptions: any = {};
+
+
   constructor() {}
 
   ngOnInit(): void {
-    this.chartOptions = getChartOptions(350);
+
+    console.log('dsq',this.data)
+    this.chartOptions = getChartOptions(350,this.data);
+
+
   }
 }
 
-function getChartOptions(height: number) {
+function getChartOptions(height: number ,data:any) {
+
+  console.log("dsddd",data)
+
   const labelColor = getCSSVariableValue('--bs-gray-500');
   const borderColor = getCSSVariableValue('--bs-gray-200');
   const baseColor = getCSSVariableValue('--bs-primary');
   const secondaryColor = getCSSVariableValue('--bs-gray-300');
 
+  let months=data.map((element:any)=>  element.month);
+
+  console.log("ussnitt",months)
+  let amounts=data.map((element:any)=>  JSON.parse(element.amount));
+  
+
+  
+
   return {
     series: [
+      
       {
-        name: 'Net Profit',
-        data: [44, 55, 57, 56, 61, 58],
-      },
-      {
-        name: 'Revenue',
-        data: [76, 85, 101, 98, 87, 105],
+        name: 'Transactions total',
+        data: amounts,
       },
     ],
     chart: {
@@ -58,7 +75,7 @@ function getChartOptions(height: number) {
       colors: ['transparent'],
     },
     xaxis: {
-      categories: ['Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'],
+      categories: months,
       axisBorder: {
         show: false,
       },
@@ -110,7 +127,7 @@ function getChartOptions(height: number) {
       },
       y: {
         formatter: function (val: number) {
-          return '$' + val + ' thousands';
+          return '£' + val ;
         },
       },
     },

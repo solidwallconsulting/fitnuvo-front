@@ -1,0 +1,102 @@
+
+ <div class="row spacing">
+            <div class="col-lg-3 col-md-4">
+                <app-sideprofile></app-sideprofile>
+            </div>
+            <div class="col-md-8 col-lg-9 card-box">
+                <div class="navigation d-flex justify-content-between">
+                    <div class="bloc-nav">
+                        <ul class="nav coach-nav" id="myTab" role="tablist">
+                            <li class="nav-item">
+                              <a class="nav-link active" id="ginfo-tab" data-bs-toggle="tab" data-bs-target="#ginfo" role="tab" aria-controls="userinfo" aria-selected="true" >Notifications</a>
+                            </li>
+                            
+                          </ul>
+                    </div>
+                </div>
+                <div class="tab-content" id="myTabContent">
+                    <!-- info form-->
+                    <div class="tab-pane fade show active" id="ginfo" role="tabpanel" aria-labelledby="ginfo-tab">
+                        <div class="container-fluid " style="margin-top:30px">
+
+
+                         <div class="row" >  
+                             <ng-container *ngFor="let notif of mynotifs  | paginate: { itemsPerPage: 5, currentPage: p }  ">
+
+                             
+                                    <div class="toast info" *ngIf="notif.notif_type=='request'">
+                                        <div class="outer-container">
+                                            {{notif.notif_date}}
+                                        </div>
+                                        <div class="inner-container">
+                                            <p>Info</p>
+                                            <p>{{notif.content}}</p>
+                                        </div>
+                                        <button>&times;</button>
+                                    </div>
+
+                                    
+                                    <div class="toast success" *ngIf="notif.notif_type=='confirmed'">
+                                        <div class="outer-container">
+                                             {{notif.notif_date}}
+                                        </div>
+                                        <div class="inner-container">
+                                            <p>Confirmation</p>
+                                            <p>{{notif.content}}</p>
+                                        </div>
+                                        <button>&times;</button>
+                                    </div>
+                                    <div class="toast warning" *ngIf="notif.notif_type=='edited'">
+                                        <div class="outer-container">
+                                            {{notif.notif_date}}
+
+                                        </div>
+                                        <div class="inner-container">
+                                            <p>Warning</p>
+                                            <p>{{notif.content}}</p>
+                                        </div>
+                                        <button>&times;</button>
+                                    </div>
+
+                                    <div class="toast error" *ngIf="notif.notif_type=='canceled'">
+                                        <div class="outer-container">
+                                            {{notif.notif_date}}
+
+                                        </div>
+                                        <div class="inner-container">
+                                            <p>Warning</p>
+                                            <p>{{notif.content}}</p>
+                                        </div>
+                                        <button>&times;</button>
+                                    </div>
+
+
+                                </ng-container>
+
+
+                         </div>
+
+
+                                    <br>
+                                    <pagination-controls  class="text-center mt-10" (pageChange)="p = $event"></pagination-controls>
+
+
+
+                      
+
+                        </div>
+
+
+                    </div>
+                </div>
+                  
+                  
+
+
+
+             </div>
+</div>
+
+  
+
+

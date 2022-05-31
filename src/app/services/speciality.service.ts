@@ -12,7 +12,7 @@ export class SpecialityService {
 
   apiUrl = 'http://localhost:8000/api/v1';
 
-  constructor(private httpClient: HttpClient,private auth : AuthentificationService) { }
+  constructor(private httpClient: HttpClient,private auth : AuthService) { }
 
 /** 
   
@@ -23,10 +23,7 @@ export class SpecialityService {
 
     */
 
-   token:string = this.auth.getToken();
-   headerss = new HttpHeaders({
-    Authorization: `Bearer ${this.token}`,
-    });
+   
 
     headers = new HttpHeaders({'Content-Type': 'application/json'});
 
@@ -38,19 +35,31 @@ export class SpecialityService {
 
 
   addCategorie(data:any){
+    const token:string = this.auth.getToken();
+   const headerss = new HttpHeaders({
+    Authorization: `Bearer ${token}`,
+    });
     console.log(data);
-    return this.httpClient.post<Speciality>(`${this.apiUrl}/speciality`, data,{headers:this.headers});
+    return this.httpClient.post<Speciality>(`${this.apiUrl}/speciality`, data,{headers:headerss});
   }
 
   
   updateCategorie(data:any){
+    const token:string = this.auth.getToken();
+    const headerss = new HttpHeaders({
+     Authorization: `Bearer ${token}`,
+     });
     console.log(data);
-    return this.httpClient.put<Speciality>(`${this.apiUrl}/speciality/`+data.id, data,{headers:this.headers});
+    return this.httpClient.put<Speciality>(`${this.apiUrl}/speciality/`+data.id, data,{headers:headerss});
   }
 
   deleteCategorie(id:any){
+    const token:string = this.auth.getToken();
+    const headerss = new HttpHeaders({
+     Authorization: `Bearer ${token}`,
+     });
     console.log(id);
-    return this.httpClient.delete<Speciality>(`${this.apiUrl}/speciality/`+id,{headers:this.headers});
+    return this.httpClient.delete<Speciality>(`${this.apiUrl}/speciality/`+id,{headers:headerss});
   }
 
   /**  

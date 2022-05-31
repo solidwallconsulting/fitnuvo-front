@@ -1,30 +1,68 @@
 <!-- begin::Row -->
 <div class="row gy-5 g-xl-8">
-  <div class="col-xxl-4">
-    <app-mixed-widget2
-      class="card card-xl-stretch mb-xl-8"
-      chartColor="danger"
-      chartHeight="200px"
-      strokeColor="#cb1e46"
-    ></app-mixed-widget2>
+
+  <div class="col-xl-3">
+    <app-stats-widget5
+      svgIcon="../../../../assets/dashboard/media/icons/duotune/finance/fin006.svg"
+      class="card bg-warning hoverable card-xl-stretch mb-xl-8"
+      color="warning"
+      iconColor="white"
+      title="$50,000"
+      description="Milestone Reached"
+    ></app-stats-widget5>
   </div>
-  <div class="col-xxl-4">
-    <app-lists-widget5 class="card card-xxl-stretch"></app-lists-widget5>
+
+  <div class="col-xl-3">
+    <app-stats-widget5
+      svgIcon="../../../../assets/dashboard/media/icons/duotune/general/gen032.svg"
+      class="card bg-white hoverable card-xl-stretch mb-xl-8"
+      color="white"
+      iconColor="primary"
+      title="500M$"
+      description="SAP UI Progress"
+    ></app-stats-widget5>
   </div>
-  <div class="col-xxl-4">
-    <app-mixed-widget10
-      class="card card-xxl-stretch-50 mb-5 mb-xl-8"
-      chartColor="primary"
-      chartHeight="150px"
-    ></app-mixed-widget10>
-    <app-mixed-widget11
-      class="card card-xxl-stretch-50 mb-5 mb-xl-8"
-      chartColor="primary"
-      chartHeight="175px"
-    ></app-mixed-widget11>
+
+  <div class="col-xl-3">
+    <app-stats-widget5
+      svgIcon="../../../../assets/dashboard/media/icons/duotune/ecommerce/ecm008.svg"
+      class="card bg-dark hoverable card-xl-stretch mb-xl-8"
+      color="dark"
+      iconColor="white"
+      title="+3000"
+      description="New Customers"
+    ></app-stats-widget5>
   </div>
+
+  <div class="col-xl-3">
+    <app-stats-widget5
+      svgIcon="../../../../assets/dashboard/media/icons/duotune/finance/fin006.svg"
+      class="card bg-warning hoverable card-xl-stretch mb-xl-8"
+      color="warning"
+      iconColor="white"
+      title="$50,000"
+      description="Milestone Reached"
+    ></app-stats-widget5>
+  </div>
+
 </div>
 <!-- end::Row -->
+
+<div class="row gy-5 g-xl-8">
+
+  <div class="col-xl-8">
+
+    <app-charts-widget1    *ngIf="data"    
+    [data]="data"     
+
+    class="card card-xl-stretch mb-xl-8">
+    </app-charts-widget1>
+  </div>
+
+ 
+
+</div>
+
 
 <!-- begin::Row -->
 <div class="row gy-5 gx-xl-8">
@@ -33,9 +71,11 @@
       class="card card-xxl-stretch mb-xl-3"
     ></app-lists-widget3>
   </div>
+  
   <div class="col-xl-8">
     <app-tables-widget10
-      class="card card-xxl-stretch mb-5 mb-xl-8"
+      class="card card-xxl-stretch mb-5 mb-xl-8"       [users]="users"
+
     ></app-tables-widget10>
   </div>
 </div>
@@ -83,6 +123,39 @@
     ></app-lists-widget8>
   </div>
 
+</div>
+
+
+
+<div class="row gy-5 g-xl-8">
+
+
+  <div class="col-xxl-4">
+    <app-mixed-widget2
+      class="card card-xl-stretch mb-xl-8"
+      chartColor="danger"
+      chartHeight="200px"
+      strokeColor="#cb1e46"
+    ></app-mixed-widget2>
+  </div>
+  <div class="col-xxl-4">
+    <app-lists-widget5 class="card card-xxl-stretch" [appointments]="appointments"></app-lists-widget5>
+  </div>
+  <div class="col-xxl-4">
+    <app-mixed-widget10
+      class="card card-xxl-stretch-50 mb-5 mb-xl-8"
+      chartColor="primary"
+      chartHeight="150px"
+    ></app-mixed-widget10>
+    <app-mixed-widget11
+      class="card card-xxl-stretch-50 mb-5 mb-xl-8"
+      chartColor="primary"
+      chartHeight="175px"
+      [transactions]="transactions"
+      [data]="data"
+
+    ></app-mixed-widget11>
+  </div>
 </div>
 
 

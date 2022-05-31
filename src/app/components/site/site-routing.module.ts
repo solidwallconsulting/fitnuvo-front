@@ -23,6 +23,8 @@ import { MessagesComponent } from './pages/Client/messages/messages.component';
 import { ConversationComponent } from './pages/Client/messages/conversation/conversation.component';
 import { ConverComponent } from './Trainer/messages/conversation/conversation.component';
 import { MessagesTComponent } from './Trainer/messages/messages.component';
+import { NotificationsComponent } from './Trainer/notifications/notifications.component';
+import { NotificationsCComponent } from './pages/Client/notifications/notifications.component';
 
 const siteRoutes: Routes = [
   {
@@ -102,6 +104,12 @@ const siteRoutes: Routes = [
                 path: 'chats/:id',
                 component: MessagesComponent
               },
+
+              {
+                path: 'notifications',
+                component: NotificationsCComponent
+              },
+              
               
               
             ]
@@ -136,6 +144,12 @@ const siteRoutes: Routes = [
               {
                 path: 'chats/:id',
                 component: MessagesTComponent
+              },
+
+              
+              {
+                path: 'notifications',
+                component: NotificationsComponent
               },
               
               

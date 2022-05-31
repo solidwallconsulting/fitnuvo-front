@@ -11,16 +11,21 @@
                               <a class="nav-link active" id="ginfo-tab" data-bs-toggle="tab" data-bs-target="#ginfo" role="tab" aria-controls="userinfo" aria-selected="true" >APPOINTMENT</a>
                             </li>
                             <li class="nav-item">
+                                <a class="nav-link" id="gpwd1-tab" data-bs-toggle="tab" data-bs-target="#gpwd1" role="tab" aria-controls="userpassword" aria-selected="false">REQUESTS</a>
+                              </li> 
+                            <li class="nav-item">
                               <a class="nav-link" id="gimage-tab" data-bs-toggle="tab" data-bs-target="#gimage" role="tab" aria-controls="userimage" aria-selected="false" >UPCOMING</a>
                             </li>
                             <li class="nav-item">
                               <a class="nav-link" id="gpwd-tab" data-bs-toggle="tab" data-bs-target="#gpwd" role="tab" aria-controls="userpassword" aria-selected="false">COMPLETED</a>
                             </li> 
+
+                        
                           </ul>
                     </div>
                 </div>
                 <div class="tab-content mt-15" id="myTabContent">
-                    <!-- info form-->
+                    <!-- appointment form-->
                     <div class="tab-pane fade show active" id="ginfo" role="tabpanel" aria-labelledby="ginfo-tab">
                         <full-calendar [options]="calendarOptions"   
                         ></full-calendar>
@@ -30,29 +35,28 @@
 
                             <div class="tab-pane fade mt-2" id="gimage" role="tabpanel" aria-labelledby="gimage-tab">
                                     
-                              <div class="container-fluid">
-                                  <h4 >UPCOMING({{upcomingApp?.length}})</h4>
+                              <div class="container-fluid" *ngIf="upcomingapp">
 
 
-                                  <div class="row" *ngFor="let app of upcomingApp" >
+                                 <!--  <div class="row" *ngFor="let upapp of upcomingapp" >
                                       <div class="col-12 mt-3">
                                           <div class="card">
                                               <div class="card-horizontal">
                                                   <div class="img-square-wrapper">
-                                                      <img class="" width="300px" height="250px" src="{{url}}/storage/images/trainer/{{app.appointment_client.photo_profil}}" alt="Card image cap">
+                                                      <img class="" width="300px" height="250px" src="{{url}}/storage/images/trainer/notyet.png" alt="Card image cap">
                                                   </div>
                                                   <div class="card-body"  >
                                                       <div style="float:right;"> 
-                                                          <button type="button" class="btn2 btn-outline-primary btn-sm" (click)="openEditForm(app.appointment_id)" >Edit</button> &nbsp;
+                                                          <button type="button" class="btn2 btn-outline-primary btn-sm" (click)="openEditForm(upapp.appointment_id)" >Edit</button> &nbsp;
                                                           <button type="button"  class="btn2 btn-outline-primary btn-sm"  >Cancel</button>
                                                       </div>
 
                                                       <div  style="float:left;">  
-                                                      <p class="card-text"  >Client: <strong>{{app.appointment_client.first_name}} {{app.appointment_client.last_name}}</strong> </p>
-                                                      <p class="card-text"  >Mobile: <strong>{{app.appointment_client.mobile_number}}</strong> </p>
-                                                      <p class="card-text"  >Date and time:: <strong>{{app.appointment_date}} At {{app.appointment_start}}-{{app.appointment_end}}</strong> </p>
-                                                      <p class="card-text"  >Activity:<strong>{{app.appointment_activity}}</strong> </p>
-                                                      <p class="card-text"  >Status: <strong>{{app.appointment_payement_status}}</strong> </p>
+                                                      <p class="card-text"  >Client: <strong>{{upapp.appointment_client.first_name}} {{upapp.appointment_client.last_name}}</strong> </p>
+                                                      <p class="card-text"  >Mobile: <strong>{{upapp.appointment_client.mobile_number}}</strong> </p>
+                                                      <p class="card-text"  >Date and time:: <strong>{{upapp.appointment_date}} At {{upapp.appointment_start}}-{{upapp.appointment_end}}</strong> </p>
+                                                      <p class="card-text"  >Activity:<strong>{{upapp.appointment_activity}}</strong> </p>
+                                                      <p class="card-text"  >Status: <strong>{{upapp.appointment_payement_status}}</strong> </p>
 
                                                       </div>
                                                   </div>
@@ -63,29 +67,31 @@
                                           </div>
                                       </div>
                                   </div>
+
+                                -->
                               </div>
                       </div>
                     <!-- password form -->
                     <div class="tab-pane fade" id="gpwd" role="tabpanel" aria-labelledby="gpwd-tab">
                         <div class="container-fluid">
-                               
-                            <h4>COMPLETED({{completedapp?.length}})</h4>
+                            <p class="text-center" *ngIf="!completedapp"> No Data Found</p>
 
-                            <div class="row" *ngFor="let app of completedapp" >
+
+                            <div class="row" *ngFor="let capp of completedapp  | paginate: { itemsPerPage: 5, currentPage: p }" >
                                <div class="col-12 mt-3">
                                    <div class="card">
                                        <div class="card-horizontal">
                                            <div class="img-square-wrapper">
-                                               <img class="" width="300px" height="220px" src="{{url}}/storage/images/trainer/{{app.appointment_client.photo_profil}}" alt="Card image cap">
+                                               <img class="" width="300px" height="220px" src="{{url}}/storage/images/trainer/{{capp.appointment_client.photo_profil}}" alt="Card image cap">
                                            </div>
                                            <div class="card-body"  >
                                              
 
                                                <div  style="float:left;">  
-                                               <p class="card-text"  >Client: <strong>{{app.appointment_client.first_name}} {{app.appointment_client.last_name}}</strong> </p>
-                                               <p class="card-text"  >Mobile: <strong>{{app.appointment_client.mobile_number}}</strong> </p>
-                                                <p class="card-text"  >Date and time:: <strong>{{app.appointment_date}} At {{app.appointment_start}}-{{app.appointment_end}}</strong> </p>
-                                               <p class="card-text"  >Activity:<strong>{{app.appointment_activity}}</strong> </p>
+                                               <p class="card-text"  >Client: <strong>{{capp.appointment_client.first_name}} {{capp.appointment_client.last_name}}</strong> </p>
+                                               <p class="card-text"  >Mobile: <strong>{{capp.appointment_client.mobile_number}}</strong> </p>
+                                                <p class="card-text"  >Date and time:: <strong>{{capp.appointment_date}} At {{capp.appointment_start}}-{{capp.appointment_end}}</strong> </p>
+                                               <p class="card-text"  >Activity:<strong>{{capp.appointment_activity}}</strong> </p>
                                                </div>
                                             </div>
                                        </div>
@@ -95,6 +101,54 @@
                                    </div>
                                </div>
                             </div>
+
+
+                            <br>
+                            <pagination-controls *ngIf="completedapp" style="margin-top:15px" class="text-center" (pageChange)="p = $event"></pagination-controls>
+   
+                       </div>
+                    </div>
+
+
+                    <div class="tab-pane fade" id="gpwd1" role="tabpanel" aria-labelledby="gpwd1-tab">
+                        <div class="container-fluid">
+
+                            <p class="text-center" *ngIf="!requests"> No Data Found</p>
+                               
+
+                            <div class="row" *ngFor="let req of requests  | paginate: { itemsPerPage: 5, currentPage: p }" >
+                                <div class="col-12 mt-3">
+                                    <div class="card">
+                                        <div class="card-horizontal">
+                                            <div class="img-square-wrapper">
+                                                <img class="" width="300px" height="250px" src="{{url}}/storage/images/trainer/{{req.appointment_client?.photo_profil}}" alt="Card image cap">
+                                            </div>
+                                            <div class="card-body"  >
+                                                <div style="float:right;"> 
+                                                    <button type="button" class="btn2 btn-outline-primary btn-sm" (click)="booknow(req.appointment_id)" >Book now</button> &nbsp;
+                                                    <button type="button"  class="btn2 btn-outline-primary btn-sm" (click)="reject(req.appointment_id)" >Reject</button>
+                                                </div>
+
+                                                <div  style="float:left;" >  
+                                                <p class="card-text"  >Client: <strong>{{req.appointment_client.first_name}} {{req.appointment_client?.last_name}}</strong> </p>
+                                                <p class="card-text"  >Mobile: <strong>{{req.appointment_client.mobile_number}}</strong> </p>
+                                                <p class="card-text"  >Date and time:: <strong>{{req.appointment_date}} At {{req.appointment_start}}-{{req.appointment_end}}</strong> </p>
+                                                <p class="card-text"  >Activity:<strong>{{req.appointment_activity}}</strong> </p>
+                                                <p class="card-text"  >Status: <strong>{{req.appointment_payement_status}}</strong> </p>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="card-footer">
+                                            <small class="text-muted">Previous workouts:</small> <strong>no workouts to show</strong>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <br>
+                            <pagination-controls  *ngIf="requests" style="margin-top:15px" class="text-center" (pageChange)="p = $event"></pagination-controls>
+   
                        </div>
                     </div>
 

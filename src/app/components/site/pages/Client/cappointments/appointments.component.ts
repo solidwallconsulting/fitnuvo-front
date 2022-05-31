@@ -19,6 +19,7 @@ import { EditAppointmentCComponent } from './modal-edit-appointment/edit-appoint
 import { NgxBootstrapConfirmService } from 'ngx-bootstrap-confirm';
 import { ToastrService } from 'ngx-toastr';
 import { HttpErrorResponse } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-appointments',
   templateUrl: './appointments.component.html',
@@ -30,6 +31,7 @@ export class AppointmentsComponent implements OnInit {
   appointments:Appointment[];
   upcomingApp:Appointment[];
   completedapp:Appointment[];
+  url:string=environment.urlServeur;
 
   myreviews:Review[];
   calendarOptions: CalendarOptions = {

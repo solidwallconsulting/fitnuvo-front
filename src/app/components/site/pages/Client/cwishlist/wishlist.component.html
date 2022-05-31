@@ -5,13 +5,26 @@
             </div>
             <div class="col-md-8 col-lg-9 card-box">
             
+                  <div class="navigation d-flex justify-content-between">
+                    <div class="bloc-nav">
+                        <ul class="nav coach-nav" id="myTab" role="tablist">
+                            <li class="nav-item">
+                              <a class="nav-link active" id="ginfo-tab" data-bs-toggle="tab" data-bs-target="#ginfo" role="tab" aria-controls="userinfo" aria-selected="true" >Favourites</a>
+                            </li>
+                        
+                          </ul>
+                    </div>
+                </div>
+                <div class="tab-content" id="myTabContent">
                     <!-- info form-->
                     <div class="tab-pane fade show active" id="ginfo" role="tabpanel" aria-labelledby="ginfo-tab">
-                        <h4 *ngIf="mywishlist?.length>0" class="nav-link" >FAVOURITES ({{mywishlist?.length}})</h4>
-                        <h4 *ngIf="mywishlist?.length===null" class="nav-link" >FAVOURITES (0)</h4>
+                        
 
                         <div class="container">
-                                <div class="card " *ngFor="let wish of mywishlist">
+
+                          <p class="text-center" *ngIf="!mywishlist"> No Data Found</p>
+
+                                <div class="card " *ngFor="let wish of mywishlist  | paginate: { itemsPerPage: 5, currentPage: p }">
                                   <div class="additional">
                                     <div class="user-card">
                                         &nbsp;   <i (click)="removefromList(wish.trainer.trainer_id)" class="fa fa-trash fa-xl  mt-2" style="color: red;"></i>
@@ -67,11 +80,18 @@
                                   </div>
                                 </div>
                              
+
+                                
+                            <br>
+                            <pagination-controls *ngIf="mywishlist " style="margin-top:15px" class="text-center" (pageChange)="p = $event"></pagination-controls>
+   
                                   
                               
                            
                               
                           </div>
+                    </div>
+
                     </div>
                   
             </div>

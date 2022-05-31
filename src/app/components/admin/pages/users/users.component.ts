@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { LocalDataSource } from 'ng2-smart-table';
+import { environment } from 'src/environments/environment';
 import { UsersService } from '../../services/users.service';
 import { ButtonViewComponent } from './button.component';
 
@@ -10,6 +11,7 @@ import { ButtonViewComponent } from './button.component';
 })
 export class UsersComponent implements OnInit {
   users:LocalDataSource;
+  url:string=environment.urlServeur;
 
   settings = {
     pager: {
@@ -36,7 +38,7 @@ export class UsersComponent implements OnInit {
           valuePrepareFunction: (photo_profil:string) => { return `<div class="symbol symbol-circle symbol-50px overflow-hidden me-3">
           <a href="">
             <div class="symbol-label">
-              <img src="${photo_profil}" alt="Avater" class="w-100" />
+              <img src="${this.url}/storage/images/trainer/${photo_profil}" alt="Avater" class="w-100" />
             </div>
           </a>
         </div>`; },

@@ -1,8 +1,7 @@
 <!-- begin::Header -->
 <div class="card-header border-0 pt-5">
   <h3 class="card-title align-items-start flex-column">
-    <span class="card-label fw-bolder fs-3 mb-1">Latest Products</span>
-    <span class="text-muted mt-1 fw-bold fs-7">More than 400 new products</span>
+    <span class="card-label fw-bolder fs-3 mb-1">Latest Appointments</span>
   </h3>
   <div class="card-toolbar">
     <ul class="nav">
@@ -90,12 +89,13 @@
           <!-- end::Table head -->
           <!-- begin::Table body -->
           <tbody>
+            <ng-container *ngFor="let month of monthapp ">
             <tr>
               <td>
                 <div class="symbol symbol-45px me-2">
                   <span class="symbol-label">
                     <img
-                      src="./assets/media/svg/brand-logos/plurk.svg"
+                      src="../../../../../../../../../assets/dashboard/media/icons/duotune/general/gen014.svg"
                       class="h-50 align-self-center"
                       alt=""
                     />
@@ -107,194 +107,36 @@
                   href="#"
                   class="text-dark fw-bolder text-hover-primary mb-1 fs-6"
                 >
-                  Brad Simmons
+                  {{month.appointment_trainer.first_name}} {{month.appointment_trainer.last_name}}
                 </a>
-                <span class="text-muted fw-bold d-block">Movie Creator</span>
+                <span class="text-muted fw-bold d-block"> Client : {{month.appointment_client.first_name}} {{month.appointment_client.last_name}}</span>
               </td>
-              <td class="text-end text-muted fw-bold">React, HTML</td>
+              <td class="text-end text-muted fw-bold">{{month.appointment_date}} From {{month.appointment_date}} To {{month.appointment_end}}</td>
               <td class="text-end">
-                <span class="badge badge-light-success">Approved</span>
+                <span class="badge badge-light-success" *ngIf="month.appointment_payement_status=='paid'">Approved</span>
+                <span class="badge badge-light-warning" *ngIf="month.appointment_payement_status=='pending'">In Progress</span>
+
               </td>
               <td class="text-end">
                 <a
-                  href="#"
+                  href="/admin/features/appointments"
                   class="
                     btn btn-sm btn-icon btn-bg-light btn-active-color-primary
                   "
                 >
                   <span
                     [inlineSVG]="
-                      './assets/media/icons/duotune/arrows/arr064.svg'
+                      '../../../../../../../../../assets/dashboard/media/icons/duotune/arrows/arr064.svg'
                     "
                     class="svg-icon svg-icon-2"
                   ></span>
                 </a>
               </td>
             </tr>
-            <tr>
-              <td>
-                <div class="symbol symbol-45px me-2">
-                  <span class="symbol-label">
-                    <img
-                      src="./assets/media/svg/brand-logos/telegram.svg"
-                      class="h-50 align-self-center"
-                      alt=""
-                    />
-                  </span>
-                </div>
-              </td>
-              <td>
-                <a
-                  href="#"
-                  class="text-dark fw-bolder text-hover-primary mb-1 fs-6"
-                >
-                  Popular Authors
-                </a>
-                <span class="text-muted fw-bold d-block">Most Successful</span>
-              </td>
-              <td class="text-end text-muted fw-bold">Python, MySQL</td>
-              <td class="text-end">
-                <span class="badge badge-light-warning">In Progress</span>
-              </td>
-              <td class="text-end">
-                <a
-                  href="#"
-                  class="
-                    btn btn-sm btn-icon btn-bg-light btn-active-color-primary
-                  "
-                >
-                  <span
-                    [inlineSVG]="
-                      './assets/media/icons/duotune/arrows/arr064.svg'
-                    "
-                    class="svg-icon svg-icon-2"
-                  ></span>
-                </a>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <div class="symbol symbol-45px me-2">
-                  <span class="symbol-label">
-                    <img
-                      src="./assets/media/svg/brand-logos/vimeo.svg"
-                      class="h-50 align-self-center"
-                      alt=""
-                    />
-                  </span>
-                </div>
-              </td>
-              <td>
-                <a
-                  href="#"
-                  class="text-dark fw-bolder text-hover-primary mb-1 fs-6"
-                >
-                  New Users
-                </a>
-                <span class="text-muted fw-bold d-block">Awesome Users</span>
-              </td>
-              <td class="text-end text-muted fw-bold">Laravel,Metronic</td>
-              <td class="text-end">
-                <span class="badge badge-light-primary">Success</span>
-              </td>
-              <td class="text-end">
-                <a
-                  href="#"
-                  class="
-                    btn btn-sm btn-icon btn-bg-light btn-active-color-primary
-                  "
-                >
-                  <span
-                    [inlineSVG]="
-                      './assets/media/icons/duotune/arrows/arr064.svg'
-                    "
-                    class="svg-icon svg-icon-2"
-                  ></span>
-                </a>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <div class="symbol symbol-45px me-2">
-                  <span class="symbol-label">
-                    <img
-                      src="./assets/media/svg/brand-logos/bebo.svg"
-                      class="h-50 align-self-center"
-                      alt=""
-                    />
-                  </span>
-                </div>
-              </td>
-              <td>
-                <a
-                  href="#"
-                  class="text-dark fw-bolder text-hover-primary mb-1 fs-6"
-                >
-                  Active Customers
-                </a>
-                <span class="text-muted fw-bold d-block">Movie Creator</span>
-              </td>
-              <td class="text-end text-muted fw-bold">AngularJS, C#</td>
-              <td class="text-end">
-                <span class="badge badge-light-danger">Rejected</span>
-              </td>
-              <td class="text-end">
-                <a
-                  href="#"
-                  class="
-                    btn btn-sm btn-icon btn-bg-light btn-active-color-primary
-                  "
-                >
-                  <span
-                    [inlineSVG]="
-                      './assets/media/icons/duotune/arrows/arr064.svg'
-                    "
-                    class="svg-icon svg-icon-2"
-                  ></span>
-                </a>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <div class="symbol symbol-45px me-2">
-                  <span class="symbol-label">
-                    <img
-                      src="./assets/media/svg/brand-logos/kickstarter.svg"
-                      class="h-50 align-self-center"
-                      alt=""
-                    />
-                  </span>
-                </div>
-              </td>
-              <td>
-                <a
-                  href="#"
-                  class="text-dark fw-bolder text-hover-primary mb-1 fs-6"
-                >
-                  Bestseller Theme
-                </a>
-                <span class="text-muted fw-bold d-block">Best Customers</span>
-              </td>
-              <td class="text-end text-muted fw-bold">ReactJS, Ruby</td>
-              <td class="text-end">
-                <span class="badge badge-light-warning">In Progress</span>
-              </td>
-              <td class="text-end">
-                <a
-                  href="#"
-                  class="
-                    btn btn-sm btn-icon btn-bg-light btn-active-color-primary
-                  "
-                >
-                  <span
-                    [inlineSVG]="
-                      './assets/media/icons/duotune/arrows/arr064.svg'
-                    "
-                    class="svg-icon svg-icon-2"
-                  ></span>
-                </a>
-              </td>
-            </tr>
+           
+
+          </ng-container>
+           
           </tbody>
           <!-- end::Table body -->
         </table>
@@ -332,12 +174,13 @@
           <!-- end::Table head -->
           <!-- begin::Table body -->
           <tbody>
+            <ng-container *ngFor="let week of weekapp ">
             <tr>
               <td>
                 <div class="symbol symbol-45px me-2">
                   <span class="symbol-label">
                     <img
-                      src="./assets/media/svg/brand-logos/plurk.svg"
+                      src="../../../../../../../../../assets/dashboard/media/icons/duotune/general/gen014.svg"
                       class="h-50 align-self-center"
                       alt=""
                     />
@@ -349,112 +192,36 @@
                   href="#"
                   class="text-dark fw-bolder text-hover-primary mb-1 fs-6"
                 >
-                  Brad Simmons
+                  {{week.appointment_trainer.first_name}} {{week.appointment_trainer.last_name}}
                 </a>
-                <span class="text-muted fw-bold d-block">Movie Creator</span>
+                <span class="text-muted fw-bold d-block"> Client : {{week.appointment_client.first_name}} {{week.appointment_client.last_name}}</span>
               </td>
-              <td class="text-end text-muted fw-bold">React, HTML</td>
+              <td class="text-end text-muted fw-bold">{{week.appointment_date}} From {{week.appointment_date}} To {{week.appointment_end}}</td>
               <td class="text-end">
-                <span class="badge badge-light-success">Approved</span>
+                <span class="badge badge-light-success" *ngIf="week.appointment_payement_status=='paid'">Approved</span>
+                <span class="badge badge-light-warning" *ngIf="week.appointment_payement_status=='pending'">In Progress</span>
+
               </td>
               <td class="text-end">
                 <a
-                  href="#"
+                  href="/admin/features/appointments"
                   class="
                     btn btn-sm btn-icon btn-bg-light btn-active-color-primary
                   "
                 >
                   <span
                     [inlineSVG]="
-                      './assets/media/icons/duotune/arrows/arr064.svg'
+                      '../../../../../../../../../assets/dashboard/media/icons/duotune/arrows/arr064.svg'
                     "
                     class="svg-icon svg-icon-2"
                   ></span>
                 </a>
               </td>
             </tr>
-            <tr>
-              <td>
-                <div class="symbol symbol-45px me-2">
-                  <span class="symbol-label">
-                    <img
-                      src="./assets/media/svg/brand-logos/telegram.svg"
-                      class="h-50 align-self-center"
-                      alt=""
-                    />
-                  </span>
-                </div>
-              </td>
-              <td>
-                <a
-                  href="#"
-                  class="text-dark fw-bolder text-hover-primary mb-1 fs-6"
-                >
-                  Popular Authors
-                </a>
-                <span class="text-muted fw-bold d-block">Most Successful</span>
-              </td>
-              <td class="text-end text-muted fw-bold">Python, MySQL</td>
-              <td class="text-end">
-                <span class="badge badge-light-warning">In Progress</span>
-              </td>
-              <td class="text-end">
-                <a
-                  href="#"
-                  class="
-                    btn btn-sm btn-icon btn-bg-light btn-active-color-primary
-                  "
-                >
-                  <span
-                    [inlineSVG]="
-                      './assets/media/icons/duotune/arrows/arr064.svg'
-                    "
-                    class="svg-icon svg-icon-2"
-                  ></span>
-                </a>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <div class="symbol symbol-45px me-2">
-                  <span class="symbol-label">
-                    <img
-                      src="./assets/media/svg/brand-logos/bebo.svg"
-                      class="h-50 align-self-center"
-                      alt=""
-                    />
-                  </span>
-                </div>
-              </td>
-              <td>
-                <a
-                  href="#"
-                  class="text-dark fw-bolder text-hover-primary mb-1 fs-6"
-                >
-                  Active Customers
-                </a>
-                <span class="text-muted fw-bold d-block">Movie Creator</span>
-              </td>
-              <td class="text-end text-muted fw-bold">AngularJS, C#</td>
-              <td class="text-end">
-                <span class="badge badge-light-danger">Rejected</span>
-              </td>
-              <td class="text-end">
-                <a
-                  href="#"
-                  class="
-                    btn btn-sm btn-icon btn-bg-light btn-active-color-primary
-                  "
-                >
-                  <span
-                    [inlineSVG]="
-                      './assets/media/icons/duotune/arrows/arr064.svg'
-                    "
-                    class="svg-icon svg-icon-2"
-                  ></span>
-                </a>
-              </td>
-            </tr>
+           
+
+          </ng-container>
+           
           </tbody>
           <!-- end::Table body -->
         </table>
@@ -492,12 +259,13 @@
           <!-- end::Table head -->
           <!-- begin::Table body -->
           <tbody>
+            <ng-container *ngFor="let day of todayapp ">
             <tr>
               <td>
                 <div class="symbol symbol-45px me-2">
                   <span class="symbol-label">
                     <img
-                      src="./assets/media/svg/brand-logos/kickstarter.svg"
+                      src="../../../../../../../../../assets/dashboard/media/icons/duotune/general/gen014.svg"
                       class="h-50 align-self-center"
                       alt=""
                     />
@@ -509,153 +277,36 @@
                   href="#"
                   class="text-dark fw-bolder text-hover-primary mb-1 fs-6"
                 >
-                  Bestseller Theme
+                  {{day.appointment_trainer.first_name}} {{day.appointment_trainer.last_name}}
                 </a>
-                <span class="text-muted fw-bold d-block">Best Customers</span>
+                <span class="text-muted fw-bold d-block"> Client : {{day.appointment_client.first_name}} {{day.appointment_client.last_name}}</span>
               </td>
-              <td class="text-end text-muted fw-bold">ReactJS, Ruby</td>
+              <td class="text-end text-muted fw-bold">{{day.appointment_date}} From {{day.appointment_date}} To {{day.appointment_end}}</td>
               <td class="text-end">
-                <span class="badge badge-light-warning">In Progress</span>
+                <span class="badge badge-light-success" *ngIf="day.appointment_payement_status=='paid'">Approved</span>
+                <span class="badge badge-light-warning" *ngIf="day.appointment_payement_status=='pending'">In Progress</span>
+
               </td>
               <td class="text-end">
                 <a
-                  href="#"
+                  href="/admin/features/appointments"
                   class="
                     btn btn-sm btn-icon btn-bg-light btn-active-color-primary
                   "
                 >
                   <span
                     [inlineSVG]="
-                      './assets/media/icons/duotune/arrows/arr064.svg'
+                      '../../../../../../../../../assets/dashboard/media/icons/duotune/arrows/arr064.svg'
                     "
                     class="svg-icon svg-icon-2"
                   ></span>
                 </a>
               </td>
             </tr>
-            <tr>
-              <td>
-                <div class="symbol symbol-45px me-2">
-                  <span class="symbol-label">
-                    <img
-                      src="./assets/media/svg/brand-logos/bebo.svg"
-                      class="h-50 align-self-center"
-                      alt=""
-                    />
-                  </span>
-                </div>
-              </td>
-              <td>
-                <a
-                  href="#"
-                  class="text-dark fw-bolder text-hover-primary mb-1 fs-6"
-                >
-                  Active Customers
-                </a>
-                <span class="text-muted fw-bold d-block">Movie Creator</span>
-              </td>
-              <td class="text-end text-muted fw-bold">AngularJS, C#</td>
-              <td class="text-end">
-                <span class="badge badge-light-danger">Rejected</span>
-              </td>
-              <td class="text-end">
-                <a
-                  href="#"
-                  class="
-                    btn btn-sm btn-icon btn-bg-light btn-active-color-primary
-                  "
-                >
-                  <span
-                    [inlineSVG]="
-                      './assets/media/icons/duotune/arrows/arr064.svg'
-                    "
-                    class="svg-icon svg-icon-2"
-                  ></span>
-                </a>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <div class="symbol symbol-45px me-2">
-                  <span class="symbol-label">
-                    <img
-                      src="./assets/media/svg/brand-logos/vimeo.svg"
-                      class="h-50 align-self-center"
-                      alt=""
-                    />
-                  </span>
-                </div>
-              </td>
-              <td>
-                <a
-                  href="#"
-                  class="text-dark fw-bolder text-hover-primary mb-1 fs-6"
-                >
-                  New Users
-                </a>
-                <span class="text-muted fw-bold d-block">Awesome Users</span>
-              </td>
-              <td class="text-end text-muted fw-bold">Laravel,Metronic</td>
-              <td class="text-end">
-                <span class="badge badge-light-primary">Success</span>
-              </td>
-              <td class="text-end">
-                <a
-                  href="#"
-                  class="
-                    btn btn-sm btn-icon btn-bg-light btn-active-color-primary
-                  "
-                >
-                  <span
-                    [inlineSVG]="
-                      './assets/media/icons/duotune/arrows/arr064.svg'
-                    "
-                    class="svg-icon svg-icon-2"
-                  ></span>
-                </a>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <div class="symbol symbol-45px me-2">
-                  <span class="symbol-label">
-                    <img
-                      src="./assets/media/svg/brand-logos/telegram.svg"
-                      class="h-50 align-self-center"
-                      alt=""
-                    />
-                  </span>
-                </div>
-              </td>
-              <td>
-                <a
-                  href="#"
-                  class="text-dark fw-bolder text-hover-primary mb-1 fs-6"
-                >
-                  Popular Authors
-                </a>
-                <span class="text-muted fw-bold d-block">Most Successful</span>
-              </td>
-              <td class="text-end text-muted fw-bold">Python, MySQL</td>
-              <td class="text-end">
-                <span class="badge badge-light-warning">In Progress</span>
-              </td>
-              <td class="text-end">
-                <a
-                  href="#"
-                  class="
-                    btn btn-sm btn-icon btn-bg-light btn-active-color-primary
-                  "
-                >
-                  <span
-                    [inlineSVG]="
-                      './assets/media/icons/duotune/arrows/arr064.svg'
-                    "
-                    class="svg-icon svg-icon-2"
-                  ></span>
-                </a>
-              </td>
-            </tr>
+           
+
+          </ng-container>
+           
           </tbody>
           <!-- end::Table body -->
         </table>

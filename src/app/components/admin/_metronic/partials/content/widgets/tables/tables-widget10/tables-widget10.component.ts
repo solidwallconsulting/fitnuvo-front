@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-tables-widget10',
@@ -6,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TablesWidget10Component implements OnInit {
   constructor() {}
+  @Input() users:any[];
+  url:string=environment.urlServeur;
 
   ngOnInit(): void {}
 }

@@ -75,8 +75,10 @@ export class SearchComponent implements OnInit {
     })
 
     this.isAuth= this.authService.isAuthenticated();
+    if(this.authService.isAuthenticated()) {
     this.Role=this.authService.getRole();
     this.user=this.authService.getUser();
+    }
 
     if (this.authService.isAuthenticated() && this.authService.getRole()==='trainer'){
 

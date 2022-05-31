@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { SiteRoutingModule } from './site-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
+import { NgxConfirmBoxModule,NgxConfirmBoxService } from 'ngx-confirm-box';
 
 import { HomeComponent } from './home/home.component';
 import { IndexComponent } from './index/index.component';
@@ -53,6 +54,10 @@ import { EditAppointmentComponent } from './Trainer/tappointments/modal-edit-app
 import { Ng2SmartTableModule } from 'ng2-smart-table';
 import { MessagesTComponent } from './Trainer/messages/messages.component';
 import { ConverComponent } from './Trainer/messages/conversation/conversation.component';
+import { UsersListComponent } from './Trainer/messages/users-list/users-list.component';
+import { ChatbodyComponent } from './Trainer/messages/chatbody/chatbody.component';
+import { NotificationsComponent } from './Trainer/notifications/notifications.component';
+import { NotificationsCComponent } from './pages/Client/notifications/notifications.component';
 
 
 FullCalendarModule.registerPlugins([ 
@@ -96,7 +101,11 @@ FullCalendarModule.registerPlugins([
     ConversationComponent,
     EditAppointmentComponent,
     MessagesTComponent,
-    ConverComponent
+    ConverComponent,
+    UsersListComponent,
+    ChatbodyComponent,
+    NotificationsComponent,
+    NotificationsCComponent
 
 
     
@@ -117,12 +126,14 @@ FullCalendarModule.registerPlugins([
      FullCalendarModule,
      Ng2SmartTableModule,
      NgMultiSelectDropDownModule.forRoot(),
+     NgxConfirmBoxModule
      
 
 
     
     
   ], providers: [
+    NgxConfirmBoxService,
     SnotifyService,
     {provide: 'SnotifyToastConfig', useValue: ToastDefaults}
   

@@ -45,7 +45,30 @@ export class UsersService {
   getAllClients(): Observable<User[]> {
     return this.httpClient.get<User[]>(`${this.apiUrl}/clients`,{headers:this.headers});
   }
+  getAllappointments(){
+    return this.httpClient.get(`${this.apiUrl}/all-appointments`,{headers:this.headers});
+  }
 
+  getTransactions(){
+    return this.httpClient.get(`${this.apiUrl}/transactions`,{headers:this.headers});
+  }
+
+
+  getAllusers(){
+    return this.httpClient.get(`${this.apiUrl}/all-users`,{headers:this.headers});
+  }
+
+  getWeekAppointments(){
+    return this.httpClient.get(`${this.apiUrl}/weekapp`,{headers:this.headers});
+  }
+
+  getMonthAppointments(){
+    return this.httpClient.get(`${this.apiUrl}/monthapp`,{headers:this.headers});
+  }
+
+  getDayAppointments(){
+    return this.httpClient.get(`${this.apiUrl}/currenttodayapp`,{headers:this.headers});
+  }
   getAllTrainers(): Observable<User[]> {
     return this.httpClient.get<User[]>(`${this.apiUrl}/trainers`);
   }

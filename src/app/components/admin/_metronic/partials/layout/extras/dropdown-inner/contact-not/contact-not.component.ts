@@ -25,7 +25,7 @@ export class ContactNotComponent {
   onclick() {
     this.service.readAll().subscribe((data:any)=>{
       console.log(data);
-      this.router.navigate(['/features/specialities']);
+      this.router.navigate(['/admin/features/contacts']);
 
     });
 

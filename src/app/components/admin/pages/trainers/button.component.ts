@@ -59,7 +59,7 @@ export class ButtonViewComponent implements ViewCell, OnInit {
                   console.log("res : ",res);
                   this.save.emit(this.rowData);
                   this.toastrService.success('Sucess!', 'Trainer account was unlocked !');
-          
+
 
                 }, (err: HttpErrorResponse) => {
                   if (err.error instanceof Error) {

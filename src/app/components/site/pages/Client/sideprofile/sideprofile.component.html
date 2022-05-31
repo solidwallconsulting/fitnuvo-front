@@ -4,7 +4,7 @@
                 <div class="profile-sidebar">
                     <!-- SIDEBAR USERPIC -->
                     <div class="profile-userpic">
-                        <img [src]="user.photo_profil" class="img-responsive" alt="">
+                        <img style="height: 110px;width:110px" src="{{url}}/storage/images/trainer/{{user.photo_profil}}" class="img-responsive" alt="">
                     </div>
                     <!-- END SIDEBAR USERPIC -->
                     <!-- SIDEBAR USER TITLE -->
@@ -36,7 +36,7 @@
                                 <a  routerLink="/user/chats" ><i class="ti ti-comments"></i> Messages</a>
                             </li>
                             <li routerLinkActive="active"  >
-                                <a ><i class="ti ti-bell"></i> Notification</a>
+                                <a routerLink="/user/notifications" ><i class="ti ti-bell"></i> Notification</a>
                             </li>
 
                             <li routerLinkActive="active"  >

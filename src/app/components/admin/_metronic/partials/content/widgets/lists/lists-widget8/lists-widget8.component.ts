@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { Trainer } from 'src/app/models/trainer.model';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-lists-widget8',
@@ -8,6 +9,7 @@ import { Trainer } from 'src/app/models/trainer.model';
 export class ListsWidget8Component {
   @Input() cssClass = '';
   @Input() trainers:Trainer [];
+  url:string=environment.urlServeur;
 
   constructor() {}
 }

@@ -75,6 +75,12 @@ export class AppointmentsService {
   }
 
   
+   requestsAppOfTrainer(){
+    return this.httpClient.get(`${this.BASE_URL}/api/v1/trainer/requestsapp`,{headers:this.headers});
+
+  }
+
+  
   completedappOfTrainer(){
     return this.httpClient.get(`${this.BASE_URL}/api/v1/trainer/completedapp`,{headers:this.headers});
 
@@ -93,5 +99,17 @@ export class AppointmentsService {
     return this.httpClient.post(`${this.BASE_URL}/api/v1/trainer/editappointment`,{appointment_id:id1,oldappointment_id:id2} ,{headers:this.headers});
 
     
+  }
+
+  acceptAppFromTraineer(id:any){
+    return this.httpClient.get(`${this.BASE_URL}/api/v1/trainer/confirmappointment/`+id ,{headers:this.headers});
+
+  }
+
+
+  
+  rejectAppFromTraineer(id:any){
+    return this.httpClient.get(`${this.BASE_URL}/api/v1/trainer/rejectappointment/`+id ,{headers:this.headers});
+
   }
 }

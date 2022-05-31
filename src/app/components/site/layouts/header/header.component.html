@@ -28,18 +28,18 @@
                                             <li *ngIf="isAuth && Role=='client'">
                                                 
                                                 <div ngbDropdown class="d-inline-block">
-                                                  <a type="button" class="btn-outline btnsign" ngbDropdownToggle><img [src]="photo" width="30px" class="rounded-circle float-right">{{user.firstname}} {{user.secondname}}</a>
+                                                  <a type="button" class="btn-outline btnsign" ngbDropdownToggle><img   style="width: 30px;height:30px" src="{{url}}/storage/images/trainer/{{user.photo_profil}}"  class="rounded-circle  float-right"> {{user.firstname}} {{user.secondname}}</a>
                                                   <div class="dropdown-menu" ngbDropdownMenu>
                                                     <div class="profile-sidebar">
                                                         <!-- SIDEBAR USERPIC -->
 				                                        <div class="profile-userpic">
-					                                        <img [src]="photo" class="img-responsive" alt="">
+					                                        <img  style="height: 84px;width: 84px;" src="{{url}}/storage/images/trainer/{{user.photo_profil}}" class="img-responsive" alt="">
 				                                        </div>
 				                                        <!-- END SIDEBAR USERPIC -->
 				                                        <!-- SIDEBAR USER TITLE -->
 				                                        <div class="profile-usertitle">
 					                                        <div class="profile-usertitle-name">
-						                                        {{user.firstname}} {{user.secondname}}
+                                                                &nbsp; {{user.firstname}} {{user.secondname}}
                                                                 <i class="ti ti-pencil" (click)="goToprofile()"></i>
 					                                        </div>
 					                                        <div class="profile-usertitle-job">
@@ -49,10 +49,10 @@
 				                                        <!-- END SIDEBAR USER TITLE -->
                                                     </div>
                                                     <div class="dropdown-divider"></div>
-                                                    <button ngbDropdownItem><i class="ti ti-calendar"></i> Appointments</button>
-                                                    <button ngbDropdownItem><i class="ti ti-heart"></i> Favorites</button>
-                                                    <button ngbDropdownItem><i class="ti ti-comments"></i> Messages</button>
-                                                    <button ngbDropdownItem><i class="ti ti-bell"></i> Notification</button>
+                                                    <button ngbDropdownItem [routerLink]="'/user/appointments'"><i class="ti ti-calendar"></i> Appointments</button>
+                                                    <button ngbDropdownItem [routerLink]="'/user/wishlist'"><i class="ti ti-heart"></i> Favorites</button>
+                                                    <button ngbDropdownItem [routerLink]="'/user/chats'"><i class="ti ti-comments"></i> Messages</button>
+                                                    <button ngbDropdownItem [routerLink]="'/user/notifications'"><i class="ti ti-bell"></i> Notification</button>
                                                     <button ngbDropdownItem (click)="logout()"><i class="ti ti-power-off" ></i> Logout</button>
                                                   </div>
                                                 </div>
@@ -84,8 +84,8 @@
                                                     </div>
                                                     <div class="dropdown-divider"></div>
                                                     <button ngbDropdownItem [routerLink]="'/trainerme/appointments'"><i class="ti ti-calendar"></i> Appointments</button>
-                                                    <button ngbDropdownItem><i class="ti ti-comments"></i> Messages</button>
-                                                    <button ngbDropdownItem><i class="ti ti-bell"></i> Notification</button>
+                                                    <button ngbDropdownItem [routerLink]="'/trainerme/chats'"><i class="ti ti-comments"></i> Messages</button>
+                                                    <button ngbDropdownItem  [routerLink]="'/trainerme/notifications'"><i class="ti ti-bell"></i> Notification</button>
                                                     <button ngbDropdownItem (click)="logout()"><i class="ti ti-power-off" ></i> Logout</button>
                                                   </div>
                                                 </div>
