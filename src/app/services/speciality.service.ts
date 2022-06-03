@@ -62,7 +62,7 @@ export class SpecialityService {
     return this.httpClient.delete<Speciality>(`${this.apiUrl}/speciality/`+id,{headers:headerss});
   }
 
-  /**  
+  /*
 
   getSpeOfTrainer(id:any){
  

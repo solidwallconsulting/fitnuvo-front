@@ -4,7 +4,8 @@
     <section class="pt-100" style="background: #f2f2f7;"> 
         <div class="container">
             
-            <div class="alert alert-danger mt-3" *ngIf="visible==1"> Your account is not activated yet !</div>
+            <div class="alert alert-danger mt-3" *ngIf="visible==0"> <i class="fa fa-exclamation" aria-hidden="true"></i>
+                 Your account is not active , please fill the form of <a style="color: #2955AB;;" href="/trainerme/profile"> description </a> to able making appointments !</div>
             <router-outlet></router-outlet>
             
         </div>

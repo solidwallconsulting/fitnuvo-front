@@ -4,7 +4,7 @@
         <div class="col-12 mt-100">
               <div class="input-group mb-3">
                 <span class="right-border-top-bar input-group-text bg-white border-right-0" id="basic-addon1"><i class="fa fa-search" aria-hidden="true"></i></span>
-                <input type="text" class="form-control top-input-bar" placeholder="search" aria-label="Username">
+                <input type="text" (input)="getTrainerSearch($event)"  class="form-control top-input-bar" placeholder="search" aria-label="Username">
                 <span class="right-border-top-bar input-group-text bg-white border-right-0"><i class="fa fa-map-pin" aria-hidden="true"></i></span>
                 <input type="text" class="form-control top-input-bar right-bar" placeholder="Search by location" aria-label="Server"> 
                 <button class="btn btn-primary input-group-text top-search-button " >Search</button>
@@ -172,7 +172,7 @@
                 </ul>
               </div>
         </div>    &nbsp;  &nbsp;
-            <div *ngIf="selected_categories.length > 0   ">
+            <div *ngIf="selected_categories?.length > 0   ">
                 Specialities :
             <ng-container *ngFor="let spec of selected_categories" > 
                 <div class="box  d-inline-block mt-1 "> 
@@ -270,7 +270,7 @@
     display:block;">
 
    
-    <div *ngIf="!trainers || trainers.length === 0" class="loading " style="text-align: center;color: #2955AB;">
+    <div *ngIf="!trainers" class="loading " style="text-align: center;color: #2955AB;">
         <svg class="pl" viewBox="0 0 128 128" width="128px" height="128px" xmlns="http://www.w3.org/2000/svg">
             <defs>
                 <linearGradient id="pl-grad" x1="0" y1="0" x2="0" y2="1">
@@ -285,7 +285,7 @@
  
 
     <div class="row  justify-content-between">
-        <div class="col-sm-5" *ngIf="trainers.length != 0">
+        <div class="col-sm-5" *ngIf="trainers">
             <div class="row">
                 <div class="col-sm-6">
 
@@ -321,7 +321,7 @@
         <div class="col-sm-4">
             <div class="row">
                 <div class="col-sm-12">
-                    <p style="color:#2955AB;" class="text-end "><strong>Found {{trainers['data'].length}} trainers</strong></p>
+                    <p style="color:#2955AB;" class="text-end "><strong>Found {{trainers['data']?.length}} trainers</strong></p>
                 </div> 
             </div>
         </div>

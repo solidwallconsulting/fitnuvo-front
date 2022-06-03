@@ -22,7 +22,8 @@
 
                         <div class="container">
 
-                          <p class="text-center" *ngIf="!mywishlist"> No Data Found</p>
+
+                          <p class="text-center" *ngIf="!mywishlist"> You have not any favourites trainers until now</p>
 
                                 <div class="card " *ngFor="let wish of mywishlist  | paginate: { itemsPerPage: 5, currentPage: p }">
                                   <div class="additional">

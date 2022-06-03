@@ -35,7 +35,44 @@
 
                             <div class="tab-pane fade mt-2" id="gimage" role="tabpanel" aria-labelledby="gimage-tab">
                                     
-                              <div class="container-fluid" *ngIf="upcomingapp">
+                              <div class="container-fluid" >
+                                <p class="text-center" *ngIf="!upcomingapp"> You have not any appointments until now</p>
+
+                                <div class="row" *ngFor="let upapp of upcomingapp">  
+                                 <div class="col-12 mt-3">
+
+                                        <article class="postcard light blue">
+                                            <a class="postcard__img_link" href="#">
+                                                <img class="postcard__img" src="{{url}}/storage/images/trainer/{{upapp.appointment_client?.photo_profil}}" alt="Image Title" />
+                                            </a>
+                                            <div class="postcard__text">
+                                                <h1 class="postcard__title blue"><a >  <strong> {{upapp.appointment_client.first_name}} {{upapp.appointment_client?.last_name}}</strong></a></h1>
+                                                <div class="postcard__subtitle small">
+                                                        <i class="fas fa-calendar-alt mr-2"></i> &nbsp;  <strong>{{upapp.appointment_date}} At {{upapp.appointment_start}}-{{upapp.appointment_end}}</strong> 
+                                                </div>
+                                                <div class="postcard__bar"></div>
+                                                <div class="postcard__preview-txt">
+
+                                                    
+
+                                                <p>      Mobile: <strong>{{upapp.appointment_client.mobile_number}}</strong>  </p>
+
+
+                                                <p>     Activity: <strong>{{upapp.appointment_activity}}</strong> </p>
+                                                <p>     Status: <strong>{{upapp.appointment_payement_status}}</strong> </p>
+
+                                                </div>
+                                                <ul class="postcard__tagbox">
+                                                    <li class="tag__item" (click)="openEditForm(upapp.appointment_id)" ><i class="fas fa-edit mr-2"></i> Edit </li>
+                                                    <li class="tag__item play blue" (click)="reject(upapp.appointment_id)" >
+                                                        <a ><i class="fas fa-edit mr-2"></i> Reject </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </article>
+
+                                </div>
+                                </div>
 
 
                                  <!--  <div class="row" *ngFor="let upapp of upcomingapp" >
@@ -74,32 +111,63 @@
                     <!-- password form -->
                     <div class="tab-pane fade" id="gpwd" role="tabpanel" aria-labelledby="gpwd-tab">
                         <div class="container-fluid">
-                            <p class="text-center" *ngIf="!completedapp"> No Data Found</p>
 
+                            <p class="text-center" *ngIf="!completedapp"> You have not any completed appointments until now</p>
 
                             <div class="row" *ngFor="let capp of completedapp  | paginate: { itemsPerPage: 5, currentPage: p }" >
                                <div class="col-12 mt-3">
-                                   <div class="card">
-                                       <div class="card-horizontal">
-                                           <div class="img-square-wrapper">
-                                               <img class="" width="300px" height="220px" src="{{url}}/storage/images/trainer/{{capp.appointment_client.photo_profil}}" alt="Card image cap">
-                                           </div>
-                                           <div class="card-body"  >
-                                             
 
-                                               <div  style="float:left;">  
-                                               <p class="card-text"  >Client: <strong>{{capp.appointment_client.first_name}} {{capp.appointment_client.last_name}}</strong> </p>
-                                               <p class="card-text"  >Mobile: <strong>{{capp.appointment_client.mobile_number}}</strong> </p>
-                                                <p class="card-text"  >Date and time:: <strong>{{capp.appointment_date}} At {{capp.appointment_start}}-{{capp.appointment_end}}</strong> </p>
-                                               <p class="card-text"  >Activity:<strong>{{capp.appointment_activity}}</strong> </p>
-                                               </div>
+                                <!--
+                                            <div class="card">
+                                                <div class="card-horizontal">
+                                                    <div class="img-square-wrapper">
+                                                        <img class="" width="300px" height="220px" src="{{url}}/storage/images/trainer/{{capp.appointment_client.photo_profil}}" alt="Card image cap">
+                                                    </div>
+                                                    <div class="card-body"  >
+                                                        
+
+                                                        <div  style="float:left;">  
+                                                        <p class="card-text"  >Client: <strong>{{capp.appointment_client.first_name}} {{capp.appointment_client.last_name}}</strong> </p>
+                                                        <p class="card-text"  >Mobile: <strong>{{capp.appointment_client.mobile_number}}</strong> </p>
+                                                            <p class="card-text"  >Date and time:: <strong>{{capp.appointment_date}} At {{capp.appointment_start}}-{{capp.appointment_end}}</strong> </p>
+                                                        <p class="card-text"  >Activity:<strong>{{capp.appointment_activity}}</strong> </p>
+                                                        </div>
+                                                        </div>
+                                                </div>
+                                                <div class="card-footer">
+                                                    <small class="text-muted">Previous workouts:</small> <strong>no workouts to show</strong>
+                                                </div>
                                             </div>
-                                       </div>
-                                       <div class="card-footer">
-                                           <small class="text-muted">Previous workouts:</small> <strong>no workouts to show</strong>
-                                       </div>
-                                   </div>
-                               </div>
+
+                                        -->
+                              
+                              
+                              
+                                                 
+                                <article class="postcard light blue">
+                                    <a class="postcard__img_link" href="#">
+                                        <img class="postcard__img" src="{{url}}/storage/images/trainer/{{capp.appointment_client.photo_profil}}" alt="Image Title" />
+                                    </a>
+                                    <div class="postcard__text">
+                                        <h1 class="postcard__title blue"><a >  <strong> {{capp.appointment_client.first_name}} {{capp.appointment_client.last_name}}</strong></a></h1>
+                                        <div class="postcard__subtitle small">
+                                                <i class="fas fa-calendar-alt mr-2"></i> &nbsp;  <strong>{{capp.appointment_date}} At {{capp.appointment_start}}-{{capp.appointment_end}}</strong> 
+                                        </div>
+                                        <div class="postcard__bar"></div>
+                                        <div class="postcard__preview-txt">
+
+                                            
+
+                                        <p>      Mobile: <strong>{{capp.appointment_client.mobile_number}}</strong>  </p>
+
+
+                                        <p>     Activity: <strong>{{capp.appointment_activity}}</strong> </p>
+                                        </div>
+                                       
+                                    </div>
+                                </article>
+
+                                </div>
                             </div>
 
 
@@ -113,36 +181,71 @@
                     <div class="tab-pane fade" id="gpwd1" role="tabpanel" aria-labelledby="gpwd1-tab">
                         <div class="container-fluid">
 
-                            <p class="text-center" *ngIf="!requests"> No Data Found</p>
                                
-
+                            <p class="text-center" *ngIf="!requests"> You have not any appointments requests until now</p>
+ 
                             <div class="row" *ngFor="let req of requests  | paginate: { itemsPerPage: 5, currentPage: p }" >
                                 <div class="col-12 mt-3">
-                                    <div class="card">
-                                        <div class="card-horizontal">
-                                            <div class="img-square-wrapper">
-                                                <img class="" width="300px" height="250px" src="{{url}}/storage/images/trainer/{{req.appointment_client?.photo_profil}}" alt="Card image cap">
-                                            </div>
-                                            <div class="card-body"  >
-                                                <div style="float:right;"> 
-                                                    <button type="button" class="btn2 btn-outline-primary btn-sm" (click)="booknow(req.appointment_id)" >Book now</button> &nbsp;
-                                                    <button type="button"  class="btn2 btn-outline-primary btn-sm" (click)="reject(req.appointment_id)" >Reject</button>
-                                                </div>
+                                    <!-- 
+                                            <div class="card">
+                                                <div class="card-horizontal">
+                                                    <div class="img-square-wrapper">
+                                                        <img class="" width="300px" height="250px" src="{{url}}/storage/images/trainer/{{req.appointment_client?.photo_profil}}" alt="Card image cap">
+                                                    </div>
+                                                    <div class="card-body"  >
+                                                        <div style="float:right;"> 
+                                                            <button type="button" class="btn2 btn-outline-primary btn-sm" (click)="booknow(req.appointment_id)" >Book now</button> &nbsp;
+                                                            <button type="button"  class="btn2 btn-outline-primary btn-sm" (click)="reject(req.appointment_id)" >Reject</button>
+                                                        </div>
 
-                                                <div  style="float:left;" >  
-                                                <p class="card-text"  >Client: <strong>{{req.appointment_client.first_name}} {{req.appointment_client?.last_name}}</strong> </p>
-                                                <p class="card-text"  >Mobile: <strong>{{req.appointment_client.mobile_number}}</strong> </p>
-                                                <p class="card-text"  >Date and time:: <strong>{{req.appointment_date}} At {{req.appointment_start}}-{{req.appointment_end}}</strong> </p>
-                                                <p class="card-text"  >Activity:<strong>{{req.appointment_activity}}</strong> </p>
-                                                <p class="card-text"  >Status: <strong>{{req.appointment_payement_status}}</strong> </p>
+                                                        <div  style="float:left;" >  
+                                                        <p class="card-text"  >Client: <strong>{{req.appointment_client.first_name}} {{req.appointment_client?.last_name}}</strong> </p>
+                                                        <p class="card-text"  >Mobile: <strong>{{req.appointment_client.mobile_number}}</strong> </p>
+                                                        <p class="card-text"  >Date and time:: <strong>{{req.appointment_date}} At {{req.appointment_start}}-{{req.appointment_end}}</strong> </p>
+                                                        <p class="card-text"  >Activity:<strong>{{req.appointment_activity}}</strong> </p>
+                                                        <p class="card-text"  >Status: <strong>{{req.appointment_payement_status}}</strong> </p>
 
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="card-footer">
+                                                    <small class="text-muted">Previous workouts:</small> <strong>no workouts to show</strong>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="card-footer">
-                                            <small class="text-muted">Previous workouts:</small> <strong>no workouts to show</strong>
-                                        </div>
-                                    </div>
+
+                                        -->
+                                
+
+                                        <article class="postcard light blue">
+                                            <a class="postcard__img_link" href="#">
+                                                <img class="postcard__img" src="{{url}}/storage/images/trainer/{{req.appointment_client?.photo_profil}}" alt="Image Title" />
+                                            </a>
+                                            <div class="postcard__text">
+                                                <h1 class="postcard__title blue"><a >  <strong> {{req.appointment_client.first_name}} {{req.appointment_client?.last_name}}</strong></a></h1>
+                                                <div class="postcard__subtitle small">
+                                                        <i class="fas fa-calendar-alt mr-2"></i> &nbsp;  <strong>{{req.appointment_date}} At {{req.appointment_start}}-{{req.appointment_end}}</strong> 
+                                                </div>
+                                                <div class="postcard__bar"></div>
+                                                <div class="postcard__preview-txt">
+
+                                                    
+
+                                                <p>      Mobile: <strong>{{req.appointment_client.mobile_number}}</strong>  </p>
+
+
+                                                <p>     Activity: <strong>{{req.appointment_activity}}</strong> </p>
+                                                <p>     Status: <strong>{{req.appointment_payement_status}}</strong> </p>
+
+                                                </div>
+                                                <ul class="postcard__tagbox">
+                                                    <li class="tag__item" (click)="booknow(req.appointment_id)" ><i class="fas fa-trash mr-2"></i> Book now </li>
+                                                    <li class="tag__item play blue" (click)="reject(req.appointment_id)" >
+                                                        <a ><i class="fas fa-edit mr-2"></i> Reject </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </article>
+                                
                                 </div>
                             </div>
 

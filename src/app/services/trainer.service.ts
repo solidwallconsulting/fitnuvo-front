@@ -53,6 +53,19 @@ export class TrainerService {
     );
   }
 
+  getSearchLive(name:string){
+    const response=  new Promise ( resolve => {
+      this.httpClient.get(`${this.BASE_URL}/api/v1/trainerslive/search_live?search_live=${name}`).subscribe(data => {
+
+        resolve(data);
+      },err => {
+        console.log(err);
+      });
+    });
+    return response;
+
+  }
+
 
   token:string = this.auth.getToken();
 

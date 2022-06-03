@@ -7,17 +7,17 @@
                 <div class="navigation d-flex justify-content-between">
                     <div class="bloc-nav">
                         <ul class="nav coach-nav" id="myTab" role="tablist">
-                            <li class="nav-item">
-                              <a class="nav-link active" id="ginfo-tab" data-bs-toggle="tab" data-bs-target="#ginfo" role="tab" aria-controls="userinfo" aria-selected="true" >General information</a>
+                            <li class="nav-item" >
+                              <a   (onclick)="NgInit()" class="nav-link active" id="ginfo-tab" data-bs-toggle="tab" data-bs-target="#ginfo" role="tab" aria-controls="userinfo" aria-selected="true" >General information</a>
                             </li>
-                            <li class="nav-item">
-                              <a class="nav-link" id="gimage-tab" data-bs-toggle="tab" data-bs-target="#gimage" role="tab" aria-controls="userimage" aria-selected="false" >Image</a>
+                            <li class="nav-item" >
+                              <a   (onclick)="NgInit()" class="nav-link" id="gimage-tab" data-bs-toggle="tab" data-bs-target="#gimage" role="tab" aria-controls="userimage" aria-selected="false" >Image</a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link" id="gdesc-tab" data-bs-toggle="tab" data-bs-target="#gdesc" role="tab" aria-controls="userpassword" aria-selected="false">Description</a>
+                            <li class="nav-item" >
+                                <a  (onclick)="NgInit()" class="nav-link" id="gdesc-tab" data-bs-toggle="tab" data-bs-target="#gdesc" role="tab" aria-controls="userpassword" aria-selected="false">Description</a>
                               </li>
-                            <li class="nav-item">
-                              <a class="nav-link" id="gpwd-tab" data-bs-toggle="tab" data-bs-target="#gpwd" role="tab" aria-controls="userpassword" aria-selected="false">Password</a>
+                            <li class="nav-item" >
+                              <a   (onclick)="NgInit()" class="nav-link" id="gpwd-tab" data-bs-toggle="tab" data-bs-target="#gpwd" role="tab" aria-controls="userpassword" aria-selected="false">Password</a>
                             </li> 
                           </ul>
                     </div>
@@ -208,7 +208,30 @@
                             </div>
                           </div>
                         </div>
+
+
+
+                        <div class="accordion" id="accordionExample">
+
+
+                            <div class="accordion-item  coach-descri-body">
+                              <h2 class="accordion-header" id="headingSpec">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSpec" aria-expanded="true" aria-controls="collapseSpec">
+                                  <span class="text-color-primary">My Specialities</span>
+                                </button>
+                              </h2>
+                              <div id="collapseSpec" class="accordion-collapse collapse " aria-labelledby="headingSpec" data-bs-parent="#accordionExample">
+                                <div class="accordion-body ">
+                                 
+                                    <ng2-smart-table [settings]="settings3" [source]="myspecs"    class="card card-xxl-stretch mb-xl-8 mt-6" style="margin-top: 9px;"
+                                    >
+                                   </ng2-smart-table>
+        
+                                </div>
+                              </div>
+                            </div>
           
+                      </div>
                       </div>
                        
                         <form [formGroup]="FormDesc" (ngSubmit)="Editdesc()" class="mt-2" >
@@ -225,8 +248,8 @@
                                     <div *ngIf="fdesc.description.errors?.required">*Description is required.</div>
                                 </div>
                             </div> 
-                            <div class="form-group mb-3 col-md-6"> <label for="inputName" class="form-label">Certificatation Description</label> 
-                                <input type="text"  class="form-control"  formControlName="certifname1"  >
+                            <div class="form-group mb-3 col-md-6"> <label for="inputName" class="form-label">Certification Description</label> 
+                                <input type="text"  class="form-control"  formControlName="certifname1" >
                                 <div *ngIf="fdesc.certifname1.touched && fdesc.certifname1.invalid" class="text-danger">
                                     <div *ngIf="fdesc.certifname1.errors?.required">*Certification name is required.</div>
                                 </div>
@@ -244,7 +267,7 @@
 
                              <div class="form-group mt-3 mb-3 col-md-6"> <label for="inputName" class="form-label">Activities</label> 
                                 <select formControlName="speciality" class="form-control"  >
-                                    <option value="">--select--</option>
+                                    <option value=""> <--select--></option>
                                     <ng-container *ngFor="let spec of myspecialities">
                                         <option value="{{spec.speciality_id}}"> {{spec.speciality_name}} </option>
 
@@ -268,7 +291,7 @@
                             </div> 
                             
                           </div>
-                          <div class="mt-3 mb-3 row"> <button class="btn btn-primary full-width" type="submit" style="background: linear-gradient(135deg,#3a8ffe 0%,#9658fe 100%);">Update</button> </div>
+                          <div class="mt-3 mb-3 row"> <button class="btn btn-primary full-width" type="submit" style="background: linear-gradient(135deg,#3a8ffe 0%,#9658fe 100%);">Add Description  </button> </div>
                         </form>
                     </div>
 

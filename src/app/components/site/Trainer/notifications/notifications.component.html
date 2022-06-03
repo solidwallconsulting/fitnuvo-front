@@ -18,6 +18,7 @@
                     <!-- info form-->
                     <div class="tab-pane fade show active" id="ginfo" role="tabpanel" aria-labelledby="ginfo-tab">
                         <div class="container-fluid " style="margin-top:30px">
+                            <p class="text-center" *ngIf="!mynotifs"> You haven't received any notifications until now</p>
 
 
                          <div class="row" >  
@@ -69,7 +70,7 @@
                          </div>
 
                          <br>
-                         <pagination-controls style="margin-top:15px" class="text-center" (pageChange)="p = $event"></pagination-controls>
+                         <pagination-controls *ngIf="mynotifs" style="margin-top:15px" class="text-center" (pageChange)="p = $event"></pagination-controls>
 
 
 

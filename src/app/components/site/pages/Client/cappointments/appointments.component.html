@@ -29,9 +29,11 @@
                     <div class="tab-pane fade mt-2" id="gimage" role="tabpanel" aria-labelledby="gimage-tab">
                              
                             <div class="container-fluid">
-                                <h4 >UPCOMING({{upcomingApp?.length}})</h4>
+
+                                <p class="text-center" *ngIf="!upcomingApp"> You have not any appointments until now</p>
 
 
+                                <!-- 
                                  <div class="row" *ngFor="let app of upcomingApp" >
                                     <div class="col-12 mt-3">
                                         <div class="card">
@@ -59,16 +61,78 @@
                                         </div>
                                     </div>
                                  </div>
+
+                                -->
+
+                                 <div class="row" *ngFor="let app of upcomingApp" >
+                                    <div class="col-12 mt-3">
+                                                <article class="postcard light blue">
+                                                    <a class="postcard__img_link" href="#">
+                                                        <img class="postcard__img" src="{{url}}/storage/images/trainer/{{app.appointment_trainer.photo_profil}}" alt="Image Title" />
+                                                    </a>
+                                                    <div class="postcard__text">
+                                                        <h1 class="postcard__title blue"><a >  <strong> {{app.appointment_trainer.first_name}} {{app.appointment_trainer.last_name}}</strong></a></h1>
+                                                        <div class="postcard__subtitle small">
+                                                                <i class="fas fa-calendar-alt mr-2"></i> &nbsp;  <strong>{{app.appointment_date}} At {{app.appointment_start}}-{{app.appointment_end}}</strong> 
+                                                        </div>
+                                                        <div class="postcard__bar"></div>
+                                                        <div class="postcard__preview-txt">
+
+                                                            
+
+                                                        <p>      Mobile: <strong>{{app.appointment_trainer.mobile_number}}</strong>  </p>
+
+
+                                                        <p>     Activity: <strong>{{app.appointment_activity}}</strong> </p>
+                                                        </div>
+                                                        <ul class="postcard__tagbox">
+                                                            <li class="tag__item" (click)="cancelapp(app.appointment_id)" ><i class="fas fa-trash mr-2"></i> Cancel </li>
+                                                            <li class="tag__item play blue" (click)="openEditForm(app.appointment_id,app.appointment_trainer.trainer_id)">
+                                                                <a ><i class="fas fa-edit mr-2"></i> Edit </a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </article>
+
+                                 </div>
+                                  </div>
                             </div>
                     </div>
                     <!-- password form -->
                     <div class="tab-pane fade" id="gpwd" role="tabpanel" aria-labelledby="gpwd-tab">
                         <div class="container-fluid">
                                
-                            <h4>COMPLETED({{completedapp?.length}})</h4>
+                            <p class="text-center" *ngIf="!completedapp"> You have not any completed appointments until now</p>
 
                             <div class="row" *ngFor="let app of completedapp" >
                                <div class="col-12 mt-3">
+
+
+                                <article class="postcard light blue">
+                                    <a class="postcard__img_link" href="#">
+                                        <img class="postcard__img" src="{{url}}/storage/images/trainer/{{app.appointment_trainer.photo_profil}}" alt="Image Title" />
+                                    </a>
+                                    <div class="postcard__text">
+                                        <h1 class="postcard__title blue"><a >  <strong> {{app.appointment_trainer.first_name}} {{app.appointment_trainer.last_name}}</strong></a></h1>
+                                        <div class="postcard__subtitle small">
+                                                <i class="fas fa-calendar-alt mr-2"></i> &nbsp;  <strong>{{app.appointment_date}} At {{app.appointment_start}}-{{app.appointment_end}}</strong> 
+                                        </div>
+                                        <div class="postcard__bar"></div>
+                                        <div class="postcard__preview-txt">
+
+                                            
+
+                                        <p>      Mobile: <strong>{{app.appointment_trainer.mobile_number}}</strong>  </p>
+
+
+                                        <p>     Activity: <strong>{{app.appointment_activity}}</strong> </p>
+                                        </div>
+                                       
+                                    </div>
+                                </article>
+
+                                
+                                <!-- 
                                    <div class="card">
                                        <div class="card-horizontal">
                                            <div class="img-square-wrapper">
@@ -120,6 +184,8 @@
                                            <small class="text-muted">Previous workouts:</small> <strong>no workouts to show</strong>
                                        </div>
                                    </div>
+
+                                -->
                                </div>
                             </div>
                        </div>

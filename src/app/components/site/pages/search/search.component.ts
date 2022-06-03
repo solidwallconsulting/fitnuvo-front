@@ -1,5 +1,5 @@
 import { LabelType, Options } from '@angular-slider/ngx-slider';
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { User } from 'src/app/models/user.model';
 import { AuthentificationService } from 'src/app/services/authentification.service';
@@ -47,7 +47,7 @@ export class SearchComponent implements OnInit {
 
 
 
-  trainers:any= [];
+  trainers:any;
   specialities:any=[]
   selected_categories:any=[]
   selected_gender:any=[]
@@ -60,13 +60,16 @@ export class SearchComponent implements OnInit {
   Role:any;
   url:string=environment.urlServeur;
   user:User;
+  data:any;
 
 
 
 
-  constructor(public TrainerService:TrainerService, private authService: AuthentificationService, public SpecialityService: SpecialityService,private router: Router) { }
+  constructor(public TrainerService:TrainerService, private authService: AuthentificationService,private cd: ChangeDetectorRef , public SpecialityService: SpecialityService,private router: Router) { }
 
   ngOnInit(): void {
+    console.log(this.cd);
+
     
 
     this.SpecialityService.getAll().subscribe((data)=>{
@@ -80,6 +83,7 @@ export class SearchComponent implements OnInit {
     this.user=this.authService.getUser();
     }
 
+    
     if (this.authService.isAuthenticated() && this.authService.getRole()==='trainer'){
 
 
@@ -100,7 +104,9 @@ export class SearchComponent implements OnInit {
 
       
     }
+    
 
+      
 
   }
   selectedRange:any;
@@ -369,6 +375,21 @@ openProfile(id:any){
 
 ResetSchedule(event:any) {
   this.selected_schedule.splice(0);
+}
+
+
+getTrainerSearch(name:any){
+  const keyword= name.target.value;
+
+  const search= this.TrainerService.getSearchLive(keyword).then(response => {
+
+     this.trainers= response;
+     console.log(this.trainers);
+     this.cd.detectChanges();
+
+  });
+
+
 }
 
 

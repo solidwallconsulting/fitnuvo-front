@@ -27,6 +27,7 @@ export class TprofileComponent implements OnInit {
   url:string=environment.urlServeur;
   certifications:any;
   achivements:any;
+  myspecs:any;
 
   //Forms
   profileCform: FormGroup;
@@ -83,9 +84,7 @@ export class TprofileComponent implements OnInit {
     },
     columns: {
 
-      achivement_id: {
-        title: 'Achivement description'
-      },
+   
       achivement_description: {
         title: 'Achivement description'
       },
@@ -93,6 +92,32 @@ export class TprofileComponent implements OnInit {
   
     },
   };
+
+
+  settings3 = {
+
+    actions: {
+      add: false,
+      edit: false,
+      position: 'right',
+
+    },
+    delete: {
+      deleteButtonContent: '<i class="fa fa-trash text-danger "></i>',
+      confirmDelete: true,
+    },
+    columns: {
+
+      speciality_name: {
+        title: 'Speciality'
+      },
+    
+    
+  
+    },
+  };
+
+  
  
   constructor(private router:Router, private auth:AuthentificationService,private trainerS:TrainerService,private ngxBootstrapConfirmService:NgxBootstrapConfirmService,private formBuilder: FormBuilder,private imageS : ImagesService,private specialityS:SpecialityService,private toastr: ToastrService) { }
 
@@ -168,6 +193,13 @@ export class TprofileComponent implements OnInit {
  
      });
 
+     this.myspecs = new LocalDataSource();
+     this.trainerS.myspecialities().subscribe((data:any)=>{
+       console.log(data);
+       this.myspecs.load(data['data']);
+ 
+     });
+
 
      this.specialityS.getAll().subscribe((data:any)=>{
       console.log("dataaa",data['data']);
@@ -175,6 +207,9 @@ export class TprofileComponent implements OnInit {
       console.log("dddd",this.user);
 
     });
+
+
+
 
 
   }
@@ -290,6 +325,11 @@ export class TprofileComponent implements OnInit {
 
          
          console.log("res",res);
+         
+         let item =JSON.parse(localStorage.getItem('visible')!);
+         item=1;
+         localStorage.setItem('visible', JSON.stringify(item));
+
          this.toastr.success(JSON.stringify(res.message),'',{
            timeOut:2000,
            progressBar:true
@@ -297,6 +337,7 @@ export class TprofileComponent implements OnInit {
          });
 
          this.ngOnInit();
+         window.location.reload();
 
        },(err: any) => {
          console.log("errapp",err)
@@ -383,12 +424,10 @@ export class TprofileComponent implements OnInit {
             progressBar:true});
   
   
-        }, (err: HttpErrorResponse) => {
-          if (err.error instanceof Error) {
-            console.log("Client-side error occured.");
-          } else {
-            console.log("Server-side error occured.");
-          }
+        }, (err: any) => {
+          this.toastr.error(err.error.message,'',{
+            timeOut:2000,
+            progressBar:true});
         });
     
   
@@ -424,17 +463,15 @@ export class TprofileComponent implements OnInit {
           console.log("res : ",res);
           event.confirm.resolve(event.newData);
           //this.showToast("danger", "Sucess!", "Your Activity was deleted Successfuly!");
-          this.toastr.error('Certification was deleted Successfuly !','',{
+          this.toastr.success('Certification was deleted Successfuly !','',{
             timeOut:2000,
             progressBar:true});
   
   
-        }, (err: HttpErrorResponse) => {
-          if (err.error instanceof Error) {
-            console.log("Client-side error occured.");
-          } else {
-            console.log("Server-side error occured.");
-          }
+        }, (err) => {
+          this.toastr.error(err.error.message,'',{
+            timeOut:2000,
+            progressBar:true});
         });
     
   
@@ -460,6 +497,11 @@ export class TprofileComponent implements OnInit {
       });
    
     }  
+
+
+    NgInit(){
+      this.ngOnInit();
+    }
 
 
     

@@ -97,26 +97,43 @@ export class RegisterComponent implements OnInit {
       myFormData.append('password', this.formControl.password.value);
       myFormData.append('phone', this.formControl.phone.value);
       myFormData.append('adress', this.formControl.adress.value);
-      myFormData.append('role_id', '4');
+      myFormData.append('role', 'client');
 
       return this.auth.register(myFormData).subscribe((res: any) => {
-          console.log(res);
-            //sweetalert message popup
-            Swal.fire({
-              position: 'top-end',
-              icon: 'success',
-              title: 'you has been registered successfully',
-              showConfirmButton: false,
-              timer: 5000
-            })
-            //this.registerFormC.reset();
-
+        console.log(res);
+        //sweetalert message popup
+          this.modalService.dismissAll();
           
-      },(err)=>{ 
-        console.log(err);
 
-      });
-      
+          this.auth.login(this.formControl.email.value,this.formControl.password.value).subscribe(res =>{
+            if(res.status === 200){
+              console.log("body",res.body)
+              this.result = res.body!;
+              localStorage.setItem('token',JSON.stringify(this.result.token));
+              this.user = new User();
+              /*let role = new Role();
+              user.name=this.result.user.name;
+              role.name= this.result.role.name;*/
+              localStorage.setItem('user', JSON.stringify(this.result.user));
+              localStorage.setItem('ROLE', JSON.stringify(this.result.role));
+
+              this.auth.setMenu(this.result.menu);
+              
+              this.notifyService.showSuccess("Welcome to Fitnuvo", "Fitnuvo");
+              this.router.navigate([`/user`]);
+              window.location.reload();
+            }
+            },error => {
+              this.notifyService.showError(error.error.message, "Fitnuvo"); 
+          });
+
+              
+          },(err)=>{ 
+            this.notifyService.showError(err.error.error,'Error');
+
+          });
+
+ 
 
     }
     // Register for a Trainer
@@ -173,6 +190,8 @@ export class RegisterComponent implements OnInit {
                           
                           this.notifyService.showSuccess("Welcome to Fitnuvo", "Fitnuvo");
                           this.router.navigate([`/trainerme`]);
+                          window.location.reload();
+
                         }
                         },error => {
                           this.notifyService.showError(error.error.message, "Fitnuvo"); 
@@ -180,7 +199,7 @@ export class RegisterComponent implements OnInit {
 
                 
             },(err)=>{ 
-              console.log(err);
+              this.notifyService.showError(err.error.error,'Error');
 
             });
             
