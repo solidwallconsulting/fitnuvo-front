@@ -20,17 +20,23 @@ import { NgxBootstrapConfirmService } from 'ngx-bootstrap-confirm';
 import { ToastrService } from 'ngx-toastr';
 import { HttpErrorResponse } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
+
+declare var pdfMake: any;
+
+
+
 @Component({
   selector: 'app-appointments',
   templateUrl: './appointments.component.html',
   styleUrls: ['./appointments.component.scss']
 })
 export class AppointmentsComponent implements OnInit {
-  currentRate = 0;
+  starRating = 0; 
 
   appointments:Appointment[];
   upcomingApp:Appointment[];
   completedapp:Appointment[];
+  oneapp:Appointment=new Appointment();
   url:string=environment.urlServeur;
 
   myreviews:Review[];
@@ -132,39 +138,172 @@ export class AppointmentsComponent implements OnInit {
 
     cancelapp(id:any) {
 
-      let options ={
-        title: 'Sure you want to cancel this appointment?',
-        confirmLabel: 'Okay',
-        declineLabel: 'Cancel'
-      }
-     this.NgxBootstrapConfirmService.confirm(options).then((res: boolean) => {
-        if (res) {
-  
-              this.appservice.cancelappFromClient(id).subscribe(
-                (res) => {
-                  
-                  console.log("res : ",res);
+      Swal.fire({  
+        title: 'Are you sure want to cancel?',  
+        text: 'You will not be able to recover this appointment!',  
+        icon: 'warning',  
+        showCancelButton: true,  
+        confirmButtonText: 'Yes, delete it!',  
+        cancelButtonText: 'No, keep it'  
+      }).then((result) => {  
+        if (result.value) {  
+          this.appservice.cancelappFromClient(id).subscribe(
+            (res) => {
+              
+              console.log("res : ",res);
 
-                  this.toastrService.error('Ooh!', 'Your appointment was canceled!');
-          
-          
-                }, (err: HttpErrorResponse) => {
-                  if (err.error instanceof Error) {
-                    console.log("Client-side error occured.");
-                  } else {
-                    console.log("Server-side error occured.");
-                  }
-                });
-  
-        } else {
-          console.log('Cancel');
-        }
-      });
+              this.toastrService.error('Ooh!', 'Your appointment was canceled!');
+      
+      
+            }, (err: HttpErrorResponse) => {
+              if (err.error instanceof Error) {
+                console.log("Client-side error occured.");
+              } else {
+                console.log("Server-side error occured.");
+              }
+            }); 
+        } else if (result.dismiss === Swal.DismissReason.cancel) {  
+          Swal.fire(  
+            'Cancelled',  
+            'Your appointment is safe :)',  
+            'error'  
+          )  
+        }  
+      })  
+
+   
 
       this.ngOnInit();
 
 
     }
+
+
+
+
+
+     
+  generatePDF(id:any) {
+
+    
+    this.appservice.getOneappByIdFromInvoice(id).subscribe((data:any) => {
+      let oneapp = data['data'];
+      let docDefinition = {
+        content: [
+          {
+            text: 'FITNUVO',
+            fontSize: 16,
+            alignment: 'center',
+            color: '#047886'
+          },
+          {
+            text: 'INVOICE',
+            fontSize: 20,
+            bold: true,
+            alignment: 'center',
+            decoration: 'underline',
+            color: 'skyblue'
+          },
+          {
+            text: 'Customer Details',
+            style: 'sectionHeader'
+          },
+          {
+            columns: [
+              [
+                {
+                  text:`${oneapp.appointment_client.first_name} ${oneapp.appointment_client.last_name}`,
+                  bold:true
+                },
+                { text: `${oneapp.appointment_client.email} `},
+                { text: `Mobile:+${oneapp.appointment_client.mobile_number} ` },
+              ],
+              [
+                {
+                  text: `Date: ${new Date().toLocaleString()}`,
+                  alignment: 'right'
+                },
+                { 
+                  text: `Bill No : #${oneapp.appointment_id}`,
+                  alignment: 'right'
+                }
+              ]
+              
+            ]
+          },
+          {
+            text: 'Order Details',
+            style: 'sectionHeader'
+          },
+          {
+            table: {
+              headerRows: 1,
+              widths: ['*', 'auto', 'auto', 'auto'],
+              body: [
+                ['Trainer', 'Price', 'Date', 'Amount'],
+                [`${oneapp.appointment_trainer.first_name} ${oneapp.appointment_trainer.last_name} `, `£${oneapp.appointment_trainer.price_trainer} ` ,  `${oneapp.appointment_date} ${oneapp.appointment_start} to ${oneapp.appointment_end} ` , ( `£${oneapp.appointment_amount} ` )],
+                [{text: 'Total Amount', colSpan: 3}, {}, {},  `£${oneapp.appointment_amount} ` ]
+              ]
+            }
+          },
+          {
+            text: 'Additional Details',
+            style: 'sectionHeader'
+          },
+          {
+              text: "QR CODE",
+              margin: [0, 0 ,0, 15]          
+          },
+          {
+            columns: [
+              [{ qr: `${oneapp.appointment_trainer.first_name}`, fit: '50' }],
+              [{ text: 'Signature', alignment: 'right', italics: true}],
+            ]
+          },
+          {
+            text: 'Terms and Conditions',
+            style: 'sectionHeader'
+          },
+          {
+              ul: [
+                'Order can be return in max 10 days.',
+                'Warrenty of the product will be subject to the manufacturer terms and conditions.',
+                'This is system generated invoice.',
+              ],
+          }
+        ],
+        styles: {
+          sectionHeader: {
+            bold: true,
+            decoration: 'underline',
+            fontSize: 14,
+            margin: [0, 15,0, 15]          
+          }
+        }
+      };
+
+      pdfMake.createPdf(docDefinition).open();     
+
+    },(err: any) => {
+      console.log(err)
+    })
+    
+
+   
+
+  
+  
+       
+    
+
+  }
+
+  
+
+  NgInit(){
+    this.ngOnInit();
+  }
+  
 
 
 }

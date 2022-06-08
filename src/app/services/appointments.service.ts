@@ -56,6 +56,10 @@ export class AppointmentsService {
 
 
 
+  getOneappByIdFromInvoice(id:any){
+    return this.httpClient.get(`${this.BASE_URL}/api/v1/fullappointment/`+id,{headers:this.headers} );
+  }
+
 
 
 

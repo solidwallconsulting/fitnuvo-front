@@ -12,7 +12,7 @@ import { RegisterComponent } from '../../../auth/register/register.component';
 import { MustMatch } from '../../../auth/_helpers/must-match.validator';
 
 @Component({
-  selector: 'app-messages',
+  selector: 'app-messagesc',
   templateUrl: './messages.component.html',
   styleUrls: ['./messages.component.scss']
 })

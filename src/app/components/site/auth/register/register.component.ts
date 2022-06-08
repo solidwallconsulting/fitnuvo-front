@@ -53,7 +53,7 @@ export class RegisterComponent implements OnInit {
       repeatpassword: ["", [Validators.required]],
       phone: ["", [Validators.required,Validators.pattern("[0-9 ]{12}")]],
       adress: ["", [Validators.required]],
-      experience: ["", [Validators.required]],
+      experience: ["", [Validators.required,Validators.pattern("[1-20 ]")]],
       price: ["", [Validators.required]],
     },
     {

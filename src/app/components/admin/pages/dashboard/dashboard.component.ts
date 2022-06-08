@@ -14,6 +14,9 @@ export class DashboardComponent implements OnInit {
   transactions:any=[];
   data:any;
   months:any;
+  numtrainers:any;
+  numcustomers:any;
+  numspecs:any;
 
   constructor(private serviceT : TrainerService,private userS : UsersService) {
 
@@ -30,7 +33,7 @@ export class DashboardComponent implements OnInit {
     })
 
     this.userS.getTransactions().subscribe((data:any)=>{
-      console.log("chyx",data['data']);
+      console.log("chscyx",data['data']);
       this.transactions = data['data'];
 
       this.data=data['data'];
@@ -51,6 +54,22 @@ export class DashboardComponent implements OnInit {
     this.userS.getAllusers().subscribe((data:any)=>{
       console.log("chy",data);
       this.users = data['data'];
+
+    })
+
+    this.userS.numcustomers().subscribe((data:any)=>{
+      console.log("ssqqdq",data);
+      this.numcustomers = data['data'];
+
+    })
+    this.userS.numtrainers().subscribe((data:any)=>{
+      console.log("chsssy",data);
+      this.numtrainers = data['data'];
+
+    })
+    this.userS.numspecs().subscribe((data:any)=>{
+      console.log("chsssy",data);
+      this.numspecs = data['data'];
 
     })
   }

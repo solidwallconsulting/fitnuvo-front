@@ -20,6 +20,9 @@ import { EditAppointmentComponent } from './modal-edit-appointment/edit-appointm
 import { environment } from 'src/environments/environment';
 import { NgxBootstrapConfirmService } from 'ngx-bootstrap-confirm';
 import { ToastrService } from 'ngx-toastr';
+import Tooltip from 'tooltip.js'; 
+declare var pdfMake: any;
+
 @Component({
   selector: 'app-appointments',
   templateUrl: './appointments.component.html',
@@ -33,8 +36,26 @@ export class AppointmentsTComponent implements OnInit {
         myCustomButton: {
           text: '+ Add planning',
           click: this.addappoint.bind(this)
-        }
+        },
+        
+        
       },
+    
+    eventMouseEnter: function(info) {
+      console.log('onEventRjvjgjender', info.event._def.title); 
+
+      var tooltip = new Tooltip(info.el, {
+        title: info.event.extendedProps.title,
+        placement: 'top',
+        trigger: 'hover',
+        container: 'body'
+      });
+    },
+    eventColor: '#378006',
+
+    eventBackgroundColor:'yellow',
+
+      
     headerToolbar: {
       left: 'prev,next today myCustomButton',
       center: 'title',
@@ -42,13 +63,15 @@ export class AppointmentsTComponent implements OnInit {
     },
     allDaySlot: false,
     initialView: 'dayGridMonth',
+    
+    
 
 
   };
 
-  IsmodelShow= false;
-  submitted = false;
-  user:User;
+    IsmodelShow= false;
+    submitted = false;
+    user:User;
     photo="/assets/site/img/icon/Ellipse3.png";
     upcomingapp:any;
     completedapp:any;
@@ -149,33 +172,43 @@ export class AppointmentsTComponent implements OnInit {
 
     booknow(id:any){
 
+
+
+
+      
+      Swal.fire({  
+        title: 'Are you sure want to book?',  
+        text: 'You will confirm this appointment!',  
+        icon: 'warning',  
+        showCancelButton: true,  
+        confirmButtonText: 'Yes, book it!',  
+        cancelButtonText: 'No, keep it'  
+      }).then((result) => {  
+        if (result.value) {  
+          
+          
+          this.appservice.acceptAppFromTraineer(id).subscribe(
+            (res) => {
+              
+              console.log("res : ",res);
+
+              this.toastr.success('Success!', 'Appointment was confirmed!');
+              this.ngOnInit();
+      
+      
+            }, (err: any) => {
+              console.log(err)
+            });
+        } else if (result.dismiss === Swal.DismissReason.cancel) {  
+          Swal.fire(  
+            'Cancelled',  
+            'Your appointment is safe :)',  
+            'error'  
+          )  
+        }  
+      })  
+
         
-
-    let options ={
-      title: 'Sure you want to cancel this appointment?',
-      confirmLabel: 'Okay',
-      declineLabel: 'Cancel'
-    }
-   this.confirmBox.confirm(options).then((res: boolean) => {
-      if (res) {
-
-            this.appservice.acceptAppFromTraineer(id).subscribe(
-              (res) => {
-                
-                console.log("res : ",res);
-
-                this.toastr.success('Success!', 'Appointment was confirmed!');
-                this.ngOnInit();
-        
-        
-              }, (err: any) => {
-                console.log(err)
-              });
-
-      } else {
-        console.log('Cancel');
-      }
-    });
 
     }
 
@@ -184,33 +217,177 @@ export class AppointmentsTComponent implements OnInit {
 
         
 
-      let options ={
-        title: 'Sure you want to cancel this appointment?',
-        confirmLabel: 'Okay',
-        declineLabel: 'Cancel'
+      Swal.fire({  
+        title: 'Are you sure want to reject?',  
+        text: 'You will not be able to recover this appointment!',  
+        icon: 'warning',  
+        showCancelButton: true,  
+        confirmButtonText: 'Yes, cancel it!',  
+        cancelButtonText: 'No, keep it'  
+      }).then((result) => {  
+        if (result.value) {  
+          
+          
+          
+          this.appservice.rejectAppFromTraineer(id).subscribe(
+            (res) => {
+              
+              console.log("res : ",res);
+
+              this.toastr.success('Success!', 'Appointment was canceled!');
+      
+      
+            }, (err: any) => {
+              console.log(err)
+            })
+
+            this.ngOnInit();
+
+        } else if (result.dismiss === Swal.DismissReason.cancel) {  
+          Swal.fire(  
+            'Cancelled',  
+            'Your appointment is safe :)',  
+            'error'  
+          )  
+        }  
+      })  
+
+
+  
+  
       }
-     this.confirmBox.confirm(options).then((res: boolean) => {
-        if (res) {
-  
-              this.appservice.rejectAppFromTraineer(id).subscribe(
-                (res) => {
+
+/**
+      onEventRender(info: any) { 
+        console.log('onEventRender', info.el); 
+        const tooltip = new Tooltip(info.el, { 
+          title: info.event.title, 
+          placement: 'top-end', 
+          trigger: 'hover', 
+          container: 'body' 
+        }); 
+      } 
+
+       */
+
+
+
+      generatePDF(id:any) {
+
+    
+        this.appservice.getOneappByIdFromInvoice(id).subscribe((data:any) => {
+          let oneapp = data['data'];
+          let docDefinition = {
+            content: [
+              {
+                text: 'FITNUVO',
+                fontSize: 16,
+                alignment: 'center',
+                color: '#047886'
+              },
+              {
+                text: 'INVOICE',
+                fontSize: 20,
+                bold: true,
+                alignment: 'center',
+                decoration: 'underline',
+                color: 'skyblue'
+              },
+              {
+                text: 'Customer Details',
+                style: 'sectionHeader'
+              },
+              {
+                columns: [
+                  [
+                    {
+                      text:`${oneapp.appointment_client.first_name} ${oneapp.appointment_client.last_name}`,
+                      bold:true
+                    },
+                    { text: `${oneapp.appointment_client.email} `},
+                    { text: `Mobile:+${oneapp.appointment_client.mobile_number} ` },
+                  ],
+                  [
+                    {
+                      text: `Date: ${new Date().toLocaleString()}`,
+                      alignment: 'right'
+                    },
+                    { 
+                      text: `Bill No : #${oneapp.appointment_id}`,
+                      alignment: 'right'
+                    }
+                  ]
                   
-                  console.log("res : ",res);
-  
-                  this.toastr.success('Success!', 'Appointment was canceled!');
-          
-          
-                }, (err: any) => {
-                  console.log(err)
-                })
+                ]
+              },
+              {
+                text: 'Order Details',
+                style: 'sectionHeader'
+              },
+              {
+                table: {
+                  headerRows: 1,
+                  widths: ['*', 'auto', 'auto', 'auto'],
+                  body: [
+                    ['Trainer', 'Price', 'Date', 'Amount'],
+                    [`${oneapp.appointment_trainer.first_name} ${oneapp.appointment_trainer.last_name} `, `£${oneapp.appointment_trainer.price_trainer} ` ,  `${oneapp.appointment_date} ${oneapp.appointment_start} to ${oneapp.appointment_end} ` , ( `£${oneapp.appointment_amount} ` )],
+                    [{text: 'Total Amount', colSpan: 3}, {}, {},  `£${oneapp.appointment_amount} ` ]
+                  ]
+                }
+              },
+              {
+                text: 'Additional Details',
+                style: 'sectionHeader'
+              },
+              {
+                  text: "QR CODE",
+                  margin: [0, 0 ,0, 15]          
+              },
+              {
+                columns: [
+                  [{ qr: `${oneapp.appointment_trainer.first_name}`, fit: '50' }],
+                  [{ text: 'Signature', alignment: 'right', italics: true}],
+                ]
+              },
+              {
+                text: 'Terms and Conditions',
+                style: 'sectionHeader'
+              },
+              {
+                  ul: [
+                    'Order can be return in max 10 days.',
+                    'Warrenty of the product will be subject to the manufacturer terms and conditions.',
+                    'This is system generated invoice.',
+                  ],
+              }
+            ],
+            styles: {
+              sectionHeader: {
+                bold: true,
+                decoration: 'underline',
+                fontSize: 14,
+                margin: [0, 15,0, 15]          
+              }
+            }
+          };
+    
+          pdfMake.createPdf(docDefinition).open();     
+    
+        },(err: any) => {
+          console.log(err)
+        })
+        
+    
+       
+    
+      
+      
+           
+        
+    
+      }
 
-                this.ngOnInit();
-
-  
-        } else {
-          console.log('Cancel');
-        }
-      });
-  
+      NgInit(){
+        this.ngOnInit();
       }
 }

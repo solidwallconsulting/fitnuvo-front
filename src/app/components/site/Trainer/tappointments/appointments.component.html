@@ -7,16 +7,16 @@
                 <div class="navigation d-flex justify-content-between">
                     <div class="bloc-nav">
                         <ul class="nav coach-nav" id="myTab" role="tablist">
-                            <li class="nav-item">
+                            <li class="nav-item"   (onclick)="NgInit()">
                               <a class="nav-link active" id="ginfo-tab" data-bs-toggle="tab" data-bs-target="#ginfo" role="tab" aria-controls="userinfo" aria-selected="true" >APPOINTMENT</a>
                             </li>
-                            <li class="nav-item">
+                            <li class="nav-item"   (onclick)="NgInit()">
                                 <a class="nav-link" id="gpwd1-tab" data-bs-toggle="tab" data-bs-target="#gpwd1" role="tab" aria-controls="userpassword" aria-selected="false">REQUESTS</a>
                               </li> 
-                            <li class="nav-item">
+                            <li class="nav-item"   (onclick)="NgInit()">
                               <a class="nav-link" id="gimage-tab" data-bs-toggle="tab" data-bs-target="#gimage" role="tab" aria-controls="userimage" aria-selected="false" >UPCOMING</a>
                             </li>
-                            <li class="nav-item">
+                            <li class="nav-item"   (onclick)="NgInit()">
                               <a class="nav-link" id="gpwd-tab" data-bs-toggle="tab" data-bs-target="#gpwd" role="tab" aria-controls="userpassword" aria-selected="false">COMPLETED</a>
                             </li> 
 
@@ -65,8 +65,11 @@
                                                 <ul class="postcard__tagbox">
                                                     <li class="tag__item" (click)="openEditForm(upapp.appointment_id)" ><i class="fas fa-edit mr-2"></i> Edit </li>
                                                     <li class="tag__item play blue" (click)="reject(upapp.appointment_id)" >
-                                                        <a ><i class="fas fa-edit mr-2"></i> Reject </a>
+                                                        <a ><i class="fas fa-times mr-2"></i> Cancel </a>
                                                     </li>
+
+                                                    <li *ngIf="upapp.appointment_payement_status=='paid'" class="tag__item" (click)="generatePDF(upapp.appointment_id)" ><i class="fas fa-file mr-2"></i> Invoice </li>
+
                                                 </ul>
                                             </div>
                                         </article>

@@ -179,17 +179,13 @@
                                 <div class="mt-3 mb-3 col-md-12"> <label for="inputName" class="form-label">Location</label> <input type="text" formControlName="adress" class="form-control" id="inputEmail5" placeholder="Enter your home adress" required=""> 
                                 </div>
                                 <div class="mt-3 mb-3 col-md-12"> <label for="inputName" class="form-label">Experience</label> 
-                                    <select class="form-control" placeholder="Man" formControlName="experience">
-                                        <option value="">---Years of experience---</option>
-                                        <option value="1"  >1 year  </option>
-                                        <option value="2" >2 years </option>
-                                        <option value="3" >+3 years </option>
-
-                                    </select>
+                                    <input type="number" min="1" max="20" formControlName="experience" class="form-control" id="inputph" >
+                   
 
                                     <div *ngIf="formControlT.experience.touched && formControlT.experience.errors" class="text-danger">
                                         <div  class="mt-1"   *ngIf="formControlT.experience.errors.required"><i class="ti-info-alt"></i> Experience is required.</div>
-    
+                                        <div  class="mt-1"   *ngIf="formControlT.experience.errors.pattern"><i class="ti-info-alt"></i> Experience must between 1 and 20 years.</div>
+
                                     </div>
                                 </div>
                                 <div class="mt-3 mb-3 col-md-12"> <label for="inputName" class="form-label">Hourly Price</label> <input type="text"  class="form-control" formControlName="price" id="inputEmail4" placeholder="$" > </div>

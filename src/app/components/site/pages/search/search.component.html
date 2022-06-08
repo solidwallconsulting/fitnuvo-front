@@ -352,11 +352,13 @@
                                     <p class="text-muted">Location : {{trainer.home_adress}} </p>
                                     
                                     <div class="tags d-flex">
-                                        <div class="tag-coach">
-                                            Online
+                                        <div class="tag-coach" *ngIf="trainer.is_valid=='1'">
+                                            Verified <i class="fa fa-check-circle text-primary" aria-hidden="true"></i>
+
                                         </div>
-                                        <div class="tag-coach">
-                                            Off-site training
+                                        <div class="tag-coach" *ngIf="trainer.is_valid=='0'">
+                                            Unverified <i class="fa fa-times-circle text-danger"   aria-hidden="true"></i>
+                                            
                                         </div>
                                         
                                     </div>

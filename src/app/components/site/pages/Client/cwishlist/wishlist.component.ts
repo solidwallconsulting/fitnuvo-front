@@ -6,6 +6,7 @@ import { User } from 'src/app/models/user.model';
 import { AuthentificationService } from 'src/app/services/authentification.service';
 import { NotifyService } from 'src/app/services/notify.service';
 import { WishlistService } from 'src/app/services/wishlist.service';
+import { environment } from 'src/environments/environment';
 import Swal from 'sweetalert2';
 import { RegisterComponent } from '../../../auth/register/register.component';
 import { MustMatch } from '../../../auth/_helpers/must-match.validator';
@@ -24,6 +25,7 @@ export class WishlistComponent implements OnInit {
  submitted = false;
  user:User;
   photo="/assets/site/img/icon/Ellipse3.png";
+  url:string=environment.urlServeur;
 
 
   mywishlist : any;
@@ -49,8 +51,10 @@ export class WishlistComponent implements OnInit {
     
     return this.wishlistS.removefromList(id).subscribe((res: any) => {
       console.log(res);
+         this.ngOnInit();
+
         //sweetalert message popup
-        this.notifyService.showSuccess("Trainer removed from your wishlist successfully!", "Wishlist");
+        this.notifyService.showWarning("Trainer removed from your wishlist successfully!", "Wishlist");
   
 
         this.ngOnInit();
@@ -62,6 +66,11 @@ export class WishlistComponent implements OnInit {
   
   });
   
+  }
+
+  goto(id:any){
+    this.router.navigate(['trainer/'+id]);
+
   }
 
 

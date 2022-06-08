@@ -5,7 +5,7 @@
 @mixin tooltip-theme($bg-color, $color, $arrow-color) {
     .tooltip-inner {
         color: $color;
-        background-color: $bg-color;
+        background-color: red ;
     }
 
     // Arrows

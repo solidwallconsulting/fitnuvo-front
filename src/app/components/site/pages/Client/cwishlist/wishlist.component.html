@@ -25,6 +25,7 @@
 
                           <p class="text-center" *ngIf="!mywishlist"> You have not any favourites trainers until now</p>
 
+                           <div class="row">
                                 <div class="card " *ngFor="let wish of mywishlist  | paginate: { itemsPerPage: 5, currentPage: p }">
                                   <div class="additional">
                                     <div class="user-card">
@@ -32,12 +33,13 @@
                                        <div class="level center">
                                         {{wish.trainer.price_trainer}}£
                                       </div>
-                                      <div class="points center">
+                                      <div class="points center" (click)="goto(wish.trainer.trainer_id)" >
                                         View more <i class="fa fa-eye"></i>
 
                                       </div>
                                   
-                                      <img src="https://img-19.commentcamarche.net/cI8qqj-finfDcmx6jMK6Vr-krEw=/1500x/smart/b829396acc244fd484c5ddcdcb2b08f3/ccmcms-commentcamarche/20494859.jpg" alt="" width="110" height="110" viewBox="0 0 250 250" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc" class="center" style="border-radius: 50%;">
+                                      <img  src="{{url}}/storage/images/trainer/{{wish.trainer.photo_profil}}" role="img" aria-labelledby="title desc" class="center" style="width:110px;height:100px; border-radius: 50%;">
+
                                      
                                     </div>
                                     <div class="more-info">
@@ -80,7 +82,7 @@
                                     <span class="more">Mouse over the card for more info</span>
                                   </div>
                                 </div>
-                             
+                              </div> 
 
                                 
                             <br>

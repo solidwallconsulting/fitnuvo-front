@@ -12,6 +12,9 @@ import { AddAppointmentComponent } from '../../Trainer/tappointments/modal-add-a
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AddAppointmentCComponent } from '../Client/cappointments/modal-add-appointment/add-appointmentc.component';
 import { environment } from 'src/environments/environment';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ReviewsService } from 'src/app/services/reviews.service';
+import Swal from 'sweetalert2';
 
 
 @Component({
@@ -26,7 +29,10 @@ export class TrainerprofileComponent implements OnInit {
   added:boolean;
   isAuth:boolean =false;
   Role:any;
+  found:any;
+  feedform:FormGroup;
   url:string=environment.urlServeur;
+  starRating = 0; 
 
   calendarOptions: CalendarOptions = {
     headerToolbar: {
@@ -57,7 +63,7 @@ export class TrainerprofileComponent implements OnInit {
 
   };
 
-  constructor(private route: ActivatedRoute,private authService: AuthentificationService,private modalService: NgbModal,private service: TrainerService,private router: Router, private wishService : WishlistService,private notifyService: NotifyService,private appservice: AppointmentsService) { }
+  constructor(private route: ActivatedRoute,private authService: AuthentificationService,private reviewS:ReviewsService , private modalService: NgbModal,private service: TrainerService,private router: Router, private wishService : WishlistService,private notifyService: NotifyService,private appservice: AppointmentsService) { }
 
 
   
@@ -75,6 +81,22 @@ export class TrainerprofileComponent implements OnInit {
     }, (err:any) => {
       console.log(err)
     });
+
+
+
+    this.wishService.verifyadd(this.id).subscribe((res:any) => {
+      console.log("dsdsqdc",res.message);
+      this.found=res.message;
+
+    }, (err:any) => {
+      console.log(err)
+    });
+
+    this.feedform = new FormGroup({
+      review: new FormControl('', Validators.required),
+      stars: new FormControl('', Validators.required),
+    });
+  
 
 
 
@@ -96,7 +118,45 @@ export class TrainerprofileComponent implements OnInit {
     })
   }
 
+  get f() {
+    return this.feedform.controls;
+  }
+  addfeedback() {
 
+    if(this.feedform.invalid){
+  
+      return;
+      
+      }
+    console.log('feedback',this.feedform.value.review)
+    console.log('feedback',this.feedform.value.stars)
+
+
+    return this.reviewS.makeReview(this.id,this.feedform.value.review,this.feedform.value.stars).subscribe((res: any) => {
+      Swal.fire({
+        title: 'Success!',
+        text:   "Your Feedback added successfully!",
+        icon: 'success'
+        
+      }
+      ).then((result) => {
+        // Reload the Page
+        window.location.reload();
+      });
+
+
+    },(err:any)=>{ 
+
+      console.log(err);
+      Swal.fire({
+        title: 'Error!',
+        text:   err.error.message,
+        icon: 'error'
+        
+      });
+
+  });
+  }
   addtoList(id:any){
 
     
@@ -104,6 +164,8 @@ export class TrainerprofileComponent implements OnInit {
       console.log(res);
         //sweetalert message popup
         this.notifyService.showSuccess("Trainer added to your wishlist successfully!", "Wishlist");
+
+        this.ngOnInit();
   
         //this.registerFormC.reset();
   
@@ -123,10 +185,11 @@ export class TrainerprofileComponent implements OnInit {
     return this.wishService.removefromList(id).subscribe((res: any) => {
       console.log(res);
         //sweetalert message popup
-        this.notifyService.showSuccess("Trainer removed from your wishlist successfully!", "Wishlist");
+        this.notifyService.showWarning("Trainer removed from your wishlist successfully!", "Wishlist");
   
         //this.registerFormC.reset();
-  
+        this.ngOnInit();
+
       
   },(err)=>{ 
     console.log(err);

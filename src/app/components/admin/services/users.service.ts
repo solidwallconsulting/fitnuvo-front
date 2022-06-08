@@ -89,6 +89,12 @@ export class UsersService {
     return this.httpClient.post<User>(`${this.apiUrl}/desactiveaccount`, {id:id},{headers:this.headers});
   }
 
+  verifytrainer(id:any){
+    return this.httpClient.get(`${this.apiUrl}/verifytrainer/`+id, {headers:this.headers});
+  }
+  unverifytrainer(id:any){
+    return this.httpClient.get(`${this.apiUrl}/unverifytrainer/`+id,{headers:this.headers});
+  }
 
    getTrainerByid(id: number): Observable<Trainer> {
     return this.httpClient.get<Trainer>(`${this.apiUrl}/trainers/`+id);
@@ -97,6 +103,19 @@ export class UsersService {
 
   getTop5() {
     return this.httpClient.get(`${this.apiUrl}/top-trainers-5`);
+  }
+
+
+  numtrainers() {
+    return this.httpClient.get(`${this.apiUrl}/numtrainers`,{headers:this.headers});
+  }
+
+  numcustomers() {
+    return this.httpClient.get(`${this.apiUrl}/numcustomers`,{headers:this.headers});
+  }
+
+  numspecs() {
+    return this.httpClient.get(`${this.apiUrl}/numspecs`,{headers:this.headers});
   }
   
 }

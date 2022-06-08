@@ -3,7 +3,7 @@
 
   <div *ngFor="let app of appointments" class="col-xl-6">
                 <a
-                class="card border border-2 border-gray-300 border-hover"
+                class="card border border-2 border-gray-300 border-hover" *ngIf="app.appointment_payement_status=='paid'"
               >
   
               

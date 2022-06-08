@@ -25,6 +25,7 @@ import { ConverComponent } from './Trainer/messages/conversation/conversation.co
 import { MessagesTComponent } from './Trainer/messages/messages.component';
 import { NotificationsComponent } from './Trainer/notifications/notifications.component';
 import { NotificationsCComponent } from './pages/Client/notifications/notifications.component';
+import { MyProfileComponent } from './Trainer/myprofile/myprofile.component';
 
 const siteRoutes: Routes = [
   {
@@ -151,7 +152,10 @@ const siteRoutes: Routes = [
                 path: 'notifications',
                 component: NotificationsComponent
               },
-              
+              {
+                path: 'myprofile',
+                component: MyProfileComponent
+              },
               
             ]
           },

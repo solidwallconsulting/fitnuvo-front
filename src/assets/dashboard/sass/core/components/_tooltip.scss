@@ -6,7 +6,9 @@
 // Base
 .tooltip {
     .tooltip-inner {
-        box-shadow: $tooltip-box-shadow;
+        background-color: red;
+        color: red;
+
     }
 
     &.tooltop-auto-width {

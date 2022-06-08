@@ -58,6 +58,7 @@ import { UsersListComponent } from './Trainer/messages/users-list/users-list.com
 import { ChatbodyComponent } from './Trainer/messages/chatbody/chatbody.component';
 import { NotificationsComponent } from './Trainer/notifications/notifications.component';
 import { NotificationsCComponent } from './pages/Client/notifications/notifications.component';
+import { MyProfileComponent } from './Trainer/myprofile/myprofile.component';
 
 
 FullCalendarModule.registerPlugins([ 
@@ -105,7 +106,9 @@ FullCalendarModule.registerPlugins([
     UsersListComponent,
     ChatbodyComponent,
     NotificationsComponent,
-    NotificationsCComponent
+    NotificationsCComponent,
+    MyProfileComponent
+
 
 
     
@@ -126,7 +129,7 @@ FullCalendarModule.registerPlugins([
      FullCalendarModule,
      Ng2SmartTableModule,
      NgMultiSelectDropDownModule.forRoot(),
-     NgxConfirmBoxModule
+     NgxConfirmBoxModule,
      
 
 

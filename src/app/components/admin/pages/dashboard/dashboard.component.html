@@ -3,23 +3,23 @@
 
   <div class="col-xl-3">
     <app-stats-widget5
-      svgIcon="../../../../assets/dashboard/media/icons/duotune/finance/fin006.svg"
+      svgIcon="../../../../assets/dashboard/media/icons/duotune/communication/com014.svg"
       class="card bg-warning hoverable card-xl-stretch mb-xl-8"
       color="warning"
       iconColor="white"
-      title="$50,000"
-      description="Milestone Reached"
+      [title]="numtrainers"
+      description="Trainers"
     ></app-stats-widget5>
   </div>
 
   <div class="col-xl-3">
     <app-stats-widget5
-      svgIcon="../../../../assets/dashboard/media/icons/duotune/general/gen032.svg"
+      svgIcon="../../../../assets/dashboard/media/icons/duotune/communication/com013.svg"
       class="card bg-white hoverable card-xl-stretch mb-xl-8"
       color="white"
       iconColor="primary"
-      title="500M$"
-      description="SAP UI Progress"
+      [title]="numcustomers"
+      description="Customers"
     ></app-stats-widget5>
   </div>
 
@@ -29,19 +29,19 @@
       class="card bg-dark hoverable card-xl-stretch mb-xl-8"
       color="dark"
       iconColor="white"
-      title="+3000"
-      description="New Customers"
+      [title]="appointments.length"
+      description="Appointments"
     ></app-stats-widget5>
   </div>
 
   <div class="col-xl-3">
     <app-stats-widget5
-      svgIcon="../../../../assets/dashboard/media/icons/duotune/finance/fin006.svg"
+      svgIcon="../../../../assets/dashboard/media/icons/duotune/general/gen028.svg"
       class="card bg-warning hoverable card-xl-stretch mb-xl-8"
       color="warning"
       iconColor="white"
-      title="$50,000"
-      description="Milestone Reached"
+      [title]="numspecs"
+      description="Specialities"
     ></app-stats-widget5>
   </div>
 
@@ -50,7 +50,16 @@
 
 <div class="row gy-5 g-xl-8">
 
-  <div class="col-xl-8">
+  <div class="col-xxl-5">
+    <app-lists-widget8
+    class="card card-xxl-stretch mb-xl-3"
+    chartColor="success"
+    chartHeight="150px"
+    [trainers]="trainers"
+  ></app-lists-widget8>
+  </div>
+
+  <div class="col-xl-7">
 
     <app-charts-widget1    *ngIf="data"    
     [data]="data"     
@@ -83,35 +92,18 @@
 
 <!-- begin::Row -->
 <div class="row gy-5 g-xl-8">
-  <div class="col-xl-4">
-    <app-lists-widget2 class="card card-xl-stretch mb-xl-8"></app-lists-widget2>
-  </div>
-  <div class="col-xl-4">
-    <app-lists-widget6 class="card card-xl-stretch mb-xl-8"></app-lists-widget6>
-  </div>
-  <div class="col-xl-4">
-    <app-lists-widget4
-      class="card card-xl-stretch mb-5 mb-xl-8"
-    ></app-lists-widget4>
-  </div>
-</div>
-<!-- end::Row -->
-
-<div class="row g-5 gx-xxl-8">
-  <div class="col-xxl-5">
-    <app-lists-widget8
-    class="card card-xxl-stretch mb-xl-3"
-    chartColor="success"
-    chartHeight="150px"
-    [trainers]="trainers"
-  ></app-lists-widget8>
-  </div>
+ 
+  
   <div class="col-xxl-7">
     <app-tables-widget5
       class="card card-xxl-stretch mb-5 mb-xxl-8"
     ></app-tables-widget5>
   </div>
+
 </div>
+<!-- end::Row -->
+
+
 
 
 

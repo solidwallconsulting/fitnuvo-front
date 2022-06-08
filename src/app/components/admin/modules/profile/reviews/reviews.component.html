@@ -1,7 +1,7 @@
 <div class="row g-5 g-xxl-8">
   <div class="col-xl-12">
 
-    <div  *ngIf="!reviews" class="fs-3 mt-60  text-center text-dark">This Trainer have not reviews yet  </div>
+    <div  *ngIf="reviews.length==0" class="fs-3 mt-60  text-center text-dark">This Trainer have not reviews yet</div>
 
     <app-feeds-widget3 [reviews]="reviews"   class="card mb-5 mb-xxl-8"></app-feeds-widget3>
   </div>

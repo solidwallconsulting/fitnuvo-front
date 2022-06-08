@@ -1,0 +1,115 @@
+
+        <div class="row spacing">
+            <div class="col-lg-3 col-md-4">
+
+                <app-sidetprofile></app-sidetprofile>
+
+            </div>
+            <div class="col-md-8 col-lg-9 card-box">
+                <div class="navigation d-flex justify-content-between">
+                    <div class="bloc-nav">
+                        <ul class="nav coach-nav" id="myTab" role="tablist">
+                            <li class="nav-item">
+                              <a class="nav-link active" id="ginfo-tab" data-bs-toggle="tab" data-bs-target="#ginfo" role="tab" aria-controls="userinfo" aria-selected="true" >My Reviews</a>
+                            </li>
+                            
+                          </ul>
+                    </div>
+                </div>
+                <div class="tab-content" id="myTabContent">
+                    <!-- info form-->
+                    <div class="tab-pane fade show active" id="ginfo" role="tabpanel" aria-labelledby="ginfo-tab">
+                        <div class="container-fluid " style="margin-top:30px">
+                            <p class="text-center" *ngIf="!myreviews"> You haven't received any reviews until now</p>
+
+
+                         <div class="row" >   
+
+                                   <section>
+                                       
+
+                                        <div class="row text-center">
+                                             <ng-container *ngFor="let rev of myreviews | paginate: { itemsPerPage: 6, currentPage: p } "> 
+                                          
+                                          
+                                                <div *ngIf="rev.status_report==1" style="margin-bottom: 38px;  opacity: 0.5;" class="col-md-4  review">
+                                            <div class="d-flex justify-content-center mb-4">
+                                                <img src="{{url}}/storage/images/trainer/{{rev.client.photo_profil}}"
+                                                class="rounded-circle shadow-1-strong" width="150" height="150" />
+                                                <i class="fa fa-undo" aria-hidden="true" (click)="cancelreport(rev.review_id)"></i>
+
+                                            </div>
+                                            <h5 class="text-primary mb-3">{{rev.client.first_name}} {{rev.client.last_name}}</h5>
+                                            <h6 class=" mb-3">{{rev.date_review}}</h6>
+                                            <p class="px-xl-3">
+                                                <i class="fas fa-quote-left pe-2"></i>
+                                                {{rev.comment}}
+                                            </p>
+                                            <ul class="list-unstyled d-flex justify-content-center ">
+                                                <ng-container *ngFor="let in of counter(rev.stars);">
+                                                <li>
+                                                <i class="fas fa-star fa-sm text-warning"></i>
+                                                </li>
+                                                  </ng-container>
+                                            </ul>
+
+                                                </div>
+
+                                                <div *ngIf="rev.status_report==0" style="margin-bottom: 38px;" class="col-md-4  review">
+                                                    <div class="d-flex justify-content-center mb-4">
+                                                        <img src="{{url}}/storage/images/trainer/{{rev.client.photo_profil}}"
+                                                        class="rounded-circle shadow-1-strong" width="150" height="150" />
+                                                        <i class="fa fa-ban text-danger" aria-hidden="true" (click)="report(rev.review_id)"></i>
+        
+                                                    </div>
+                                                    <h5 class="text-primary mb-3">{{rev.client.first_name}} {{rev.client.last_name}}</h5>
+                                                    <h6 class=" mb-3">{{rev.date_review}}</h6>
+                                                    <p class="px-xl-3">
+                                                        <i class="fas fa-quote-left pe-2"></i>
+                                                        {{rev.comment}}
+                                                    </p>
+                                                    <ul class="list-unstyled d-flex justify-content-center ">
+                                                       
+                                                        <ng-container *ngFor="let in of counter(rev.stars);">
+                                                            <li>
+                                                            <i class="fas fa-star fa-sm text-warning"></i>
+                                                            </li>
+                                                              </ng-container>
+                                                    </ul>
+        
+                                                        </div>
+
+                                            </ng-container>
+                                           
+                                 
+                                        </div>
+                                        <pagination-controls *ngIf="myreviews" style="margin-top:15px" class="text-center" (pageChange)="p = $event"></pagination-controls>
+
+                                        </section>
+                         
+
+
+                         </div>
+
+                         <br>
+
+
+
+                      
+
+                           </div>
+
+
+                     </div>
+                    </div>
+                  
+                  
+
+
+
+                </div>
+            </div>
+
+  
+
+

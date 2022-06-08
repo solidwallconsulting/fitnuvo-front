@@ -50,7 +50,7 @@
               {{user.first_name}} {{user.last_name}}
 
               </a>
-              <a class="cursor-pointer">
+              <a class="cursor-pointer" *ngIf="user.is_valid==1">
                 <span
                   [inlineSVG]="
                     '../../../../assets/dashboard/media/icons/duotune/general/gen026.svg'
@@ -58,7 +58,7 @@
                   class="svg-icon svg-icon-1 svg-icon-primary"
                 ></span>
               </a>
-              <a
+              <a *ngIf="user.is_valid==1"
                 class="
                   btn btn-sm btn-light-success
                   fw-bolder
@@ -198,12 +198,22 @@
 
           <div class="d-flex my-4">
           
-            <a
+            <a *ngIf="user.is_valid==0"
               class="btn btn-sm btn-primary me-3 cursor-pointer"
               data-bs-toggle="modal"
               data-bs-target="#kt_modal_offer_a_deal"
+              (click)="verifytr()"
             >
-              Hire Me
+              Verify Trainer
+            </a>
+
+            <a *ngIf="user.is_valid==1"
+              class="btn btn-sm btn-primary me-3 cursor-pointer"
+              data-bs-toggle="modal"
+              data-bs-target="#kt_modal_offer_a_deal"
+              (click)="unverifytr()"
+            >
+              Unverify Trainer
             </a>
  
           </div>
@@ -312,15 +322,6 @@
           </a>
         </li>
    
-        <li class="nav-item">
-          <a
-            class="nav-link text-active-primary me-6"
-            routerLink="/admin/crafted/pages/profile//{{user.trainer_id}}/images/{{user.trainer_id}}"
-            routerLinkActive="active"
-          >
-            Images
-          </a>
-        </li>
         <li class="nav-item">
           <a
             class="nav-link text-active-primary me-6"
