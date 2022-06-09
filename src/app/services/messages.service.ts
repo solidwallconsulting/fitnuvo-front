@@ -19,6 +19,11 @@ export class MessagesService {
     return this.httpClient.get(`${this.BASE_URL}/api/v1/messages/allmsg`, {headers:this.headers});
   }
 
+  getAllMymessagestest(){
+
+    return this.httpClient.get(`${this.BASE_URL}/api/v1/messages/testmsg`, {headers:this.headers});
+  }
+
   getPrivateMessages(id:any){
 
     return this.httpClient.get(`${this.BASE_URL}/api/v1/messages/with/`+id, {headers:this.headers});

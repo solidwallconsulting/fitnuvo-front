@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { User } from 'src/app/models/user.model';
 import { AuthentificationService } from 'src/app/services/authentification.service';
 import { MessagesService } from 'src/app/services/messages.service';
 import { NotifyService } from 'src/app/services/notify.service';
 import { WishlistService } from 'src/app/services/wishlist.service';
+import { environment } from 'src/environments/environment';
 
 
 @Component({
@@ -23,11 +24,12 @@ export class ConversationComponent implements OnInit {
  user:User;
   photo="/assets/site/img/icon/Ellipse3.png";
 
+  url:string=environment.urlServeur;
 
   mywishlist : any;
   mymessages:any;
  
-  constructor(private router:Router, private auth:AuthentificationService,private wishlistS : WishlistService ,private notifyService: NotifyService,private messagesSerivce: MessagesService) { }
+  constructor(private router:Router,private route: ActivatedRoute , private auth:AuthentificationService,private wishlistS : WishlistService ,private notifyService: NotifyService,private messagesSerivce: MessagesService) { }
 
   ngOnInit(): void {
   
@@ -35,7 +37,7 @@ export class ConversationComponent implements OnInit {
 
   
 
-    this.messagesSerivce.getAllMymessages().subscribe((data:any) => {
+    this.messagesSerivce.getAllMymessagestest().subscribe((data:any) => {
       console.log("dtg",data['data'])
       this.mymessages = data['data'];
     },(err: any) => {
@@ -63,6 +65,15 @@ export class ConversationComponent implements OnInit {
   
   });
   
+  }
+
+  gotochat(sender:any,receiver:any) {
+
+    const queryParams = { ids: sender };
+
+   return  this.router.navigate(['/user/chatss']);
+
+
   }
 
 

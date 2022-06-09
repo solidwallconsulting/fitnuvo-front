@@ -23,18 +23,22 @@ export class MessagesComponent implements OnInit {
  IsmodelShow= false;
  submitted = false;
  user:User;
+ id:any;
   photo="/assets/site/img/icon/Ellipse3.png";
 
 
   privatemsgs : any;
- 
+ name:any;
   constructor(private router:Router,private route: ActivatedRoute, private auth:AuthentificationService,private wishlistS : WishlistService ,private notifyService: NotifyService,private msgservice:MessagesService) { 
     this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+
+    
 
   }
 
   ngOnInit(): void {
-  
+    this.id = this.route.snapshot.params['id'];
+
     this.msgservice.getPrivateMessages(this.route.snapshot.params['id']).subscribe((res:any) => {
 
 
@@ -45,6 +49,12 @@ export class MessagesComponent implements OnInit {
 
     }, (err:any) => {
       console.log(err)
+    });
+
+
+    this.route.queryParams.subscribe(params => {
+      this.name = params['ids'];
+      console.log('dsfdssd',params['ids']);
     });
 
     
