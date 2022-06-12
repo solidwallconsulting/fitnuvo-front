@@ -231,4 +231,50 @@ EditImage(){
 }
 
 
+desactive() {
+
+
+
+  
+  Swal.fire({  
+    title: 'Are you sure want to deactive?',  
+    text: 'If you need to recover your account, please contact us!',  
+    icon: 'warning',  
+    showCancelButton: true,  
+    confirmButtonText: 'Yes, deactive it!',  
+    cancelButtonText: 'No, keep it'  
+  }).then((result) => {  
+    if (result.value) {  
+      
+      
+      
+      this.auth.DesacitveAccount(this.user.id).subscribe(
+        (res) => {
+          
+          console.log("res : ",res);
+
+          this.toastr.info('Oops!', 'Your Account was desactivated!');
+  
+  
+          this.auth.islogout();
+
+          window.location.reload();
+        }, (err: any) => {
+          console.log(err)
+        })
+
+        this.ngOnInit();
+
+    } else if (result.dismiss === Swal.DismissReason.cancel) {  
+      Swal.fire(  
+        'Cancelled',  
+        'Your account is safe :)',  
+        'error'  
+      )  
+    }  
+  })
+
+}
+
+
 }

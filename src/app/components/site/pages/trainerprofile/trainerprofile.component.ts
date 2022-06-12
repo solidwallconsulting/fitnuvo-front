@@ -224,4 +224,15 @@ export class TrainerprofileComponent implements OnInit {
    }
 
 
+   gotochat(id:any) {
+
+
+      this.router.navigate(['/user/chats/',id]);
+
+  
+
+
+  }
+
+
 }

@@ -33,4 +33,8 @@ export class MessagesService {
     return this.httpClient.post(`${this.BASE_URL}/api/v1/messages/send`, {receiver_id:id,message:msg},{headers:this.headers});
   }
 
+  markasread(id:any){
+    return this.httpClient.post(`${this.BASE_URL}/api/v1/messages/markasread`, {id:id},{headers:this.headers});
+  }
+
 }

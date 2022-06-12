@@ -5,8 +5,10 @@ import { environment } from 'src/environments/environment';
 import { Router } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { UserModel } from 'src/app/models/adminsModel/user.model';
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 export type UserType = UserModel | undefined;
+const jwtHelper = new JwtHelperService();
 
 @Injectable({
   providedIn: 'root',
@@ -181,6 +183,20 @@ export class AuthService implements OnDestroy {
   }
 
 */
+
+    public isAuthenticated(): boolean {
+      const token = this.getToken();
+      if(token){
+      // Check whether the token is expired and return
+      // true or false
+        return !jwtHelper.isTokenExpired(token!);
+      } 
+      else{ 
+        return false;
+      } 
+    
+      
+    }
 
 
   ngOnDestroy() {

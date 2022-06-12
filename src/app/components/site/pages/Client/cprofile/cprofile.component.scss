@@ -373,3 +373,24 @@ hr {
     cursor: pointer;
     background: linear-gradient(135deg,#3a8ffe 0%,#9658fe 100%);
   }
+
+
+.danger{
+    background-color: #fff;
+    color: #e20404;
+    border: 1px solid #ddd;
+    padding: 15px;
+    border-radius: 1em;
+}
+.danger:hover{
+    background-color: #e20404;
+    color: #fff;
+}
+@media(max-width:576px){
+    .wrapper{
+        padding: 25px 20px;
+    }
+    #deactivate{
+        line-height: 18px;
+    }
+}

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from 'src/app/components/admin/services/auth.service';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -9,8 +10,16 @@ import { environment } from 'src/environments/environment';
 export class AsideMenuComponent implements OnInit {
   appAngularVersion: string = environment.appVersion;
   appPreviewChangelogUrl: string = "/";
+  Role:any;
 
-  constructor() {}
 
-  ngOnInit(): void {}
+  constructor(public auth : AuthService) {}
+
+  ngOnInit(): void {
+    if(this.auth.isAuthenticated()) {
+      console.log('isauth',this.auth.getRole())
+      this.Role=this.auth.getRole();
+    
+    }
+  }
 }

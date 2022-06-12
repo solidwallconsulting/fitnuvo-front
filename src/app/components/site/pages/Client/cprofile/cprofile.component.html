@@ -90,11 +90,28 @@
                                 </div>-->  
                             </div> 
                              <!--submit btn-->
-                            <div class="mt-3 mb-3 row"> 
+                            <div class="mt-3 mb-3 col-md-12 text-center"> 
                                 <button class="btn btn-primary" type="submit" style="background: linear-gradient(135deg,#3a8ffe 0%,#9658fe 100%);">Save</button> 
                             </div>
                 
                        </form>
+  
+                       <div class="row">
+                        <div class="mt-3 mb-3 col-md-6">
+
+                            <b>Deactivate your account</b>
+                                <p>Details about your company account and password</p>
+                        </div>
+
+                        <div class="mt-3 mb-3 col-md-6">
+
+                            <div class="ml-auto" style="float: right;">
+                                <button class="danger" (click)="desactive()">Deactivate</button>
+                            </div>
+                        </div>
+
+                        </div>
+                    
                     </div>
                     <!-- image form -->
                     <div class="tab-pane fade" id="gimage" role="tabpanel" aria-labelledby="gimage-tab">

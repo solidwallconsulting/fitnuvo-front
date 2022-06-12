@@ -54,8 +54,7 @@ import { EditAppointmentComponent } from './Trainer/tappointments/modal-edit-app
 import { Ng2SmartTableModule } from 'ng2-smart-table';
 import { MessagesTComponent } from './Trainer/messages/messages.component';
 import { ConverComponent } from './Trainer/messages/conversation/conversation.component';
-import { UsersListComponent } from './Trainer/messages/users-list/users-list.component';
-import { ChatbodyComponent } from './Trainer/messages/chatbody/chatbody.component';
+
 import { NotificationsComponent } from './Trainer/notifications/notifications.component';
 import { NotificationsCComponent } from './pages/Client/notifications/notifications.component';
 import { MyProfileComponent } from './Trainer/myprofile/myprofile.component';
@@ -103,8 +102,7 @@ FullCalendarModule.registerPlugins([
     EditAppointmentComponent,
     MessagesTComponent,
     ConverComponent,
-    UsersListComponent,
-    ChatbodyComponent,
+
     NotificationsComponent,
     NotificationsCComponent,
     MyProfileComponent

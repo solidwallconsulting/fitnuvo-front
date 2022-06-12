@@ -4,34 +4,37 @@
               <app-sideprofile></app-sideprofile>
           </div>
           <div class="col-md-8 col-lg-9 card-box">
-          
+                    <div class="navigation d-flex justify-content-between">
+                      <div class="bloc-nav">
+                          <ul class="nav coach-nav" id="myTab" role="tablist">
+                              <li class="nav-item">
+                                <a class="nav-link active" id="ginfo-tab" data-bs-toggle="tab" data-bs-target="#ginfo" role="tab" aria-controls="userinfo" aria-selected="true" >Chats</a>
+                              </li>
+                              
+                              </ul>
+                        </div>
+                    </div>
+                    <div class="tab-content" id="myTabContent">
+
                   <!-- info form-->
                   <div class="tab-pane fade show active" id="ginfo" role="tabpanel" aria-labelledby="ginfo-tab">
-                       <i class="fa fa-chevron-left fa-xl"> </i>
 
                       <div class="container">
 
 
-                        <main class="content">
+                        <main class="content mt-3">
                       
-                          <h1 class="h3 mb-3">Messages</h1>
                       
                           <div class="card">
                               <div class="col-12   border-right">
                       
-                                <div class="px-4 d-none d-md-block">
-                                  <div class="d-flex align-items-center">
-                                    <div class="flex-grow-1">
-                                      <input type="text" class="form-control my-3" placeholder="Search...">
-                                    </div>
-                                  </div>
-                                </div>
+                                <p class="text-center mt-20" *ngIf="!mymessages"> You have not any message until now</p>
 
                          
-                                <ng-container *ngFor="let msg of mymessages"> 
+                                <ng-container *ngFor="let msg of mymessages | paginate: { itemsPerPage: 5, currentPage: p }"> 
                       
-                                <a href="#" class="list-group-item list-group-item-action border-0" (click)="gotochat(msg.sender.user_id,msg.receiver.user_id)">
-                                  <div *ngIf="msg.is_read==0" class="badge bg-success float-right">+1</div>
+                                <a  class="list-group-item list-group-item-action border-0" (click)="gotochat(msg.sender.user_id,msg.receiver.user_id,msg.id)">
+                                  <div *ngIf="msg.is_read==0 && msg.sender.user_id!=user.id" class="badge bg-success float-right">+1</div>
                                   <div class="d-flex align-items-start">
                                     <img src="{{url}}/storage/images/trainer/{{msg.sender.photo_profil}}" class="rounded-circle mr-10" alt="Vanessa Tucker" width="40" height="40">
                                     <div class="flex-grow-1 ml-3">
@@ -64,7 +67,8 @@
                                 <hr class="d-block d-lg-none mt-1 mb-0">
                               </div>
                              
-                              
+                              <pagination-controls *ngIf="mymessages" style="margin-top:15px" class="text-center" (pageChange)="p = $event"></pagination-controls>
+
                              
                           </div>
                       </main>
@@ -76,9 +80,13 @@
                       </div>
                         
                   </div>
-           </div> 
 
-          </div>
+                  </div>
+
+
+          </div> 
+
+        </div>
 
 
 

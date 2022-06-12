@@ -154,10 +154,23 @@ export class AuthentificationService {
 
     
   activeAccount(id:any) {
-    return this.http.post<User>(`${this.BASE_URL}/api/v1/activeaccount`, {id:id});
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${this.getToken()}`,
+      });
+    return this.http.post<User>(`${this.BASE_URL}/api/v1/activeaccount`, {id:id},{headers:headers});
   }
 
   DesacitveAccount(id:any){
-    return this.http.post<User>(`${this.BASE_URL}/api/v1/desactiveaccount`, {id:id});
+    const headers = new HttpHeaders({
+     Authorization: `Bearer ${this.getToken()}`,
+     });
+    return this.http.post<User>(`${this.BASE_URL}/api/v1/desactiveaccount`, {id:id},{headers:headers});
   }
+
+
+  
+  getUserOne(id:any){
+    return this.http.get(`${this.BASE_URL}/api/v1/user/find/`+id);
+  }
+
 }

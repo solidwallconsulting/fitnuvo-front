@@ -7,6 +7,7 @@ import { AuthentificationService } from 'src/app/services/authentification.servi
 import { MessagesService } from 'src/app/services/messages.service';
 import { NotifyService } from 'src/app/services/notify.service';
 import { WishlistService } from 'src/app/services/wishlist.service';
+import { environment } from 'src/environments/environment';
 import Swal from 'sweetalert2';
 import { RegisterComponent } from '../../../auth/register/register.component';
 import { MustMatch } from '../../../auth/_helpers/must-match.validator';
@@ -19,6 +20,8 @@ import { MustMatch } from '../../../auth/_helpers/must-match.validator';
 export class MessagesComponent implements OnInit {
 
   //Forms
+  url:string=environment.urlServeur;
+
 
  IsmodelShow= false;
  submitted = false;
@@ -26,6 +29,7 @@ export class MessagesComponent implements OnInit {
  id:any;
   photo="/assets/site/img/icon/Ellipse3.png";
 
+  usermsg:any;
 
   privatemsgs : any;
  name:any;
@@ -57,20 +61,30 @@ export class MessagesComponent implements OnInit {
       console.log('dsfdssd',params['ids']);
     });
 
+
+    this.auth.getUserOne(this.route.snapshot.params['id']).subscribe((res:any) => {
+
+
+      this.usermsg = res['data'];
+      
+
+    });
+
     
   }
 
 
   onSubmit(msgForm: NgForm) {
 
-    console.log('assl',msgForm.value)
+    console.log('asssssl',this.route.snapshot.params['id'])
 
     
-    return this.msgservice.sendMsg(this.route.snapshot.params['id'],msgForm.value.msg).subscribe((res: any) => {
+    return this.msgservice.sendMsg(this.route.snapshot.params['id'],msgForm.value.message).subscribe((res: any) => {
         
       console.log('assl',msgForm.value)
           
           this.ngOnInit();
+          msgForm.reset();
        
 
 
@@ -91,6 +105,8 @@ export class MessagesComponent implements OnInit {
 
 
 
-
+     back() {
+      this.router.navigate(['/user/chats/']);
+    }
 
 }

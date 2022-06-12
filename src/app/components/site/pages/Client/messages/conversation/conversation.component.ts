@@ -18,6 +18,7 @@ import { environment } from 'src/environments/environment';
 export class ConversationComponent implements OnInit {
 
   //Forms
+  p: number = 1;
 
  IsmodelShow= false;
  submitted = false;
@@ -67,14 +68,33 @@ export class ConversationComponent implements OnInit {
   
   }
 
-  gotochat(sender:any,receiver:any) {
+  gotochat(sender:any,receiver:any,msgid:any) {
 
-    const queryParams = { ids: sender };
 
-   return  this.router.navigate(['/user/chatss']);
+    if(sender==this.user.id) {
+
+       this.messagesSerivce.markasread(msgid).subscribe((res: any) => {
+       
+        this.router.navigate(['/user/chats/',receiver]);
+
+    
+      });
+
+    }else {
+
+      this.messagesSerivce.markasread(msgid).subscribe((res: any) => {
+       
+        this.router.navigate(['/user/chats/',sender]);
+
+    
+      });
+
+    }
 
 
   }
+
+
 
 
 

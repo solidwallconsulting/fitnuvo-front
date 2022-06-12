@@ -225,3 +225,14 @@ img {max-width: 100%;}
     font-weight: 400;
     color: #858585;
 }
+
+.coach-nav > .nav-item > .nav-link{
+    color: #00000033;
+    font-weight: 600;
+}
+
+
+.coach-nav > .nav-item > .nav-link.active{
+    border-bottom: 5px solid #2955AB;
+    color:#2955AB;
+}

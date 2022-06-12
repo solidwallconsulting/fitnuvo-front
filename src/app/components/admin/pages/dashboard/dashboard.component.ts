@@ -37,7 +37,7 @@ export class DashboardComponent implements OnInit {
       this.transactions = data['data'];
 
       this.data=data['data'];
-      this.months=data['data'].map((element:any)=>  JSON.parse(element.month));
+      this.months=data['data'].map((element:any)=>  element.month);
 
       console.log('ajas',this.data)
 
