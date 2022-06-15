@@ -20,6 +20,7 @@ import { NgxBootstrapConfirmService } from 'ngx-bootstrap-confirm';
 import { ToastrService } from 'ngx-toastr';
 import { HttpErrorResponse } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
+import { PayAppointmentCComponent } from './modal-pay-appointment/pay-appointmentc.component';
 
 declare var pdfMake: any;
 
@@ -32,6 +33,7 @@ declare var pdfMake: any;
 })
 export class AppointmentsComponent implements OnInit {
   starRating = 0; 
+  p: number = 1;
 
   appointments:Appointment[];
   upcomingApp:Appointment[];
@@ -302,6 +304,16 @@ export class AppointmentsComponent implements OnInit {
 
   NgInit(){
     this.ngOnInit();
+  }
+
+
+  payApp(id:any,amount:any) {
+    const modalRef =  this.modalService.open(PayAppointmentCComponent);     
+    
+    modalRef.componentInstance.inputappointment_id = id;  
+    modalRef.componentInstance.amount = amount;  
+
+
   }
   
 

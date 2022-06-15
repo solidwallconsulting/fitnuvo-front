@@ -91,6 +91,10 @@
                                                                 <a ><i class="fas fa-edit mr-2"></i> Edit </a>
                                                             </li>
 
+                                                            <li class="tag__item play blue" (click)="payApp(app.appointment_id,app.appointment_amount)">
+                                                                <a ><i class="fa fa-credit-card mr-2"></i> Payer £{{app.appointment_amount}} </a>
+                                                            </li>
+
 
                                                             <li *ngIf="app.appointment_payement_status=='paid'" class="tag__item" (click)="generatePDF(app.appointment_id)" ><i class="fas fa-file mr-2"></i> Invoice </li>
 
@@ -108,13 +112,13 @@
                                
                             <p class="text-center" *ngIf="!completedapp"> You have not any completed appointments until now</p>
 
-                            <div class="row" *ngFor="let app of completedapp" >
+                            <div class="row" *ngFor="let app of completedapp | paginate: { itemsPerPage: 5, currentPage: p }" >
                                <div class="col-12 mt-3">
 
 
-                                <article class="postcard light blue">
+                                <article class="postcard light blue" style="height: 300px;">
                                     <a class="postcard__img_link" href="#">
-                                        <img class="postcard__img" src="{{url}}/storage/images/trainer/{{app.appointment_trainer.photo_profil}}" alt="Image Title" />
+                                        <img class="postcard__img" src="{{url}}/storage/images/trainer/{{app.appointment_trainer.photo_profil}}" alt="Image Title" width="300px" height="400px" />
                                     </a>
                                     <div class="postcard__text">
                                         <h1 class="postcard__title blue"><a >  <strong> {{app.appointment_trainer.first_name}} {{app.appointment_trainer.last_name}}</strong></a></h1>
@@ -130,16 +134,20 @@
 
 
                                         <p>     Activity: <strong>{{app.appointment_activity}}</strong> </p>
-                                        </div>
-
                                         <div> 
                                             <strong style="color:black"> Rate the trainer </strong>
                                             <ngb-rating [max]="5" [(rate)]="starRating"  name="stars" ></ngb-rating>
                                          </div>
+
+
+                                        </div>
+
+                            
                                         
 
                                        
                                     </div>
+
                                 </article>
 
                                 
@@ -197,6 +205,8 @@
                                    </div>
 
                                 -->
+                                <pagination-controls *ngIf="completedapp" style="margin-top:15px" class="text-center" (pageChange)="p = $event"></pagination-controls>
+
                                </div>
                             </div>
                        </div>

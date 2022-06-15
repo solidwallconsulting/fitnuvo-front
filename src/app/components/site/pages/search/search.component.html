@@ -346,7 +346,7 @@
                                         <p style="color:#000000;"><strong>{{trainer.first_name}} {{trainer.last_name}}</strong></p>
                                         <p><strong style="color: #000000;">{{trainer.price_trainer}}£/h</strong></p>
                                     </div>
-                                    <p> <i style="color:#2955AB;"  class="fa fa-star "></i> <strong style="color: #000000;">{{trainer.score_trainer}}.0 </strong> <span class="text-muted"><i style="color:#2955AB;" class="fa fa-comment-dots "></i> ({{trainer.trainer_reviews.length}} reviews)</span> </p>
+                                    <p> <i style="color:#2955AB;"  class="fa fa-star "></i> <strong style="color: #000000;">{{trainer.score_trainer}} </strong> <span class="text-muted"><i style="color:#2955AB;" class="fa fa-comment-dots "></i> ({{trainer.trainer_reviews.length}} reviews)</span> </p>
                                     <p class="text-muted"  >Speciality : <ng-container *ngFor="let spec of trainer.trainer_specialities" > {{spec.speciality_name}}  </ng-container>  </p>   
                                     <p class="text-muted">Experience : {{trainer.experience_trainer}} years </p>
                                     <p class="text-muted">Location : {{trainer.home_adress}} </p>

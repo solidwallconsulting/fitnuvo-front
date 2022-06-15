@@ -54,7 +54,7 @@ export class RegisterComponent implements OnInit {
       phone: ["", [Validators.required,Validators.pattern("[0-9 ]{12}")]],
       adress: ["", [Validators.required]],
       experience: ["", [Validators.required,Validators.pattern("[1-20 ]")]],
-      price: ["", [Validators.required]],
+      price: ["", [Validators.required,Validators.pattern("[20-200 ]")]],
     },
     {
       validators: [Validation.match('password', 'repeatpassword')]
@@ -198,7 +198,8 @@ export class RegisterComponent implements OnInit {
                       });
 
                 
-            },(err)=>{ 
+            },(err)=>{
+              console.log(err) 
               this.notifyService.showError(err.error.error,'Error');
 
             });

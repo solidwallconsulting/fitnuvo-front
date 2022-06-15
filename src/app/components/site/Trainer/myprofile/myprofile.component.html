@@ -81,9 +81,9 @@
 
                                             </ng-container>
                                            
-                                 
+                                            <pagination-controls *ngIf="myreviews" style="margin-top:15px" class="text-center" (pageChange)="p = $event"></pagination-controls>
+
                                         </div>
-                                        <pagination-controls *ngIf="myreviews" style="margin-top:15px" class="text-center" (pageChange)="p = $event"></pagination-controls>
 
                                         </section>
                          

@@ -188,7 +188,17 @@
 
                                     </div>
                                 </div>
-                                <div class="mt-3 mb-3 col-md-12"> <label for="inputName" class="form-label">Hourly Price</label> <input type="text"  class="form-control" formControlName="price" id="inputEmail4" placeholder="$" > </div>
+                                <div class="mt-3 mb-3 col-md-12"> 
+                                    <label for="inputName" class="form-label">Hourly Price</label>
+                                     <input type="text"  class="form-control" formControlName="price" id="inputEmail4" placeholder="$" >
+                                
+                                     <div *ngIf="formControlT.price.touched && formControlT.price.errors" class="text-danger">
+                                        <div  class="mt-1"   *ngIf="formControlT.price.errors.required"><i class="ti-info-alt"></i> Price is required.</div>
+                                        <div  class="mt-1"   *ngIf="formControlT.price.errors.pattern"><i class="ti-info-alt"></i> Price must between 1 and 20 years.</div>
+
+                                    </div>
+
+                                </div>
 
                                 <div class="mb-3 col-md-12 form-check">
                                    

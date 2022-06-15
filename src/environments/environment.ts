@@ -21,6 +21,9 @@ export const environment = {
   pusher_key: `1234ASD`,
   pusher_host: `127.0.0.1` ,
   pusher_cluster:`mt1`,
+
+  publishableKeyStripe: 'pk_test_51LAv0vFMmymdYOLBUV8REWHZaGyTwiUXiWbUIe1F4all8bQAuirAhmKVjBYnef6wZwBJHclwhvfuy9NfI2reGfK300Kta0VRwP',
+
   appDemos: {
     'demo1': {
       'title': 'Demo 1',

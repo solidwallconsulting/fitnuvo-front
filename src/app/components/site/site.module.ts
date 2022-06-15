@@ -58,6 +58,7 @@ import { ConverComponent } from './Trainer/messages/conversation/conversation.co
 import { NotificationsComponent } from './Trainer/notifications/notifications.component';
 import { NotificationsCComponent } from './pages/Client/notifications/notifications.component';
 import { MyProfileComponent } from './Trainer/myprofile/myprofile.component';
+import { PayAppointmentCComponent } from './pages/Client/cappointments/modal-pay-appointment/pay-appointmentc.component';
 
 
 FullCalendarModule.registerPlugins([ 
@@ -103,9 +104,11 @@ FullCalendarModule.registerPlugins([
     MessagesTComponent,
     ConverComponent,
 
+
     NotificationsComponent,
     NotificationsCComponent,
-    MyProfileComponent
+    MyProfileComponent,
+    PayAppointmentCComponent
 
 
 

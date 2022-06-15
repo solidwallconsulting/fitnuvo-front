@@ -177,12 +177,12 @@ export class AppointmentsTComponent implements OnInit {
 
       
       Swal.fire({  
-        title: 'Are you sure want to book?',  
+        title: 'Are you sure want to accept?',  
         text: 'You will confirm this appointment!',  
         icon: 'warning',  
         showCancelButton: true,  
-        confirmButtonText: 'Yes, book it!',  
-        cancelButtonText: 'No, keep it'  
+        confirmButtonText: 'Yes, accept it!',  
+        cancelButtonText: 'No, deny it'  
       }).then((result) => {  
         if (result.value) {  
           
