@@ -124,4 +124,9 @@ export class TrainerService {
   }
 
 
+
+  getTransactions(){
+    return this.httpClient.get(`${this.BASE_URL}/api/v1/mytr/transactions`,{headers:this.headers});
+  }
+
 }

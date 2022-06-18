@@ -1,22 +1,3 @@
-::ng-deep body .fc .fc-daygrid-day-number , ::ng-deep body .fc .fc-col-header-cell-cushion {
-    color:black;
-}
-::ng-deep body .fc-direction-ltr .fc-daygrid-event.fc-event-end{
-    background-color: #0d6efd;
-}
-::ng-deep body  .fc .fc-button-primary{
-    background-color: 
-    rgba(41, 85, 171, 1);
-
-}
-::ng-deep body .fc .fc-button-primary:not(:disabled).fc-button-active,.fc .fc-button-primary:not(:disabled).fc-button-active {
-    color : rgba(41, 85, 171, 1);
-    background-color: #ffffff;
-
-}
-::ng-deep body .fc .fc-toolbar-title{
-    color: rgba(41, 85, 171, 1);
-}
 .top-input-bar{
     border-left: 0;
 }
@@ -37,12 +18,6 @@
 .btn-primary{
     background-color: #3861D3;
     border-color: #3861D3;
-    margin-top: 4px;
-}
-
-ngb-rating {
-    color: yellow;
-    font-size: 30px;
 }
 
 .right-border-top-bar{
@@ -197,11 +172,6 @@ ngb-rating {
     border-radius: 5px;
 }
 
-
-.coach-image-card2{
-    height: 235px;
-    background-color: #F2F2F2;
-}
 .coach-name{   
     font-style: normal;
     font-weight: 600;
@@ -213,11 +183,6 @@ ngb-rating {
     align-items: center;
 
     color: rgba(0, 0, 0, 0.8);
-}
-
-.card-horizontal {
-    display: flex;
-    flex: 1 1 auto;
 }
 
 .msg-btn{
@@ -409,77 +374,13 @@ hr {
     background: linear-gradient(135deg,#3a8ffe 0%,#9658fe 100%);
   }
 
-  .confirm-btn[_ngcontent-yjk-c212] {
-    margin: 10px;
-}
-*{
-    box-sizing: border-box;
-    border: none;
-}
-body{
-    background-color: #f9f9f9;
-}
-.wrapper{
-    width: 380px;
-    position: absolute;
-    transform: translate(-50%,-50%);
-    top: 50%;
-    left: 50%;
-}
-.toast{
-    width: 100%;
-    height: 80px;
-    padding: 20px;
-    background-color: #ffffff;
-    border-radius: 7px;
-    display: grid;
-    grid-template-columns: 1.3fr 6fr 0.5fr;
-    box-shadow: 0 15px 30px rgba(0,0,0,0.08);
-}
-.success{
-    border-left: 3px solid #47D764;
-}
-.error{
-    border-left: 3px solid #ff355b;
-}
-.info{
-    border-left: 3px solid #2F86EB;
-}
-.warning{
-    border-left: 3px solid #FFC021;
-}
-.error i{
-    color: #ff355b;
-}
-.info i{
-    color: #2F86EB;
-}
-.warning i{
-    color: #FFC021;
-}
-.toast:not(:last-child){
-    margin-bottom: 20px;
-}
-.outer-container,.inner-container{
-    align-self: center;
-} 
-.outer-container i{
-    font-size: 35px;
-}
-.success i{ 
-    color: #47D764;
-}
-.inner-container p:first-child{
-    color: #101020;
-    font-weight: 600;
-    font-size: 16px;
-}
-.inner-container p:last-child{
-    font-size: 12px;
-    font-weight: 400;
-    color: #656565;
-}
-.toast button{
+  .fileform{
+
+    text-align: center;
+  }
+
+
+  .review button{
     align-self: flex-start;
     background-color: transparent;
     font-size: 20px;
@@ -489,7 +390,4 @@ body{
     margin-right:-30px;
 }
 
-::ng-deep .ngx-pagination .current {
-    background: #2955AB  !important;
-   
-  }
+

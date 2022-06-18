@@ -101,7 +101,7 @@ export class MessagesTComponent implements OnInit {
  
  
       back() {
-       this.router.navigate(['/user/chats/']);
+       this.router.navigate(['/trainerme/chats/']);
      }
  
  }

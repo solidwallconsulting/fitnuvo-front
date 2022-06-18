@@ -70,8 +70,7 @@ export class AddAppointmentComponent implements OnInit {
       let time_end="";
 
     console.log(this.formA.value);
-    if(this.formA.value.time_start=='1'){
-    }else if(this.formA.value.time_start=='1'){
+     if(this.formA.value.time_start=='1'){
 
       time_start="09:00"
       time_end="10:00"
@@ -112,6 +111,8 @@ export class AddAppointmentComponent implements OnInit {
     formData.append('time_end',time_end);
 
     this.availableDate=false;
+
+    console.log('hjdjs',formData)
     return this.Appservice.addappfromtrainer(formData).subscribe((res: any) => {
       console.log(res);
 

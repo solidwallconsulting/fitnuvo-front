@@ -89,7 +89,8 @@
 
                                     <div *ngIf="f.experience.touched && f.experience.errors" class="text-danger">
                                         <div  class="mt-1"   *ngIf="f.experience.errors.required"><i class="ti-info-alt"></i> Experience is required.</div>
-                                        <div  class="mt-1"   *ngIf="f.experience.errors.pattern"><i class="ti-info-alt"></i> Experience must between 1 and 20 years.</div>
+                                        <div  class="mt-1"   *ngIf="f.experience.errors.min"><i class="ti-info-alt"></i> Experience must between 1 and 20 years.</div>
+                                        <div  class="mt-1"   *ngIf="f.experience.errors.max"><i class="ti-info-alt"></i> Experience must between 1 and 20 years.</div>
 
                                     </div>
                                

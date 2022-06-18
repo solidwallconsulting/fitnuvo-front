@@ -43,7 +43,7 @@
                                    <i *ngIf="isAuth && Role=='client' && found=='nofound'" (click)="addtoList(trainer.trainer_id)"  style="     text-shadow: 0 0 6px red; "  class="fa fa-heart text-light "> </i> 
                                    <i *ngIf="isAuth && Role=='client' && found=='found' "  (click)="removefromList(trainer.trainer_id)"  style="     text-shadow: 0 0 6px red; "  class="fa fa-heart text-danger "> </i> 
                              </div>
-                             <div class="coach-name">
+                             <div class="coach-name" *ngIf="isAuth && Role=='client'">
                                  
                                 <button class="btn btn-secondary msg-btn mt-2" (click)="gotochat(trainer.trainer_id)" ><i class="fa  fa-envelope" aria-hidden="true"></i> Message</button>
                              </div>
@@ -60,7 +60,7 @@
     
                             </div>
                             <div class="coach-contact">
-                                <span class="text-color-primary">Mobile: </span> {{trainer.mobile_number}}
+                                <span class="text-color-primary">Mobile: </span> +44{{trainer.mobile_number}}
                             </div>
                            
                         </div>

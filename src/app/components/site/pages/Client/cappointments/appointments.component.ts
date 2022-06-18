@@ -36,8 +36,8 @@ export class AppointmentsComponent implements OnInit {
   p: number = 1;
 
   appointments:Appointment[];
-  upcomingApp:Appointment[];
-  completedapp:Appointment[];
+  upcomingApp:any;
+  completedapp:any;
   oneapp:Appointment=new Appointment();
   url:string=environment.urlServeur;
 
@@ -63,7 +63,7 @@ export class AppointmentsComponent implements OnInit {
 
 
  
-  constructor(private router:Router, private auth:AuthentificationService, private toastrService: ToastrService,private NgxBootstrapConfirmService:NgxBootstrapConfirmService ,private modalService: NgbModal,private formBuilder: FormBuilder,private appservice: AppointmentsService,private reviewservices : ReviewsService) { }
+  constructor(private router:Router, private auth:AuthentificationService,private reviewS : ReviewsService,  private toastrService: ToastrService,private NgxBootstrapConfirmService:NgxBootstrapConfirmService ,private modalService: NgbModal,private formBuilder: FormBuilder,private appservice: AppointmentsService,private reviewservices : ReviewsService) { }
 
   ngOnInit(): void {
 
@@ -218,7 +218,7 @@ export class AppointmentsComponent implements OnInit {
                   bold:true
                 },
                 { text: `${oneapp.appointment_client.email} `},
-                { text: `Mobile:+${oneapp.appointment_client.mobile_number} ` },
+                { text: `Mobile:+44${oneapp.appointment_client.mobile_number} ` },
               ],
               [
                 {
@@ -307,12 +307,47 @@ export class AppointmentsComponent implements OnInit {
   }
 
 
-  payApp(id:any,amount:any) {
+  payApp(id:any,amount:any,fn:any,ln:any,date:any,timeStart:any,timeEnd:any) {
     const modalRef =  this.modalService.open(PayAppointmentCComponent);     
     
     modalRef.componentInstance.inputappointment_id = id;  
     modalRef.componentInstance.amount = amount;  
 
+    modalRef.componentInstance.trainer = fn + ' '+ln;  
+    modalRef.componentInstance.date =date + 'From ' + timeStart + 'to' + timeEnd;  
+
+  }
+
+
+  onRateChange(rate:number,id:any) {
+    console.log('hzsjs',rate)
+
+
+
+    return this.reviewS.RateTrainer(id,rate).subscribe((res: any) => {
+      Swal.fire({
+        title: 'Success!',
+        text:   "Your Feedback added successfully to this trainer!",
+        icon: 'success'
+        
+      }
+      ).then((result) => {
+        // Reload the Page
+        window.location.reload();
+      });
+
+
+    },(err:any)=>{ 
+
+      console.log(err);
+      Swal.fire({
+        title: 'Error!',
+        text:   err.error.message,
+        icon: 'error'
+        
+      });
+
+  });
 
   }
   

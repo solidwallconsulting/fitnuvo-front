@@ -36,9 +36,9 @@
                             <div class="tab-pane fade mt-2" id="gimage" role="tabpanel" aria-labelledby="gimage-tab">
                                     
                               <div class="container-fluid" >
-                                <p class="text-center" *ngIf="!upcomingapp"> You have not any appointments until now</p>
+                                <p class="text-center" *ngIf="upcomingapp?.length==0"> You have not any appointments until now</p>
 
-                                <div class="row" *ngFor="let upapp of upcomingapp">  
+                                <div class="row" *ngFor="let upapp of upcomingapp | paginate: { itemsPerPage: 5, currentPage: p }">  
                                  <div class="col-12 mt-3">
 
                                         <article class="postcard light blue">
@@ -46,9 +46,9 @@
                                                 <img class="postcard__img" src="{{url}}/storage/images/trainer/{{upapp.appointment_client?.photo_profil}}" alt="Image Title" />
                                             </a>
                                             <div class="postcard__text">
-                                                <h1 class="postcard__title blue"><a >  <strong> {{upapp.appointment_client.first_name}} {{upapp.appointment_client?.last_name}}</strong></a></h1>
+                                                <h1 class="postcard__title blue"><a >  <strong style="color: #2955AB ;"> {{upapp.appointment_client.first_name}} {{upapp.appointment_client?.last_name}}</strong></a></h1>
                                                 <div class="postcard__subtitle small">
-                                                        <i class="fas fa-calendar-alt mr-2"></i> &nbsp;  <strong>{{upapp.appointment_date}} At {{upapp.appointment_start}}-{{upapp.appointment_end}}</strong> 
+                                                        <i class="fas fa-calendar-alt mr-2" style="color:black"></i> &nbsp;  <strong style="color:black">{{upapp.appointment_date}} At {{upapp.appointment_start}}-{{upapp.appointment_end}}</strong> 
                                                 </div>
                                                 <div class="postcard__bar"></div>
                                                 <div class="postcard__preview-txt">
@@ -63,8 +63,8 @@
 
                                                 </div>
                                                 <ul class="postcard__tagbox">
-                                                    <li class="tag__item" (click)="openEditForm(upapp.appointment_id)" ><i class="fas fa-edit mr-2"></i> Edit </li>
-                                                    <li class="tag__item play blue" (click)="reject(upapp.appointment_id)" >
+                                                    <li *ngIf="upapp.appointment_payement_status=='pending'" class="tag__item" (click)="openEditForm(upapp.appointment_id)" ><i class="fas fa-edit mr-2"></i> Edit </li>
+                                                    <li *ngIf="upapp.appointment_payement_status=='pending'" class="tag__item play blue" (click)="reject(upapp.appointment_id)" >
                                                         <a ><i class="fas fa-times mr-2"></i> Cancel </a>
                                                     </li>
 
@@ -76,6 +76,9 @@
 
                                 </div>
                                 </div>
+                                <br>
+                                <pagination-controls *ngIf="upcomingapp?.length>4" style="margin-top:15px" class="text-center" (pageChange)="p = $event"></pagination-controls>
+
 
 
                                  <!--  <div class="row" *ngFor="let upapp of upcomingapp" >
@@ -115,67 +118,43 @@
                     <div class="tab-pane fade" id="gpwd" role="tabpanel" aria-labelledby="gpwd-tab">
                         <div class="container-fluid">
 
-                            <p class="text-center" *ngIf="!completedapp"> You have not any completed appointments until now</p>
+                            <p class="text-center" *ngIf="completedapp?.length==0"> You have not any completed appointments until now</p>
 
                             <div class="row" *ngFor="let capp of completedapp  | paginate: { itemsPerPage: 5, currentPage: p }" >
                                <div class="col-12 mt-3">
 
-                                <!--
-                                            <div class="card">
-                                                <div class="card-horizontal">
-                                                    <div class="img-square-wrapper">
-                                                        <img class="" width="300px" height="220px" src="{{url}}/storage/images/trainer/{{capp.appointment_client.photo_profil}}" alt="Card image cap">
-                                                    </div>
-                                                    <div class="card-body"  >
+              
+                              
                                                         
-
-                                                        <div  style="float:left;">  
-                                                        <p class="card-text"  >Client: <strong>{{capp.appointment_client.first_name}} {{capp.appointment_client.last_name}}</strong> </p>
-                                                        <p class="card-text"  >Mobile: <strong>{{capp.appointment_client.mobile_number}}</strong> </p>
-                                                            <p class="card-text"  >Date and time:: <strong>{{capp.appointment_date}} At {{capp.appointment_start}}-{{capp.appointment_end}}</strong> </p>
-                                                        <p class="card-text"  >Activity:<strong>{{capp.appointment_activity}}</strong> </p>
-                                                        </div>
-                                                        </div>
+                                        <article class="postcard light blue">
+                                            <a class="postcard__img_link" href="#">
+                                                <img class="postcard__img" src="{{url}}/storage/images/trainer/{{capp.appointment_client.photo_profil}}" alt="Image"  />
+                                            </a>
+                                            <div class="postcard__text">
+                                                <h1 class="postcard__title blue"><a >  <strong style="color: #2955AB ;"> {{capp.appointment_client.first_name}} {{capp.appointment_client.last_name}}</strong></a></h1>
+                                                <div class="postcard__subtitle small">
+                                                        <i class="fas fa-calendar-alt mr-2" style="color:black"></i> &nbsp;  <strong style="color:black">{{capp.appointment_date}} At {{capp.appointment_start}}-{{capp.appointment_end}}</strong> 
                                                 </div>
-                                                <div class="card-footer">
-                                                    <small class="text-muted">Previous workouts:</small> <strong>no workouts to show</strong>
+                                                <div class="postcard__bar"></div>
+                                                <div class="postcard__preview-txt">
+
+                                                    
+
+                                                <p>      Mobile: <strong>{{capp.appointment_client.mobile_number}}</strong>  </p>
+
+
+                                                <p>     Activity: <strong>{{capp.appointment_activity}}</strong> </p>
                                                 </div>
-                                            </div>
-
-                                        -->
-                              
-                              
-                              
-                                                 
-                                <article class="postcard light blue">
-                                    <a class="postcard__img_link" href="#">
-                                        <img class="postcard__img" src="{{url}}/storage/images/trainer/{{capp.appointment_client.photo_profil}}" alt="Image" width="300px" height="400px"  />
-                                    </a>
-                                    <div class="postcard__text">
-                                        <h1 class="postcard__title blue"><a >  <strong> {{capp.appointment_client.first_name}} {{capp.appointment_client.last_name}}</strong></a></h1>
-                                        <div class="postcard__subtitle small">
-                                                <i class="fas fa-calendar-alt mr-2"></i> &nbsp;  <strong>{{capp.appointment_date}} At {{capp.appointment_start}}-{{capp.appointment_end}}</strong> 
-                                        </div>
-                                        <div class="postcard__bar"></div>
-                                        <div class="postcard__preview-txt">
-
                                             
-
-                                        <p>      Mobile: <strong>{{capp.appointment_client.mobile_number}}</strong>  </p>
-
-
-                                        <p>     Activity: <strong>{{capp.appointment_activity}}</strong> </p>
-                                        </div>
-                                       
-                                    </div>
-                                </article>
+                                            </div>
+                                        </article>
 
                                 </div>
                             </div>
 
 
                             <br>
-                            <pagination-controls *ngIf="completedapp" style="margin-top:15px" class="text-center" (pageChange)="p = $event"></pagination-controls>
+                            <pagination-controls *ngIf="completedapp?.length>4" style="margin-top:15px" class="text-center" (pageChange)="p = $event"></pagination-controls>
    
                        </div>
                     </div>
@@ -185,7 +164,7 @@
                         <div class="container-fluid">
 
                                
-                            <p class="text-center" *ngIf="!requests"> You have not any appointments requests until now</p>
+                            <p class="text-center" *ngIf="requests?.length==0"> You have not any appointments requests until now</p>
  
                             <div class="row" *ngFor="let req of requests  | paginate: { itemsPerPage: 5, currentPage: p }" >
                                 <div class="col-12 mt-3">
@@ -224,9 +203,9 @@
                                                 <img class="postcard__img" src="{{url}}/storage/images/trainer/{{req.appointment_client?.photo_profil}}" alt="Image Title" />
                                             </a>
                                             <div class="postcard__text">
-                                                <h1 class="postcard__title blue"><a >  <strong> {{req.appointment_client.first_name}} {{req.appointment_client?.last_name}}</strong></a></h1>
+                                                <h1 class="postcard__title blue"><a >  <strong style="color: #2955AB ;"> {{req.appointment_client.first_name}} {{req.appointment_client?.last_name}}</strong></a></h1>
                                                 <div class="postcard__subtitle small">
-                                                        <i class="fas fa-calendar-alt mr-2"></i> &nbsp;  <strong>{{req.appointment_date}} At {{req.appointment_start}}-{{req.appointment_end}}</strong> 
+                                                        <i class="fas fa-calendar-alt mr-2" style="color:black"></i> &nbsp;  <strong style="color:black" >{{req.appointment_date}} At {{req.appointment_start}}-{{req.appointment_end}}</strong> 
                                                 </div>
                                                 <div class="postcard__bar"></div>
                                                 <div class="postcard__preview-txt">
@@ -243,7 +222,11 @@
                                                 <ul class="postcard__tagbox">
                                                     <li class="tag__item" (click)="booknow(req.appointment_id)" ><i class="fas fa-trash mr-2"></i> Book now </li>
                                                     <li class="tag__item play blue" (click)="reject(req.appointment_id)" >
-                                                        <a ><i class="fas fa-edit mr-2"></i> Reject </a>
+                                                        <a ><i class="fas fa-times mr-2"></i> Reject </a>
+                                                    </li>
+
+                                                    <li class="tag__item play blue" (click)="gochat(req.appointment_client.client_id)" >
+                                                        <a ><i class="fas fa-times mr-2"></i> Contact </a>
                                                     </li>
                                                 </ul>
                                             </div>
@@ -253,7 +236,7 @@
                             </div>
 
                             <br>
-                            <pagination-controls  *ngIf="requests" style="margin-top:15px" class="text-center" (pageChange)="p = $event"></pagination-controls>
+                            <pagination-controls  *ngIf="requests?.length>4" style="margin-top:15px" class="text-center" (pageChange)="p = $event"></pagination-controls>
    
                        </div>
                     </div>

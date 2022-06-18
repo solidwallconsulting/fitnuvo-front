@@ -573,6 +573,11 @@ hr {
     right: 1rem;
     font-size: 0.9em;
   }
+
+  ::ng-deep .ngx-pagination .current {
+    background: #2955AB  !important;
+   
+  }
   
   
   

@@ -753,4 +753,9 @@ hr {
           );
       }
   }
+
+  ::ng-deep .ngx-pagination .current {
+    background: #2955AB  !important;
+   
+  }
   

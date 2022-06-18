@@ -23,7 +23,7 @@
                         <div class="container">
 
 
-                          <p class="text-center" *ngIf="!mywishlist"> You have not any favourites trainers until now</p>
+                          <p class="text-center" *ngIf="mywishlist?.length==0"> You have not any favourites trainers until now</p>
 
                            <div class="row">
                                 <div class="card " *ngFor="let wish of mywishlist  | paginate: { itemsPerPage: 5, currentPage: p }">
@@ -77,7 +77,7 @@
                                     </div>
                                   </div>
                                   <div class="general">
-                                    <h1>{{wish.trainer.first_name}} {{wish.trainer.last_name}}</h1>
+                                    <h1 style="color: #2955AB ;">{{wish.trainer.first_name}} {{wish.trainer.last_name}}</h1>
                                     <p>{{wish.trainer.aboutme | slice:0:120 }}...</p>
                                     <span class="more">Mouse over the card for more info</span>
                                   </div>
@@ -86,7 +86,7 @@
 
                                 
                             <br>
-                            <pagination-controls *ngIf="mywishlist " style="margin-top:15px" class="text-center" (pageChange)="p = $event"></pagination-controls>
+                            <pagination-controls *ngIf="mywishlist?.length>4" style="margin-top:15px" class="text-center" (pageChange)="p = $event"></pagination-controls>
    
                                   
                               

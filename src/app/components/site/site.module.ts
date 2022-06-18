@@ -54,11 +54,13 @@ import { EditAppointmentComponent } from './Trainer/tappointments/modal-edit-app
 import { Ng2SmartTableModule } from 'ng2-smart-table';
 import { MessagesTComponent } from './Trainer/messages/messages.component';
 import { ConverComponent } from './Trainer/messages/conversation/conversation.component';
+import { NgChartsModule } from 'ng2-charts';
 
 import { NotificationsComponent } from './Trainer/notifications/notifications.component';
 import { NotificationsCComponent } from './pages/Client/notifications/notifications.component';
 import { MyProfileComponent } from './Trainer/myprofile/myprofile.component';
 import { PayAppointmentCComponent } from './pages/Client/cappointments/modal-pay-appointment/pay-appointmentc.component';
+import { RevenusComponent } from './Trainer/revenus/revenus.component';
 
 
 FullCalendarModule.registerPlugins([ 
@@ -103,16 +105,12 @@ FullCalendarModule.registerPlugins([
     EditAppointmentComponent,
     MessagesTComponent,
     ConverComponent,
-
-
     NotificationsComponent,
     NotificationsCComponent,
     MyProfileComponent,
-    PayAppointmentCComponent
+    PayAppointmentCComponent,
+    RevenusComponent,
 
-
-
-    
   ],
   imports: [
     CommonModule,
@@ -131,6 +129,7 @@ FullCalendarModule.registerPlugins([
      Ng2SmartTableModule,
      NgMultiSelectDropDownModule.forRoot(),
      NgxConfirmBoxModule,
+     NgChartsModule,
      
 
 

@@ -21,6 +21,9 @@ import { switchMap } from 'rxjs/operators';
 export class PayAppointmentCComponent  {
   @Input() inputappointment_id: any;
   @Input() amount: any;
+  @Input() trainer: any;
+  @Input() date: any;
+
 
   @ViewChild('cardInfo', { static: false }) cardInfo: ElementRef;
 
@@ -62,6 +65,13 @@ export class PayAppointmentCComponent  {
 
       this.user = this.authService.getUser()!;
 
+      this.AppointService.getOneappByIdFromClient(this.inputappointment_id).subscribe((data:any) => {
+        console.log('refch',data)
+        this.appointment = data['data'];
+      },(err: any) => {
+        console.log(err)
+      })
+
     }
 
   ngAfterViewInit() {
@@ -98,24 +108,28 @@ export class PayAppointmentCComponent  {
   }
 
   onClickStripe(form: NgForm) {
+    let trainername= this.trainer;
+    console.log("jdsojfs",this.trainer)
     return this.paymentIntentSub = this.appService.addPaymentIntentStripe(
       this.inputappointment_id,
-      this.name,
       this.user.email,
       this.amount,
       this.currency,
-      this.description
+      this.description,
+      this.date,
+
     ).pipe(
       switchMap(intent => {
         this.clSecret = intent.intent.client_secret;
         return this.appService.storePaymentIntent( 
           this.inputappointment_id, 
-          this.name,
           this.user.email,
           this.amount,
           this.currency,
           this.description,
-          intent.intent.id    
+          intent.intent.id    ,
+          this.date
+
         );
       })      
     ).subscribe(() => {

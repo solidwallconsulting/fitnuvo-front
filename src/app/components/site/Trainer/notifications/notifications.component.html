@@ -18,10 +18,10 @@
                     <!-- info form-->
                     <div class="tab-pane fade show active" id="ginfo" role="tabpanel" aria-labelledby="ginfo-tab">
                         <div class="container-fluid " style="margin-top:30px">
-                            <p class="text-center" *ngIf="!mynotifs"> You haven't received any notifications until now</p>
+                            <p class="text-center" *ngIf="mynotifs?.length==0"> You haven't received any notifications until now</p>
 
 
-                         <div class="row" >  
+                         <div class="row " >  
                              <ng-container *ngFor="let notif of mynotifs | paginate: { itemsPerPage: 5, currentPage: p } ">
 
                              
@@ -34,7 +34,7 @@
                                             <p>Request</p>
                                             <p>{{notif.content}}</p>
                                         </div>
-                                        <button>&times;</button>
+                                        <button  (click)="gotoapp()" >&gt;</button>
                                     </div>
                                     <div class="toast warning" *ngIf="notif.notif_type=='edited'">
                                         <div class="outer-container">
@@ -45,7 +45,7 @@
                                             <p>Warning</p>
                                             <p>{{notif.content}}</p>
                                         </div>
-                                        <button>&times;</button>
+                                        <button  (click)="gotoapp()" >&gt;</button>
                                     </div>
 
                                     <div class="toast error" *ngIf="notif.notif_type=='canceled'">
@@ -58,7 +58,7 @@
                                             <p>Warning</p>
                                             <p>{{notif.content}}</p>
                                         </div>
-                                        <button>&times;</button>
+                                        <button  (click)="gotoapp()" >&gt;</button>
                                     </div>
 
 
@@ -70,7 +70,7 @@
                          </div>
 
                          <br>
-                         <pagination-controls *ngIf="mynotifs" style="margin-top:15px" class="text-center" (pageChange)="p = $event"></pagination-controls>
+                         <pagination-controls *ngIf="mynotifs?.length>4" style="margin-top:15px" class="text-center" (pageChange)="p = $event"></pagination-controls>
 
 
 

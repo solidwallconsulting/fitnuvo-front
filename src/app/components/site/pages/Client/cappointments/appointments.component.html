@@ -30,7 +30,7 @@
                              
                             <div class="container-fluid">
 
-                                <p class="text-center" *ngIf="!upcomingApp"> You have not any appointments until now</p>
+                                <p class="text-center" *ngIf="upcomingApp?.length==0"> You have not any appointments until now</p>
 
 
                                 <!-- 
@@ -64,16 +64,16 @@
 
                                 -->
 
-                                 <div class="row" *ngFor="let app of upcomingApp" >
+                                 <div class="row" *ngFor="let app of upcomingApp | paginate: { itemsPerPage: 5, currentPage: p }" >
                                     <div class="col-12 mt-3">
                                                 <article class="postcard light blue">
                                                     <a class="postcard__img_link" href="#">
                                                         <img class="postcard__img" src="{{url}}/storage/images/trainer/{{app.appointment_trainer.photo_profil}}" alt="Image Title" />
                                                     </a>
                                                     <div class="postcard__text">
-                                                        <h1 class="postcard__title blue"><a >  <strong> {{app.appointment_trainer.first_name}} {{app.appointment_trainer.last_name}}</strong></a></h1>
+                                                        <h1 class="postcard__title blue"><a >  <strong style="color: #2955AB ;"> {{app.appointment_trainer.first_name}} {{app.appointment_trainer.last_name}}</strong></a></h1>
                                                         <div class="postcard__subtitle small">
-                                                                <i class="fas fa-calendar-alt mr-2"></i> &nbsp;  <strong>{{app.appointment_date}} At {{app.appointment_start}}-{{app.appointment_end}}</strong> 
+                                                                <i class="fas fa-calendar-alt mr-2" style="color:black"></i> &nbsp;  <strong style="color:black">{{app.appointment_date}} At {{app.appointment_start}}-{{app.appointment_end}}</strong> 
                                                         </div>
                                                         <div class="postcard__bar"></div>
                                                         <div class="postcard__preview-txt">
@@ -84,14 +84,16 @@
 
 
                                                         <p>     Activity: <strong>{{app.appointment_activity}}</strong> </p>
+                                                        <p>     Status: <strong>{{app.appointment_payement_status}}</strong> </p>
+
                                                         </div>
                                                         <ul class="postcard__tagbox">
-                                                            <li class="tag__item" (click)="cancelapp(app.appointment_id)" ><i class="fas fa-trash mr-2"></i> Cancel </li>
-                                                            <li class="tag__item play blue" (click)="openEditForm(app.appointment_id,app.appointment_trainer.trainer_id)">
+                                                            <li *ngIf="app.appointment_payement_status=='pending'" class="tag__item" (click)="cancelapp(app.appointment_id)" ><i class="fas fa-trash mr-2"></i> Cancel </li>
+                                                            <li *ngIf="app.appointment_payement_status=='pending'" class="tag__item play blue" (click)="openEditForm(app.appointment_id,app.appointment_trainer.trainer_id)">
                                                                 <a ><i class="fas fa-edit mr-2"></i> Edit </a>
                                                             </li>
 
-                                                            <li class="tag__item play blue" (click)="payApp(app.appointment_id,app.appointment_amount)">
+                                                            <li *ngIf="app.appointment_payement_status=='pending'" class="tag__item play blue" (click)="payApp(app.appointment_id,app.appointment_amount,app.appointment_trainer.first_name,app.appointment_trainer.last_name,app.appointment_date,app.appointment_start,app.appointment_end)">
                                                                 <a ><i class="fa fa-credit-card mr-2"></i> Payer £{{app.appointment_amount}} </a>
                                                             </li>
 
@@ -104,13 +106,15 @@
 
                                  </div>
                                   </div>
+                                  <pagination-controls *ngIf="upcomingApp?.length>4" style="margin-top:15px" class="text-center" (pageChange)="p = $event"></pagination-controls>
+
                             </div>
                     </div>
                     <!-- password form -->
                     <div class="tab-pane fade" id="gpwd" role="tabpanel" aria-labelledby="gpwd-tab">
                         <div class="container-fluid">
                                
-                            <p class="text-center" *ngIf="!completedapp"> You have not any completed appointments until now</p>
+                            <p class="text-center" *ngIf="completedapp?.length==0"> You have not any completed appointments until now</p>
 
                             <div class="row" *ngFor="let app of completedapp | paginate: { itemsPerPage: 5, currentPage: p }" >
                                <div class="col-12 mt-3">
@@ -121,9 +125,9 @@
                                         <img class="postcard__img" src="{{url}}/storage/images/trainer/{{app.appointment_trainer.photo_profil}}" alt="Image Title" width="300px" height="400px" />
                                     </a>
                                     <div class="postcard__text">
-                                        <h1 class="postcard__title blue"><a >  <strong> {{app.appointment_trainer.first_name}} {{app.appointment_trainer.last_name}}</strong></a></h1>
+                                        <h1 class="postcard__title blue"><a >  <strong style="color: #2955AB ;"> {{app.appointment_trainer.first_name}} {{app.appointment_trainer.last_name}}</strong></a></h1>
                                         <div class="postcard__subtitle small">
-                                                <i class="fas fa-calendar-alt mr-2"></i> &nbsp;  <strong>{{app.appointment_date}} At {{app.appointment_start}}-{{app.appointment_end}}</strong> 
+                                                <i class="fas fa-calendar-alt mr-2" style="color:black"></i> &nbsp;  <strong style="color:black">{{app.appointment_date}} At {{app.appointment_start}}-{{app.appointment_end}}</strong> 
                                         </div>
                                         <div class="postcard__bar"></div>
                                         <div class="postcard__preview-txt">
@@ -135,8 +139,9 @@
 
                                         <p>     Activity: <strong>{{app.appointment_activity}}</strong> </p>
                                         <div> 
+                                            
                                             <strong style="color:black"> Rate the trainer </strong>
-                                            <ngb-rating [max]="5" [(rate)]="starRating"  name="stars" ></ngb-rating>
+                                            <ngb-rating [max]="5" [(rate)]="starRating"  name="stars" (rateChange)="onRateChange($event,app.appointment_trainer.trainer_id)"  ></ngb-rating>
                                          </div>
 
 
@@ -205,10 +210,11 @@
                                    </div>
 
                                 -->
-                                <pagination-controls *ngIf="completedapp" style="margin-top:15px" class="text-center" (pageChange)="p = $event"></pagination-controls>
 
                                </div>
                             </div>
+                            <pagination-controls *ngIf="completedapp?.length>4" style="margin-top:15px" class="text-center" (pageChange)="p = $event"></pagination-controls>
+
                        </div>
                     </div>
                 </div>

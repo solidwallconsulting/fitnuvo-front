@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { OwlOptions } from 'ngx-owl-carousel-o';
+import { environment } from 'src/environments/environment';
 import { TrainerService } from '../../../services/trainer.service';
 
 @Component({
@@ -12,6 +13,7 @@ export class HomeComponent implements OnInit {
   constructor(private service: TrainerService) { }
   bests:any=[]
   news:any=[]
+  url:string=environment.urlServeur;
 
 
   ngOnInit(): void {

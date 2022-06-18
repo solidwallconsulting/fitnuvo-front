@@ -32,11 +32,15 @@ export class AppointmentsTComponent implements OnInit {
   p: number = 1;
 
   calendarOptions: CalendarOptions = {
+    themeSystem: 'bootstrap5',
+    
+
      customButtons: {
         myCustomButton: {
           text: '+ Add planning',
           click: this.addappoint.bind(this)
         },
+        
         
         
       },
@@ -53,7 +57,7 @@ export class AppointmentsTComponent implements OnInit {
     },
     eventColor: '#378006',
 
-    eventBackgroundColor:'yellow',
+    eventBackgroundColor:'#2955AB',
 
       
     headerToolbar: {
@@ -107,8 +111,9 @@ export class AppointmentsTComponent implements OnInit {
     })
 
     this.appservice.requestsAppOfTrainer().subscribe((data:any) => {
-      this.requests = data['data'];
       console.log("sdsd",data)
+
+      this.requests = data['data'];
     },(err: any) => {
       console.log("errapsp",err)
     })
@@ -389,5 +394,11 @@ export class AppointmentsTComponent implements OnInit {
 
       NgInit(){
         this.ngOnInit();
+      }
+
+      gochat(id:any) {
+        this.router.navigate(['/trainerme/chats/',id]);
+
+
       }
 }

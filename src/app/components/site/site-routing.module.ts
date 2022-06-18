@@ -26,6 +26,7 @@ import { MessagesTComponent } from './Trainer/messages/messages.component';
 import { NotificationsComponent } from './Trainer/notifications/notifications.component';
 import { NotificationsCComponent } from './pages/Client/notifications/notifications.component';
 import { MyProfileComponent } from './Trainer/myprofile/myprofile.component';
+import { RevenusComponent } from './Trainer/revenus/revenus.component';
 
 const siteRoutes: Routes = [
   {
@@ -156,6 +157,11 @@ const siteRoutes: Routes = [
                 path: 'myprofile',
                 component: MyProfileComponent
               },
+              {
+                path: 'revenus',
+                component: RevenusComponent
+              },
+              
               
             ]
           },

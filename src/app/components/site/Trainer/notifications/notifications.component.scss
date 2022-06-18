@@ -413,11 +413,9 @@ hr {
     margin: 10px;
 }
 *{
-    margin: 0;
     box-sizing: border-box;
     border: none;
     font-family: "Poppins",sans-serif;
-    font-size: 14px;
 }
 body{
     background-color: #f9f9f9;
@@ -491,3 +489,8 @@ body{
     cursor: pointer;
     margin-right:-30px;
 }
+
+::ng-deep .ngx-pagination .current {
+    background: #2955AB  !important;
+   
+  }

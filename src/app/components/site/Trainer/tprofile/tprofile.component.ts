@@ -130,7 +130,7 @@ export class TprofileComponent implements OnInit {
       datebirth: ["", [ Validators.required]],
       phone: ["", [Validators.required,Validators.pattern("[0-9 ]{12}")]],
       adress: ["", [Validators.required]],
-      experience: ["", [Validators.required,Validators.pattern("[1-20 ]")]],
+      experience: ["", [Validators.required,Validators.min(1),Validators.max(20)]],
       price: ["", [Validators.required, Validators.min(20), Validators.max(200),Validators.pattern("^[0-9]*$")]],
 
     }),

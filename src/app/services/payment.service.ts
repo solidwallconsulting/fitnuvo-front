@@ -13,19 +13,21 @@ export class PaymentService {
 
  addPaymentIntentStripe(
    id: string,
-    name: string,
     email: string,
     price: number,
     currency: string,
-    description: string
+    description: string,
+    date_time:string
+
  ) {
    let uploadData = {
       id: id, 
-      name: name, 
       email: email,
       price: price, 
       currency: currency, 
-      description: description
+      description: description,
+      date_time:date_time
+
     };
 
      const url = environment.Base_Url + '/api/v1/payment-intent';
@@ -43,21 +45,24 @@ export class PaymentService {
 
  storePaymentIntent(
    itemId: string,
-    itemName: string,
     buyerEmail: string, 
     itemPrice: number,
     currency: string,
     description: string,
-    intent_id: string
+    intent_id: string,
+    date_time:string
+
  ) {
    let uploadData = {
       itemId: itemId,
-      itemName: itemName,
       intentId: intent_id,      
       currency: currency,      
       buyerEmail: buyerEmail, 
       itemPrice: itemPrice,     
-      itemDescription: description         
+      itemDescription: description, 
+      date_time:date_time
+
+      
     };
 
     const url = environment.Base_Url + '/api/v1/store-intent';

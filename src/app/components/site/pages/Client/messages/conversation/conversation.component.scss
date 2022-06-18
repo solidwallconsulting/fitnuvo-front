@@ -236,3 +236,8 @@ img {max-width: 100%;}
     border-bottom: 5px solid #2955AB;
     color:#2955AB;
 }
+
+::ng-deep .ngx-pagination .current {
+    background: #2955AB  !important;
+   
+  }

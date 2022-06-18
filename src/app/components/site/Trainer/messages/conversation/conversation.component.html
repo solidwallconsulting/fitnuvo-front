@@ -8,7 +8,7 @@
                       <div class="bloc-nav">
                           <ul class="nav coach-nav" id="myTab" role="tablist">
                               <li class="nav-item">
-                                <a class="nav-link active" id="ginfo-tab" data-bs-toggle="tab" data-bs-target="#ginfo" role="tab" aria-controls="userinfo" aria-selected="true" >Chats</a>
+                                <a class="nav-link active" id="ginfo-tab" data-bs-toggle="tab" data-bs-target="#ginfo" role="tab" aria-controls="userinfo" aria-selected="true" >Chats ({{mymessages?.length}})</a>
                               </li>
                               
                               </ul>
@@ -28,6 +28,7 @@
                           <div class="card">
                               <div class="col-12   border-right">
                       
+                                <p class="text-center mt-20" *ngIf="mymessages?.length==0"> You have not any message until now</p>
 
                          
                                 <ng-container *ngFor="let msg of mymessages | paginate: { itemsPerPage: 5, currentPage: p }"> 
@@ -66,7 +67,7 @@
                                 <hr class="d-block d-lg-none mt-1 mb-0">
                               </div>
                              
-                              <pagination-controls *ngIf="mymessages?.length!=0" style="margin-top:15px" class="text-center" (pageChange)="p = $event"></pagination-controls>
+                              <pagination-controls *ngIf="mymessages?.length>4" style="margin-top:15px" class="text-center" (pageChange)="p = $event"></pagination-controls>
 
                              
                           </div>

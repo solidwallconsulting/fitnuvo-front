@@ -40,4 +40,9 @@ export class ReviewsService {
     return this.httpClient.post(`${this.BASE_URL}/api/v1/trainers/makereview` , {id: id , review: review , stars:stars} ,{headers:this.headers});
 
   }
+
+  RateTrainer(id:any,stars:any) {
+    return this.httpClient.post(`${this.BASE_URL}/api/v1/trainers/ratetrainer` , {id: id ,  stars:stars} ,{headers:this.headers});
+
+  }
 }
