@@ -93,7 +93,7 @@
                             <div class="mb-3 col-md-12 form-check">
                                
                                     <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                                    <a class="form-check-label" for="exampleCheck1" style="color: black;text-decoration: underline;"> I agree to the privacy policy, website terms and booking terms</a>
+                                    <a class="form-check-label" href="/terms" for="exampleCheck1" style="color: black;text-decoration: underline;"> I agree to the privacy policy, website terms and booking terms</a>
                                  
                                 
                             </div>
@@ -182,9 +182,12 @@
                                     <input type="number" min="1" max="20" formControlName="experience" class="form-control" id="inputph" >
                    
 
+                                
+
                                     <div *ngIf="formControlT.experience.touched && formControlT.experience.errors" class="text-danger">
-                                        <div  class="mt-1"   *ngIf="formControlT.experience.errors.required"><i class="ti-info-alt"></i> Experience is required.</div>
-                                        <div  class="mt-1"   *ngIf="formControlT.experience.errors.pattern"><i class="ti-info-alt"></i> Experience must between 1 and 20 years.</div>
+                                        <div  class="mt-1"   *ngIf="formControlT.experience.errors.required"> Experience is required.</div>
+                                        <div  class="mt-1"   *ngIf="formControlT.experience.errors.min"> Experience must between 1 and 20 years.</div>
+                                        <div  class="mt-1"   *ngIf="formControlT.experience.errors.max"> Experience must between 1 and 20 years.</div>
 
                                     </div>
                                 </div>
@@ -192,9 +195,13 @@
                                     <label for="inputName" class="form-label">Hourly Price</label>
                                      <input type="text"  class="form-control" formControlName="price" id="inputEmail4" placeholder="$" >
                                 
-                                     <div *ngIf="formControlT.price.touched && formControlT.price.errors" class="text-danger">
-                                        <div  class="mt-1"   *ngIf="formControlT.price.errors.required"><i class="ti-info-alt"></i> Price is required.</div>
-                                        <div  class="mt-1"   *ngIf="formControlT.price.errors.pattern"><i class="ti-info-alt"></i> Price must between 1 and 20 years.</div>
+                                  
+
+                                    <div *ngIf="formControlT.price.touched && formControlT.price.invalid" class="text-danger">
+                                        <div class="mt-1" *ngIf="formControlT.price.errors?.required">*Price is required.</div>
+                                        <div class="mt-1" *ngIf="formControlT.price.errors?.min">*The Price must between 20£ and 200£.</div>
+                                        <div class="mt-1" *ngIf="formControlT.price.errors?.max">*The Price must between 20£ and 200£.</div>
+                                        <div class="mt-1"  *ngIf="formControlT.price.errors?.pattern">*The Price must have type number.</div>
 
                                     </div>
 
@@ -203,7 +210,7 @@
                                 <div class="mb-3 col-md-12 form-check">
                                    
                                         <input type="checkbox" class="form-check-input" id="exampleCheck2">
-                                        <a class="form-check-label" for="exampleCheck1" style="color: black;text-decoration: underline;"> I agree to the privacy policy, website terms and booking terms</a>
+                                        <a class="form-check-label" href="/terms" for="exampleCheck1" style="color: black;text-decoration: underline;"> I agree to the privacy policy, website terms and booking terms</a>
                                      
                                     
                                 </div>

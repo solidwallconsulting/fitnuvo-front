@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { LocalDataSource } from 'ng2-smart-table';
 import { UsersService } from '../../services/users.service';
+import { ButtonViewAComponent } from './button.component';
 
 @Component({
   selector: 'app-administrators',
@@ -67,6 +68,16 @@ export class AdministratorsComponent implements OnInit {
       member_since: {
         title: 'Member since',
         type: 'string',
+      },
+      Buttons: {
+        title: 'Password Management',
+        type: 'custom',
+        renderComponent: ButtonViewAComponent,
+        onComponentInitFunction(instance:any) {
+          instance.save.subscribe((row:any) => {
+          });
+        }
+      
       },
 
      

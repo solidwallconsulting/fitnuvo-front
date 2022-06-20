@@ -32,7 +32,7 @@ export class DeactivateAccountComponent {
     }else {
 
       let options ={
-        title: 'Sure you want to delete this activity?',
+        title: 'Sure you want to deactive this account?',
         confirmLabel: 'Okay',
         declineLabel: 'Cancel'
       }

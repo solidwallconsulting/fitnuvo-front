@@ -41,8 +41,8 @@ export class ReviewsService {
 
   }
 
-  RateTrainer(id:any,stars:any) {
-    return this.httpClient.post(`${this.BASE_URL}/api/v1/trainers/ratetrainer` , {id: id ,  stars:stars} ,{headers:this.headers});
+  RateTrainer(id:any,stars:any,idapp:any) {
+    return this.httpClient.post(`${this.BASE_URL}/api/v1/trainers/ratetrainer` , {id: id ,  stars:stars, idapp:idapp} ,{headers:this.headers});
 
   }
 }

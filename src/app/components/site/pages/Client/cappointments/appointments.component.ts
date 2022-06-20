@@ -319,12 +319,12 @@ export class AppointmentsComponent implements OnInit {
   }
 
 
-  onRateChange(rate:number,id:any) {
+  onRateChange(rate:number,id:any,idapp:any) {
     console.log('hzsjs',rate)
 
 
 
-    return this.reviewS.RateTrainer(id,rate).subscribe((res: any) => {
+    return this.reviewS.RateTrainer(id,rate,idapp).subscribe((res: any) => {
       Swal.fire({
         title: 'Success!',
         text:   "Your Feedback added successfully to this trainer!",

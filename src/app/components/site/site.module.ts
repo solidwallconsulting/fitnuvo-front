@@ -61,6 +61,7 @@ import { NotificationsCComponent } from './pages/Client/notifications/notificati
 import { MyProfileComponent } from './Trainer/myprofile/myprofile.component';
 import { PayAppointmentCComponent } from './pages/Client/cappointments/modal-pay-appointment/pay-appointmentc.component';
 import { RevenusComponent } from './Trainer/revenus/revenus.component';
+import { TermsComponent } from './pages/terms/terms.component';
 
 
 FullCalendarModule.registerPlugins([ 
@@ -110,6 +111,7 @@ FullCalendarModule.registerPlugins([
     MyProfileComponent,
     PayAppointmentCComponent,
     RevenusComponent,
+    TermsComponent
 
   ],
   imports: [
@@ -130,6 +132,7 @@ FullCalendarModule.registerPlugins([
      NgMultiSelectDropDownModule.forRoot(),
      NgxConfirmBoxModule,
      NgChartsModule,
+     
      
 
 

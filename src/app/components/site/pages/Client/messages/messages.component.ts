@@ -29,9 +29,9 @@ export class MessagesComponent implements OnInit {
  id:any;
   photo="/assets/site/img/icon/Ellipse3.png";
 
-  usermsg:any;
+ usermsg:any;
 
-  privatemsgs : any;
+ privatemsgs:any;
  name:any;
   constructor(private router:Router,private route: ActivatedRoute, private auth:AuthentificationService,private wishlistS : WishlistService ,private notifyService: NotifyService,private msgservice:MessagesService) { 
     this.router.routeReuseStrategy.shouldReuseRoute = () => false;

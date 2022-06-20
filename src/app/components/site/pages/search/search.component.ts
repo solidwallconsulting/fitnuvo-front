@@ -382,9 +382,23 @@ getTrainerSearch(name:any){
   const keyword= name.target.value;
 
   const search= this.TrainerService.getSearchLive(keyword).then(response => {
+    console.log("hhjoll",response);
 
-     this.trainers= response;
-     console.log(this.trainers);
+     this.trainers=response ;
+     this.cd.detectChanges();
+
+  });
+
+
+}
+
+getLocationSearch(name:any){
+  const keyword= name.target.value;
+
+  const search= this.TrainerService.getLocationLive(keyword).then(response => {
+    console.log("hhjoll",response);
+
+     this.trainers=response ;
      this.cd.detectChanges();
 
   });

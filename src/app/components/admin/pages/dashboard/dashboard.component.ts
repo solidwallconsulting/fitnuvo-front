@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TrainerService } from 'src/app/services/trainer.service';
 import { UsersService } from '../../services/users.service';
+import { ChartData,  ChartOptions } from 'chart.js';
 
 @Component({
   selector: 'app-dashboard',
@@ -17,6 +18,13 @@ export class DashboardComponent implements OnInit {
   numtrainers:any;
   numcustomers:any;
   numspecs:any;
+
+  total:any;
+  salesData: ChartData<'line'>;
+  chartOptions: ChartOptions;
+
+  salesData2: ChartData<'line'>;
+  chartOptions2: ChartOptions;
 
   constructor(private serviceT : TrainerService,private userS : UsersService) {
 
@@ -72,6 +80,68 @@ export class DashboardComponent implements OnInit {
       this.numspecs = data['data'];
 
     })
+
+
+
+
+
+    this.userS.getMembresTrainersStats().subscribe((data:any)=>{
+      console.log("chscyx",data['data']);
+
+      this.months=data['data'].map((element:any)=>  element.month);
+      this.total=data['data'].map((element:any)=>  element.total);
+
+      console.log('ajas',this.data)
+
+      this.salesData = {
+        labels: this.months,
+        datasets: [
+          { label: 'Total Trainers', data: this.total, tension: 0.5 },
+    
+        ],
+      };
+      this.chartOptions= {
+        responsive: true,
+        plugins: {
+          title: {
+            display: true,
+            text: 'Monthly Trainers Data',
+          },
+        },
+      };
+
+    });
+
+
+    this.userS.getMembresClientssStats().subscribe((data:any)=>{
+      console.log("chscyx",data['data']);
+
+      this.months=data['data'].map((element:any)=>  element.month);
+      this.total=data['data'].map((element:any)=>  element.total);
+
+      console.log('ajas',this.data)
+
+      this.salesData2 = {
+        labels: this.months,
+        datasets: [
+          { label: 'Total Clients', data: this.total, tension: 0.5 },
+    
+        ],
+      };
+      this.chartOptions2= {
+        responsive: true,
+        plugins: {
+          title: {
+            display: true,
+            text: 'Monthly Clients Data',
+          },
+        },
+      };
+
+    });
+
+
+
   }
 
 }

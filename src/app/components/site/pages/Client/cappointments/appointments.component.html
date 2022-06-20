@@ -138,11 +138,9 @@
 
 
                                         <p>     Activity: <strong>{{app.appointment_activity}}</strong> </p>
-                                        <div> 
                                             
                                             <strong style="color:black"> Rate the trainer </strong>
-                                            <ngb-rating [max]="5" [(rate)]="starRating"  name="stars" (rateChange)="onRateChange($event,app.appointment_trainer.trainer_id)"  ></ngb-rating>
-                                         </div>
+                                            <ngb-rating [max]="5" [(rate)]="app.appointment_rated"  name="stars" (rateChange)="onRateChange($event,app.appointment_trainer.trainer_id,app.appointment_id)"  ></ngb-rating>
 
 
                                         </div>

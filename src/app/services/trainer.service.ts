@@ -67,6 +67,20 @@ export class TrainerService {
   }
 
 
+  getLocationLive(name:string){
+    const response=  new Promise ( resolve => {
+      this.httpClient.get(`${this.BASE_URL}/api/v1/trainerslive/location_live?location_live=${name}`).subscribe(data => {
+
+        resolve(data);
+      },err => {
+        console.log(err);
+      });
+    });
+    return response;
+
+  }
+
+
   token:string = this.auth.getToken();
 
 

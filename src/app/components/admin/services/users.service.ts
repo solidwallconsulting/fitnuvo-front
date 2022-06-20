@@ -42,6 +42,12 @@ export class UsersService {
     return this.httpClient.post<User>(`${this.apiUrl}/user/updatepassword`, JSON.stringify(User), this.httpOptions );
 
   }
+
+
+  changePwdAdmin(password:any) {
+    return this.httpClient.post(`${this.apiUrl}/admin/updatepassword`, {password:password}, this.httpOptions );
+
+  }
   getAllClients(): Observable<User[]> {
     return this.httpClient.get<User[]>(`${this.apiUrl}/clients`,{headers:this.headers});
   }
@@ -53,6 +59,13 @@ export class UsersService {
     return this.httpClient.get(`${this.apiUrl}/transactions`,{headers:this.headers});
   }
 
+
+  getMembresTrainersStats(){
+    return this.httpClient.get(`${this.apiUrl}/statsmembrestr`,{headers:this.headers});
+  }
+  getMembresClientssStats(){
+    return this.httpClient.get(`${this.apiUrl}/statsmembrescl`,{headers:this.headers});
+  }
 
   getAllusers(){
     return this.httpClient.get(`${this.apiUrl}/all-users`,{headers:this.headers});

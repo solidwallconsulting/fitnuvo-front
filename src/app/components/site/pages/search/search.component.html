@@ -4,10 +4,9 @@
         <div class="col-12 mt-100">
               <div class="input-group mb-3">
                 <span class="right-border-top-bar input-group-text bg-white border-right-0" id="basic-addon1"><i class="fa fa-search" aria-hidden="true"></i></span>
-                <input type="text" (input)="getTrainerSearch($event)"  class="form-control top-input-bar" placeholder="search" aria-label="Username">
+                <input type="text" (input)="getTrainerSearch($event)"  class="form-control top-input-bar" placeholder="Search by name" aria-label="Username">
                 <span class="right-border-top-bar input-group-text bg-white border-right-0"><i class="fa fa-map-pin" aria-hidden="true"></i></span>
-                <input type="text" class="form-control top-input-bar right-bar" placeholder="Search by location" aria-label="Server"> 
-                <button class="btn btn-primary input-group-text top-search-button " >Search</button>
+                <input type="text" (input)="getLocationSearch($event)" class="form-control top-input-bar right-bar" placeholder="Search by location" aria-label="Server"> 
               </div>
 
         </div>

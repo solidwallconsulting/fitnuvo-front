@@ -27,6 +27,7 @@ import { NotificationsComponent } from './Trainer/notifications/notifications.co
 import { NotificationsCComponent } from './pages/Client/notifications/notifications.component';
 import { MyProfileComponent } from './Trainer/myprofile/myprofile.component';
 import { RevenusComponent } from './Trainer/revenus/revenus.component';
+import { TermsComponent } from './pages/terms/terms.component';
 
 const siteRoutes: Routes = [
   {
@@ -41,6 +42,10 @@ const siteRoutes: Routes = [
           {
             path: 'about',
             component: AboutComponent, 
+          },
+          {
+            path: 'terms',
+            component: TermsComponent, 
           },
           {
             path: 'search',

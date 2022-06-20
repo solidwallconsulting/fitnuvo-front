@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import {SnotifyService} from 'ng-snotify';
 import { AuthentificationService } from 'src/app/services/authentification.service';
+import { NotifyService } from 'src/app/services/notify.service';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -15,7 +16,7 @@ export class ResetpasswordComponent implements OnInit {
   resetForm!: FormGroup;
 
 
-  constructor(public activeModal: NgbActiveModal,private router:Router,private auth:AuthentificationService  , private notify: SnotifyService,private formBuilder: FormBuilder
+  constructor(public activeModal: NgbActiveModal,private router:Router,private auth:AuthentificationService  , private notify: NotifyService,private formBuilder: FormBuilder
     ) { }
 
   ngOnInit(): void {
@@ -41,6 +42,7 @@ export class ResetpasswordComponent implements OnInit {
 
     },(erreur) => {
       console.log(erreur);
+      this.notify.showError(erreur.error.message,'Error');
 
 
     });
@@ -52,8 +54,8 @@ export class ResetpasswordComponent implements OnInit {
   }
 
   private handleErreur(erreur:any) {
-    this.notify.clear();
-    this.notify.error('Email not found !', 'Error');
+    
+
     // this.erreur = erreur.error.error;
   }
 
